@@ -1,0 +1,2288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+<!-- Hotjar Tracking Code for staging -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3587741,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- End Hotjar Tracking code -->
+    <title>The use of indexes - Cypher Manual</title>
+    <link rel="prev" href="../query-profile/">
+    <link rel="next" href="../basic-example/">
+      <meta name="description" content="The query plans when indexes are used in various scenarios.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The use of indexes - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20210423062553/neo4j-social-share-21.png" />
+    <meta property="og:description" content="The query plans when indexes are used in various scenarios." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/5/query-tuning/indexes/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422142941/neo4j-logo-2020.svg" alt="Neo4j Docs" />
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/drivers-apis">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/spark/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/arrows/">arrows.app</a>
+              <ul class="project-links">
+                <li><a href="/labs/arrows/" class="project-link">Details</a></li>
+                <li><a href="https://arrows.app" class="project-link">arrows.app</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/apoc/">APOC Extended</a>
+
+              <ul class="project-links">
+                <li><a href="/labs/apoc/5/" class="project-link">Documentation</a></li>
+                <li><a href="/developer/neo4j-apoc/" class="project-link">Developer Guide</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/halin/">Halin</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/etl-tool/">ETL Tool</a>
+              <ul class="project-links">
+                <li><a href="/labs/etl-tool/" class="project-link">Details</a></li>
+                <li><a href="/labs/etl-tool/1.5.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-migrations/">Neo4j Migrations</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-migrations/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-migrations/2.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/liquibase/">Neo4j Plugin For Liquibase</a>
+              <ul class="project-links">
+                <li><a href="/labs/liquibase/" class="project-link">Details</a></li>
+                <li><a href="https://github.com/liquibase/liquibase-neo4j" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">Neosemantics</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/tutorial/" class="project-link">Getting Started</a></li>
+                <li><a href="/labs/neosemantics/4.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-helm/">Neo4j Helm</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-helm/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-helm/1.0.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neodash/">NeoDash</a>
+              <ul class="project-links">
+                <li><a href="/labs/neodash/" class="project-link">Details</a></li>
+                <li><a href="/labs/neodash/2.1/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neomodel/">neomodel</a>
+              <ul class="project-links">
+                <li><a href="/labs/neomodel/" class="project-link">Details</a></li>
+                <li><a href="https://neomodel.readthedocs.io/en/latest/" target="_blank" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/?ref=docs" target="_blank">GraphAcademy</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/?ref=docs">Free, Self Paced Training</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certification/?ref=docs" target="_blank">Certification</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/developer/kb" target="_blank">Knowledge Base</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="cypher-manual" data-version="5">
+  <aside class="nav">
+    <div class="panels">
+      <div class="selectors">
+        
+      </div>
+      <div class="nav-panel-menu is-active" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/cypher_overview/">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/cypher_neo4j/">Cypher and Neo4j</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../introduction/cypher_aura/">Cypher and Aura</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../queries/expressions/">Cypher expressions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../queries/case/">Conditional expressions (CASE)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/clause_composition/">Clause composition</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/match/">MATCH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/return/">RETURN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/with/">WITH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/where/">WHERE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/skip/">SKIP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/create/">CREATE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/delete/">DELETE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/set/">SET</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/merge/">MERGE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/union/">UNION</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/use/">USE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../patterns/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../patterns/primer/">Primer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../values-and-types/type-predicate/">Type predicate expressions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/list/">List functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/string/">String functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/database/">Database functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../indexes-for-search-performance/">Indexes for search performance</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../indexes-for-full-text-search/">Full-text search index</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../indexes-for-vector-search/">Vector search index</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../constraints/examples/">Examples</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../query-options/">Cypher query options</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../query-profile/">Profile a query</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="./">The use of indexes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../basic-example/">Basic query tuning example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../advanced-example/">Advanced query tuning example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../using/">Planner hints and the USING keyword</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../execution-plans/">Execution plans</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../execution-plans/db-hits/">Database hits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../execution-plans/operator-summary/">Execution plan operators</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../execution-plans/operators/">Execution plan operators in detail</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../execution-plans/shortestpath-planning/">Shortest path planning</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../administration/">Administration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration/databases/">Database management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration/aliases/">Database alias management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration/servers/">Server management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../../administration/access-control/">Access control</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/manage-users/">Managing users</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/manage-roles/">Managing roles</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/manage-privileges/">Managing privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/privileges-reads/">Read privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/privileges-writes/">Write privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/database-administration/">Database administration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/privileges-immutable/">Immutable privileges</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/variables/">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/reserved/">Reserved keywords</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/operators/">Operators</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../syntax/comments/">Comments</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../keyword-glossary/">Glossary of keywords</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text nav-item-toggle">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    <a href="../../introduction/" class="home-link" aria-label="Go to home page"></a>
+    <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+    <li><a href="../">
+        Query tuning
+    </a></li>
+    <li><a href="./">
+        The use of indexes
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  <div class="content">
+<article class="doc">
+<div class="sect-header">
+<h1 class="page">The use of indexes</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>This section describes the query plans when indexes are used in various scenarios.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>The task of tuning calls for different indexes depends on what the queries look like.
+Therefore, it is important to have a fundamental understanding of how the indexes operate.
+This section describes the query plans that result from different index scenarios.</p>
+</div>
+<div class="paragraph">
+<p>Node indexes and relationship indexes operate in the same way.
+Therefore, node and relationship indexes are used interchangeably in this section.</p>
+</div>
+<div class="paragraph">
+<p>For instructions on how to create and maintain indexes, refer to <a href="../../indexes-for-search-performance/" class="xref page">Indexes for search performance</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_index_types_and_predicate_compatibility"><a class="anchor" href="#_index_types_and_predicate_compatibility"></a>Index types and predicate compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generally, an index solves some combination of a label/relationship type predicate and property predicates at the same time.
+There are different types of indexes available in Neo4j and these are compatible with different property predicates.</p>
+</div>
+<div class="paragraph">
+<p>Indexes are most often used for <code>MATCH</code> and <code>OPTIONAL MATCH</code> clauses that combine a label/relationship type predicate with a property predicate.
+Therefore, it is important to know what kind of predicates can be solved by the different indexes.</p>
+</div>
+<div class="paragraph">
+<p>The different index types used for search performance are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LOOKUP</code></p>
+</li>
+<li>
+<p><code>RANGE</code></p>
+</li>
+<li>
+<p><code>POINT</code></p>
+</li>
+<li>
+<p><code>TEXT</code></p>
+</li>
+<li>
+<p><code>BTREE</code> <span class="label label--removed">Removed</span></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>RANGE</code> and <code>TEXT</code> indexes can only perform limited matching on strings - exact, prefix, substring, or suffix matches.
+A <code>FULLTEXT</code> index will instead tokenize the indexed string values, so it can match terms anywhere within the strings.
+See <a href="../../indexes-for-full-text-search/" class="xref page">Full-text search index</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lookup_indexes"><a class="anchor" href="#_lookup_indexes"></a>LOOKUP indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>LOOKUP</code> indexes are present by default and solve only node label and relationship type predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax (example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node label predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH (n:Label)</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node label predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH (n)
+WHERE n:Label</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship type predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH ()-[r:REL]-&gt;()</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship type predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH ()-[r]-&gt;()
+WHERE r:REL</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>LOOKUP</code> indexes are the most important index type in the database because they improve the performance of the Cypher<sup>&reg;</sup> queries and the population of other indexes.
+Dropping these indexes may lead to severe performance degradation.
+Therefore, carefully consider the consequences before doing so.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_range_indexes"><a class="anchor" href="#_range_indexes"></a>RANGE indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In combination with node label and relationship type predicates, <code>RANGE</code> indexes support most types of predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equality check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = value</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List membership check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IN list</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Existence check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IS NOT NULL</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Range search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop &gt; value</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">STARTS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_point_indexes"><a class="anchor" href="#_point_indexes"></a>POINT indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In combination with node label and relationship type predicates, <code>POINT</code> indexes only solve predicates operating on points.
+Therefore, <code>POINT</code> indexes are only used when it is known that the predicate evaluates to <code>null</code> for all non-point values.</p>
+</div>
+<div class="paragraph">
+<p><code>POINT</code> indexes only support point type predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property point value.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = point({x: value, y: value})</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Within bounding box.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">point.withinBBox(n.prop, lowerLeftCorner, upperRightCorner)</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distance.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">point.distance(n.prop, center) &lt; = distance</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>As of Neo4j 5.11, the above set of predicates can be extended with the use of type constraints.
+For more information, see <a href="#extending-index-compatibility-with-type-constraints">Extending index compatibility with type constraints</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_text_indexes"><a class="anchor" href="#_text_indexes"></a>TEXT indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In combination with node label and relationship type predicates, <code>TEXT</code> indexes only solve predicates operating on strings.
+That means that <code>TEXT</code> indexes are only used when it is known that the predicate evaluates to <code>null</code> for all non-string values.</p>
+</div>
+<div class="paragraph">
+<p>Predicates that only operate on strings are always solvable by a <code>TEXT</code> index:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>STARTS WITH</code></p>
+</li>
+<li>
+<p><code>ENDS WITH</code></p>
+</li>
+<li>
+<p><code>CONTAINS</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, other predicates are only used when it is known that the property is compared to a string:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>n.prop = "string"</code></p>
+</li>
+<li>
+<p><code>n.prop IN ["a", "b", "c"]</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means that a <code>TEXT</code> index is not able to solve e.g. <code>a.prop = b.prop</code>, unless a type constraint also exists on the property.</p>
+</div>
+<div class="paragraph">
+<p>In summary, <code>TEXT</code> indexes support the following predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equality check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = 'example_string'</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List membership check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IN ['abc', 'example_string', 'neo4j']</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">STARTS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suffix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">ENDS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Substring search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">CONTAINS</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>As of Neo4j 5.11, the above set of predicates can be extended with the use of type constraints, see <a href="#extending-index-compatibility-with-type-constraints">Extending index compatibility with type constraints</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In some cases, the system cannot determine whether an expression is of type string.</p>
+</div>
+<div class="paragraph">
+<p>For example when the compared value is a parameter:</p>
+</div>
+<div class="listingblock test-skip">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (n:Label) WHERE n.prop = $param</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Such queries can be modified to provide this information.
+Depending on how values that are not of type string should be treated, there are two options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If rows in which the expression is not of type string should be discarded, then adding <code>WHERE &lt;expression&gt; STARTS WITH ''</code> is the right option:
+<code>MATCH (n:Label) WHERE $param STARTS WITH '' AND n.prop = $param</code></p>
+</li>
+<li>
+<p>If expressions which are not of type string should be converted to string, then wrapping these in <code>toString(&lt;expression&gt;)</code> is the right choice:
+<code>MATCH (n:Label) WHERE n.prop = toString($param)</code></p>
+</li>
+<li>
+<p>If it is known that the property is always of type <code>STRING</code>, then it&#8217;s also possible to <a href="#extending-index-compatibility-with-type-constraints">add a type constraint to help the planner</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="extending-index-compatibility-with-type-constraints"><a class="anchor" href="#extending-index-compatibility-with-type-constraints"></a>Extending index compatibility with type constraints</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This feature was introduced in Neo4j 5.11.</em></p>
+</div>
+<div class="paragraph">
+<p>For indexes that are compatible only with specific types (i.e. <code>TEXT</code> and <code>POINT</code> indexes), the planner needs to be able to deduce that a predicate will evaluate to <code>null</code> for non-compatible values.
+Since <a href="../../constraints/#types-of-constraint" class="xref page">type constraints</a> guarantee that a property is always of the same type, they can be used to extend the scenarios for which <code>TEXT</code> indexes and <code>POINT</code> indexes are compatible with a predicate.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the property <code>prop</code> in the below query has been constrained to have type <code>STRING</code>, then a <code>TEXT</code> index can also be planned for the <code>IS NOT NULL</code> predicate:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n: Label) WHERE n.prop IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, if the property had been constrained to have the type <code>POINT</code>, then a <code>POINT</code> index could have been used.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_index_preference"><a class="anchor" href="#_index_preference"></a>Index preference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When multiple indexes are available and able to solve a predicate, there is an order defined that decides which index to use.</p>
+</div>
+<div class="paragraph">
+<p>It is defined as such:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TEXT</code> indexes are used over <code>RANGE</code> and <code>POINT</code> indexes for <code>CONTAINS</code> and <code>ENDS WITH</code>.</p>
+</li>
+<li>
+<p><code>POINT</code> indexes are used over <code>RANGE</code> and <code>TEXT</code> indexes for distance and within a bounding box.</p>
+</li>
+<li>
+<p><code>RANGE</code> indexes are preferred over <code>TEXT</code> and <code>POINT</code> indexes in all other cases.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>LOOKUP</code> indexes are not defined in this order since they never solve the same set of predicates as the other indexes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Examples:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#administration-indexes-node-label-lookup-index-example">Node label LOOKUP index example</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-relationship-type-lookup-index-example">Relationship type LOOKUP index example</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-node-range-index-example">Node RANGE index example</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-relationship-range-index-example">Relationship RANGE index example</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-node-text-index-example">Node TEXT index</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-relationship-text-index-example">Relationship TEXT index</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-multiple-available-index-types">Multiple available index types</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-equality-check-using-where-single-property-index">Equality check using <code>WHERE</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-equality-check-using-where-composite-index">Equality check using <code>WHERE</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-range-comparisons-using-where-single-property-index">Range comparisons using <code>WHERE</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-range-comparisons-using-where-composite-index">Range comparisons using <code>WHERE</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-multiple-range-comparisons-using-where-single-property-index">Multiple range comparisons using <code>WHERE</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-multiple-range-comparisons-using-where-composite-index">Multiple range comparisons using <code>WHERE</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-list-membership-check-using-in-single-property-index">List membership check using <code>IN</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-list-membership-check-using-in-composite-index">List membership check using <code>IN</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-prefix-search-using-starts-with-single-property-index">Prefix search using <code>STARTS WITH</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-prefix-search-using-starts-with-composite-index">Prefix search using <code>STARTS WITH</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-suffix-search-using-ends-with-single-property-index">Suffix search using <code>ENDS WITH</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-suffix-search-using-ends-with-composite-index">Suffix search using <code>ENDS WITH</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-substring-search-using-contains-single-property-index">Substring search using <code>CONTAINS</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-substring-search-using-contains-composite-index">Substring search using <code>CONTAINS</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-existence-check-using-is-not-null-single-property-index">Existence check using <code>IS NOT NULL</code> (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-existence-check-using-is-not-null-composite-index">Existence check using <code>IS NOT NULL</code> (composite index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-spatial-distance-searches-single-property-index">Spatial distance searches (single-property index)</a></p>
+</li>
+<li>
+<p><a href="#administration-indexes-spatial-bounding-box-searches-single-property-index">Spatial bounding box searches (single-property index)</a></p>
+</li>
+</ul>
+</div>
+<h3 id="administration-indexes-node-label-lookup-index-example" class="discrete">Node label LOOKUP index example</h3>
+<div class="paragraph">
+<p>In the example below, a node <code>LOOKUP</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++------------------+---------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator         | Details       | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++------------------+---------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults  | person        |             42 |   42 |       0 |                |                        |           |                     |
+| |                +---------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeByLabelScan | person:Person |             42 |   42 |      43 |            120 |                    2/1 |     0.565 | Fused in Pipeline 0 |
++------------------+---------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 43, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-relationship-type-lookup-index-example" class="discrete">Relationship type LOOKUP index example</h3>
+<div class="paragraph">
+<p>In the example below, a relationship <code>LOOKUP</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH ()-[r:KNOWS]-&gt;()
+RETURN r</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-------------------------------+------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                      | Details                      | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------------------+------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults               | r                            |             22 |   22 |       0 |                |                        |           |                     |
+| |                             +------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipTypeScan | (anon_0)-[r:KNOWS]-&gt;(anon_1) |             22 |   22 |      23 |            120 |                    3/1 |     0.915 | Fused in Pipeline 0 |
++-------------------------------+------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 23, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-node-range-index-example" class="discrete">Node RANGE index example</h3>
+<div class="paragraph">
+<p>In the example below, a <code>Person(firstname)</code> node <code>RANGE</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person {firstname: 'Andy'})
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                               |              1 |    1 |       0 |                |                        |           |                     |
+| |               +----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | RANGE INDEX person:Person(firstname) WHERE firstname = $autostring_0 |              1 |    1 |       2 |            120 |                    2/1 |     0.635 | Fused in Pipeline 0 |
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-relationship-range-index-example" class="discrete">Relationship RANGE index example</h3>
+<div class="paragraph">
+<p>In this example, a <code>KNOWS(since)</code> relationship <code>RANGE</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[relationship:KNOWS {since: 1992}]-&gt;(friend)
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+-------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                             | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+-------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                                      |              1 |    1 |       0 |                |                        |           |                     |
+| |                              +-------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeek | RANGE INDEX (person)-[relationship:KNOWS(since)]-&gt;(friend) WHERE since = $autoint_0 |              1 |    1 |       2 |            120 |                    2/1 |     0.413 | Fused in Pipeline 0 |
++--------------------------------+-------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-node-text-index-example" class="discrete">Node TEXT index</h3>
+<div class="paragraph">
+<p>In the example below, a <code>Person(surname)</code> node <code>TEXT</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person {surname: 'Smith'})
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                         | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                          |              1 |    1 |       0 |                |                        |           |                     |
+| |               +-----------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | TEXT INDEX person:Person(surname) WHERE surname = $autostring_0 |              1 |    1 |       2 |            120 |                    2/0 |     0.446 | Fused in Pipeline 0 |
++-----------------+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-relationship-text-index-example" class="discrete">Relationship TEXT index</h3>
+<div class="paragraph">
+<p>In this example, a <code>KNOWS(metIn)</code> relationship <code>TEXT</code> index is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[relationship:KNOWS {metIn: 'Malmo'} ]-&gt;(friend)
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                               | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                                        |              1 |    1 |       0 |                |                        |           |                     |
+| |                              +---------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeek | TEXT INDEX (person)-[relationship:KNOWS(metIn)]-&gt;(friend) WHERE metIn = $autostring_0 |              1 |    1 |       2 |            120 |                    2/0 |     0.691 | Fused in Pipeline 0 |
++--------------------------------+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-multiple-available-index-types" class="discrete">Multiple available index types</h3>
+<div class="paragraph">
+<p>In the example below, both a <code>Person(middlename)</code> node <code>TEXT</code> index and a <code>Person(middlename)</code> node <code>RANGE</code> index are available.
+The <code>RANGE</code> node index is chosen.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person {middlename: 'Ron'})
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                                | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                                 |              1 |    1 |       0 |                |                        |           |                     |
+| |               +------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | RANGE INDEX person:Person(middlename) WHERE middlename = $autostring_0 |              1 |    1 |       2 |            120 |                    2/1 |     0.423 | Fused in Pipeline 0 |
++-----------------+------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-equality-check-using-where-single-property-index" class="discrete">Equality check using <code>WHERE</code> (single-property index)</h3>
+<div class="paragraph">
+<p>A query containing equality comparisons of a single indexed property in the <code>WHERE</code> clause is backed automatically by the index.
+It is also possible for a query with multiple <code>OR</code> predicates to use multiple indexes, if indexes exist on the properties.
+For example, if indexes exist on both <code>:Label(p1)</code> and <code>:Label(p2)</code>, <code>MATCH (n:Label) WHERE n.p1 = 1 OR n.p2 = 2 RETURN n</code> will use both indexes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (person:Person)
+WHERE person.firstname = 'Andy'
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                               |              1 |    1 |       0 |                |                        |           |                     |
+| |               +----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | RANGE INDEX person:Person(firstname) WHERE firstname = $autostring_0 |              1 |    1 |       2 |            120 |                    2/1 |     0.292 | Fused in Pipeline 0 |
++-----------------+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-equality-check-using-where-composite-index" class="discrete">Equality check using <code>WHERE</code> (composite index)</h3>
+<div class="paragraph">
+<p>A query containing equality comparisons for all the properties of a composite index will automatically be backed by the same index.
+However, the query does not need to have equality on all properties.
+It can have ranges and existence predicates as well.
+But in these cases rewrites might happen depending on which properties have which predicates, see <a href="../../indexes-for-search-performance/#indexes-single-vs-composite-index" class="xref page">composite index limitations</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:Person)
+WHERE n.age = 35 AND n.country = 'UK'
+RETURN n</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, the query <code>MATCH (n:Person) WHERE n.age = 35 RETURN n</code> will not be backed by the composite index, as the query does not contain a predicate on the <code>country</code> property.
+It will only be backed by an index on the <code>Person</code> label and <code>age</code> property defined thus: <code>:Person(age)</code>; i.e. a single-property index.</p>
+</div>
+<div class="listingblock queryresult">
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.5
+
+Batch size 128
+
++-----------------+----+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Id | Details                                                                               | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults |  0 | n                                                                                     |              0 |    3 |      24 |                |                        |           |                     |
+| |               +----+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  |  1 | RANGE INDEX n:Person(age, country) WHERE age = $autoint_0 AND country = $autostring_1 |              0 |    3 |       4 |            120 |                    3/0 |     0.476 | Fused in Pipeline 0 |
++-----------------+----+---------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 28, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-range-comparisons-using-where-single-property-index" class="discrete">Range comparisons using <code>WHERE</code> (single-property index)</h3>
+<div class="paragraph">
+<p>Single-property indexes are also automatically used for inequality (range) comparisons of an indexed property in the <code>WHERE</code> clause.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (friend)&lt;-[r:KNOWS]-(person)
+WHERE r.since &lt; 2011
+RETURN friend, person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++---------------------------------------+--------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                              | Details                                                                  | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++---------------------------------------+--------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                       | friend, person                                                           |              1 |    1 |       0 |                |                        |           |                     |
+| |                                     +--------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeekByRange | RANGE INDEX (person)-[r:KNOWS(since)]-&gt;(friend) WHERE since &lt; $autoint_0 |              1 |    1 |       2 |            120 |                    2/1 |     0.943 | Fused in Pipeline 0 |
++---------------------------------------+--------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-range-comparisons-using-where-composite-index" class="discrete">Range comparisons using <code>WHERE</code> (composite index)</h3>
+<div class="paragraph">
+<p>Composite indexes are also automatically used for inequality (range) comparisons of indexed properties in the <code>WHERE</code> clause.
+Equality or list membership check predicates may precede the range predicate.
+However, predicates after the range predicate may be rewritten as an existence check predicate and a filter as described in <a href="../../indexes-for-search-performance/#indexes-single-vs-composite-index" class="xref page">composite index limitations</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH ()-[r:KNOWS]-()
+WHERE r.since &lt; 2011 AND r.lastMet &gt; 2019
+RETURN r.since</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++----------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                         | Details                                                                                             | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++----------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                  | `r.since`                                                                                           |              2 |    2 |       0 |                |                        |           |                     |
+| |                                +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection                      | cache[r.since] AS `r.since`                                                                         |              2 |    2 |       0 |                |                        |           |                     |
+| |                                +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter                          | cache[r.lastMet] &gt; $autoint_1                                                                       |              2 |    2 |       0 |                |                        |           |                     |
+| |                                +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +UndirectedRelationshipIndexSeek | RANGE INDEX (anon_0)-[r:KNOWS(since, lastMet)]-(anon_1) WHERE since &lt; $autoint_0 AND lastMet IS NOT |              2 |    2 |       2 |            120 |                    1/1 |     0.525 | Fused in Pipeline 0 |
+|                                  | NULL, cache[r.since], cache[r.lastMet]                                                              |                |      |         |                |                        |           |                     |
++----------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-multiple-range-comparisons-using-where-single-property-index" class="discrete">Multiple range comparisons using <code>WHERE</code> (single-property index)</h3>
+<div class="paragraph">
+<p>When the <code>WHERE</code> clause contains multiple inequality (range) comparisons for the same property, these can be combined in a single index range seek.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE 10000 &lt; person.highScore &lt; 20000
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator              | Details                                                                                      | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults       | person                                                                                       |              1 |    1 |       0 |                |                        |           |                     |
+| |                     +----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeekByRange | RANGE INDEX person:Person(highScore) WHERE highScore &gt; $autoint_0 AND highScore &lt; $autoint_1 |              1 |    1 |       2 |            120 |                    2/1 |     0.286 | Fused in Pipeline 0 |
++-----------------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-multiple-range-comparisons-using-where-composite-index" class="discrete">Multiple range comparisons using <code>WHERE</code> (composite index)</h3>
+<div class="paragraph">
+<p>When the <code>WHERE</code> clause contains multiple inequality (range) comparisons for the same property, these can be combined in a single index range seek.
+That single range seek created in the following query will then use the composite index <code>Person(highScore, name)</code> if it exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE 10000 &lt; person.highScore &lt; 20000 AND person.name IS NOT NULL
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                                                               |              1 |    1 |       0 |                |                        |           |                     |
+| |               +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | RANGE INDEX person:Person(highScore, name) WHERE highScore &gt; $autoint_0 AND highScore &lt; $autoint_1 A |              1 |    1 |       2 |            120 |                    2/1 |     4.498 | Fused in Pipeline 0 |
+|                 | ND name IS NOT NULL                                                                                  |                |      |         |                |                        |           |                     |
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-list-membership-check-using-in-single-property-index" class="discrete">List membership check using <code>IN</code> (single-property index)</h3>
+<div class="paragraph">
+<p>The <code>IN</code> predicate on <code>r.lastMetIn</code> in the following query will use the single-property index <code>KNOWS(lastMetIn)</code> if it exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[r:KNOWS]-&gt;(friend)
+WHERE r.lastMetIn IN ['Malmo', 'Stockholm']
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                            | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                                     |              1 |    1 |       0 |                |                        |           |                     |
+| |                              +------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeek | RANGE INDEX (person)-[r:KNOWS(lastMetIn)]-&gt;(friend) WHERE lastMetIn IN $autolist_0 |              1 |    1 |       3 |            120 |                    3/1 |     0.614 | Fused in Pipeline 0 |
++--------------------------------+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 3, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-list-membership-check-using-in-composite-index" class="discrete">List membership check using <code>IN</code> (composite index)</h3>
+<div class="paragraph">
+<p>The <code>IN</code> predicates on <code>r.since</code> and <code>r.lastMet</code> in the following query will use the composite index <code>KNOWS(since, lastMet)</code> if it exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[r:KNOWS]-&gt;(friend)
+WHERE r.since IN [1992, 2017] AND r.lastMet IN [2002, 2021]
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                                                       |              1 |    1 |       0 |                |                        |           |                     |
+| |                              +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeek | RANGE INDEX (person)-[r:KNOWS(since, lastMet)]-&gt;(friend) WHERE since IN $autolist_0 AND lastMet IN $ |              1 |    1 |       5 |            120 |                    5/1 |     1.864 | Fused in Pipeline 0 |
+|                                | autolist_1                                                                                           |                |      |         |                |                        |           |                     |
++--------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 5, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-prefix-search-using-starts-with-single-property-index" class="discrete">Prefix search using <code>STARTS WITH</code> (single-property index)</h3>
+<div class="paragraph">
+<p>The <code>STARTS WITH</code> predicate on <code>person.firstname</code> in the following query will use the <code>Person(firstname)</code> index, if it exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE person.firstname STARTS WITH 'And'
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------------+--------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator              | Details                                                                        | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------------+--------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults       | person                                                                         |              2 |    1 |       0 |                |                        |           |                     |
+| |                     +--------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeekByRange | RANGE INDEX person:Person(firstname) WHERE firstname STARTS WITH $autostring_0 |              2 |    1 |       2 |            120 |                    3/0 |     0.387 | Fused in Pipeline 0 |
++-----------------------+--------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-prefix-search-using-starts-with-composite-index" class="discrete">Prefix search using <code>STARTS WITH</code> (composite index)</h3>
+<div class="paragraph">
+<p>The <code>STARTS WITH</code> predicate on <code>person.firstname</code> in the following query will use the <code>Person(firstname,surname)</code> index, if it exists.
+Any (non-existence check) predicate on <code>person.surname</code> will be rewritten as existence check with a filter.
+However, if the predicate on <code>person.firstname</code> is a equality check then a <code>STARTS WITH</code> on <code>person.surname</code> would also use the index (without rewrites).
+More information about how the rewriting works can be found in <a href="../../indexes-for-search-performance/#indexes-single-vs-composite-index" class="xref page">composite index limitations</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE person.firstname STARTS WITH 'And' AND person.surname IS NOT NULL
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                                                             | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                                                              |              1 |    1 |       0 |                |                        |           |                     |
+| |               +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  | RANGE INDEX person:Person(firstname, surname) WHERE firstname STARTS WITH $autostring_0 AND surname |              1 |    1 |       2 |            120 |                    3/0 |     0.534 | Fused in Pipeline 0 |
+|                 | IS NOT NULL                                                                                         |                |      |         |                |                        |           |                     |
++-----------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-suffix-search-using-ends-with-single-property-index" class="discrete">Suffix search using <code>ENDS WITH</code> (single-property index)</h3>
+<div class="paragraph">
+<p>The <code>ENDS WITH</code> predicate on <code>r.metIn</code> in the following query uses the <code>KNOWS(metIn)</code> index, if it exists.
+Text indexes are optimized for <code>CONTAINS</code> and <code>ENDS WITH</code> and they are the only indexes that can solve those predicates.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[r:KNOWS]-&gt;(friend)
+WHERE r.metIn ENDS WITH 'mo'
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.5
+
+Batch size 128
+
++----------------------------------------+----+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                               | Id | Details                                                                            | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++----------------------------------------+----+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                        |  0 | person, friend                                                                     |              0 |    0 |       0 |                |                        |           |                     |
+| |                                      +----+------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexEndsWithScan |  1 | TEXT INDEX (person)-[r:KNOWS(metIn)]-&gt;(friend) WHERE metIn ENDS WITH $autostring_0 |              0 |    0 |       1 |            120 |                    0/0 |     1.135 | Fused in Pipeline 0 |
++----------------------------------------+----+------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 1, total allocated memory: 184</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Text indexes only index String values and therefore do not find other values.</p>
+</div>
+<h3 id="administration-indexes-suffix-search-using-ends-with-composite-index" class="discrete">Suffix search using <code>ENDS WITH</code> (composite index)</h3>
+<div class="paragraph">
+<p>The <code>ENDS WITH</code> predicate on <code>r.metIn</code> in the following query uses the <code>KNOWS(metIn, lastMetIn)</code> index, if it exists.
+However, it is rewritten as existence check and a filter due to the index not supporting actual suffix searches for composite indexes, this is still faster than not using an index in the first place.
+Any (non-existence check) predicate on <code>KNOWS.lastMetIn</code> is also rewritten as existence check with a filter.
+More information about how the rewriting works can be found in <a href="../../indexes-for-search-performance/#indexes-single-vs-composite-index" class="xref page">composite index limitations</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[r:KNOWS]-&gt;(friend)
+WHERE r.metIn ENDS WITH 'mo' AND r.lastMetIn IS NOT NULL
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                                             | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                                                      |              0 |    1 |       0 |                |                        |           |                     |
+| |                              +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter                        | cache[r.metIn] ENDS WITH $autostring_0                                                              |              0 |    1 |       0 |                |                        |           |                     |
+| |                              +-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexScan | RANGE INDEX (person)-[r:KNOWS(metIn, lastMetIn)]-&gt;(friend) WHERE metIn IS NOT NULL AND lastMetIn IS |              1 |    1 |       2 |            120 |                    2/1 |     0.317 | Fused in Pipeline 0 |
+|                                | NOT NULL, cache[r.metIn]                                                                            |                |      |         |                |                        |           |                     |
++--------------------------------+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-substring-search-using-contains-single-property-index" class="discrete">Substring search using <code>CONTAINS</code> (single-property index)</h3>
+<div class="paragraph">
+<p>The <code>CONTAINS</code> predicate on <code>person.firstname</code> in the following query will use the <code>Person(firstname)</code> index, if it exists.
+Text indexes are optimized for <code>CONTAINS</code> and <code>ENDS WITH</code> and they are the only indexes that can solve those predicates.
+Composite indexes are currently not able to support <code>CONTAINS</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE person.firstname CONTAINS 'h'
+RETURN person</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Text indexes only index String values and therefore do not find other values.</p>
+</div>
+<h3 id="administration-indexes-substring-search-using-contains-composite-index" class="discrete">Substring search using <code>CONTAINS</code> (composite index)</h3>
+<div class="paragraph">
+<p>The <code>CONTAINS</code> predicate on <code>person.country</code> in the following query will use the <code>Person(country,age)</code> index, if it exists.
+However, it will be rewritten as existence check and a filter due to the index not supporting actual suffix searches for composite indexes, this is still faster than not using an index in the first place.
+Any (non-existence check) predicate on <code>person.age</code> will also be rewritten as existence check with a filter.
+More information about how the rewriting works can be found in <a href="../../indexes-for-search-performance/#indexes-single-vs-composite-index" class="xref page">composite index limitations</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE person.country CONTAINS '300' AND person.age IS NOT NULL
+RETURN person</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | person                                                                                               |             15 |    1 |       0 |                |                        |           |                     |
+| |               +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter         | cache[person.country] CONTAINS $autostring_0                                                         |             15 |    1 |       0 |                |                        |           |                     |
+| |               +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexScan  | RANGE INDEX person:Person(country, age) WHERE country IS NOT NULL AND age IS NOT NULL, cache[person. |            303 |  303 |     304 |            120 |                    5/0 |     2.309 | Fused in Pipeline 0 |
+|                 | country]                                                                                             |                |      |         |                |                        |           |                     |
++-----------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 304, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-existence-check-using-is-not-null-single-property-index" class="discrete">Existence check using <code>IS NOT NULL</code> (single-property index)</h3>
+<div class="paragraph">
+<p>The <code>r.since IS NOT NULL</code> predicate in the following query uses the <code>KNOWS(since)</code> index, if it exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person)-[r:KNOWS]-&gt;(friend)
+WHERE r.since IS NOT NULL
+RETURN person, friend</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++--------------------------------+-------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                       | Details                                                                 | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------------+-------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                | person, friend                                                          |              1 |    1 |       0 |                |                        |           |                     |
+| |                              +-------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexScan | RANGE INDEX (person)-[r:KNOWS(since)]-&gt;(friend) WHERE since IS NOT NULL |              1 |    1 |       2 |            120 |                    2/1 |     1.046 | Fused in Pipeline 0 |
++--------------------------------+-------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 2, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-existence-check-using-is-not-null-composite-index" class="discrete">Existence check using <code>IS NOT NULL</code> (composite index)</h3>
+<div class="paragraph">
+<p>The <code>p.firstname IS NOT NULL</code> and <code>p.surname IS NOT NULL</code> predicates in the following query will use the <code>Person(firstname,surname)</code> index, if it exists.
+Any (non-existence check) predicate on <code>person.surname</code> will be rewritten as existence check with a filter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (p:Person)
+WHERE p.firstname IS NOT NULL AND p.surname IS NOT NULL
+RETURN p</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Details                                                                                      | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults | p                                                                                            |              1 |    2 |       0 |                |                        |           |                     |
+| |               +----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexScan  | RANGE INDEX p:Person(firstname, surname) WHERE firstname IS NOT NULL AND surname IS NOT NULL |              1 |    2 |       3 |            120 |                    2/1 |     0.310 | Fused in Pipeline 0 |
++-----------------+----------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 3, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-spatial-distance-searches-single-property-index" class="discrete">Spatial distance searches (single-property index)</h3>
+<div class="paragraph">
+<p>If a property with point values is indexed, the index is used for spatial distance searches as well as for range queries.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH ()-[r:KNOWS]-&gt;()
+WHERE point.distance(r.lastMetPoint, point({x: 1, y: 2})) &lt; 2
+RETURN r.lastMetPoint</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++---------------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                              | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++---------------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults                       | `r.lastMetPoint`                                                                                     |             13 |    9 |       0 |                |                        |           |                     |
+| |                                     +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection                           | cache[r.lastMetPoint] AS `r.lastMetPoint`                                                            |             13 |    9 |       0 |                |                        |           |                     |
+| |                                     +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter                               | point.distance(cache[r.lastMetPoint], point({x: $autoint_0, y: $autoint_1})) &lt; $autoint_2            |             13 |    9 |       0 |                |                        |           |                     |
+| |                                     +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +DirectedRelationshipIndexSeekByRange | POINT INDEX (anon_0)-[r:KNOWS(lastMetPoint)]-&gt;(anon_1) WHERE point.distance(lastMetPoint, point($aut |             13 |    9 |      10 |            120 |                    5/3 |     1.417 | Fused in Pipeline 0 |
+|                                       | oint_0, $autoint_1)) &lt; $autoint_2, cache[r.lastMetPoint]                                             |                |      |         |                |                        |           |                     |
++---------------------------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 10, total allocated memory: 184</pre>
+</div>
+</div>
+<h3 id="administration-indexes-spatial-bounding-box-searches-single-property-index" class="discrete">Spatial bounding box searches (single-property index)</h3>
+<div class="paragraph">
+<p>The ability to do index seeks on bounded ranges works even with the 2D and 3D spatial <code>POINT</code> types.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (person:Person)
+WHERE point.withinBBox(person.location, point({x: 1.2, y: 5.4}), point({x: 1.3, y: 5.5}))
+RETURN person.firstname</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Query Plan</div>
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.13
+
+Batch size 128
+
++-----------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator              | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults       | `person.firstname`                                                                                   |              0 |    1 |       0 |                |                        |           |                     |
+| |                     +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection           | person.firstname AS `person.firstname`                                                               |              0 |    1 |       2 |                |                        |           |                     |
+| |                     +------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeekByRange | POINT INDEX person:Person(location) WHERE point.withinBBox(location, point($autodouble_0, $autodoubl |              0 |    1 |       2 |            120 |                    6/0 |     7.910 | Fused in Pipeline 0 |
+|                       | e_1), point($autodouble_2, $autodouble_3))                                                           |                |      |         |                |                        |           |                     |
++-----------------------+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 4, total allocated memory: 184</pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../query-profile/">Profile a query</a></span>
+
+  <span class="next"><a href="../basic-example/">Basic query tuning example</a></span>
+</nav>
+    <div class="feedback">
+    <div class="header question">
+        <p><strong>Was this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div></article>
+<aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+  <div class="column">
+    <div class="logo-footer"></div>
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  <div class="column">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <p>US: 1-855-636-4532<br>
+      Sweden +46 171 480 113<br>
+      UK: +44 20 3868 3223<br>
+      France: +33 (0) 1 88 46 13 20<br>
+      <!--Germany: +49 (0)89 26204 6300</p>-->
+    </p>
+  </div>
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>  </body>
+</html>
