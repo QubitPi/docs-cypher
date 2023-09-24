@@ -15,6 +15,8 @@ content:
 
 ui:
   bundle:
+    # in case this gets close sourced, its backup is at
+    # https://github.com/QubitPi/QubitPi/blob/master/neo4j/ui-bundle-latest.zip
     url: https://static-content.neo4j.com/build/ui-bundle-latest.zip
     snapshot: true
   output_dir: /assets
@@ -45,7 +47,7 @@ asciidoc:
     page-search-site: Reference Docs
     page-canonical-root: /docs
     page-pagination: true
-    page-no-canonical: true 
+    page-no-canonical: true
     page-origin-private: false
     page-hide-toc: false
     page-mixpanel: 4bfb2414ab973c741b6f067bf06d5575
