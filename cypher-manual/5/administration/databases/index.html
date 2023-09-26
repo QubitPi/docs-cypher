@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../access-control/dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../access-control/load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../access-control/limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -835,10 +838,32 @@ YIELD { * | field[, ...] } [ORDER BY field[, ...]] [SKIP n] [LIMIT n]
 <pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">ALTER DATABASE name [IF EXISTS]
 {
 SET ACCESS {READ ONLY | READ WRITE} |
-SET TOPOLOGY n PRIMAR{Y|IES} [m SECONDAR{Y|IES}]
+SET TOPOLOGY n PRIMAR{Y|IES} [m SECONDAR{Y|IES}] |
+SET OPTION option value
 }
 [WAIT [n [SEC[OND[S]]]]|NOWAIT]</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">ALTER DATABASE name [IF EXISTS]
+REMOVE OPTION option
+[WAIT [n [SEC[OND[S]]]]|NOWAIT]</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There can be multiple <code>SET OPTION</code> or <code>REMOVE OPTION</code> clauses for different option keys.</p>
+</div>
+</td>
+</tr>
+</table>
 </div></div></td>
 </tr>
 <tr>
@@ -1166,6 +1191,13 @@ The lag is expressed in negative integers. In standalone environments, the value
 <p>The names of any constituents the database may have. <span class="label label--default-output">Default Output</span></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>LIST&lt;STRING&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>options</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The map of options applied to the database.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MAP</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -2085,6 +2117,12 @@ The server ID can be found in the <code>serverId</code> column after running <co
 <td class="tableblock halign-left valign-top"><p class="tableblock">credentials</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines credentials that needs to be passed into certain seed providers.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>txLogEnrichment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FULL</code> | <code>DIFF</code> | <code>NONE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines level of enrichment applied to transaction logs for Change Data Capture (CDC) purposes.
+For details about enrichment mode, see <a href="https://neo4j.com/docs/cdc/5/getting-started/enrichment-mode">Change Data Capture Manual &#8594; Getting Started &#8594; Enrichment mode</a>.</p></td>
+</tr>
 </tbody>
 </table>
 <div class="admonitionblock note">
@@ -2321,6 +2359,158 @@ Appending <code>IF EXISTS</code> to the command ensures that no error is returne
 <p>0 rows</p>
 </div>
 </div>
+<div class="sect2 enterprise-edition">
+<h3 id="administration-databases-alter-database-options"><a class="anchor" href="#administration-databases-alter-database-options"></a>Options</h3>
+<div class="paragraph">
+<p>The <code>ALTER DATABASE</code> command can be used to set or remove specific options, which are listed below.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>txLogEnrichment</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FULL</code> | <code>DIFF</code> | <code>NONE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines level of enrichment applied to transaction logs for Change Data Capture (CDC) purposes.
+For details about enrichment mode, see <a href="https://neo4j.com/docs/cdc/5/getting-started/enrichment-mode">Change Data Capture Manual &#8594; Getting Started &#8594; Enrichment mode</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There are no available <code>OPTIONS</code> values for composite databases.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 16. ALTER DATABASE SET OPTION</div>
+<div class="content">
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">ALTER DATABASE `options-example`
+SET OPTION txLogEnrichment 'FULL'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 17. SHOW DATABASE</div>
+<div class="content">
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW DATABASES yield name, options</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 13. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"options-example"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{txLogEnrichment: "FULL"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"neo4j"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"system"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 3</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 18. ALTER DATABASE REMOVE OPTION</div>
+<div class="content">
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">ALTER DATABASE `options-example`
+REMOVE OPTION txLogEnrichment</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 19. SHOW DATABASE</div>
+<div class="content">
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW DATABASES YIELD name, options</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 14. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"options-example"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"neo4j"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"system"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 3</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1 enterprise-edition not-on-aura">
@@ -2330,7 +2520,7 @@ Appending <code>IF EXISTS</code> to the command ensures that no error is returne
 <p>Databases can be stopped using the command <code>STOP DATABASE</code>.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 16. STOP DATABASE</div>
+<div class="title">Example 20. STOP DATABASE</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2362,7 +2552,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 17. SHOW DATABASE</div>
+<div class="title">Example 21. SHOW DATABASE</div>
 <div class="content">
 <div class="paragraph">
 <p>The status of the stopped database can be seen using the command <code>SHOW DATABASE name</code>.</p>
@@ -2374,7 +2564,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 13. Result</caption>
+<caption class="title">Table 15. Result</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2411,7 +2601,7 @@ Rows: 0</code></pre>
 <p>Databases can be started using the command <code>START DATABASE</code>.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 18. START DATABASE</div>
+<div class="title">Example 22. START DATABASE</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2443,7 +2633,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 19. SHOW DATABASE</div>
+<div class="title">Example 23. SHOW DATABASE</div>
 <div class="content">
 <div class="paragraph">
 <p>The status of the started database can be seen using the command <code>SHOW DATABASE name</code>.</p>
@@ -2455,7 +2645,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 14. Result</caption>
+<caption class="title">Table 16. Result</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2492,7 +2682,7 @@ Rows: 0</code></pre>
 <p>Standard and composite databases can be deleted by using the command <code>DROP DATABASE</code>.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 20. DROP DATABASE</div>
+<div class="title">Example 24. DROP DATABASE</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2513,7 +2703,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 21. SHOW DATABASES</div>
+<div class="title">Example 25. SHOW DATABASES</div>
 <div class="content">
 <div class="paragraph">
 <p>When a database has been deleted, it will no longer show up in the listing provided by the command <code>SHOW DATABASES</code>.</p>
@@ -2525,7 +2715,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 15. Result</caption>
+<caption class="title">Table 17. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -2548,6 +2738,9 @@ Rows: 0</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"neo4j"</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"options-example"</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"romance"</code></p></td>
 </tr>
 <tr>
@@ -2566,7 +2759,7 @@ Rows: 0</code></pre>
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 22. DROP DATABASE</div>
+<div class="title">Example 26. DROP DATABASE</div>
 <div class="content">
 <div class="paragraph">
 <p>This command is optionally idempotent, with the default behavior to fail with an error if the database does not exist.
@@ -2585,7 +2778,7 @@ It will always return an error, if there is an existing alias that targets the d
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 23. DROP DATABASE</div>
+<div class="title">Example 27. DROP DATABASE</div>
 <div class="content">
 <div class="paragraph">
 <p>You can request that a dump of the store files is produced first, and stored in the path configured using the <code>dbms.directories.dumps.root</code> setting (by default <code>&lt;neo4j-home&gt;/data/dumps</code>).
@@ -2614,7 +2807,7 @@ An example could look like this:</p>
 <p>It is also possible to ensure that only composite databases are dropped. A <code>DROP COMPOSITE</code> request would then fail if the targeted database is a standard database.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 24. DROP COMPOSITE DATABASE</div>
+<div class="title">Example 28. DROP COMPOSITE DATABASE</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2680,7 +2873,7 @@ In this event the command will continue to execute in the background and will no
 </table>
 </div>
 <div class="exampleblock">
-<div class="title">Example 25. CREATE DATABASE</div>
+<div class="title">Example 29. CREATE DATABASE</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2689,7 +2882,7 @@ In this event the command will continue to execute in the background and will no
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 16. Result</caption>
+<caption class="title">Table 18. Result</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">

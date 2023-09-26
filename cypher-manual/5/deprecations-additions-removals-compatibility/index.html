@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../administration/access-control/dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/access-control/load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/access-control/limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -740,7 +743,7 @@ Replacement syntax for deprecated and removed features are also indicated.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="cypher-deprecations-additions-removals-5.13"><a class="anchor" href="#cypher-deprecations-additions-removals-5.13"></a>Version 5.13</h2>
+<h2 id="cypher-deprecations-additions-removals-5.13"><a class="anchor" href="#cypher-deprecations-additions-removals-5.13"></a>Neo4j 5.13</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_updated_features"><a class="anchor" href="#_updated_features"></a>Updated features</h3>
@@ -806,6 +809,22 @@ SHOW PROCEDURES YIELD *</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span>
+<span class="label label--beta">Beta</span></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CALL cdc.current()
+CALL cdc.earliest()
+CALL cdc.query(from, selectors)</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduction of the Change Data Capture (CDC) feature.
+For details, see <a href="https://neo4j.com/docs/cdc/5/introduction">Change Data Capture</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span></p>
 </div>
 <div class="listingblock noheader">
@@ -815,6 +834,22 @@ SHOW PROCEDURES YIELD *</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Introduction of a <a href="../functions/scalar/#functions-valueType" class="xref page">valueType()</a> function.
 This function returns a <code>STRING</code> representation of the most precise value <a href="../values-and-types/property-structural-constructed/#types-synonyms" class="xref page">type</a> that the given expression evaluates to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span></p>
+</div>
+<div class="paragraph">
+<p>New privilege:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT LOAD ON ALL DATA TO `role`</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New privilege that controls a user&#8217;s ability to load data.
+Unlike other privileges, these are not granted, denied, or revoked on graphs, databases, or the DBMS, but instead on <code>ALL DATA</code>.</p></td>
 </tr>
 </tbody>
 </table>

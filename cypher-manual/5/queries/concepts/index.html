@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -800,7 +803,7 @@ RETURN count(r) As numberOfFriends</code></pre>
 <p>Unlike nodes, information within a relationship pattern must be enclosed by square brackets.
 The query example above matches for relationships of type <code>KNOWS</code> and with the property <code>since</code> set to less than <code>2020</code>.
 The query also requires the relationships to go from a <code>Person</code> node named <code>Anna</code> to any other <code>Person</code> nodes, referred to as <code>friend</code>.
-The <a href="../../functions/aggregating/#functions-count" class="xref page">count()</a> function is used in the <code>RETURN</code> clause to count all the relationships bound by the <code>r</code> variable in the preceding <code>MATCH</code> clause (i.e. how many friends Anna has known since before 2020).</p>
+The <a href="../../functions/aggregating/#functions-count" class="xref page">count()</a> function is used in the <code>RETURN</code> clause to count all the relationships bound by the <code>r</code> variable in the preceding <code>MATCH</code> clause (i.e. how many friends <code>Anna</code> has known since before <code>2020</code>).</p>
 </div>
 <div class="paragraph">
 <p>Note that while nodes can have several labels, relationships can only have one type.</p>
@@ -817,11 +820,11 @@ Exploring these paths sits at the very core of Cypher.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (n:Person {name: 'Anna'})-[:KNOWS]-{1,5}(friend:Person WHERE n.born &lt; friend.born)
-RETURN DISTINCT friend.name AS youngerConnections</code></pre>
+RETURN DISTINCT friend.name AS olderConnections</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This example uses a <a href="../../patterns/concepts/#quantified-relationships" class="xref page">quantified relationship</a> to find all paths up to <code>5</code> hops away, traversing only relationships of type <code>KNOWS</code> from the start node <code>Anna</code> to other younger <code>Person</code> nodes (as defined by the <a href="../../clauses/where/" class="xref page">WHERE</a> clause).
+<p>This example uses a <a href="../../patterns/concepts/#quantified-relationships" class="xref page">quantified relationship</a> to find all paths up to <code>5</code> hops away, traversing only relationships of type <code>KNOWS</code> from the start node <code>Anna</code> to other older <code>Person</code> nodes (as defined by the <a href="../../clauses/where/" class="xref page">WHERE</a> clause).
 The <a href="../../syntax/operators/#syntax-using-the-distinct-operator" class="xref page">DISTINCT</a> operator is used to ensure that the <code>RETURN</code> clause only returns unique nodes.</p>
 </div>
 <div class="paragraph">

@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../administration/access-control/dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/access-control/load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../administration/access-control/limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -2386,6 +2389,11 @@ Optionally the account status and home database can also be set and if the user 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether a user is allowed to perform reads and writes.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-alias-management" class="xref page">ALIAS MANAGEMENT</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DBMS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user can create, delete, modify, and list aliases.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-alias-management" class="xref page">ALTER ALIAS</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DBMS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user can modify aliases.</p></td>
@@ -2476,11 +2484,6 @@ Optionally the account status and home database can also be set and if the user 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user can create new users.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-alias-management" class="xref page">ALIAS MANAGEMENT</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DBMS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user can create, delete, modify and list aliases.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-database-management" class="xref page">DATABASE MANAGEMENT</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DBMS</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user can create, delete, and modify databases and aliases.</p></td>
@@ -2559,6 +2562,11 @@ Optionally the account status and home database can also be set and if the user 
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">INDEX MANAGEMENT</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Schema</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether a user is allowed to create, drop, and list indexes on a specific database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/load-privileges/" class="xref page">LOAD</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Importing data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether a user is allowed to load data while executing queries.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">MATCH</a></p></td>

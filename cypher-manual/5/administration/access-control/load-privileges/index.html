@@ -25,15 +25,15 @@
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
 <!-- End Hotjar Tracking code -->
-    <title>Casting data values - Cypher Manual</title>
-    <link rel="prev" href="../maps/">
-    <link rel="next" href="../type-predicate/">
-      <meta name="description" content="This section provides information about how to cast data values using Cypher functions.">
+    <title>Load privileges - Cypher Manual</title>
+    <link rel="prev" href="../dbms-administration/">
+    <link rel="next" href="../limitations/">
+      <meta name="description" content="How to use Cypher to manage load privileges.">
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
 
-    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
-    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preload" href="../../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../../assets/css/site.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
@@ -50,14 +50,14 @@
     <meta name="twitter:creator" content="@neo4j" />
     <meta name="twitter:site" content="@neo4j" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Casting data values - Cypher Manual" />
+    <meta property="og:title" content="Load privileges - Cypher Manual" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20210423062553/neo4j-social-share-21.png" />
-    <meta property="og:description" content="This section provides information about how to cast data values using Cypher functions." />
-    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/5/values-and-types/casting-data/" />
+    <meta property="og:description" content="How to use Cypher to manage load privileges." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/5/administration/access-control/load-privileges/" />
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
   </head>
-  <body class="article docs">
+  <body class="article enterprise-edition aura-db-enterprise docs">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -313,386 +313,386 @@ mixpanel.track("Page View", {
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+    <a class="nav-link nav-item-toggle" href="../../../introduction/">Introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../introduction/cypher_overview/">Overview</a>
+    <a class="nav-link" href="../../../introduction/cypher_overview/">Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../introduction/cypher_neo4j/">Cypher and Neo4j</a>
+    <a class="nav-link" href="../../../introduction/cypher_neo4j/">Cypher and Neo4j</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../introduction/cypher_aura/">Cypher and Aura</a>
+    <a class="nav-link" href="../../../introduction/cypher_aura/">Cypher and Aura</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+    <a class="nav-link nav-item-toggle" href="../../../queries/">Queries</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+    <a class="nav-link" href="../../../queries/concepts/">Core concepts</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+    <a class="nav-link" href="../../../queries/basic/">Basic queries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../queries/expressions/">Cypher expressions</a>
+    <a class="nav-link" href="../../../queries/expressions/">Cypher expressions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../queries/case/">Conditional expressions (CASE)</a>
+    <a class="nav-link" href="../../../queries/case/">Conditional expressions (CASE)</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
+    <a class="nav-link nav-item-toggle" href="../../../clauses/">Clauses</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/clause_composition/">Clause composition</a>
+    <a class="nav-link" href="../../../clauses/clause_composition/">Clause composition</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/match/">MATCH</a>
+    <a class="nav-link" href="../../../clauses/match/">MATCH</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
+    <a class="nav-link" href="../../../clauses/optional-match/">OPTIONAL MATCH</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/return/">RETURN</a>
+    <a class="nav-link" href="../../../clauses/return/">RETURN</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/with/">WITH</a>
+    <a class="nav-link" href="../../../clauses/with/">WITH</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
+    <a class="nav-link" href="../../../clauses/unwind/">UNWIND</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/where/">WHERE</a>
+    <a class="nav-link" href="../../../clauses/where/">WHERE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
+    <a class="nav-link" href="../../../clauses/order-by/">ORDER BY</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/skip/">SKIP</a>
+    <a class="nav-link" href="../../../clauses/skip/">SKIP</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
+    <a class="nav-link" href="../../../clauses/limit/">LIMIT</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/create/">CREATE</a>
+    <a class="nav-link" href="../../../clauses/create/">CREATE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/delete/">DELETE</a>
+    <a class="nav-link" href="../../../clauses/delete/">DELETE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/set/">SET</a>
+    <a class="nav-link" href="../../../clauses/set/">SET</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
+    <a class="nav-link" href="../../../clauses/remove/">REMOVE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
+    <a class="nav-link" href="../../../clauses/foreach/">FOREACH</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/merge/">MERGE</a>
+    <a class="nav-link" href="../../../clauses/merge/">MERGE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
+    <a class="nav-link" href="../../../clauses/call/">CALL procedure</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/union/">UNION</a>
+    <a class="nav-link" href="../../../clauses/union/">UNION</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/use/">USE</a>
+    <a class="nav-link" href="../../../clauses/use/">USE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
+    <a class="nav-link" href="../../../clauses/load-csv/">LOAD CSV</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+    <a class="nav-link" href="../../../clauses/listing-functions/">SHOW FUNCTIONS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+    <a class="nav-link" href="../../../clauses/listing-procedures/">SHOW PROCEDURES</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
+    <a class="nav-link" href="../../../clauses/listing-settings/">SHOW SETTINGS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+    <a class="nav-link" href="../../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+    <a class="nav-link" href="../../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+    <a class="nav-link nav-item-toggle" href="../../../subqueries/">Subqueries</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+    <a class="nav-link" href="../../../subqueries/call-subquery/">CALL subqueries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+    <a class="nav-link" href="../../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+    <a class="nav-link" href="../../../subqueries/existential/">EXISTS subqueries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+    <a class="nav-link" href="../../../subqueries/count/">COUNT subqueries</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+    <a class="nav-link" href="../../../subqueries/collect/">COLLECT subqueries</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
+    <a class="nav-link nav-item-toggle" href="../../../patterns/">Patterns</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../patterns/concepts/">Concepts</a>
+    <a class="nav-link" href="../../../patterns/concepts/">Concepts</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../patterns/primer/">Primer</a>
+    <a class="nav-link" href="../../../patterns/primer/">Primer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
+    <a class="nav-link" href="../../../patterns/reference/">Syntax and semantics</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../">Values and types</a>
+    <a class="nav-link nav-item-toggle" href="../../../values-and-types/">Values and types</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../property-structural-constructed/">Property, structural, and constructed values</a>
+    <a class="nav-link" href="../../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../temporal/">Temporal values</a>
+    <a class="nav-link" href="../../../values-and-types/temporal/">Temporal values</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../spatial/">Spatial values</a>
+    <a class="nav-link" href="../../../values-and-types/spatial/">Spatial values</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../working-with-null/">Working with <code>null</code></a>
+    <a class="nav-link" href="../../../values-and-types/working-with-null/">Working with <code>null</code></a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../lists/">Lists</a>
+    <a class="nav-link" href="../../../values-and-types/lists/">Lists</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../maps/">Maps</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Casting data values</a>
+    <a class="nav-link" href="../../../values-and-types/maps/">Maps</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../type-predicate/">Type predicate expressions</a>
+    <a class="nav-link" href="../../../values-and-types/casting-data/">Casting data values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/type-predicate/">Type predicate expressions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+    <a class="nav-link nav-item-toggle" href="../../../functions/">Functions</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+    <a class="nav-link" href="../../../functions/predicate/">Predicate functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+    <a class="nav-link" href="../../../functions/scalar/">Scalar functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+    <a class="nav-link" href="../../../functions/aggregating/">Aggregating functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/list/">List functions</a>
+    <a class="nav-link" href="../../../functions/list/">List functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+    <a class="nav-link" href="../../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+    <a class="nav-link" href="../../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+    <a class="nav-link" href="../../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/string/">String functions</a>
+    <a class="nav-link" href="../../../functions/string/">String functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+    <a class="nav-link" href="../../../functions/temporal/">Temporal functions - instant types</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+    <a class="nav-link" href="../../../functions/temporal/duration/">Temporal functions - duration</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+    <a class="nav-link" href="../../../functions/spatial/">Spatial functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+    <a class="nav-link" href="../../../functions/load-csv/">LOAD CSV functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+    <a class="nav-link" href="../../../functions/graph/">Graph functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/database/">Database functions</a>
+    <a class="nav-link" href="../../../functions/database/">Database functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+    <a class="nav-link" href="../../../functions/user-defined/">User-defined functions</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../indexes-for-search-performance/">Indexes for search performance</a>
+    <a class="nav-link" href="../../../indexes-for-search-performance/">Indexes for search performance</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../indexes-for-full-text-search/">Full-text search index</a>
+    <a class="nav-link" href="../../../indexes-for-full-text-search/">Full-text search index</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../indexes-for-vector-search/">Vector search index</a>
+    <a class="nav-link" href="../../../indexes-for-vector-search/">Vector search index</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+    <a class="nav-link nav-item-toggle" href="../../../constraints/">Constraints</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+    <a class="nav-link" href="../../../constraints/syntax/">Syntax</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../constraints/examples/">Examples</a>
+    <a class="nav-link" href="../../../constraints/examples/">Examples</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../query-tuning/">Query tuning</a>
+    <a class="nav-link nav-item-toggle" href="../../../query-tuning/">Query tuning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-options/">Cypher query options</a>
+    <a class="nav-link" href="../../../query-tuning/query-options/">Cypher query options</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-profile/">Profile a query</a>
+    <a class="nav-link" href="../../../query-tuning/query-profile/">Profile a query</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/indexes/">The use of indexes</a>
+    <a class="nav-link" href="../../../query-tuning/indexes/">The use of indexes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/basic-example/">Basic query tuning example</a>
+    <a class="nav-link" href="../../../query-tuning/basic-example/">Basic query tuning example</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/advanced-example/">Advanced query tuning example</a>
+    <a class="nav-link" href="../../../query-tuning/advanced-example/">Advanced query tuning example</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/using/">Planner hints and the USING keyword</a>
+    <a class="nav-link" href="../../../query-tuning/using/">Planner hints and the USING keyword</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../execution-plans/">Execution plans</a>
+    <a class="nav-link nav-item-toggle" href="../../../execution-plans/">Execution plans</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/db-hits/">Database hits</a>
+    <a class="nav-link" href="../../../execution-plans/db-hits/">Database hits</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operator-summary/">Execution plan operators</a>
+    <a class="nav-link" href="../../../execution-plans/operator-summary/">Execution plan operators</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operators/">Execution plan operators in detail</a>
+    <a class="nav-link" href="../../../execution-plans/operators/">Execution plan operators in detail</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/shortestpath-planning/">Shortest path planning</a>
+    <a class="nav-link" href="../../../execution-plans/shortestpath-planning/">Shortest path planning</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+    <a class="nav-link nav-item-toggle" href="../../../query-caches/">Query caches</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+    <a class="nav-link" href="../../../query-caches/unified-query-caches/">Unifying query caches</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../administration/">Administration</a>
+    <a class="nav-link nav-item-toggle" href="../../">Administration</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/databases/">Database management</a>
+    <a class="nav-link" href="../../databases/">Database management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/aliases/">Database alias management</a>
+    <a class="nav-link" href="../../aliases/">Database alias management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/servers/">Server management</a>
+    <a class="nav-link" href="../../servers/">Server management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link nav-item-toggle" href="../../administration/access-control/">Access control</a>
+    <a class="nav-link nav-item-toggle" href="../">Access control</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-users/">Managing users</a>
+    <a class="nav-link" href="../manage-users/">Managing users</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-roles/">Managing roles</a>
+    <a class="nav-link" href="../manage-roles/">Managing roles</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-privileges/">Managing privileges</a>
+    <a class="nav-link" href="../manage-privileges/">Managing privileges</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
+    <a class="nav-link" href="../built-in-roles/">Built-in roles and privileges</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-reads/">Read privileges</a>
+    <a class="nav-link" href="../privileges-reads/">Read privileges</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-writes/">Write privileges</a>
+    <a class="nav-link" href="../privileges-writes/">Write privileges</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/database-administration/">Database administration</a>
+    <a class="nav-link" href="../database-administration/">Database administration</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
+    <a class="nav-link" href="../dbms-administration/">DBMS administration</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Load privileges</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/load-privileges/">Load privileges</a>
+    <a class="nav-link" href="../limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-immutable/">Immutable privileges</a>
+    <a class="nav-link" href="../privileges-immutable/">Immutable privileges</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+    <a class="nav-link nav-item-toggle" href="../../../syntax/">Syntax</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+    <a class="nav-link" href="../../../syntax/parsing/">Parsing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+    <a class="nav-link" href="../../../syntax/naming/">Naming rules and recommendations</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/variables/">Variables</a>
+    <a class="nav-link" href="../../../syntax/variables/">Variables</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/reserved/">Reserved keywords</a>
+    <a class="nav-link" href="../../../syntax/reserved/">Reserved keywords</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+    <a class="nav-link" href="../../../syntax/parameters/">Parameters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/operators/">Operators</a>
+    <a class="nav-link" href="../../../syntax/operators/">Operators</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../syntax/comments/">Comments</a>
+    <a class="nav-link" href="../../../syntax/comments/">Comments</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
+    <a class="nav-link" href="../../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../keyword-glossary/">Glossary of keywords</a>
+    <a class="nav-link" href="../../../keyword-glossary/">Glossary of keywords</a>
   </li>
   <li class="nav-item" data-depth="1">
     <span class="nav-text nav-item-toggle">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+    <a class="nav-link" href="../../../styleguide/">Cypher styleguide</a>
   </li>
 </ul>
   </li>
@@ -708,15 +708,18 @@ mixpanel.track("Page View", {
 <div class="toolbar" role="navigation">
   <div class="toolbar-wrapper">
     <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
-    <a href="../../introduction/" class="home-link" aria-label="Go to home page"></a>
+    <a href="../../../introduction/" class="home-link" aria-label="Go to home page"></a>
     <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../../introduction/">Cypher Manual</a></li>
+    <li><a href="../../../introduction/">Cypher Manual</a></li>
+    <li><a href="../../">
+        Administration
+    </a></li>
     <li><a href="../">
-        Values and types
+        Access control
     </a></li>
     <li><a href="./">
-        Casting data values
+        Load privileges
     </a></li>
   </ul>
 </nav>
@@ -726,7 +729,11 @@ mixpanel.track("Page View", {
   <div class="content">
 <article class="doc">
 <div class="sect-header">
-<h1 class="page">Casting data values</h1>
+<h1 class="page">Load privileges</h1>
+<div class="roles is-before-toc">
+    <span class="role enterprise-edition"></span>
+    <span class="role aura-db-enterprise"></span>
+</div>
 </div>
 
 
@@ -736,286 +743,129 @@ mixpanel.track("Page View", {
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cypher<sup>&reg;</sup> supports a number of functions to cast values to different data types.
-This section will provide an overview of those functions, as well examples of how to use them in practice.</p>
+<p><em>This feature was released in Neo4j 5.13.</em></p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_functions_for_converting_data_values"><a class="anchor" href="#_functions_for_converting_data_values"></a>Functions for converting data values</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The following functions are available for casting data values:</p>
+<p>This section explains how to use Cypher<sup>&reg;</sup> to manage load privileges.
+All load privileges apply to the whole system.
+Like DBMS privileges, they do not belong to one specific database or graph.
+For more details on the differences between graphs, databases, and the DBMS, refer to <a href="../../../introduction/cypher_neo4j/" class="xref page">Cypher and Neo4j</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../../_images/privileges_grant_and_deny_syntax_load_privileges.svg" alt="privileges grant and deny syntax load privileges" width="800">
+</div>
+<div class="title">Figure 1. Syntax of GRANT and DENY load Privileges</div>
+</div>
+<div class="paragraph">
+<p>The load privileges apply to the <a href="../../../clauses/load-csv/" class="xref page"><code>LOAD CSV</code> clause</a>, deciding whether or not the data can be loaded from the given source.</p>
+</div>
+<div class="paragraph">
+<p>The load privileges are assigned using Cypher administrative commands.
+They can be granted, denied, and revoked in the same way as other privileges.
+For more details, see <a href="../manage-privileges/" class="xref page">Managing privileges</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Load privileges command syntax</caption>
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 60%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Function</th>
+<th class="tableblock halign-left valign-top">Command</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toBoolean()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>STRING</code>, <code>INTEGER</code>, or <code>BOOLEAN</code> value to a <code>BOOLEAN</code> value.</p>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">GRANT [IMMUTABLE] LOAD
+  ON ALL DATA
+  TO role[, ...]</code></pre>
+</div>
 </div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toBooleanList()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>LIST&lt;ANY&gt;</code> and returns a <code>LIST&lt;BOOLEAN&gt;</code> values.
-If any values are not convertible to <code>BOOLEAN</code> they will be <code>null</code> in the <code>LIST&lt;BOOLEAN&gt;</code> returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toBooleanOrNull()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>STRING</code>, <code>INTEGER</code> or <code>BOOLEAN</code> value to a <code>BOOLEAN</code> value.
-For any other input value, <code>null</code> will be returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toFloat()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts an <code>INTEGER</code>, <code>FLOAT</code>, or a <code>STRING</code> value to a <code>FLOAT</code> value.
-Otherwise <code>null</code> is returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toFloatList()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>LIST&lt;ANY&gt;</code> and returns a <code>LIST&lt;FLOAT&gt;</code> values.
-If any values are not convertible to <code>FLOAT</code> they will be <code>null</code> in the <code>LIST&lt;FLOAT&gt;</code> returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toFloatOrNull()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts an <code>INTEGER</code>, <code>FLOAT</code>, or a <code>STRING</code> value to a <code>FLOAT</code>.
-For any other input value, <code>null</code> will be returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toInteger()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>BOOLEAN</code>, <code>INTEGER</code>, <code>FLOAT</code> or a <code>STRING</code> value to an <code>INTEGER</code> value.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toIntegerList()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>LIST&lt;ANY&gt;</code> to a <code>LIST&lt;INTEGER&gt;</code> values. If any values are not convertible to <code>INTEGER</code> they will be null in the <code>LIST&lt;INTEGER&gt;</code> returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toIntegerOrNull()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>BOOLEAN</code>, <code>INTEGER</code>, <code>FLOAT</code> or a <code>STRING</code> value to an <code>INTEGER</code> value.
-For any other input value, <code>null</code> will be returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toString()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts an <code>INTEGER</code>, <code>FLOAT</code>, <code>BOOLEAN</code>, <code>STRING</code>, <code>POINT</code>, <code>DURATION</code>, <code>DATE</code>, <code>ZONED TIME</code>, <code>LOCAL TIME</code>, <code>LOCAL DATETIME</code>, or <code>ZONED DATETIME</code> value to a <code>STRING</code> value.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toStringList()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts a <code>LIST&lt;ANY&gt;</code> and returns a <code>LIST&lt;STRING&gt;</code> values.
-If any values are not convertible to <code>STRING</code> they will be <code>null</code> in the <code>LIST&lt;STRING&gt;</code> returned.</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>toStringOrNull()</code></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Converts an <code>INTEGER</code>, <code>FLOAT</code>, <code>BOOLEAN</code>, <code>STRING</code>, <code>POINT</code>, <code>DURATION</code>, <code>DATE</code>, <code>ZONED TIME</code>, <code>LOCAL TIME</code>, <code>LOCAL DATETIME</code>, or <code>ZONED DATETIME</code> value to a <code>STRING</code>.
-For any other input value, <code>null</code> will be returned.</p>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the specified roles to load external data in queries.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>More information about these, and many other functions, can be found in the section on <a href="../../functions/" class="xref page">Functions</a>.</p>
+<p>More details about the syntax descriptions can be found <a href="../../#administration-syntax" class="xref page">here</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Unlike other privileges, the <code>LOAD</code> privilege is not granted, denied, or revoked on <code>DBMS</code>, <code>Database</code>, or <code>Graph</code>, but instead on the data source to load from.
+Adding <code>ON ALL DATA</code> means a role has the privilege to load data from all sources.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="converting-data-values-examples"><a class="anchor" href="#converting-data-values-examples"></a>Examples</h2>
+<h2 id="access-control-load-all-data"><a class="anchor" href="#access-control-load-all-data"></a>The <code>ALL DATA</code> privilege</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following graph is used for the examples below:</p>
+<p>The load privilege on <code>ALL DATA</code> enables or disables loading data.
+If granted, the user can load data from any source.
+If missing or denied, no data can be loaded at all.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>For example, the below query grants users with the role <code>roleLoadAllData</code> the ability to load data with <code>LOAD CSV</code>:</p>
+</div>
+<div class="listingblock noplay">
 <div class="content">
-<img src="../../_images/values_and_types_converting_data_graph.svg" alt="values and types converting data graph">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT LOAD ON ALL DATA TO roleLoadAllData</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To recreate it, run the following query against an empty Neo4j database:</p>
+<p>The below query lists all privileges for the role <code>roleLoadAllData</code> as commands:</p>
 </div>
-<div class="listingblock noheader">
+<div class="listingblock noplay">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (keanu:Person {name:'Keanu Reeves', age: 58, active:true}),
-       (carrieAnne:Person  {name:'Carrie-Anne Moss', age: 55, active:true}),
-       (keanu)-[r:KNOWS {since:1999}]-&gt;(carrieAnne)</code></pre>
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW ROLE roleLoadAllData PRIVILEGES AS COMMANDS</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="converting-data-values-examples-returning-converted-values"><a class="anchor" href="#converting-data-values-examples-returning-converted-values"></a>Returning converted values</h3>
-<div class="paragraph">
-<p>In the below query, the function <code>toFloat</code> is used to cast two <code>STRING</code> values.
-It shows that <code>null</code> is returned if the data casting is not possible.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (keanu:Person {name:'Keanu Reeves'})
-RETURN toFloat(keanu.age), toInteger(keanu.name)</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 1. Result</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">toFloat(keanu.age)</th>
-<th class="tableblock halign-left valign-top">toInteger(keanu.name)</th>
-</tr>
-</thead>
-<tfoot>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>58.0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code></p></td>
-</tr>
-</tfoot>
-</table>
-<div class="paragraph">
-<p>If the function <code>toFloat</code> is passed an unsupported value (such as a <code>DATE</code> value), it will throw an error:</p>
-</div>
-<div class="listingblock test-fail">
-<div class="title">Query</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">WITH date({
-  year: 2023, month: 5, day: 2
-}) AS d
-RETURN toFloat(d)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Error message</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Type mismatch: expected Float, Integer, Number or String but was Date (line 4, column 16 (offset: 66))
-"RETURN toFloat(d)"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>However, if the same value is passed to the function <code>toFloatOrNull</code>, <code>null</code> will be returned.</p>
-</div>
-<div class="listingblock">
-<div class="title">Query</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">WITH date({
-  year: 2023, month: 5, day: 2
-}) AS d
-RETURN toFloatOrNull(d)</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch queryresult">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">toFloatOrNull(d)</th>
+<th class="tableblock halign-left valign-top">command</th>
 </tr>
 </thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT LOAD ON ALL DATA TO `roleLoadAllData`"</code></p></td>
+</tr>
+</tbody>
 <tfoot>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Rows: 1</p>
+</div></div></td>
 </tr>
 </tfoot>
 </table>
 <div class="paragraph">
-<p>It is also possible to return casted values as a list.
-The below query uses the <code>toStringList</code> to cast all passed values into <code>STRING</code> values, and return them in as a <code>LIST&lt;STRING&gt;</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (keanu:Person {name:'Keanu Reeves'})
-RETURN toStringList([keanu.name, keanu.age]) AS keanuList</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 3. Result</caption>
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">keanuList</th>
-</tr>
-</thead>
-<tfoot>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["Keanu Reeves", "58"]</code></p></td>
-</tr>
-</tfoot>
-</table>
-</div>
-<div class="sect2">
-<h3 id="converting-data-values-updating-property-value-types"><a class="anchor" href="#converting-data-values-updating-property-value-types"></a>Updating property value types</h3>
-<div class="paragraph">
-<p>The functions to cast data values can be used to update property values on nodes and relationships.
-The below query casts the <code>age</code> (<code>INTEGER</code>), <code>active</code> (<code>BOOLEAN</code>), and <code>since</code>(<code>INTEGER</code>) properties to <code>STRING</code> values:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (keanu:Person {name:'Keanu Reeves'})-[r:KNOWS]-()
-SET keanu.age = toString(keanu.age),
-    keanu.active = toString(keanu.active),
-    r.since = toString(r.since)
-RETURN keanu.age, keanu.active, r.since</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 4. Result</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">keanu.age</th>
-<th class="tableblock halign-left valign-top">keanu.active</th>
-<th class="tableblock halign-left valign-top">r.since</th>
-</tr>
-</thead>
-<tfoot>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"58"</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"true"</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"1999"</code></p></td>
-</tr>
-</tfoot>
-</table>
+<p>The <code>LOAD ON ALL DATA</code> privilege is granted to the <code>PUBLIC</code> role by default.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../maps/">Maps</a></span>
+  <span class="prev"><a href="../dbms-administration/">DBMS administration</a></span>
 
-  <span class="next"><a href="../type-predicate/">Type predicate expressions</a></span>
+  <span class="next"><a href="../limitations/">Limitations</a></span>
 </nav>
     <div class="feedback">
     <div class="header question">
@@ -1112,10 +962,10 @@ RETURN keanu.age, keanu.active, r.since</code></pre>
 </div>
 </footer>
 
-  <script src="../../../../assets/js/vendor/auth0.js"></script>
-  <script src="../../../../assets/js/site.js"></script>
-  <script async src="../../../../assets/js/vendor/highlight.js"></script>
-  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+  <script src="../../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../../assets/js/site.js"></script>
+  <script async src="../../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../../assets/js/vendor/image-zoom.js"></script>
 
 
 <div id="neo4j-algolia-search-v2"></div>

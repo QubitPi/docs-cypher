@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -779,7 +782,7 @@ The privileges listed in the following sections are the default set of privilege
 <div class="sectionbody">
 <div class="paragraph">
 <p>All users are granted the <code>PUBLIC</code> role, and it can not be revoked or dropped.
-By default, it gives access to the default database and allows executing all procedures and user-defined functions.</p>
+By default, it gives access to the default database and allows loading data, executing all procedures and user-defined functions.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -823,11 +826,14 @@ In contrast to the <code>PUBLIC</code> role, the other built-in roles can be gra
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT EXECUTE PROCEDURE * ON DBMS TO `PUBLIC`"</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT LOAD ON ALL DATA TO `PUBLIC`"</code></p></td>
+</tr>
 </tbody>
 <tfoot>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Rows: 3</p>
+<p>Rows: 4</p>
 </div></div></td>
 </tr>
 </tfoot>
@@ -856,6 +862,11 @@ Secondly, run these queries:</p>
 <div class="listingblock noplay">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT EXECUTE USER DEFINED FUNCTIONS * ON DBMS TO PUBLIC</code></pre>
+</div>
+</div>
+<div class="listingblock noplay">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT LOAD ON ALL DATA TO PUBLIC</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1357,6 +1368,9 @@ These include the rights to perform the following classes of tasks:</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT INDEX MANAGEMENT ON DATABASE * TO `admin`"</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT LOAD ON ALL DATA TO `admin`"</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"GRANT MATCH {*} ON GRAPH * NODE * TO `admin`"</code></p></td>
 </tr>
 <tr>
@@ -1387,7 +1401,7 @@ These include the rights to perform the following classes of tasks:</p>
 <tfoot>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Rows: 13</p>
+<p>Rows: 14</p>
 </div></div></td>
 </tr>
 </tfoot>
@@ -1436,6 +1450,11 @@ Secondly, run these queries:</p>
 <div class="listingblock noplay">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT WRITE ON GRAPH * TO admin</code></pre>
+</div>
+</div>
+<div class="listingblock noplay">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">GRANT LOAD ON ALL DATA TO admin</code></pre>
 </div>
 </div>
 <div class="listingblock noplay">

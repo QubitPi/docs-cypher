@@ -644,6 +644,9 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration/access-control/load-privileges/">Load privileges</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -1003,6 +1006,24 @@ If all columns are required, use <code>SHOW PROCEDURES YIELD *</code>.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"cdc.current"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Returns the current change identifier that can be used to stream changes from."</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"READ"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"cdc.earliest"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Returns the earliest change identifier that can be used to stream changes from."</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"READ"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"cdc.query"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Query changes observed by the provided change identifier."</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"READ"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"db.awaitIndex"</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Wait for an index to come online (for example: CALL db.awaitIndex("MyIndex", 300))."</code></p></td>
