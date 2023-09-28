@@ -767,7 +767,15 @@ RETURN n.born AS birthYear</code></pre>
 <li>
 <p>A <code>Person</code> <strong>label</strong>.
 Labels are like tags, and are used to query the database for specific nodes.
-A node may have multiple labels, for example <code>Person</code> and <code>Actor</code>.</p>
+A node may have multiple labels, for example <code>Person</code> and <code>Actor</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (anna:`Person`:`Actor` {
+    name: "Anna",
+    born: "1991-03-11"
+});</code></pre>
+</div>
+</div>
 </li>
 <li>
 <p>A <code>name</code> <strong>property</strong> set to <code>Anna</code>.
