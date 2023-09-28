@@ -9,7 +9,7 @@ endif::[]
 
 Welcome to the Neo4j Cypher Manual.
 
-Cypher is Neo4j’s declarative query language, allowing users to unlock the full potential of property graph databases.
+Cypher is Neo4j’s declarative query language, allowing users to unlock the full potential of https://qubitpi.github.io/neo4j-docs-getting-started/getting-started/get-started-with-neo4j/graph-database/#property-graph[property graph] databases.
 
 [NOTE]
 This manual covers Cypher 25.
@@ -19,7 +19,7 @@ For information about new features added to Cypher 25, see xref:deprecations-add
 
 The Cypher Manual aims to be as instructive as possible to readers from a variety of backgrounds and professions, such as developers, administrators, and academic researchers.
 
-If you are new to Cypher and Neo4j, you can visit the link:{neo4j-docs-base-uri}/getting-started/current/cypher-intro/[Getting Started Guide -> Introduction to Cypher] chapter. 
+If you are new to Cypher and Neo4j, you can visit the link:{neo4j-docs-base-uri}/getting-started/current/cypher-intro/[Getting Started Guide -> Introduction to Cypher] chapter.
 Additionally, https://graphacademy.neo4j.com/[Neo4j GraphAcademy] has a variety of free courses tailored for all levels of experience.
 
 For a reference of all available Cypher features, see the link:{neo4j-docs-base-uri}/cypher-cheat-sheet/current/[Cypher Cheat Sheet].
