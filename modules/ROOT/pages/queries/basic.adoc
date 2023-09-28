@@ -7,10 +7,10 @@ For more advanced queries, see the section on xref:subqueries/index.adoc[].
 The examples below uses the publicly available link:https://github.com/neo4j-graph-examples/movies/tree/main/documentation[Neo4j movie database].
 
 [[data-model]]
-== Creating a data model 
+== Creating a data model
 
-Before creating a property graph database, it is important to develop an appropriate data model.
-This will provide structure to the data, and allow users of the graph to efficiently retrieve the information they are looking for. 
+Before creating a https://qubitpi.github.io/neo4j-docs-getting-started/getting-started/get-started-with-neo4j/graph-database/#property-graph[property graph] database, it is important to develop an appropriate data model.
+This will provide structure to the data, and allow users of the graph to efficiently retrieve the information they are looking for.
 
 The following data model is used for the Neo4j data model:
 
@@ -544,8 +544,8 @@ CREATE
 [[find-nodes]]
 == Finding nodes
 
-The `MATCH` clause is used to find a specific pattern in the graph, such as a specific node. 
-The `RETURN` clause specifies what of the found graph pattern to return. 
+The `MATCH` clause is used to find a specific pattern in the graph, such as a specific node.
+The `RETURN` clause specifies what of the found graph pattern to return.
 
 For example, this query will find the nodes with `Person` label and the name `Keanu Reeves`, and return the `name` and `born` properties of the found nodes:
 
@@ -566,7 +566,7 @@ RETURN keanu.name AS name, keanu.born AS born
 2+d|Rows: 1
 |===
 
-It is also possible to query a graph for several nodes. 
+It is also possible to query a graph for several nodes.
 This query matches all nodes with the `Person` label, and limits the results to only include five rows.
 
 .Query
@@ -594,14 +594,14 @@ LIMIT 5
 [[clause-composition-note]]
 == Note on clause composition
 
-Similar to SQL, Cypher queries are constructed using various clauses which are chained together to feed intermediate results between each other. 
+Similar to SQL, Cypher queries are constructed using various clauses which are chained together to feed intermediate results between each other.
 Each clause has as input the state of the graph and a table of intermediate results consisting of the referenced variables.
 The first clause takes as input the state of the graph before the query and an empty table of intermediate results.
-The output of a clause is a new state of the graph and a new table of intermediate results, serving as input to the next clause. 
+The output of a clause is a new state of the graph and a new table of intermediate results, serving as input to the next clause.
 The output of the last clause is the result of the query.
 
 Note that if one of the clauses returns an empty table of intermediate results, there is nothing to pass on to subsequent clauses, thus ending the query.
-(There are ways to circumvent this behaviour. 
+(There are ways to circumvent this behaviour.
 For example, by replacing a `MATCH` clause with xref:clauses/optional-match.adoc[OPTIONAL MATCH].)
 
 In the below example, the first `MATCH` clause finds all nodes with the `Person` label.
@@ -612,9 +612,9 @@ The final clause returns the result in a descending chronological order.
 [source, cypher]
 ----
 MATCH (bornInEighties:Person)
-WHERE bornInEighties.born >= 1980 AND bornInEighties.born < 1990 
+WHERE bornInEighties.born >= 1980 AND bornInEighties.born < 1990
 RETURN bornInEighties.name as name, bornInEighties.born as born
-ORDER BY born DESC 
+ORDER BY born DESC
 ----
 
 .Result
@@ -645,7 +645,7 @@ For more details, see the section on xref:clauses/clause_composition.adoc[].
 To discover how nodes are connected to one another, relationships must be added to queries.
 Queries can specify relationship types, properties, and direction, as well as the start and end nodes of the pattern.
 
-For example, the following query matches the graph for the director of the movie the Matrix, and returns the `name` property of its directors. 
+For example, the following query matches the graph for the director of the movie the Matrix, and returns the `name` property of its directors.
 
 .Query
 [source, cypher]
@@ -665,8 +665,8 @@ RETURN p.name as director
 
 |===
 
-It also possible to look for the type of relationships that connect nodes to one another. 
-The below query searches the graph for outgoing relationships from the `Tom Hanks` node to any `Movie` nodes, and returns the relationships and the titles of the movies connected to him. 
+It also possible to look for the type of relationships that connect nodes to one another.
+The below query searches the graph for outgoing relationships from the `Tom Hanks` node to any `Movie` nodes, and returns the relationships and the titles of the movies connected to him.
 
 .Query
 [source, cypher]
@@ -740,9 +740,9 @@ For more information about the different label expressions supported by Cypher, 
 
 There are several ways in which Cypher can be used to search a graph for paths between nodes.
 
-To search for patterns of a fixed length, specify the distance (hops) between the nodes in the pattern by using a xref::patterns/reference.adoc#quantifiers[quantifier] (`\{n}`). 
+To search for patterns of a fixed length, specify the distance (hops) between the nodes in the pattern by using a xref::patterns/reference.adoc#quantifiers[quantifier] (`\{n}`).
 For example, the following query matches all `Person` nodes exactly 2 hops away from `Tom Hanks` and returns the first five rows.
-The xref:syntax/operators.adoc#syntax-using-the-distinct-operator[DISTINCT] operator ensures that the result contain no duplicate values. 
+The xref:syntax/operators.adoc#syntax-using-the-distinct-operator[DISTINCT] operator ensures that the result contain no duplicate values.
 
 .Query
 [source, cypher]
@@ -767,14 +767,14 @@ LIMIT 5
 2+d|Rows: 5
 |===
 
-It is also possible to match a graph for patterns of a variable length. 
+It is also possible to match a graph for patterns of a variable length.
 The below query matches all `Person` nodes between `1` and `4` hops away from `Tom Hanks` and returns the first five rows.
 
 .Query
 [source, cypher, role=test-result-skip]
 ----
 MATCH (p:Person {name:'Tom Hanks'})--{1,4}(colleagues:Person)
-RETURN DISTINCT colleagues.name AS name, colleagues.born AS bornIn  
+RETURN DISTINCT colleagues.name AS name, colleagues.born AS bornIn
 ORDER BY bornIn, name
 LIMIT 5
 ----
@@ -797,7 +797,7 @@ LIMIT 5
 ====
 The quantifier used in the above two examples was introduced with the release of xref::patterns/concepts.adoc#quantified-path-patterns[quantified path patterns] in Neo4j 5.9.
 Before that, the only way in Cypher to match paths of a variable length was with a variable-length relationship.
-This syntax is still available in Cypher. 
+This syntax is still available in Cypher.
 Read more about it xref::patterns/reference.adoc#variable-length-relationships[here].
 ====
 
@@ -817,7 +817,7 @@ This is the returned path:
 
 image::introduction_example2.svg[width="500",role="middle]
 
-It shows that `Keanu Reeves` `ACTED_IN` the `Movie` `The Replacements`, which was `REVIEWED` by the movie critic `Jessica Thompson`, who also `REVIEWED` the `Movie` `The Da Vinci Code` which `Tom Hanks` `ACTED_IN`. 
+It shows that `Keanu Reeves` `ACTED_IN` the `Movie` `The Replacements`, which was `REVIEWED` by the movie critic `Jessica Thompson`, who also `REVIEWED` the `Movie` `The Da Vinci Code` which `Tom Hanks` `ACTED_IN`.
 
 More information can be found in the section on xref::patterns/index.adoc[Patterns].
 
@@ -825,8 +825,8 @@ More information can be found in the section on xref::patterns/index.adoc[Patter
 == Finding recommendations
 
 Cypher allows for more complex queries.
-The following query tries to recommend co-actors for `Keanu Reeves`, who he has yet to work with but who his co-actors have worked with. 
-The query then orders the results by how frequently a matched co-co-actor has collaborated with one of Keanu Reeves' co-actors. 
+The following query tries to recommend co-actors for `Keanu Reeves`, who he has yet to work with but who his co-actors have worked with.
+The query then orders the results by how frequently a matched co-co-actor has collaborated with one of Keanu Reeves' co-actors.
 
 .Query
 [source, cypher]
@@ -856,7 +856,7 @@ LIMIT 7
 |===
 
 There are several connections between the `Keanu Reeves` and `Tom Hanks` nodes in the movie database, but the two have never worked together in a film.
-The following query matches coactors who could introduce the two, by looking for co-actors who have worked with both of them in separate movies: 
+The following query matches coactors who could introduce the two, by looking for co-actors who have worked with both of them in separate movies:
 
 .Query
 [source, cypher]
