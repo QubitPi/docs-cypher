@@ -25,7 +25,15 @@ In the above example, the node includes the following:
 
 * A `Person` *label*.
 Labels are like tags, and are used to query the database for specific nodes.
-A node may have multiple labels, for example `Person` and `Actor`.
+A node may have multiple labels, for example `Person` and `Actor`:
++
+[source, cypher]
+----
+CREATE (anna:`Person`:`Actor` {
+    name: "Anna",
+    born: "1991-03-11"
+});
+----
 * A `name` *property* set to `Anna`.
 Properties are defined within curly braces, `{}`, and are used to provide nodes with specific information, which can also be queried for and further improve the ability to pinpoint data.
 * A *variable*, `n`.
