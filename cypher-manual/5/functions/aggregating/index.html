@@ -34,7 +34,9 @@
 
     <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
     <link rel="stylesheet" href="../../../../assets/css/site.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
 
@@ -78,7 +80,7 @@ mixpanel.track("Page View", {
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
 
-      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422142941/neo4j-logo-2020.svg" alt="Neo4j Docs" />
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
       <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
         Docs
       </a>
@@ -120,6 +122,7 @@ mixpanel.track("Page View", {
                 <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
                 <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
                 <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
               </ul>
             </div>
 
@@ -557,42 +560,43 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../query-tuning/">Query tuning</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-options/">Cypher query options</a>
+    <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-profile/">Profile a query</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/indexes/">The use of indexes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/basic-example/">Basic query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/advanced-example/">Advanced query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/using/">Planner hints and the USING keyword</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../execution-plans/">Execution plans</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/db-hits/">Database hits</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operator-summary/">Execution plan operators</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/indexes/">The use of indexes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operators/">Execution plan operators in detail</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/using/">Planner hints and the USING keyword</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/shortestpath-planning/">Shortest path planning</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/query-options/">Query options</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -605,56 +609,7 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../administration/">Administration</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/databases/">Database management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/aliases/">Database alias management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/servers/">Server management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link nav-item-toggle" href="../../administration/access-control/">Access control</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-users/">Managing users</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-roles/">Managing roles</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-privileges/">Managing privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-reads/">Read privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-writes/">Write privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/database-administration/">Database administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/load-privileges/">Load privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-immutable/">Immutable privileges</a>
-  </li>
-</ul>
-  </li>
-</ul>
+    <a class="nav-link" href="../../administration/">Administration</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
@@ -686,13 +641,13 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../keyword-glossary/">Glossary of keywords</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <span class="nav-text nav-item-toggle">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../appendix/tutorials/">Tutorials and extended examples</a>
   </li>
 </ul>
   </li>
@@ -733,46 +688,25 @@ mixpanel.track("Page View", {
 
 
 
-<div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aggregating functions take a set of values and calculate an aggregated value over them.
-Aggregation can be computed over all the matching paths, or it can be further divided by introducing grouping keys.
-Grouping keys are non-aggregating expressions that are used to group the values going into the aggregating functions.</p>
+<p>An aggregating function performs a calculation over a set of values, returning a single value.
+Aggregation can be computed over all the matching paths, or it can be further divided by introducing <a href="#grouping-keys">grouping keys</a>.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>For example, given the following query containing two return expressions, <code>n</code> and <code>count(*)</code>:</p>
+<p>To learn more about how Cypher<sup>&reg;</sup> handles aggregations performed on zero rows, refer to <a href="https://neo4j.com/developer/kb/understanding-aggregations-on-zero-rows//">Neo4j Knowledge Base &#8594; Understanding aggregations on zero rows</a>.</p>
 </div>
-<div class="listingblock test-skip">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN n, count(*)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The first, <code>n</code> is not an aggregating function, so it will be the grouping key.
-The latter, <code>count(*)</code> is an aggregating function.
-The matching paths will be divided into different buckets, depending on the grouping key.
-The aggregating function will then be run on these buckets, calculating an aggregate value per bucket.</p>
-</div>
-<div class="paragraph">
-<p>The input expression of an aggregating function can contain any expression, including expressions that are not grouping keys.
-However, not all expressions can be composed with aggregating functions.
-The example below will throw an error since <code>n.x</code>, which is not a grouping key, is combined with the aggregating function <code>count(*)</code>.
-For more information, see <a href="#grouping-keys">Grouping keys</a>.</p>
-</div>
-<div class="listingblock test-skip">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN n.x + count(*)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To sort the result set using aggregating functions, the aggregation must be included in the <code>ORDER BY</code> sub-clause following the <code>RETURN</code> clause.</p>
-</div>
-<div class="paragraph">
-<p>The <code>DISTINCT</code> operator works in conjunction with aggregation.
-It is used to make all values unique before running them through an aggregating function.
-More information about <code>DISTINCT</code> can be found in <a href="../../syntax/operators/#query-operators-aggregation" class="xref page">Syntax &#8594; Aggregation operators</a>.</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2375,10 +2309,10 @@ RETURN sum(dur)</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="grouping-keys"><a class="anchor" href="#grouping-keys"></a>Grouping keys</h2>
+<h2 id="grouping-keys"><a class="anchor" href="#grouping-keys"></a>Aggregating expressions and grouping keys</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Aggregating expressions are expressions which contain one or more aggregating functions.
+<p><strong>Aggregating expressions</strong> are expressions which contain one or more aggregating functions.
 A simple aggregating expression consists of a single aggregating function.
 For instance, <code>sum(x.a)</code> is an aggregating expression that only consists of the aggregating function <code>sum( )</code> with <code>x.a</code> as its argument.
 Aggregating expressions are also allowed to be more complex, where the result of one or more aggregating functions are input arguments to other expressions.
@@ -2386,33 +2320,35 @@ For instance, <code>0.1 * (sum(x.a) / count(x.b))</code> is an aggregating expre
 Both are input arguments to the division expression.</p>
 </div>
 <div class="paragraph">
-<p>For aggregating expressions to be correctly computable for the buckets formed by the grouping key(s), they have to fulfill some requirements.
-Specifically, each sub-expression in an aggregating expression has to be either:</p>
+<p><strong>Grouping keys</strong> are non-aggregating expressions that are used to group the values going into the aggregating functions.
+For example, given the following query containing two return expressions, <code>n</code> and <code>count(*)</code>:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>an aggregating function, e.g. <code>sum(x.a)</code>,</p>
-</li>
-<li>
-<p>a constant, e.g. <code>0.1</code>,</p>
-</li>
-<li>
-<p>a parameter, e.g. <code>$param</code>,</p>
-</li>
-<li>
-<p>a grouping key, e.g. the <code>a</code> in <code>RETURN a, count(*)</code></p>
-</li>
-<li>
-<p>a local variable, e.g. the <code>x</code> in  <code>count(*) + size([ x IN range(1, 10) | x ])</code>, or</p>
-</li>
-<li>
-<p>a sub-expression, all operands of which have to be allowed in an aggregating expression.</p>
-</li>
-</ul>
+<div class="listingblock test-skip">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN n, count(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first, <code>n</code> is not an aggregating function, so it will be the grouping key.
+The latter, <code>count(*)</code> is an aggregating function.
+The matching paths will be divided into different buckets, depending on the grouping key.
+The aggregating function will then be run on these buckets, calculating an aggregate value per bucket.</p>
+</div>
+<div class="paragraph">
+<p>The input expression of an aggregating function can contain any expression, including expressions that are not grouping keys.
+However, not all expressions can be composed with aggregating functions.
+The example below will throw an error since <code>n.x</code>, which is not a grouping key, is combined with the aggregating function <code>count(*)</code>.</p>
+</div>
+<div class="listingblock test-skip">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN n.x + count(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To sort the result set using aggregating functions, the aggregation must be included in the <code>ORDER BY</code> sub-clause following the <code>RETURN</code> clause.</p>
 </div>
 <div class="sect2">
-<h3 id="grouping-key-examples"><a class="anchor" href="#grouping-key-examples"></a>Examples of aggregating expressions</h3>
+<h3 id="grouping-key-examples"><a class="anchor" href="#grouping-key-examples"></a>Examples</h3>
 <div class="exampleblock">
 <div class="title">Example 20. Simple aggregation without any grouping keys</div>
 <div class="content">
@@ -2557,7 +2493,7 @@ RETURN p.age, p.age - max(f.age)</code></pre>
 </table>
 <div class="paragraph">
 <p>Grouping keys themselves can be complex expressions.
-For better query readability, Cypher<sup>&reg;</sup> only recognizes a sub-expression in aggregating expressions as a grouping key if the grouping key is either:</p>
+For better query readability, Cypher only recognizes a sub-expression in aggregating expressions as a grouping key if the grouping key is either:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2638,6 +2574,35 @@ RETURN groupingKey, groupingKey - max(f.age)</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_rules_for_aggregating_expressions"><a class="anchor" href="#_rules_for_aggregating_expressions"></a>Rules for aggregating expressions</h3>
+<div class="paragraph">
+<p>For aggregating expressions to be correctly computable for the buckets formed by the grouping key(s), they have to fulfill some requirements.
+Specifically, each sub-expression in an aggregating expression has to be either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an aggregating function, e.g. <code>sum(x.a)</code>.</p>
+</li>
+<li>
+<p>a constant, e.g. <code>0.1</code>.</p>
+</li>
+<li>
+<p>a parameter, e.g. <code>$param</code>.</p>
+</li>
+<li>
+<p>a grouping key, e.g. the <code>a</code> in <code>RETURN a, count(*)</code>.</p>
+</li>
+<li>
+<p>a local variable, e.g. the <code>x</code> in  <code>count(*) + size([ x IN range(1, 10) | x ])</code>.</p>
+</li>
+<li>
+<p>a sub-expression, all operands of which have to be allowed in an aggregating expression.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">
@@ -2697,24 +2662,11 @@ RETURN groupingKey, groupingKey - max(f.age)</code></pre>
 </div>
 <footer class="footer">
   <div class="wrapper">
-  <div class="column">
-    <div class="logo-footer"></div>
-    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
-      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
-    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
-      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
-      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
-  </div>
 
-  <div class="column">
-    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
-    <p>US: 1-855-636-4532<br>
-      Sweden +46 171 480 113<br>
-      UK: +44 20 3868 3223<br>
-      France: +33 (0) 1 88 46 13 20<br>
-      <!--Germany: +49 (0)89 26204 6300</p>-->
-    </p>
+  <div class="column logo">
+    <div class="logo-footer"></div>
   </div>
+  
   <div class="column links">
     <h2>Learn</h2>
     <ul>
@@ -2737,6 +2689,25 @@ RETURN groupingKey, groupingKey - max(f.age)</code></pre>
       <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
     </ul>
   </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
 </div>
 </footer>
 

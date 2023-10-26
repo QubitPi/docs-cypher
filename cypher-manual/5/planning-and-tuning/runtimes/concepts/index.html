@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+<!-- Hotjar Tracking Code for staging -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:3587741,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<!-- End Hotjar Tracking code -->
+    <title>Runtime concepts - Cypher Manual</title>
+    <link rel="prev" href="../">
+    <link rel="next" href="../reference/">
+      <meta name="description" content="information about the concepts behind slotted, pipelined, and parallel runtime.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+    <link rel="preload" href="../../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Runtime concepts - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20210423062553/neo4j-social-share-21.png" />
+    <meta property="og:description" content="information about the concepts behind slotted, pipelined, and parallel runtime." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/5/planning-and-tuning/runtimes/concepts/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/drivers-apis">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/spark/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/arrows/">arrows.app</a>
+              <ul class="project-links">
+                <li><a href="/labs/arrows/" class="project-link">Details</a></li>
+                <li><a href="https://arrows.app" class="project-link">arrows.app</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/apoc/">APOC Extended</a>
+
+              <ul class="project-links">
+                <li><a href="/labs/apoc/5/" class="project-link">Documentation</a></li>
+                <li><a href="/developer/neo4j-apoc/" class="project-link">Developer Guide</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/halin/">Halin</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/etl-tool/">ETL Tool</a>
+              <ul class="project-links">
+                <li><a href="/labs/etl-tool/" class="project-link">Details</a></li>
+                <li><a href="/labs/etl-tool/1.5.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-migrations/">Neo4j Migrations</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-migrations/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-migrations/2.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/liquibase/">Neo4j Plugin For Liquibase</a>
+              <ul class="project-links">
+                <li><a href="/labs/liquibase/" class="project-link">Details</a></li>
+                <li><a href="https://github.com/liquibase/liquibase-neo4j" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">Neosemantics</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/tutorial/" class="project-link">Getting Started</a></li>
+                <li><a href="/labs/neosemantics/4.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neo4j-helm/">Neo4j Helm</a>
+              <ul class="project-links">
+                <li><a href="/labs/neo4j-helm/" class="project-link">Details</a></li>
+                <li><a href="/labs/neo4j-helm/1.0.0/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neodash/">NeoDash</a>
+              <ul class="project-links">
+                <li><a href="/labs/neodash/" class="project-link">Details</a></li>
+                <li><a href="/labs/neodash/2.1/" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neomodel/">neomodel</a>
+              <ul class="project-links">
+                <li><a href="/labs/neomodel/" class="project-link">Details</a></li>
+                <li><a href="https://neomodel.readthedocs.io/en/latest/" target="_blank" class="project-link">Documentation</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/?ref=docs" target="_blank">GraphAcademy</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/?ref=docs">Free, Self Paced Training</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certification/?ref=docs" target="_blank">Certification</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/developer/kb" target="_blank">Knowledge Base</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://neo4j.com/cloud/platform/aura-graph-database/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="cypher-manual" data-version="5">
+  <aside class="nav">
+    <div class="panels">
+      <div class="selectors">
+        
+      </div>
+      <div class="nav-panel-menu is-active" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../introduction/">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../introduction/cypher_overview/">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../introduction/cypher_neo4j/">Cypher and Neo4j</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../introduction/cypher_aura/">Cypher and Aura</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../queries/">Queries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../queries/concepts/">Core concepts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../queries/basic/">Basic queries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../queries/expressions/">Cypher expressions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../queries/case/">Conditional expressions (CASE)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../clauses/">Clauses</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/clause_composition/">Clause composition</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/match/">MATCH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/optional-match/">OPTIONAL MATCH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/return/">RETURN</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/with/">WITH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/unwind/">UNWIND</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/where/">WHERE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/order-by/">ORDER BY</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/skip/">SKIP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/limit/">LIMIT</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/create/">CREATE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/delete/">DELETE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/set/">SET</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/remove/">REMOVE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/foreach/">FOREACH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/merge/">MERGE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/call/">CALL procedure</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/union/">UNION</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/use/">USE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/load-csv/">LOAD CSV</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/listing-settings/">SHOW SETTINGS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../subqueries/">Subqueries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../subqueries/call-subquery/">CALL subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../subqueries/existential/">EXISTS subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../subqueries/count/">COUNT subqueries</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../subqueries/collect/">COLLECT subqueries</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../patterns/">Patterns</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../patterns/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../patterns/primer/">Primer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../patterns/reference/">Syntax and semantics</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../values-and-types/">Values and types</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/temporal/">Temporal values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/spatial/">Spatial values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/working-with-null/">Working with <code>null</code></a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/lists/">Lists</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/maps/">Maps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/casting-data/">Casting data values</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../values-and-types/type-predicate/">Type predicate expressions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../functions/">Functions</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/predicate/">Predicate functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/scalar/">Scalar functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/aggregating/">Aggregating functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/list/">List functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/string/">String functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/temporal/">Temporal functions - instant types</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/temporal/duration/">Temporal functions - duration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/spatial/">Spatial functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/load-csv/">LOAD CSV functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/graph/">Graph functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/database/">Database functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../functions/user-defined/">User-defined functions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../indexes-for-search-performance/">Indexes for search performance</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../indexes-for-full-text-search/">Full-text search index</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../indexes-for-vector-search/">Vector search index</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../constraints/">Constraints</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../constraints/syntax/">Syntax</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../constraints/examples/">Examples</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../">Execution plans and query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../execution-plans/">Understanding execution plans</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../../operators/">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../operators/operators-detail/">Operators in detail</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../">Cypher runtimes</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../reference/">Parallel runtime: reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../../query-tuning/">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../query-tuning/indexes/">The use of indexes</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../query-tuning/using/">Planner hints and the USING keyword</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../query-tuning/query-options/">Query options</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../query-caches/">Query caches</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../query-caches/unified-query-caches/">Unifying query caches</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../administration/">Administration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link nav-item-toggle" href="../../../syntax/">Syntax</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/parsing/">Parsing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/naming/">Naming rules and recommendations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/variables/">Variables</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/reserved/">Reserved keywords</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/parameters/">Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/operators/">Operators</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../syntax/comments/">Comments</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text nav-item-toggle">Appendix</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../styleguide/">Cypher styleguide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../../appendix/tutorials/">Tutorials and extended examples</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    <a href="../../../introduction/" class="home-link" aria-label="Go to home page"></a>
+    <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../../../introduction/">Cypher Manual</a></li>
+    <li><a href="../../">
+        Execution plans and query tuning
+    </a></li>
+    <li><a href="../">
+        Cypher runtimes
+    </a></li>
+    <li><a href="./">
+        Concepts
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  <div class="content">
+<article class="doc">
+<div class="sect-header">
+<h1 class="page">Runtime concepts</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Cypher<sup>&reg;</sup>, there are three types of runtimes: slotted, pipelined, and parallel.
+In general, the default runtimes (the pipelined runtime in Enterprise Edition) provide the best query performance.
+However, each runtime offers advantages and disadvantages, and there are scenarios when deciding which runtime to use is an important step in maximizing the efficiency of queries.</p>
+</div>
+<div class="paragraph">
+<p>This is a step-by-step guide to the concepts behind each of the three available Cypher runtimes.
+For readers not familiar with reading the execution plans produced by Cypher queries, it is recommended to first read the section on <a href="../../execution-plans/" class="xref page">Understanding execution plans</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="runtimes-example-graph"><a class="anchor" href="#runtimes-example-graph"></a>Example graph</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following graph is used for the queries on this page:</p>
+</div>
+<div class="imageblock middle">
+<div class="content">
+<img src="../../../_images/patterns_qpp_calling_points.svg" alt="patterns qpp calling points" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>The graph contains two types of nodes: <code>Stop</code> and <code>Station</code>.
+Each <code>Stop</code> on a train service <code>CALLS_AT</code> one <code>Station</code>, and has the properties <code>arrives</code> and <code>departs</code> that give the times the train is at the <code>Station</code>.
+Following the <code>NEXT</code> relationship of a <code>Stop</code> will give the next <code>Stop</code> of a service.</p>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, run the following query against an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (pmr:Station {name: 'Peckham Rye'}),
+  (dmk:Station {name: 'Denmark Hill'}),
+  (clp:Station {name: 'Clapham High Street'}),
+  (wwr:Station {name: 'Wandsworth Road'}),
+  (clj:Station {name: 'Clapham Junction'}),
+  (s1:Stop {arrives: time('17:19'), departs: time('17:20')}),
+  (s2:Stop {arrives: time('17:12'), departs: time('17:13')}),
+  (s3:Stop {arrives: time('17:10'), departs: time('17:11')}),
+  (s4:Stop {arrives: time('17:06'), departs: time('17:07')}),
+  (s5:Stop {arrives: time('16:58'), departs: time('17:01')}),
+  (s6:Stop {arrives: time('17:17'), departs: time('17:20')}),
+  (s7:Stop {arrives: time('17:08'), departs: time('17:10')}),
+  (clj)&lt;-[:CALLS_AT]-(s1), (wwr)&lt;-[:CALLS_AT]-(s2),
+  (clp)&lt;-[:CALLS_AT]-(s3), (dmk)&lt;-[:CALLS_AT]-(s4),
+  (pmr)&lt;-[:CALLS_AT]-(s5), (clj)&lt;-[:CALLS_AT]-(s6),
+  (dmk)&lt;-[:CALLS_AT]-(s7),
+  (s5)-[:NEXT {distance: 1.2}]-&gt;(s4),(s4)-[:NEXT {distance: 0.34}]-&gt;(s3),
+  (s3)-[:NEXT {distance: 0.76}]-&gt;(s2), (s2)-[:NEXT {distance: 0.3}]-&gt;(s1),
+  (s7)-[:NEXT {distance: 1.4}]-&gt;(s6)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="runtimes-slotted-runtime"><a class="anchor" href="#runtimes-slotted-runtime"></a>Slotted runtime</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The slotted runtime is the default runtime for Neo4j Community Edition.
+Users of Neo4j Enterprise Edition must prepend their query with <code>CYPHER runtime = slotted</code> in order for a query to run with slotted runtime.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">EXPLAIN
+CYPHER runtime = slotted
+MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+      ((:Stop)-[:NEXT]-&gt;(:Stop))+
+      (a:Stop)-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })
+RETURN count(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This query will generate the following execution plan:</p>
+</div>
+<div class="listingblock queryplan">
+<div class="content">
+<pre>Planner COST
+
+Runtime SLOTTED
+
+Runtime version 5.14
+
++-------------------+----+------------------------------------------------------------------------+----------------+
+| Operator          | Id | Details                                                                | Estimated Rows |
++-------------------+----+------------------------------------------------------------------------+----------------+
+| +ProduceResults   |  0 | `count(*)`                                                             |              1 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +EagerAggregation |  1 | count(*) AS `count(*)`                                                 |              1 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Filter           |  2 | not anon_1 = anon_5 AND anon_0.name = $autostring_0 AND anon_0:Station |              0 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Expand(All)      |  3 | (d)-[anon_1:CALLS_AT]-&gt;(anon_0)                                        |              0 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Filter           |  4 | d:Stop                                                                 |              0 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Repeat(Trail)    |  5 | (a) (...){1, *} (d)                                                    |              0 |
+| |\                +----+------------------------------------------------------------------------+----------------+
+| | +Filter         |  6 | isRepeatTrailUnique(anon_7) AND anon_2:Stop                            |              6 |
+| | |               +----+------------------------------------------------------------------------+----------------+
+| | +Expand(All)    |  7 | (anon_4)&lt;-[anon_7:NEXT]-(anon_2)                                       |              6 |
+| | |               +----+------------------------------------------------------------------------+----------------+
+| | +Filter         |  8 | anon_4:Stop                                                            |             11 |
+| | |               +----+------------------------------------------------------------------------+----------------+
+| | +Argument       |  9 | anon_4                                                                 |             13 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Filter           | 10 | a:Stop                                                                 |              0 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Expand(All)      | 11 | (anon_6)&lt;-[anon_5:CALLS_AT]-(a)                                        |              0 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +Filter           | 12 | anon_6.name = $autostring_1                                            |              1 |
+| |                 +----+------------------------------------------------------------------------+----------------+
+| +NodeByLabelScan  | 13 | anon_6:Station                                                         |             10 |
++-------------------+----+------------------------------------------------------------------------+----------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The physical plan produced by slotted runtimes is a one-to-one mapping from the logical plan, where each logical operator maps to a corresponding physical operator, and where the operators are processed row-by-row.
+When using slotted runtime, each variable in the query gets a dedicated “slot”, which the runtime uses for accessing the data mapped to the given variable, hence the name “slotted”.</p>
+</div>
+<div class="paragraph">
+<p>The slotted runtime uses the traditional execution model of most databases known as the iterator or “Volcano” model.
+This is a pull-based process where each operator in the tree “pulls” rows of data from its child operator by using a virtual call function.
+In this way, data is pulled up from the bottom of the execution plan to the top, generating an eruption-like flow of data.</p>
+</div>
+<div class="sect2">
+<h3 id="runtimes-slotted-runtime-considerations"><a class="anchor" href="#runtimes-slotted-runtime-considerations"></a>Considerations</h3>
+<div class="paragraph">
+<p>The slotted runtime is the first high-performance runtime introduced in Neo4j, replacing the original (and slower) interpreted runtime, which is now retired.</p>
+</div>
+<div class="paragraph">
+<p>The slotted runtime is an interpreted runtime, meaning that it interprets the logical plan sent by the planner operator-by-operator.
+In general, this is a convenient and flexible approach capable of handling all operators and queries.
+The slotted runtime is conceptually similar to interpreted programming languages, in that it has a shorter planning phase because it does not need to generate all the code for the query before execution (unlike compiled runtimes - discussed in more detail <a href="#pipelined-runtime-considerations.adoc">below</a>).<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>In general, users of Neo4j Enterprise Edition should not have to use slotted runtime.
+However, there are scenarios where the fast planning phase of the slotted runtime may be useful.
+ For example, if you are using an application that generates short queries that are not cached (i.e. never, or very rarely, repeated), then the slotted runtime may be preferable because of its faster planning time.</p>
+</div>
+<div class="paragraph">
+<p>There are, however, limitations to the slotted runtime.
+The continuous calling of virtual functions between each operator uses CPU cycles which results in slower query execution.
+Furthermore, the iterator model can lead to poor data locality, which can cause a slower query execution.
+This is because the process of individual rows being pulled from different operators makes it difficult to make efficient use of CPU caches.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 enterprise-edition">
+<h2 id="runtimes-pipelined-runtime"><a class="anchor" href="#runtimes-pipelined-runtime"></a>Pipelined runtime</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The pipelined runtime is the default runtime for Neo4j Enterprise Edition.
+This means that unless users of Neo4j Enterprise Edition specify a different runtime, queries will be run using the pipelined runtime.</p>
+</div>
+<div class="paragraph">
+<p>To specify that a query should use the pipelined runtime, prepend the query with <code>CYPHER runtime = pipelined</code>.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">EXPLAIN
+CYPHER runtime = pipelined
+MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+      ((:Stop)-[:NEXT]-&gt;(:Stop))+
+      (a:Stop)-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })
+RETURN count(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting execution plan contains notable differences from the one produced by slotted runtime:</p>
+</div>
+<div class="listingblock queryplan">
+<div class="content">
+<pre>Planner COST
+
+Runtime PIPELINED
+
+Runtime version 5.14
+
+Batch size 128
+
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+
+| Operator          | Id | Details                                                                | Estimated Rows | Pipeline            |
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+
+| +ProduceResults   |  0 | `count(*)`                                                             |              1 | In Pipeline 3       |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +EagerAggregation |  1 | count(*) AS `count(*)`                                                 |              1 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Filter           |  2 | not anon_1 = anon_5 AND anon_0.name = $autostring_0 AND anon_0:Station |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Expand(All)      |  3 | (d)-[anon_1:CALLS_AT]-&gt;(anon_0)                                        |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Filter           |  4 | d:Stop                                                                 |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +NullifyMetadata  | 14 |                                                                        |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Repeat(Trail)    |  5 | (a) (...){1, *} (d)                                                    |              0 | Fused in Pipeline 2 |
+| |\                +----+------------------------------------------------------------------------+----------------+---------------------+
+| | +Filter         |  6 | isRepeatTrailUnique(anon_7) AND anon_2:Stop                            |              6 |                     |
+| | |               +----+------------------------------------------------------------------------+----------------+                     |
+| | +Expand(All)    |  7 | (anon_4)&lt;-[anon_7:NEXT]-(anon_2)                                       |              6 |                     |
+| | |               +----+------------------------------------------------------------------------+----------------+                     |
+| | +Filter         |  8 | anon_4:Stop                                                            |             11 |                     |
+| | |               +----+------------------------------------------------------------------------+----------------+                     |
+| | +Argument       |  9 | anon_4                                                                 |             13 | Fused in Pipeline 1 |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +Filter           | 10 | a:Stop                                                                 |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Expand(All)      | 11 | (anon_6)&lt;-[anon_5:CALLS_AT]-(a)                                        |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Filter           | 12 | anon_6.name = $autostring_1                                            |              1 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +NodeByLabelScan  | 13 | anon_6:Station                                                         |             10 | Fused in Pipeline 0 |
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rightmost column of the plan shows that it has been divided into four different <strong>pipelines</strong>.
+In order to understand what pipelines are, it is first necessary to understand that queries using pipelined runtime are, unlike those run in slotted runtime, not executed one row at a time.
+Rather, the pipelined runtime allows the physical operators to consume and produce <strong>batches</strong> of between roughly 100 and 1000 rows each (referred to as <strong>morsels</strong>), which are written into <strong>buffers</strong> containing data and tasks for a pipeline.
+A pipeline can, in turn, be defined as a sequence of operators which have been fused into one another so that they may be executed together in the same task by the runtime.</p>
+</div>
+<div class="paragraph">
+<p>The logical operators are thus not mapped to a corresponding physical operator when using the pipelined runtime.
+Instead, the logical operator tree is transformed into an execution graph containing pipelines and buffers:</p>
+</div>
+<div class="imageblock middle">
+<div class="content">
+<img src="../../../_images/runtimes_execution_graph1.svg" alt="runtimes execution graph1" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>In this execution graph, query execution starts at <code>pipeline 0</code> which will eventually produce a morsel to be written into the buffer of <code>pipeline 1</code>.
+Once there is data for <code>pipeline 1</code> to process, it can begin executing and in turn write data for the next pipeline to process, and so on.
+In this way, data is being pushed along the execution graph.</p>
+</div>
+<div class="sect2">
+<h3 id="runtimes-pipelined-runtime-considerations"><a class="anchor" href="#runtimes-pipelined-runtime-considerations"></a>Considerations</h3>
+<div class="paragraph">
+<p>The pipelined runtime is a push-based execution model, where data is pushed from the leaf operator to its parent operators.
+Unlike pull-based models (which the slotted runtime uses), data can be kept in local variables when using push-based execution models, and this has several benefits; it enables direct use of CPU registers, improves the use of CPU caches, and avoids the costly virtual function calls used in pull-based models.</p>
+</div>
+<div class="paragraph">
+<p>The pipelined runtime is ideal for transactional use cases, with a large number of queries running in parallel on the system.
+This covers most usage scenarios, and for this reason, it is the default Neo4j runtime.</p>
+</div>
+<div class="paragraph">
+<p>The pipelined runtime is a combined model, that can either use an interpreted or compiled runtime.
+However, because it predominantly uses the latter, it is considered a compiled runtime.
+Unlike interpreted runtimes, compiled runtimes have a code generation phase followed by an execution phase, and this typically causes a longer query planning time, but a shorter execution time.</p>
+</div>
+<div class="paragraph">
+<p>As stated <a href="#runtimes-slotted-runtime-considerations">above</a>, there are rare scenarios in which users of Neo4j Enterprise Edition may benefit from not using the pipelined runtime for their queries.
+However, for most queries, the pipelined runtime is a more efficient runtime capable of handling all operators and queries.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 enterprise-edition">
+<h2 id="runtimes-parallel-runtime"><a class="anchor" href="#runtimes-parallel-runtime"></a>Parallel runtime</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This feature was introduced in Neo4j 5.13.</em></p>
+</div>
+<div class="paragraph">
+<p>Both the slotted and pipelined runtimes execute queries in a single thread assigned to one CPU core.
+It is still possible to achieve parallelism (broadly defined as when two or more sets of operations can be processed concurrently within a single database environment) when using these two runtimes by running multiple queries in separate CPU threads concurrently.
+This is the typical scenario in OLTP (Online Transaction Processing) use cases.</p>
+</div>
+<div class="paragraph">
+<p>However, there are scenarios, principally when performing graph analytics, where it is beneficial for a single query to use several cores to boost its performance.
+This can be achieved by using parallel runtime, which is multi-threaded and allows queries to potentially utilize all available cores on the server running Neo4j.</p>
+</div>
+<div class="paragraph">
+<p>To specify that a query should use the parallel runtime, prepend it with <code>CYPHER runtime = parallel</code>.
+For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">EXPLAIN
+CYPHER runtime = parallel
+MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+      ((:Stop)-[:NEXT]-&gt;(:Stop))+
+      (a:Stop)-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })
+RETURN count(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is the resulting execution plan:</p>
+</div>
+<div class="listingblock queryplan">
+<div class="content">
+<pre>Planner COST
+
+Runtime PARALLEL
+
+Runtime version 5.14
+
+Batch size 128
+
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+
+| Operator          | Id | Details                                                                | Estimated Rows | Pipeline            |
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+
+| +ProduceResults   |  0 | `count(*)`                                                             |              1 | In Pipeline 6       |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +EagerAggregation |  1 | count(*) AS `count(*)`                                                 |              1 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Filter           |  2 | not anon_1 = anon_5 AND anon_0.name = $autostring_0 AND anon_0:Station |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Expand(All)      |  3 | (d)-[anon_1:CALLS_AT]-&gt;(anon_0)                                        |              0 | Fused in Pipeline 5 |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +Filter           |  4 | d:Stop                                                                 |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +NullifyMetadata  | 14 |                                                                        |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Repeat(Trail)    |  5 | (a) (...){1, *} (d)                                                    |              0 | Fused in Pipeline 4 |
+| |\                +----+------------------------------------------------------------------------+----------------+---------------------+
+| | +Filter         |  6 | isRepeatTrailUnique(anon_7) AND anon_2:Stop                            |              6 |                     |
+| | |               +----+------------------------------------------------------------------------+----------------+                     |
+| | +Expand(All)    |  7 | (anon_4)&lt;-[anon_7:NEXT]-(anon_2)                                       |              6 | Fused in Pipeline 3 |
+| | |               +----+------------------------------------------------------------------------+----------------+---------------------+
+| | +Filter         |  8 | anon_4:Stop                                                            |             11 |                     |
+| | |               +----+------------------------------------------------------------------------+----------------+                     |
+| | +Argument       |  9 | anon_4                                                                 |             13 | Fused in Pipeline 2 |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +Filter           | 10 | a:Stop                                                                 |              0 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +Expand(All)      | 11 | (anon_6)&lt;-[anon_5:CALLS_AT]-(a)                                        |              0 | Fused in Pipeline 1 |
+| |                 +----+------------------------------------------------------------------------+----------------+---------------------+
+| +Filter           | 12 | anon_6.name = $autostring_1                                            |              1 |                     |
+| |                 +----+------------------------------------------------------------------------+----------------+                     |
+| +NodeByLabelScan  | 13 | anon_6:Station                                                         |             10 | Fused in Pipeline 0 |
++-------------------+----+------------------------------------------------------------------------+----------------+---------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A key difference between the physical plans produced by the parallel runtime compared to those generated by pipelined runtime is that, in general, more pipelines are produced when using the parallel runtime (in this case, seven instead of the four produced by the same query being run on pipelined runtime).
+This is because, when executing a query in the parallel runtime, it is more efficient to have more tasks that can be run in parallel, whereas when running a single-threaded execution in the pipelined runtime it is more efficient to fuse several pipelines together.</p>
+</div>
+<div class="paragraph">
+<p>The parallel runtime shares the same architecture as the pipelined runtime, meaning that it will transform the logical plan into the same type of execution graph as described above.
+However, when using parallel runtime, each pipeline task can be executed in a separate thread.
+Another similarity with pipelined runtime is that queries run on the parallel runtime will begin by generating the first pipeline which eventually will produce a morsel in the input buffer of the subsequent pipeline.
+But, whereas only one pipeline can progress at a time when using the pipelined runtime, parallel runtime allows pipelines to concurrently produce morsels.
+Therefore, as each task finishes, more and more input morsels will be made available for the tasks which means that more and more workers can be utilized to execute the query.</p>
+</div>
+<div class="paragraph">
+<p>To further explain how parallel runtime works, a set of new terms need to be defined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Worker</strong>: a thread that executes work units to evaluate incoming queries.</p>
+</li>
+<li>
+<p><strong>Task</strong>: a unit of work.
+A task executes one pipeline on one input morsel and produces one output morsel.
+If any condition prevents a task from completing, it can be rescheduled as a Continuation to resume at a later time.</p>
+</li>
+<li>
+<p><strong>Continuation</strong>: a task that did not finish execution and must be scheduled again.</p>
+</li>
+<li>
+<p><strong>Scheduler</strong>: responsible for deciding which unit of work to process next.
+Scheduling is decentralized, and each worker has its own scheduler instance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consider the execution graph below, based on the same example query:</p>
+</div>
+<div class="imageblock middle">
+<div class="content">
+<img src="../../../_images/runtimes_execution_graph2.svg" alt="runtimes execution graph2" width="900">
+</div>
+</div>
+<div class="paragraph">
+<p>The execution graph shows that execution starts at <code>pipeline 0</code>, which consists of the operator <code>NodeByLabelScan</code> and can be executed simultaneously on all available threads working on different morsels of data.
+Once pipeline <code>0</code> has produced at least one full morsel of data, any thread can then start executing <code>pipeline 1</code>, while other threads may continue to execute <code>pipeline 0</code>.
+More specifically, once there is data from a pipeline, the scheduler can proceed to the next pipeline while concurrently executing earlier pipelines.
+In this case, <code>pipeline 5</code> ends with an aggregation (performed by the EagerAggregation operator), which means that the last pipeline (6) cannot start until all preceding pipelines are completely finished for all the preceding morsels of data.</p>
+</div>
+<div class="sect2">
+<h3 id="runtimes-parallel-runtime-considerations"><a class="anchor" href="#runtimes-parallel-runtime-considerations"></a>Considerations</h3>
+<div class="paragraph">
+<div class="title">When to use the parallel runtime</div>
+<p>In most situations where multiple CPU cores are available, long-running queries can be expected to run significantly faster on the parallel runtime.
+While it is not possible to define the exact duration at which a query would benefit from being run on the parallel runtime (as this depends on the data model, the query structure, the load of the system, and the number of cores available), it can be assumed as a general rule that any query that takes longer than approximately 500 milliseconds would be a good candidate.</p>
+</div>
+<div class="paragraph">
+<p>This means that the parallel runtime is suitable for <strong>analytical</strong>, <strong>graph-global</strong> queries.
+These queries are often not anchored to a particular start node and therefore process a large section of the graph in order to gain valuable insights from it.</p>
+</div>
+<div class="paragraph">
+<p>However, queries that start with anchoring a specific node may benefit from being run on the parallel runtime, if either of the following is true:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The anchored starting node is a densely connected node or super node.</p>
+</li>
+<li>
+<p>The query proceeds to expand from the anchored node to a large section of the graph.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There is, therefore, no fixed rule as to when a query should be run with the parallel runtime, but these guidelines provide some useful information about the scenarios when users would very likely benefit from trying to use it.</p>
+</div>
+<div class="paragraph">
+<div class="title">When not to use the parallel runtime</div>
+<p>Unlike the pipelined runtime, which was designed as the most efficient method for most queries to be planned, the use cases for the parallel runtime are more specific, and there are situations where it is not possible or beneficial to use it.
+Most notably, the parallel runtime <strong>only supports read queries</strong>.
+It also does not support procedures functions that are not considered thread-safe (i.e. not safe to run from multiple threads).</p>
+</div>
+<div class="paragraph">
+<p>Moreover, not all queries will run faster by using the parallel runtime.
+For example, a <strong>graph-local</strong> query that starts with anchoring a node and proceeds to only match a small portion of the graph will probably not run any faster on the parallel runtime (it may even run slower when executed with the parallel runtime, because of its scheduling and the additional book-keeping required for executing a query on multiple threads).
+As a general rule of thumb, the parallel runtime is probably not beneficial for queries which take less than half a second to complete.</p>
+</div>
+<div class="paragraph">
+<p>The parallel runtime may also perform worse than the pipelined runtime for queries that contain subclauses where <a href="../../../clauses/order-by/" class="xref page">ORDER BY</a> is used to order a property that is indexed.
+This is because the parallel runtime is unable to take advantage of property indexes for ordering, and therefore must re-sort the aggregated results on the selected properties before returning any results.</p>
+</div>
+<div class="paragraph">
+<p>Finally, though individual queries may run faster when running the parallel runtime, the overall throughput of the database may decrease as a result of running many concurrent queries.</p>
+</div>
+<div class="paragraph">
+<p>The parallel runtime is accordingly not suitable for transactional processing queries with high throughput workloads.
+It is, however, ideal for analytical use cases where the database runs relatively few, but demanding read queries.</p>
+</div>
+<div class="sect3">
+<h4 id="runtimes-parallel-runtime-overview"><a class="anchor" href="#runtimes-parallel-runtime-overview"></a>Overview</h4>
+<div class="paragraph">
+<p>In general, the parallel runtime should be considered if the following conditions are met:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Graph-global read-queries are constructed to target a large section of a graph.</p>
+</li>
+<li>
+<p>The speed of queries is important.</p>
+</li>
+<li>
+<p>The server has many CPUs and enough memory.</p>
+</li>
+<li>
+<p>There is a low concurrency workload on the database.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about the parallel runtime, including more details about queries, procedures, functions, configuration settings, and using the parallel runtime on Aura, see the <a href="../reference/" class="xref page">Parallel runtime: reference</a> page.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="runtimes-summary"><a class="anchor" href="#runtimes-summary"></a>Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The below table summarizes the most important distinctions between the three different runtimes available in Cypher:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"><strong>Slotted</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Pipelined</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Parallel</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Execution model</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Push</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Physical operator consumption</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Row-by-row</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batched</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batched</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Processor threads</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-threaded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single-threaded</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multi-threaded</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Runtime type</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interpreted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compiled or interpreted</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compiled or interpreted</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Supported query type</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read and write</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read and write</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Read only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. The classification of a runtime as interpreted or compiled is not entirely accurate. Most runtime implementations are not fully interpreted or fully compiled but are rather a blend of the two styles. For example, when the slotted runtime is run in Neo4j Enterprise Edition, code is generated for the expressions included in the query. Nevertheless, the slotted runtime is considered interpreted, since that is the predominant method of implementation.
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../">Cypher runtimes</a></span>
+
+  <span class="next"><a href="../reference/">Parallel runtime: reference</a></span>
+</nav>
+    <div class="feedback">
+    <div class="header question">
+        <p><strong>Was this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div></article>
+<aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../../assets/js/site.js"></script>
+  <script async src="../../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>  </body>
+</html>

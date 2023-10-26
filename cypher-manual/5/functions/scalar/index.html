@@ -34,7 +34,9 @@
 
     <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
     <link rel="stylesheet" href="../../../../assets/css/site.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
 
@@ -78,7 +80,7 @@ mixpanel.track("Page View", {
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
 
-      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422142941/neo4j-logo-2020.svg" alt="Neo4j Docs" />
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
       <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
         Docs
       </a>
@@ -120,6 +122,7 @@ mixpanel.track("Page View", {
                 <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
                 <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
                 <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
               </ul>
             </div>
 
@@ -557,42 +560,43 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../query-tuning/">Query tuning</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-options/">Cypher query options</a>
+    <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/query-profile/">Profile a query</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/indexes/">The use of indexes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/basic-example/">Basic query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/advanced-example/">Advanced query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../query-tuning/using/">Planner hints and the USING keyword</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../execution-plans/">Execution plans</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/db-hits/">Database hits</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operator-summary/">Execution plan operators</a>
+    <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/indexes/">The use of indexes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/operators/">Execution plan operators in detail</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/using/">Planner hints and the USING keyword</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../execution-plans/shortestpath-planning/">Shortest path planning</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../planning-and-tuning/query-tuning/query-options/">Query options</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -605,56 +609,7 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../../administration/">Administration</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/databases/">Database management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/aliases/">Database alias management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration/servers/">Server management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link nav-item-toggle" href="../../administration/access-control/">Access control</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-users/">Managing users</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-roles/">Managing roles</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/manage-privileges/">Managing privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-reads/">Read privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-writes/">Write privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/database-administration/">Database administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/dbms-administration/">DBMS administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/load-privileges/">Load privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/limitations/">Limitations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration/access-control/privileges-immutable/">Immutable privileges</a>
-  </li>
-</ul>
-  </li>
-</ul>
+    <a class="nav-link" href="../../administration/">Administration</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
@@ -686,13 +641,13 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../keyword-glossary/">Glossary of keywords</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <span class="nav-text nav-item-toggle">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../appendix/tutorials/">Tutorials and extended examples</a>
   </li>
 </ul>
   </li>
@@ -735,12 +690,8 @@ mixpanel.track("Page View", {
 
 <div id="preamble">
 <div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
 <div class="paragraph">
 <p>Scalar functions return a single value.</p>
-</div>
-</blockquote>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -770,6 +721,210 @@ mixpanel.track("Page View", {
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="../../_images/graph_scalar_functions.svg" alt="graph scalar functions"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="functions-char_length"><a class="anchor" href="#functions-char_length"></a>char_length()</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This feature was introduced in Neo4j 5.13.</em></p>
+</div>
+<div class="paragraph">
+<p>The function <code>char_length()</code> returns the number of Unicode characters in a <code>STRING</code>.
+This function is an alias of the <a href="#functions-size"><code>size()</code></a> function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Syntax:</strong></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">char_length(string)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Returns:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTEGER</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Arguments:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An expression that returns a <code>STRING</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Considerations:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>char_length(null)</code> returns <code>null</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="title">Example 1. char_length()</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN char_length('Alice')</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 1. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">char_length('Alice')</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The number of Unicode characters in the string is returned.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="functions-character_length"><a class="anchor" href="#functions-character_length"></a>character_length()</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>This feature was introduced in Neo4j 5.13.</em></p>
+</div>
+<div class="paragraph">
+<p>The function <code>character_length()</code> returns the number of Unicode characters in a <code>STRING</code>.
+This function is an alias of the <a href="#functions-size"><code>size()</code></a> function.</p>
+</div>
+<div class="paragraph">
+<p><strong>Syntax:</strong></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">character_length(string)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Returns:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTEGER</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Arguments:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>string</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An expression that returns a <code>STRING</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Considerations:</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>character_length(null)</code> returns <code>null</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="title">Example 2. character_length()</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN character_length('Alice')</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 2. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">character_length('Alice')</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The number of Unicode characters in the string is returned.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -835,7 +990,7 @@ mixpanel.track("Page View", {
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 1. coalesce()</div>
+<div class="title">Example 3. coalesce()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -846,7 +1001,7 @@ RETURN coalesce(a.hairColor, a.eyes)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 1. Result</caption>
+<caption class="title">Table 3. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -953,7 +1108,7 @@ It is therefore recommended to rather use application-generated IDs.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 2. elementId()</div>
+<div class="title">Example 4. elementId()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -966,7 +1121,7 @@ RETURN elementId(a)</code></pre>
 <p>The node identifier for each of the nodes is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 2. Result</caption>
+<caption class="title">Table 4. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1064,7 +1219,7 @@ RETURN elementId(a)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 3. endNode()</div>
+<div class="title">Example 5. endNode()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1074,7 +1229,7 @@ RETURN endNode(r)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 3. Result</caption>
+<caption class="title">Table 5. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1169,7 +1324,7 @@ RETURN endNode(r)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 4. head()</div>
+<div class="title">Example 6. head()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1183,7 +1338,7 @@ RETURN a.liked_colors, head(a.liked_colors)</code></pre>
 <p>The first element in the list is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 4. Result</caption>
+<caption class="title">Table 6. Result</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1268,7 +1423,7 @@ The identifier for a relationship is guaranteed to be unique among other relatio
 </td>
 <td class="content">
 <div class="paragraph">
-<p>On a <a href="../../administration/databases/#administration-databases-create-composite-database" class="xref page">composite database</a>, the <code>id()</code> function should be used with caution.
+<p>On a <a href="https://neo4j.com/docs/operations-manual/5/database-administration/composite-databases/concepts/">composite database</a>, the <code>id()</code> function should be used with caution.
 It is recommended to use <a href="#functions-elementid"><code>elementId()</code></a> instead.</p>
 </div>
 <div class="paragraph">
@@ -1339,7 +1494,7 @@ The extended id is likely different from the local id for the same node or relat
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 5. id()</div>
+<div class="title">Example 7. id()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1352,7 +1507,7 @@ RETURN id(a)</code></pre>
 <p>The node identifier for each of the nodes is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 5. Result</caption>
+<caption class="title">Table 7. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1456,7 +1611,7 @@ RETURN id(a)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 6. last()</div>
+<div class="title">Example 8. last()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1470,7 +1625,7 @@ RETURN a.liked_colors, last(a.liked_colors)</code></pre>
 <p>The last element in the list is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 6. Result</caption>
+<caption class="title">Table 8. Result</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -1559,7 +1714,7 @@ RETURN a.liked_colors, last(a.liked_colors)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 7. length()</div>
+<div class="title">Example 9. length()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1573,7 +1728,7 @@ RETURN length(p)</code></pre>
 <p>The length of the path <code>p</code> is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 7. Result</caption>
+<caption class="title">Table 9. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1666,7 +1821,7 @@ If the argument is already a <code>MAP</code>, it is returned unchanged.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 8. properties()</div>
+<div class="title">Example 10. properties()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1676,7 +1831,7 @@ RETURN properties(p)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 8. Result</caption>
+<caption class="title">Table 10. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1732,7 +1887,7 @@ This is a 128-bit value with strong guarantees of uniqueness.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 9. randomUUID()</div>
+<div class="title">Example 11. randomUUID()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1741,7 +1896,7 @@ This is a 128-bit value with strong guarantees of uniqueness.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 9. Result</caption>
+<caption class="title">Table 11. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1830,7 +1985,7 @@ This is a 128-bit value with strong guarantees of uniqueness.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 10. size()</div>
+<div class="title">Example 12. size()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1839,7 +1994,7 @@ This is a 128-bit value with strong guarantees of uniqueness.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 10. Result</caption>
+<caption class="title">Table 12. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -1903,7 +2058,7 @@ The function size will then calculate on a <code>LIST&lt;PATH&gt;</code>.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 11. size()</div>
+<div class="title">Example 13. size()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -1914,7 +2069,7 @@ RETURN size([p=(a)--&gt;()--&gt;() | p]) AS fof</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 11. Result</caption>
+<caption class="title">Table 13. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -2003,7 +2158,7 @@ RETURN size([p=(a)--&gt;()--&gt;() | p]) AS fof</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 12. size()</div>
+<div class="title">Example 14. size()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2014,7 +2169,7 @@ RETURN size(a.name)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 12. Result</caption>
+<caption class="title">Table 14. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -2103,7 +2258,7 @@ RETURN size(a.name)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 13. startNode()</div>
+<div class="title">Example 15. startNode()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2113,7 +2268,7 @@ RETURN startNode(r)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 13. Result</caption>
+<caption class="title">Table 15. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -2195,7 +2350,7 @@ RETURN startNode(r)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 14. timestamp()</div>
+<div class="title">Example 16. timestamp()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2207,7 +2362,7 @@ RETURN startNode(r)</code></pre>
 <p>The time in milliseconds is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 14. Result</caption>
+<caption class="title">Table 16. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -2305,7 +2460,7 @@ RETURN startNode(r)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 15. toBoolean()</div>
+<div class="title">Example 17. toBoolean()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2314,7 +2469,7 @@ RETURN startNode(r)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 15. Result</caption>
+<caption class="title">Table 17. Result</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2418,7 +2573,7 @@ RETURN startNode(r)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 16. toBooleanOrNull()</div>
+<div class="title">Example 18. toBooleanOrNull()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2427,7 +2582,7 @@ RETURN startNode(r)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 16. Result</caption>
+<caption class="title">Table 18. Result</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -2531,7 +2686,7 @@ RETURN startNode(r)</code></pre>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 17. toFloat()</div>
+<div class="title">Example 19. toFloat()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2540,7 +2695,7 @@ RETURN startNode(r)</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 17. Result</caption>
+<caption class="title">Table 19. Result</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -2639,7 +2794,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 18. toFloatOrNull()</div>
+<div class="title">Example 20. toFloatOrNull()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2648,7 +2803,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 18. Result</caption>
+<caption class="title">Table 20. Result</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2755,7 +2910,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 19. toInteger()</div>
+<div class="title">Example 21. toInteger()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2764,7 +2919,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 19. Result</caption>
+<caption class="title">Table 21. Result</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -2871,7 +3026,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 20. toIntegerOrNull()</div>
+<div class="title">Example 22. toIntegerOrNull()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2880,7 +3035,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 20. Result</caption>
+<caption class="title">Table 22. Result</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -2975,7 +3130,7 @@ For any other input value, <code>null</code> will be returned.</p>
 </tbody>
 </table>
 <div class="exampleblock">
-<div class="title">Example 21. type()</div>
+<div class="title">Example 23. type()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -2989,7 +3144,7 @@ RETURN type(r)</code></pre>
 <p>The relationship type of <code>r</code> is returned.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 21. Result</caption>
+<caption class="title">Table 23. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -3174,10 +3329,10 @@ As a result,<code>"FLOAT"</code> would continue to be returned for any <code>FLO
 <p>This should be taken into account when relying on the output of the <code>valueType()</code> function.</p>
 </div>
 <div class="paragraph">
-<p>See the <a href="../../syntax/expressions/#type-predicate-expressions" class="xref page">type predicate expression</a> for an alternative way of testing type values.</p>
+<p>See the <a href="../../values-and-types/type-predicate/" class="xref page">type predicate expression</a> for an alternative way of testing type values.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 22. valueType()</div>
+<div class="title">Example 24. valueType()</div>
 <div class="content">
 <div class="listingblock">
 <div class="title">Query</div>
@@ -3187,7 +3342,7 @@ RETURN valueType(value) AS result</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch queryresult">
-<caption class="title">Table 22. Result</caption>
+<caption class="title">Table 24. Result</caption>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -3280,24 +3435,11 @@ RETURN valueType(value) AS result</code></pre>
 </div>
 <footer class="footer">
   <div class="wrapper">
-  <div class="column">
-    <div class="logo-footer"></div>
-    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
-      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
-    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
-      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
-      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
-  </div>
 
-  <div class="column">
-    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
-    <p>US: 1-855-636-4532<br>
-      Sweden +46 171 480 113<br>
-      UK: +44 20 3868 3223<br>
-      France: +33 (0) 1 88 46 13 20<br>
-      <!--Germany: +49 (0)89 26204 6300</p>-->
-    </p>
+  <div class="column logo">
+    <div class="logo-footer"></div>
   </div>
+  
   <div class="column links">
     <h2>Learn</h2>
     <ul>
@@ -3320,6 +3462,25 @@ RETURN valueType(value) AS result</code></pre>
       <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
     </ul>
   </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
 </div>
 </footer>
 

@@ -27,14 +27,16 @@
 <!-- End Hotjar Tracking code -->
     <title>Deprecations, additions, and compatibility - Cypher Manual</title>
     <link rel="prev" href="../syntax/comments/">
-    <link rel="next" href="../keyword-glossary/">
+    <link rel="next" href="../styleguide/">
       <meta name="description" content="all of the features that have been removed, deprecated, added, or extended in different Cypher versions.">
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
 
     <link rel="preload" href="../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
     <link rel="stylesheet" href="../../../assets/css/site.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
 
@@ -78,7 +80,7 @@ mixpanel.track("Page View", {
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
 
-      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422142941/neo4j-logo-2020.svg" alt="Neo4j Docs" />
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
       <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
         Docs
       </a>
@@ -120,6 +122,7 @@ mixpanel.track("Page View", {
                 <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
                 <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
                 <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
               </ul>
             </div>
 
@@ -557,42 +560,43 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../query-tuning/">Query tuning</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/">Execution plans and query tuning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/query-options/">Cypher query options</a>
+    <a class="nav-link" href="../planning-and-tuning/execution-plans/">Understanding execution plans</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/query-profile/">Profile a query</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/indexes/">The use of indexes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/basic-example/">Basic query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/advanced-example/">Advanced query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/using/">Planner hints and the USING keyword</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/operators/">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../execution-plans/">Execution plans</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/runtimes/">Cypher runtimes</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/db-hits/">Database hits</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/runtimes/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/operator-summary/">Execution plan operators</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/query-tuning/">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/indexes/">The use of indexes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/operators/">Execution plan operators in detail</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/using/">Planner hints and the USING keyword</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/shortestpath-planning/">Shortest path planning</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/query-options/">Query options</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -605,56 +609,7 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../administration/">Administration</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/databases/">Database management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/aliases/">Database alias management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/servers/">Server management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link nav-item-toggle" href="../administration/access-control/">Access control</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-users/">Managing users</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-roles/">Managing roles</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-privileges/">Managing privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-reads/">Read privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-writes/">Write privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/database-administration/">Database administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/dbms-administration/">DBMS administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/load-privileges/">Load privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/limitations/">Limitations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-immutable/">Immutable privileges</a>
-  </li>
-</ul>
-  </li>
-</ul>
+    <a class="nav-link" href="../administration/">Administration</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link nav-item-toggle" href="../syntax/">Syntax</a>
@@ -686,13 +641,13 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="./">Deprecations, additions, and compatibility</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../keyword-glossary/">Glossary of keywords</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <span class="nav-text nav-item-toggle">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../styleguide/">Cypher styleguide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../appendix/tutorials/">Tutorials and extended examples</a>
   </li>
 </ul>
   </li>
@@ -840,6 +795,32 @@ This function returns a <code>STRING</code> representation of the most precise v
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span></p>
 </div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN char_length(expr)</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduction of a <a href="../functions/scalar/#functions-char_length" class="xref page">char_length()</a> function.
+This function returns the number of Unicode characters in a <code>STRING</code>. It is an alias of the <a href="../functions/scalar/#functions-size" class="xref page"><code>size()</code></a> function.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">RETURN character_length(expr)</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduction of a <a href="../functions/scalar/#functions-character_length" class="xref page">character_length()</a> function.
+This function returns the number of Unicode characters in a <code>STRING</code>. It is an alias of the <a href="../functions/scalar/#functions-size" class="xref page"><code>size()</code></a> function.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span></p>
+</div>
 <div class="paragraph">
 <p>New privilege:</p>
 </div>
@@ -850,6 +831,31 @@ This function returns a <code>STRING</code> representation of the most precise v
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">New privilege that controls a user&#8217;s ability to load data.
 Unlike other privileges, these are not granted, denied, or revoked on graphs, databases, or the DBMS, but instead on <code>ALL DATA</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">USE graph.byElementId(elementId :: STRING)</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New graph function, <a href="../functions/graph/#functions-graph-by-elementid" class="xref page">graph.byElementId()</a>, that resolves the constituent graph to which a given element id belongs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--new">New</span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CYPHER runtime = parallel</pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduction of the <a href="../planning-and-tuning/runtimes/concepts/#runtimes-parallel-runtime" class="xref page">parallel runtime</a>.
+This runtime is designed for analytical, graph-global read queries run on machines with several available CPUs.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1316,7 +1322,7 @@ More information can be found <a href="../patterns/concepts/#quantified-path-pat
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The <code>Repeat(Trail)</code> operator is used to solve <a href="../patterns/concepts/#quantified-path-patterns" class="xref page">quantified path patterns</a>.
-More information can be found <a href="../execution-plans/operators/#query-plan-repeat" class="xref page">here</a>.</p>
+More information can be found <a href="../planning-and-tuning/operators/operators-detail/#query-plan-repeat" class="xref page">here</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1527,7 +1533,7 @@ The <code>trackedSince</code> column returns the time when usage statistics trac
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The <code>AssertSameRelationship</code> operator is used to ensure that no relationship property uniqueness constraints are violated in the slotted and interpreted runtime.
-More information can be found <a href="../execution-plans/operators/#query-plan-assert-same-relationship" class="xref page">here</a>.</p>
+More information can be found <a href="../planning-and-tuning/operators/operators-detail/#query-plan-assert-same-relationship" class="xref page">here</a>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1729,7 +1735,7 @@ Includes filtering for the node part, relationship part, or both parts of each t
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New functionality to change tags at runtime via <code>ALTER SERVER</code>.
-More information can be found <a href="../administration/servers/#server-management-alter-server" class="xref page">here</a>.</p>
+More information can be found in the <a href="https://neo4j.com/docs/operations-manual/5/clustering/servers#alter-server-options">Operations Manual &#8594; <code>ALTER SERVER</code> options</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1869,7 +1875,7 @@ RETURN 'val' as one, 'val' as two</code></pre>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The <code>IntersectionNodeByLabelsScan</code> operator fetches all nodes that have all of the provided labels from the node label index.
-More information can be found <a href="../execution-plans/operators/#query-plan-intersection-node-by-labels-scan" class="xref page">here</a>.</p>
+More information can be found <a href="../planning-and-tuning/operators/operators-detail/#query-plan-intersection-node-by-labels-scan" class="xref page">here</a>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -1997,7 +2003,7 @@ More information can be found <a href="../execution-plans/operators/#query-plan-
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>The <code>NodeByElementIdSeek</code> operator reads one or more nodes by ID from the node store, specified via the function <a href="../functions/scalar/#functions-elementid" class="xref page">elementId()</a>.
-More information can be found <a href="../execution-plans/operators/#query-plan-node-by-elementid-seek" class="xref page">here</a>.</p>
+More information can be found <a href="../planning-and-tuning/operators/operators-detail/#query-plan-node-by-elementid-seek" class="xref page">here</a>.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -5306,7 +5312,7 @@ They can be dropped by using their name.</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>New optional part of the Cypher commands for <a href="../administration/access-control/database-administration/" class="xref page">database privileges</a>.</p>
+<p>New optional part of the Cypher commands for database privileges.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5350,7 +5356,7 @@ New privilege:</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering privileges for executing procedures and user defined functions.
-See <a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-execute" class="xref page">The DBMS <code>EXECUTE</code> privileges</a>.</p>
+See <a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/dbms-administration/#access-control-dbms-administration-execute">The DBMS <code>EXECUTE</code> privileges</a>.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5739,7 +5745,7 @@ For privileges:</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-<a href="../administration/access-control/database-administration/#access-control-database-administration-transaction" class="xref page">TRANSACTION MANAGEMENT</a> privileges</p>
+<a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/database-administration/#access-control-database-administration-transaction">TRANSACTION MANAGEMENT</a> privileges</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering transaction management.</p>
@@ -5749,7 +5755,7 @@ For privileges:</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-DBMS <a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-user-management" class="xref page">USER MANAGEMENT</a> privileges</p>
+DBMS <a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/dbms-administration/#access-control-dbms-administration-user-management">USER MANAGEMENT</a> privileges</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering user management.</p>
@@ -5759,7 +5765,7 @@ DBMS <a href="../administration/access-control/dbms-administration/#access-contr
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-DBMS <a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-database-management" class="xref page">DATABASE MANAGEMENT</a> privileges</p>
+DBMS <a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/dbms-administration/#access-control-dbms-administration-database-management">DATABASE MANAGEMENT</a> privileges</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering database management.</p>
@@ -5769,7 +5775,7 @@ DBMS <a href="../administration/access-control/dbms-administration/#access-contr
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-DBMS <a href="../administration/access-control/dbms-administration/#access-control-dbms-administration-privilege-management" class="xref page">PRIVILEGE MANAGEMENT</a> privileges</p>
+DBMS <a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/dbms-administration/#access-control-dbms-administration-privilege-management">PRIVILEGE MANAGEMENT</a> privileges</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering privilege management.</p>
@@ -5824,7 +5830,7 @@ Write privileges</p>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>New optional part of the Cypher commands for <a href="../administration/access-control/database-administration/" class="xref page">database privileges</a>.</p>
+<p>New optional part of the Cypher commands for database privileges.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -6309,7 +6315,7 @@ Pipelined runtime:</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-<a href="../administration/databases/" class="xref page">Multi-database administration</a></p>
+<a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/">Multi-database administration</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering multiple databases.</p>
@@ -6319,7 +6325,7 @@ Pipelined runtime:</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-<a href="../administration/access-control/" class="xref page">Access control</a></p>
+<a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/">Access control</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering role-based access control.</p>
@@ -6329,7 +6335,7 @@ Pipelined runtime:</p>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p><span class="label label--functionality">Functionality</span>
 <span class="label label--new">New</span><br>
-<a href="../administration/access-control/manage-privileges/" class="xref page">Fine-grained security</a></p>
+<a href="https://neo4j.com/docs/operations-manual/5/authentication-authorization/manage-privileges/">Fine-grained security</a></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>New Cypher commands for administering dbms, database, graph and sub-graph access control.</p>
@@ -6856,7 +6862,7 @@ An example of this is <code>CALL db.index.explicit.searchNodes('my_index','email
 <nav class="pagination">
   <span class="prev"><a href="../syntax/comments/">Comments</a></span>
 
-  <span class="next"><a href="../keyword-glossary/">Glossary of keywords</a></span>
+  <span class="next"><a href="../styleguide/">Cypher styleguide</a></span>
 </nav>
     <div class="feedback">
     <div class="header question">
@@ -6910,24 +6916,11 @@ An example of this is <code>CALL db.index.explicit.searchNodes('my_index','email
 </div>
 <footer class="footer">
   <div class="wrapper">
-  <div class="column">
-    <div class="logo-footer"></div>
-    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
-      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
-    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
-      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
-      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
-  </div>
 
-  <div class="column">
-    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
-    <p>US: 1-855-636-4532<br>
-      Sweden +46 171 480 113<br>
-      UK: +44 20 3868 3223<br>
-      France: +33 (0) 1 88 46 13 20<br>
-      <!--Germany: +49 (0)89 26204 6300</p>-->
-    </p>
+  <div class="column logo">
+    <div class="logo-footer"></div>
   </div>
+  
   <div class="column links">
     <h2>Learn</h2>
     <ul>
@@ -6950,6 +6943,25 @@ An example of this is <code>CALL db.index.explicit.searchNodes('my_index','email
       <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
     </ul>
   </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
 </div>
 </footer>
 

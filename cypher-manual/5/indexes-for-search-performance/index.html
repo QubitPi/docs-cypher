@@ -34,7 +34,9 @@
 
     <link rel="preload" href="../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
     <link rel="stylesheet" href="../../../assets/css/site.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
 
@@ -78,7 +80,7 @@ mixpanel.track("Page View", {
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
 
-      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20210422142941/neo4j-logo-2020.svg" alt="Neo4j Docs" />
+      <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
       <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
         Docs
       </a>
@@ -120,6 +122,7 @@ mixpanel.track("Page View", {
                 <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
                 <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
                 <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+                <li><a href="/docs/cdc/current/" class="project-link">Change Data Capture (CDC)</a></li>
               </ul>
             </div>
 
@@ -557,42 +560,43 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../query-tuning/">Query tuning</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/">Execution plans and query tuning</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/query-options/">Cypher query options</a>
+    <a class="nav-link" href="../planning-and-tuning/execution-plans/">Understanding execution plans</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/query-profile/">Profile a query</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/indexes/">The use of indexes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/basic-example/">Basic query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/advanced-example/">Advanced query tuning example</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../query-tuning/using/">Planner hints and the USING keyword</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/operators/">Operators</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../execution-plans/">Execution plans</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/runtimes/">Cypher runtimes</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/db-hits/">Database hits</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/runtimes/concepts/">Concepts</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/operator-summary/">Execution plan operators</a>
+    <a class="nav-link nav-item-toggle" href="../planning-and-tuning/query-tuning/">Query tuning</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/indexes/">The use of indexes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/operators/">Execution plan operators in detail</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/using/">Planner hints and the USING keyword</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../execution-plans/shortestpath-planning/">Shortest path planning</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../planning-and-tuning/query-tuning/query-options/">Query options</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -605,56 +609,7 @@ mixpanel.track("Page View", {
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link nav-item-toggle" href="../administration/">Administration</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/databases/">Database management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/aliases/">Database alias management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administration/servers/">Server management</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link nav-item-toggle" href="../administration/access-control/">Access control</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-users/">Managing users</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-roles/">Managing roles</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/manage-privileges/">Managing privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/built-in-roles/">Built-in roles and privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-reads/">Read privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-writes/">Write privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/database-administration/">Database administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/dbms-administration/">DBMS administration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/load-privileges/">Load privileges</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/limitations/">Limitations</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../administration/access-control/privileges-immutable/">Immutable privileges</a>
-  </li>
-</ul>
-  </li>
-</ul>
+    <a class="nav-link" href="../administration/">Administration</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link nav-item-toggle" href="../syntax/">Syntax</a>
@@ -686,13 +641,13 @@ mixpanel.track("Page View", {
     <a class="nav-link" href="../deprecations-additions-removals-compatibility/">Deprecations, additions, and compatibility</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../keyword-glossary/">Glossary of keywords</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <span class="nav-text nav-item-toggle">Appendix</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../styleguide/">Cypher styleguide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../appendix/tutorials/">Tutorials and extended examples</a>
   </li>
 </ul>
   </li>
@@ -732,17 +687,13 @@ mixpanel.track("Page View", {
 
 <div id="preamble">
 <div class="sectionbody">
-<div class="quoteblock abstract">
-<blockquote>
 <div class="paragraph">
-<p>This section explains how to manage indexes used for search performance.</p>
-</div>
-</blockquote>
+<p>This page explains how to manage indexes used for search performance.</p>
 </div>
 <div class="paragraph">
 <p>For query performance purposes, it is important to also understand how the indexes are used by the Cypher<sup>&reg;</sup> planner.
-Refer to <a href="../query-tuning/" class="xref page">Query tuning</a> for examples and in-depth discussions on how query plans result from different index and query scenarios.
-See specifically <a href="../query-tuning/indexes/" class="xref page">The use of indexes</a> for examples of how various index scenarios result in different query plans.</p>
+Refer to <a href="../planning-and-tuning/query-tuning/" class="xref page">Query tuning</a> for examples and in-depth discussions on how query plans result from different index and query scenarios.
+See specifically <a href="../planning-and-tuning/query-tuning/indexes/" class="xref page">The use of indexes</a> for examples of how various index scenarios result in different query plans.</p>
 </div>
 <div class="paragraph">
 <p>For information on index configuration and limitations, refer to <a href="https://neo4j.com/docs/operations-manual/5/performance/index-configuration">Operations Manual &#8594; Index configuration</a>.</p>
@@ -860,7 +811,7 @@ With <code>IF NOT EXISTS</code>, no error is thrown and nothing happens should a
 It may still throw an error if conflicting constraints exist, such as constraints with the same name or schema and backing index type.</p>
 </div>
 <div class="paragraph">
-<p>Creating an index requires <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>CREATE INDEX</code> privilege</a>.</p>
+<p>Creating an index requires <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>CREATE INDEX</code> privilege</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -901,9 +852,6 @@ ON (r.propertyName_1[,
     ...
     r.propertyName_n])</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
 </div>
 <div class="paragraph">
 <p>Range indexes have only one index provider available, <code>range-1.0</code>, and no supported index configuration.</p>
@@ -1014,9 +962,6 @@ ON (r.propertyName)
 </div>
 </div>
 <div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
-</div>
-<div class="paragraph">
 <p>As of Neo4j 5.1, text indexes have two index providers available, <code>text-2.0</code> (default) and <code>text-1.0</code> (deprecated), and no supported index configuration.</p>
 </div>
 <div class="admonitionblock note">
@@ -1124,9 +1069,6 @@ FOR ()-"["r:TYPE_NAME"]"-()
 ON (r.propertyName)
 [OPTIONS "{" option: value[, ...] "}"]</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
 </div>
 <div class="paragraph">
 <p>Point indexes have supported index configuration, see the last examples, but only one index provider available, <code>point-1.0</code>.</p>
@@ -1274,9 +1216,6 @@ ON EACH labels(n)</code></pre>
 FOR ()-"["r"]"-()
 ON [EACH] type(r)</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
 </div>
 <div class="paragraph">
 <p>Token lookup indexes have only one index provider available, <code>token-lookup-1.0</code>, and no supported index configuration.</p>
@@ -1471,9 +1410,6 @@ This is only relevant for range indexes.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
-</div>
-<div class="paragraph">
 <p>This command will produce a table with the following columns:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1598,7 +1534,7 @@ Full output: <code>SHOW INDEXES YIELD *</code>.</p>
 <p>Listing indexes also allows for <code>WHERE</code> and <code>YIELD</code> clauses to filter the returned rows and columns.</p>
 </div>
 <div class="paragraph">
-<p>Listing indexes require <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>SHOW INDEX</code> privilege</a>.</p>
+<p>Listing indexes require <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>SHOW INDEX</code> privilege</a>.</p>
 </div>
 <h3 id="_examples_5" class="discrete">Examples</h3>
 <div class="ulist">
@@ -1713,15 +1649,12 @@ The name of the index can be found using the <a href="#indexes-list-indexes"><co
 </div>
 </div>
 <div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
-</div>
-<div class="paragraph">
 <p>The <code>DROP INDEX</code> command is optionally idempotent.
 This means that its default behavior is to throw an error if an attempt is made to drop the same index twice.
 With <code>IF EXISTS</code>, no error is thrown and nothing happens should the index not exist.</p>
 </div>
 <div class="paragraph">
-<p>Dropping an index requires <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>DROP INDEX</code> privilege</a>.</p>
+<p>Dropping an index requires <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>DROP INDEX</code> privilege</a>.</p>
 </div>
 <h3 id="_examples_6" class="discrete">Examples</h3>
 <div class="ulist">
@@ -1808,20 +1741,6 @@ If the index is not explicitly named, it gets an auto-generated name.</p>
 <p>The <code>CREATE ... INDEX ...</code> command is optionally idempotent. This mean that its default behavior is to throw an error if an attempt is made to create the same index twice.
 With <code>IF NOT EXISTS</code>, no error is thrown and nothing happens should an index with the same name or same schema and index type already exist.
 It may still throw an error if conflicting constraints exist, such as constraints with the same name or schema and backing index type.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>More details about the syntax descriptions can be found <a href="../administration/#administration-syntax" class="xref page">here</a>.</p>
 </div>
 </td>
 </tr>
@@ -2134,12 +2053,12 @@ With <code>IF EXISTS</code>, no error is thrown and nothing happens should the i
 </tbody>
 </table>
 <div class="paragraph">
-<p>Creating an index requires <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>CREATE INDEX</code> privilege</a>,
-while dropping an index requires <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>DROP INDEX</code> privilege</a> and
-listing indexes require <a href="../administration/access-control/database-administration/#access-control-database-administration-index" class="xref page">the <code>SHOW INDEX</code> privilege</a>.</p>
+<p>Creating an index requires <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>CREATE INDEX</code> privilege</a>,
+while dropping an index requires <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>DROP INDEX</code> privilege</a> and
+listing indexes require <a href="https://neo4j.com/docs/operations-manual/5/database-administration/standard-databases/manage-databases/#manage-databases-stop/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>SHOW INDEX</code> privilege</a>.</p>
 </div>
 <div class="paragraph">
-<p><a href="../query-tuning/using/" class="xref page">Planner hints and the USING keyword</a> describes how to make the Cypher planner use specific indexes (especially in cases where the planner would not necessarily have used them).</p>
+<p><a href="../planning-and-tuning/query-tuning/using/" class="xref page">Planner hints and the USING keyword</a> describes how to make the Cypher planner use specific indexes (especially in cases where the planner would not necessarily have used them).</p>
 </div>
 </div>
 </div>
@@ -2320,24 +2239,11 @@ To get this kind of fallback behavior, it is necessary to create additional inde
 </div>
 <footer class="footer">
   <div class="wrapper">
-  <div class="column">
-    <div class="logo-footer"></div>
-    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
-      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
-    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
-      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
-      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
-  </div>
 
-  <div class="column">
-    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
-    <p>US: 1-855-636-4532<br>
-      Sweden +46 171 480 113<br>
-      UK: +44 20 3868 3223<br>
-      France: +33 (0) 1 88 46 13 20<br>
-      <!--Germany: +49 (0)89 26204 6300</p>-->
-    </p>
+  <div class="column logo">
+    <div class="logo-footer"></div>
   </div>
+  
   <div class="column links">
     <h2>Learn</h2>
     <ul>
@@ -2360,6 +2266,25 @@ To get this kind of fallback behavior, it is necessary to create additional inde
       <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
     </ul>
   </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2023</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
 </div>
 </footer>
 
