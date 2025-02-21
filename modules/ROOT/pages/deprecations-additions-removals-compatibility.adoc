@@ -83,6 +83,17 @@ Instead, use the xref:functions/scalar.adoc#functions-properties[`properties()`]
 MATCH (n)-[r:REL]->(m) SET n = properties(r)
 ----
 
+a|
+label:functionality[]
+label:removed[]
+[source, cypher, role="noheader"]
+----
+REVOKE READ {*} ON GRAPH * NODES A FROM missingUser
+REVOKE ROLE missingRole FROM bob
+----
+a|
+Errors have replaced notifications for impossible link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-roles/#access-control-revoke-roles[`REVOKE`] commands where a user, role, or database does not exist.
+
 |===
 
 
