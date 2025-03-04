@@ -345,6 +345,7 @@ The cotangent of `0.5` is returned.
 
 | `coth(null)` returns `null`.
 | `coth(0)` returns `NaN`.
+| The calculation of the hyperbolic cotangent, `coth(x)`, is done using the `cosh(x) / sinh(x)` method.
 
 |===
 
