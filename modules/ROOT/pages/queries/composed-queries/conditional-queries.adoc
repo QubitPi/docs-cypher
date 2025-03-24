@@ -133,7 +133,7 @@ For example, it cannot immediately succeed a `MATCH` clause.
 ----
 MATCH (n)-[:WORKS_FOR]->(m:Person)
   WHEN m IS NULL THEN {
-   MERGE (n)-[:WORKS_FOR]->(f: Person {name: 'Peter', age: 36})
+    MERGE (n)-[:WORKS_FOR]->(f: Person {name: 'Peter', age: 36})
   }
 RETURN n.name AS employees,
        m.name AS manager,
