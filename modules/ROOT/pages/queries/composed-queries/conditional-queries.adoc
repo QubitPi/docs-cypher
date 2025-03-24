@@ -166,7 +166,7 @@ Instead, if `WHEN` constructs are part of a larger query, they must either be pl
 
 .Single conditional `CALL` subquery
 =====
-In this example, `WHEN` is used to execute a xref:subqueries/call-subquery.adoc[`CALL` subquery] for each row that the condition (`m IS NULL`) evaluates to `true`.
+In this example, `WHEN` is used to execute a xref:subqueries/call-subquery.adoc[`CALL` subquery] for each row that the condition (`manager IS NULL`) evaluates to `true`.
 
 .Conditional `CALL` subquery
 [source, cypher]
