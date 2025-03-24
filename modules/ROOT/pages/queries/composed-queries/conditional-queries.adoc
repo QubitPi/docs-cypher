@@ -172,15 +172,15 @@ In this example, `WHEN` is used to execute a xref:subqueries/call-subquery.adoc[
 [source, cypher]
 ----
 MATCH (n:Person)
-OPTIONAL MATCH (n)-[:WORKS_FOR]->(m:Person)
+OPTIONAL MATCH (n)-[:WORKS_FOR]->(manager:Person)
 CALL (*) {
-  WHEN m IS NULL THEN {
-    MERGE (f: Person {name: 'Peter', age: 36})
-    MERGE (n)-[:WORKS_FOR]->(f)
-    RETURN f, n.name AS employee
+  WHEN manager IS NULL THEN {
+    MERGE (newManager: Person {name: 'Peter', age: 36})
+    MERGE (n)-[:WORKS_FOR]->(newManager)
+    RETURN newManager, n.name AS employee
   }
 }
-RETURN f.name AS manager,
+RETURN newManager.name AS newManager,
        collect(employee) AS employees
 ----
 
