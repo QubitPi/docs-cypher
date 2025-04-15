@@ -140,7 +140,7 @@ Variable `p` not defined
 ----
 MATCH (supplier:Supplier)-[r]->(product:Product)
 WITH *
-RETURN s.name AS company,
+RETURN supplier.name AS company,
        type(r) AS relType,
        product.name AS product
 ----
@@ -245,7 +245,7 @@ ORDER BY price
 | "Chocolate" | 5 | TRUE | 'Budget'
 | "Coffee" | 10 | TRUE | 'Budget'
 | "Headphones" | 250 | TRUE | 'Budget'
-| "Phone" | 600   | FALSE | 'High-end'
+| "Phone" | 500   | FALSE | 'High-end'
 | "Laptop" | 1000  | FALSE | 'High-end'
 
 4+d|Rows: 5
@@ -357,7 +357,7 @@ ORDER BY discountRates
 == Ordering and pagination
 
 `WITH` can order and paginate results if used together with the xref:clauses/order-by.adoc[`ORDER BY`], xref:clauses/limit.adoc[`LIMIT`], and xref:clauses/skip.adoc[`SKIP`] subclauses.
-If so, these subclauses be understood as part of the result manipulation performed by `WITH` -- not as a standalone clause -- before results are passed on to subsequent clauses. 
+If so, these subclauses should be understood as part of the result manipulation performed by `WITH` -- not as standalone clauses -- before results are passed on to subsequent clauses. 
 
 In the below query, the results are ordered in a descending order by which `Customer` has spent the most using `ORDER BY` before they are passed on to the final `RETURN` clause.
 
@@ -457,7 +457,7 @@ WITH p
   ORDER BY p.price DESC
   LIMIT 1
 MATCH (p)<-[:BUYS]-(c:Customer)
-RETURN p.name AS product
+RETURN p.name AS product,
        p.price AS price,
        collect(c.firstName) AS customers
 ----
