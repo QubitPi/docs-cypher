@@ -43,12 +43,14 @@ CREATE (andy:Swedish:Person {name: 'Andy', age: 36}),
 == Basic filtering
 
 .Filter on a node label
+// tag::clauses_where_in_match_clause[]
 [source, cypher]
 ----
 MATCH (n)
 WHERE n:Swedish
 RETURN n.name AS name
 ----
+// end::clauses_where_in_match_clause[]
 
 .Result
 [role="queryresult",options="header,footer",cols="1*<m"]
@@ -79,12 +81,14 @@ RETURN n.name AS name, n.age AS age
 |===
 
 .Filter on a relationship property
+// tag::clauses_where_relationship_property[]
 [source, cypher]
 ----
 MATCH (:Person {name:'Andy'})-[k:KNOWS]->(f)
 WHERE k.since < 2000
 RETURN f.name AS oldFriend
 ----
+// end::clauses_where_relationship_property[]
 
 .Result
 [role="queryresult",options="header,footer",cols="1*<m"]
@@ -148,6 +152,7 @@ The above query would work if the `RETURN` clause instead referenced the `name` 
 However, because `WHERE` is a subclause and not a clause, its scope is not limited by immediately preceding `WITH` clauses.
 
 .`WHERE` is not limited by an immediately preceding `WITH`
+// tag::clauses_where_with[]
 [source, cypher]
 ----
 MATCH (n:Person)
@@ -155,6 +160,7 @@ WITH n.name as name
 WHERE n.age = 38
 RETURN name
 ----
+// end::clauses_where_with[]
 
 .Result
 [role="queryresult",options="header,footer",cols="1*<m"]
@@ -201,11 +207,13 @@ When used this way, predicates in `WHERE` can reference the node variable that t
 The same rule applies to pattern comprehensions:
 
 .`WHERE` inside a pattern comprehension
+// tag::clauses_where_pattern_comprehension[]
 [source, cypher]
 ----
 MATCH (a:Person {name: 'Andy'})
 RETURN [(a)-->(b WHERE b:Person) | b.name] AS friends
 ----
+// end::clauses_where_pattern_comprehension[]
 
 .Result
 [role="queryresult",options="header,footer",cols="1*<m"]
