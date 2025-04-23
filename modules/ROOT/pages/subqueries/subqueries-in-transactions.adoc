@@ -533,7 +533,6 @@ RETURN n.num
 =====
 
 
-[role=label--new-2025.03]
 [[on-error-retry]]
 === `ON ERROR RETRY`
 
@@ -842,7 +841,7 @@ If so, the impacted transactions are always rolled back, and an error is thrown 
 
 * xref:subqueries/subqueries-in-transactions.adoc#on-error-continue[`ON ERROR CONTINUE`]
 * xref:subqueries/subqueries-in-transactions.adoc#on-error-break[`ON ERROR BREAK`]
-* xref:subqueries/subqueries-in-transactions.adoc#on-error-retry[`ON ERROR RETRY`] label:new[Introduced in Neo4j 2025.03]
+* xref:subqueries/subqueries-in-transactions.adoc#on-error-retry[`ON ERROR RETRY`]
 
 The latter is particularly suited for concurrent transactions, because it retries recoverable transient errors with exponential backoff between retries until the xref:subqueries/subqueries-in-transactions.adoc#specify-retry-duration[maximum retry duration] has been reached.
 
