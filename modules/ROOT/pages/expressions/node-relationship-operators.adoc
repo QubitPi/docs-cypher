@@ -64,7 +64,7 @@ RETURN p.firstName AS name
 .Access node and relationship properties statically
 [source, cypher]
 ----
-MATCH (employee:Person)-[r:WORKS_FOR]-(manager:Person)
+MATCH (employee:Person)-[r:WORKS_FOR]->(manager:Person)
 RETURN employee.firstName AS employee,
        r.since AS employedSince,
        manager.firstName AS manager
@@ -111,14 +111,14 @@ RETURN p[nodeProperty] AS lastName
 [source, parameters]
 ----
 {
-  "propertyName": 'middleName'
+  "propertyName": "middleName"
 }
 ----
 
 .Access properties dynamically using a parameter
 [source, cypher]
 ----
-MATCH (:Person)
+MATCH (p:Person)
 RETURN p[$propertyName] AS middleName
 ----
 
