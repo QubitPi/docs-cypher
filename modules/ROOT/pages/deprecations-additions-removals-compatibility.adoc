@@ -311,7 +311,7 @@ CREATE DATABASE db OPTIONS { seedRestoreUntil: ... }
 ----
 | The option `seedRestoreUntil` can now be specified in the `CREATE DATABASE` `OPTIONS` map.
 This allows a database to be seeded up to a specific date or transaction ID.
-For more information, see link:{neo4j-docs-base-uri}/operations-manual/current/clustering/databases/#cluster-seed-uri[Operations Manual -> Clustering -> Seed from URI].
+For more information, see link:{neo4j-docs-base-uri}/operations-manual/current/database-administration/standard-databases/seed-from-uri/[Operations Manual -> Database administration -> Create a database from a URI].
 
 a|
 label:functionality[]

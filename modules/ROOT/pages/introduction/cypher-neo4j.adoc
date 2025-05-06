@@ -26,7 +26,7 @@ Only `system` and one user database.
 a|
 User, role, and privilege management for flexible link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-privileges/[access control] and link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-privileges/[sub-graph access control].
 a|
-link:{neo4j-docs-base-uri}/operations-manual/currentauthentication-authorization/manage-users[Multi-user management].
+link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-users[Multi-user management].
 All users have full access rights.
 
 | Constraints
