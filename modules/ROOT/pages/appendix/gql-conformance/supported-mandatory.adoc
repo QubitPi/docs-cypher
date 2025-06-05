@@ -225,4 +225,3 @@ For example: `MATCH (n) RETURN n."a prop"` is allowed in GQL but not Cypher.
 |
 
 |===
-
