@@ -21,7 +21,7 @@ name: CI/CD
       - master
 
 jobs:
-  release-documentation:
+  documentation:
     name: Deploy Documentation to GitHub Pages
     runs-on: ubuntu-latest
     permissions:
@@ -35,10 +35,10 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/site
           user_name: QubitPi
           user_email: jack20220723@gmail.com
+          cname: cypher.qubitpi.org
