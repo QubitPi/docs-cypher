@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>MERGE - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/clauses/merge/">
+
+    <link rel="prev" href="../match/">
+    <link rel="next" href="../optional-match/">
+
+      <meta name="description" content="The &#x60;MERGE&#x60; clause ensures that a pattern exists in the graph.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MERGE - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="The `MERGE` clause ensures that a pattern exists in the graph." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/clauses/merge/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../match/">MATCH</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="./">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../indexes/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../">
+        Clauses
+    </a></li>
+    <li><a href="./">
+        MERGE
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">MERGE</h1>
+</div>
+
+
+
+
+
+<div class="sect1">
+<h2 id="query-merge-introduction"><a class="anchor" href="#query-merge-introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>MERGE</code> clause either matches existing node patterns in the graph and binds them or, if not present, creates new data and binds that.
+In this way, it acts as a combination of <code>MATCH</code> and <code>CREATE</code> that allows for specific actions depending on whether the specified data was matched or created.</p>
+</div>
+<div class="paragraph">
+<p>For example, <code>MERGE</code> can be used to specify that a graph must contain a node with a <code>Person</code> label and a specific <code>name</code> property.
+If there isn&#8217;t a node with the specific <code>name</code> property, a new node will be created with that <code>name</code> property.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For performance reasons, creating a schema index on the label or property is highly recommended when using <code>MERGE</code>.
+See <a href="../../indexes/search-performance-indexes/managing-indexes/" class="xref page">Create, show, and delete indexes</a> for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When using <code>MERGE</code> on full patterns, the behavior is that either the whole pattern matches, or the whole pattern is created.
+<code>MERGE</code> will not partially use existing patterns.
+If partial matches are needed, this can be accomplished by splitting a pattern into multiple <code>MERGE</code> clauses.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Under concurrent updates, <code>MERGE</code> only guarantees the existence of the <code>MERGE</code> pattern, but not uniqueness.
+To guarantee uniqueness of nodes with certain properties, a <a href="../../constraints/managing-constraints/#create-property-uniqueness-constraints" class="xref page">property uniqueness constraint</a> should be used.
+See <a href="#query-merge-using-unique-constraints">Using property uniqueness constraints with <code>MERGE</code></a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Similar to <code>MATCH</code>, <code>MERGE</code> can match multiple occurrences of a pattern.
+If there are multiple matches, they will all be passed on to later stages of the query.</p>
+</div>
+<div class="paragraph">
+<p>The last part of a <code>MERGE</code> clause is the <code>ON CREATE</code> and/or <code>ON MATCH</code> operators.
+These allow a query to express additional changes to the properties of a node or relationship, depending on whether the element was matched (<code>MATCH</code>) in the database or if it was created (<code>CREATE</code>).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_graph"><a class="anchor" href="#_example_graph"></a>Example graph</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following graph is used for the examples below:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/graph-merge-clause.svg" alt="Example graph connecting Person and Movie nodes" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, run the following query in an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE
+  (charlie:Person {name: 'Charlie Sheen', bornIn: 'New York', chauffeurName: 'John Brown'}),
+  (martin:Person {name: 'Martin Sheen', bornIn: 'Ohio', chauffeurName: 'Bob Brown'}),
+  (michael:Person {name: 'Michael Douglas', bornIn: 'New Jersey', chauffeurName: 'John Brown'}),
+  (oliver:Person {name: 'Oliver Stone', bornIn: 'New York', chauffeurName: 'Bill White'}),
+  (rob:Person {name: 'Rob Reiner', bornIn: 'New York', chauffeurName: 'Ted Green'}),
+  (wallStreet:Movie {title: 'Wall Street'}),
+  (theAmericanPresident:Movie {title: 'The American President'}),
+  (charlie)-[:ACTED_IN]-&gt;(wallStreet),
+  (martin)-[:ACTED_IN]-&gt;(wallStreet),
+  (michael)-[:ACTED_IN]-&gt;(wallStreet),
+  (martin)-[:ACTED_IN]-&gt;(theAmericanPresident),
+  (michael)-[:ACTED_IN]-&gt;(theAmericanPresident),
+  (oliver)-[:DIRECTED]-&gt;(wallStreet),
+  (rob)-[:DIRECTED]-&gt;(theAmericanPresident)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-merge-node-derived"><a class="anchor" href="#query-merge-node-derived"></a>Merge nodes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="merge-merge-single-node-with-a-label"><a class="anchor" href="#merge-merge-single-node-with-a-label"></a>Merge single node with a label</h3>
+<div class="paragraph">
+<p>Merge a node with a specific label:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (robert:Critic)
+RETURN labels(robert)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new node is created because there are no nodes labeled <code>Critic</code> in the database:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 1. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">labels(robert)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">["Critic"]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-single-node-with-multiple-labels"><a class="anchor" href="#merge-merge-single-node-with-multiple-labels"></a>Merge single node with multiple labels</h3>
+<div class="paragraph">
+<p>Multiple labels are separated by colons:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (robert:Critic:Viewer)
+RETURN labels(robert)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new node is created because there are no nodes labeled both <code>Critic</code> and <code>Viewer</code> in the database:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 2. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">labels(robert)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">["Critic","Viewer"]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Multiple labels can also be separated by an ampersand <code>&amp;</code>, in the same manner as it is used in <a href="../../patterns/reference/#label-expressions" class="xref page">label expressions</a>.
+Separation by colon <code>:</code> and ampersand <code>&amp;</code> cannot be mixed in the same clause.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (robert:Critic&amp;Viewer)
+RETURN labels(robert)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>No new node is created because there was already a node labeled both <code>Critic</code> and <code>Viewer</code> in the database:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 3. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">labels(robert)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">["Critic","Viewer"]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-single-node-with-properties"><a class="anchor" href="#merge-merge-single-node-with-properties"></a>Merge single node with properties</h3>
+<div class="paragraph">
+<p>Merging a node with properties that differ from the properties on existing nodes in the graph will create a new node:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (charlie {name: 'Charlie Sheen', age: 10})
+RETURN charlie</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A new node with the name <code>Charlie Sheen</code> is created since not all properties matched those set to the pre-existing <code>Charlie Sheen</code> node:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 4. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">charlie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {"name":"Charlie Sheen", "age":10})</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>MERGE</code> cannot be used for nodes with property values that are <code>null</code>.
+For example, the following query will throw an error:</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (martin:Person {name: 'Martin Sheen', age: null})
+RETURN martin</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Cannot merge the following node because of null property value for 'age': (:Person {age: null})</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-single-node-specifying-both-label-and-property"><a class="anchor" href="#merge-merge-single-node-specifying-both-label-and-property"></a>Merge single node specifying both label and property</h3>
+<div class="paragraph">
+<p>Merging a single node with both label and property matching an existing node will not create a new node:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (michael:Person {name: 'Michael Douglas'})
+RETURN michael.name, michael.bornIn</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Michael Douglas</code> is matched and the <code>name</code> and <code>bornIn</code> properties are returned:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 5. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">michael.name</th>
+<th class="tableblock halign-left valign-top">michael.bornIn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New Jersey"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-single-node-derived-from-an-existing-node-property"><a class="anchor" href="#merge-merge-single-node-derived-from-an-existing-node-property"></a>Merge single node derived from an existing node property</h3>
+<div class="paragraph">
+<p>It is possible to merge nodes using existing node properties:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (person:Person)
+MERGE (location:Location {name: person.bornIn})
+RETURN person.name, person.bornIn, location</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above query, three nodes labeled <code>Location</code> are created, each of which contains a <code>name</code> property with the value of <code>New York</code>, <code>Ohio</code>, and <code>New Jersey</code> respectively.
+Note that even though the <code>MATCH</code> clause results in three bound nodes having the value <code>New York</code> for the <code>bornIn</code> property, only a single <code>New York</code> node (i.e. a <code>Location</code> node with a name of <code>New York</code>) is created.
+As the <code>New York</code> node is not matched for the first bound node, it is created.
+However, the newly-created <code>New York</code> node is matched and bound for the second and third bound nodes.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 6. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.bornIn</th>
+<th class="tableblock halign-left valign-top">location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name:"New York"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Martin Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Ohio"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name:"Ohio"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New Jersey"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name:"New Jersey"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name:"New York"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Rob Reiner"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{name:"New York"}</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-merge-on-create-on-match"><a class="anchor" href="#query-merge-on-create-on-match"></a>Use <code>ON CREATE</code> and <code>ON MATCH</code></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="merge-merge-with-on-create"><a class="anchor" href="#merge-merge-with-on-create"></a>Merge with <code>ON CREATE</code></h3>
+<div class="paragraph">
+<p>Merge a node and set properties if the node needs to be created:</p>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (keanu:Person {name: 'Keanu Reeves', bornIn: 'Beirut', chauffeurName: 'Eric Brown'})
+ON CREATE
+  SET keanu.created = timestamp()
+RETURN keanu.name, keanu.created</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The query creates the <code>Person</code> node named <code>Keanu Reeves</code>, with a <code>bornIn</code> property set to <code>Beirut</code> and a <code>chauffeurName</code> property set to <code>Eric Brown</code>.
+It also sets a timestamp for the <code>created</code> property.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 7. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">keanu.name</th>
+<th class="tableblock halign-left valign-top">keanu.created</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200898563</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-with-on-match"><a class="anchor" href="#merge-merge-with-on-match"></a>Merge with <code>ON MATCH</code></h3>
+<div class="paragraph">
+<p>Merging nodes and setting properties on found nodes:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (person:Person)
+ON MATCH
+  SET person.found = true
+RETURN person.name, person.found</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The query finds all the <code>Person</code> nodes, sets a property on them, and returns them:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 8. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Martin Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Rob Reiner"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-with-on-create-and-on-match"><a class="anchor" href="#merge-merge-with-on-create-and-on-match"></a>Merge with <code>ON CREATE</code> and <code>ON MATCH</code></h3>
+<div class="listingblock test-result-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (keanu:Person {name: 'Keanu Reeves'})
+ON CREATE
+  SET keanu.created = timestamp()
+ON MATCH
+  SET keanu.lastSeen = timestamp()
+RETURN keanu.name, keanu.created, keanu.lastSeen</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because the <code>Person</code> node named <code>Keanu Reeves</code> already exists, this query does not create a new node.
+Instead, it adds a timestamp on the <code>lastSeen</code> property.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 9. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">keanu.name</th>
+<th class="tableblock halign-left valign-top">keanu.created</th>
+<th class="tableblock halign-left valign-top">keanu.lastSeen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200902354</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1674655352124</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-with-on-match-setting-multiple-properties"><a class="anchor" href="#merge-merge-with-on-match-setting-multiple-properties"></a>Merge with <code>ON MATCH</code> setting multiple properties</h3>
+<div class="paragraph">
+<p>If multiple properties should be set, separate them with commas:</p>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (person:Person)
+ON MATCH
+  SET
+    person.found = true,
+    person.lastAccessed = timestamp()
+RETURN person.name, person.found, person.lastAccessed</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 10. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.found</th>
+<th class="tableblock halign-left valign-top">person.lastAccessed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Martin Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Rob Reiner"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1655200903558</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-merge-relationships"><a class="anchor" href="#query-merge-relationships"></a>Merge relationships</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="merge-merge-on-a-relationship"><a class="anchor" href="#merge-merge-on-a-relationship"></a>Merge on a relationship</h3>
+<div class="paragraph">
+<p><code>MERGE</code> can be used to match or create a relationship:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH
+  (charlie:Person {name: 'Charlie Sheen'}),
+  (wallStreet:Movie {title: 'Wall Street'})
+MERGE (charlie)-[r:ACTED_IN]-&gt;(wallStreet)
+RETURN charlie.name, type(r), wallStreet.title</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Charlie Sheen</code> had already been marked as acting in <code>Wall Street</code>, so the existing relationship is found and returned.
+Note that in order to match or create a relationship when using <code>MERGE</code>, at least one bound node must be specified, which is done via the <code>MATCH</code> clause in the above example.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 11. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">charlie.name</th>
+<th class="tableblock halign-left valign-top">type(r)</th>
+<th class="tableblock halign-left valign-top">wallStreet.title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"ACTED_IN"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Wall Street"</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>MERGE</code> cannot be used for relationships with property values that are <code>null</code>.
+For example, the following query will throw an error:</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (martin:Person {name: 'Martin Sheen'})-[r:FATHER_OF {since: null}]-&gt;(charlie:Person {name: 'Charlie Sheen'})
+RETURN type(r)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Cannot merge the following relationship because of null property value for 'since': (martin)-[:FATHER_OF {since: null}]-&gt;(charlie)</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Specifying a property of an entity (node or relationship) by referring to the property of another entity within the same <code>MERGE</code> clause is not allowed.</p>
+</div>
+<div class="paragraph">
+<p>For example, referring to <code>charlie.bornIn</code> in the property definition of <code>oliver.bornIn</code> is not allowed.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (charlie:Person {name: 'Charlie Sheen', bornIn: 'New York'})-[:ACTED_IN]-&gt;(movie:Movie)&lt;-[:DIRECTED]-(oliver:Person {name: 'Oliver Stone', bornIn: charlie.bornIn})
+RETURN movie</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">The Node variable 'charlie' is referencing a Node that is created in the same MERGE clause which is not allowed. Please only reference variables created in earlier clauses</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-on-multiple-relationships"><a class="anchor" href="#merge-merge-on-multiple-relationships"></a>Merge on multiple relationships</h3>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH
+  (oliver:Person {name: 'Oliver Stone'}),
+  (reiner:Person {name: 'Rob Reiner'})
+MERGE (oliver)-[:DIRECTED]-&gt;(movie:Movie)&lt;-[:DIRECTED]-(reiner)
+RETURN movie</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the example graph, <code>Oliver Stone</code> and <code>Rob Reiner</code> have never worked together.
+When trying to <code>MERGE</code> a <code>Movie</code> node between them, Neo4j will not use any of the existing <code>Movie</code> nodes already connected to either person.
+Instead, a new <code>Movie</code> node is created.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 12. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">movie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Movie)</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-on-an-undirected-relationship"><a class="anchor" href="#merge-merge-on-an-undirected-relationship"></a>Merge on an undirected relationship</h3>
+<div class="paragraph">
+<p><code>MERGE</code> can also be used without specifying the direction of a relationship.
+Cypher<sup>&reg;</sup> will first try to match the relationship in both directions.
+If the relationship does not exist in either direction, it will create one left to right.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH
+  (charlie:Person {name: 'Charlie Sheen'}),
+  (oliver:Person {name: 'Oliver Stone'})
+MERGE (charlie)-[r:KNOWS]-(oliver)
+RETURN r</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As <code>Charlie Sheen</code> and <code>Oliver Stone</code> do not know each other in the example graph, this <code>MERGE</code> query will create a <code>KNOWS</code> relationship between them.
+The direction of the created relationship is left to right.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 13. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">r</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[:KNOWS]</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-on-a-relationship-between-two-existing-nodes"><a class="anchor" href="#merge-merge-on-a-relationship-between-two-existing-nodes"></a>Merge on a relationship between two existing nodes</h3>
+<div class="paragraph">
+<p><code>MERGE</code> can be used in conjunction with preceding <code>MATCH</code> and <code>MERGE</code> clauses to create a relationship between two bound nodes <code>m</code> and <code>n</code>, where <code>m</code> is returned by <code>MATCH</code> and <code>n</code> is created or matched by the earlier <code>MERGE</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (person:Person)
+MERGE (location:Location {name: person.bornIn})
+MERGE (person)-[r:BORN_IN]-&gt;(location)
+RETURN person.name, person.bornIn, location</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This builds on the example from <a href="#merge-merge-single-node-derived-from-an-existing-node-property">Merge single node derived from an existing node property</a>.
+The second <code>MERGE</code> creates a <code>BORN_IN</code> relationship between each person and a location corresponding to the value of the person’s <code>bornIn</code> property.
+<code>Charlie Sheen</code>, <code>Rob Reiner</code>, and <code>Oliver Stone</code> all have a <code>BORN_IN</code> relationship to the <em>same</em> <code>Location</code> node (<code>New York</code>).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 14. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.bornIn</th>
+<th class="tableblock halign-left valign-top">location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"New York"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Martin Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Ohio"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"Ohio"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New Jersey"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"New Jersey"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"New York"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Rob Reiner"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"New York"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Beirut"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Location {name:"Beirut"})</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-on-a-relationship-between-an-existing-node-and-a-merged-node-derived-from-a-node-property"><a class="anchor" href="#merge-merge-on-a-relationship-between-an-existing-node-and-a-merged-node-derived-from-a-node-property"></a>Merge on a relationship between an existing node and a merged node derived from a node property</h3>
+<div class="paragraph">
+<p><code>MERGE</code> can be used to simultaneously create both a new node <code>n</code> and a relationship between a bound node <code>m</code> and <code>n</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (person:Person)
+MERGE (person)-[r:HAS_CHAUFFEUR]-&gt;(chauffeur:Chauffeur {name: person.chauffeurName})
+RETURN person.name, person.chauffeurName, chauffeur</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As <code>MERGE</code> found no matches&#8201;&#8212;&#8201;in the example graph, there are no nodes labeled with <code>Chauffeur</code> and no <code>HAS_CHAUFFEUR</code> relationships&#8201;&#8212;&#8201;<code>MERGE</code> creates six nodes labeled with <code>Chauffeur</code>, each of which contains a <code>name</code> property whose value corresponds to each matched <code>Person</code> node&#8217;s <code>chauffeurName</code> property value.
+<code>MERGE</code> also creates a <code>HAS_CHAUFFEUR</code> relationship between each <code>Person</code> node and the newly-created corresponding <code>Chauffeur</code> node.
+As <code>'Charlie Sheen'</code> and <code>'Michael Douglas'</code> both have a chauffeur with the same name&#8201;&#8212;&#8201;<code>'John Brown'</code>&#8201;&#8212;&#8201;a new node is created in each case, resulting in <em>two</em> <code>Chauffeur</code> nodes having a <code>name</code> of <code>'John Brown'</code>, correctly denoting the fact that even though the <code>name</code> property may be identical, these are two separate people.
+This is in contrast to the example shown above in <a href="#merge-merge-on-a-relationship-between-two-existing-nodes">Merge on a relationship between two existing nodes</a>, where the first <code>MERGE</code> was used to bind the <code>Location</code> nodes and to prevent them from being recreated (and thus duplicated) on the second <code>MERGE</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 15. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.chauffeurName</th>
+<th class="tableblock halign-left valign-top">chauffeur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Charlie Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"John Brown"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"John Brown"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Martin Sheen"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Bob Brown"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"Bob Brown"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Michael Douglas"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"John Brown"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"John Brown"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Bill White"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"Bill White"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Rob Reiner"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Ted Green"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"Ted Green"})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Eric Brown"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Person {name:"Eric Brown"})</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-merge-using-unique-constraints"><a class="anchor" href="#query-merge-using-unique-constraints"></a>Using node property uniqueness constraints with <code>MERGE</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cypher prevents getting conflicting results from <code>MERGE</code> when using patterns that involve <a href="../../constraints/managing-constraints/#create-property-uniqueness-constraints" class="xref page">property uniqueness constraints</a>.
+In this case, there must be at most one node that matches that pattern.</p>
+</div>
+<div class="paragraph">
+<p>For example, given two property node uniqueness constraints on <code>:Person(id)</code> and <code>:Person(ssn)</code>, a query such as <code>MERGE (n:Person {id: 12, ssn: 437})</code> will fail, if there are two different nodes (one with <code>id</code> 12 and one with <code>ssn</code> 437), or if there is only one node with only one of the properties.
+In other words, there must be exactly one node that matches the pattern, or no matching nodes.</p>
+</div>
+<div class="paragraph">
+<p>Note that the following examples assume the existence of property uniqueness constraints that have been created using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT FOR (n:Person) REQUIRE n.name IS UNIQUE;
+CREATE CONSTRAINT FOR (n:Person) REQUIRE n.role IS UNIQUE;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-using-unique-constraints-creates-a-new-node-if-no-node-is-found"><a class="anchor" href="#merge-merge-using-unique-constraints-creates-a-new-node-if-no-node-is-found"></a>Merge node using property uniqueness constraints creates a new node if no node is found</h3>
+<div class="paragraph">
+<p>Given the node property uniqueness constraint on the <code>name</code> property for all <code>Person</code> nodes, the below query will create a new <code>Person</code> with the <code>name</code> property <code>Laurence Fishburne</code>.
+If a <code>Laurence Fishburne</code> node had already existed, <code>MERGE</code> would match the existing node instead.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (laurence:Person {name: 'Laurence Fishburne'})
+RETURN laurence.name</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 16. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">laurence.name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Laurence Fishburne"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-using-unique-constraints-matches-an-existing-node"><a class="anchor" href="#merge-merge-using-unique-constraints-matches-an-existing-node"></a>Merge using node property uniqueness constraints matches an existing node</h3>
+<div class="paragraph">
+<p>Given property uniqueness constraint on the <code>name</code> property for all <code>Person</code> nodes, the below query will match the pre-existing <code>Person</code> node with the <code>name</code> property <code>Oliver Stone</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (oliver:Person {name: 'Oliver Stone'})
+RETURN oliver.name, oliver.bornIn</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 17. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">oliver.name</th>
+<th class="tableblock halign-left valign-top">oliver.bornIn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Oliver Stone"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"New York"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-with-unique-constraints-and-partial-matches"><a class="anchor" href="#merge-merge-with-unique-constraints-and-partial-matches"></a>Merge with property uniqueness constraints and partial matches</h3>
+<div class="paragraph">
+<p>Merge using property uniqueness constraints fails when finding partial matches:</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (michael:Person {name: 'Michael Douglas', role: 'Gordon Gekko'})
+RETURN michael</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While there is a matching unique <code>Person</code> node with the name <code>Michael Douglas</code>, there is no unique node with the role of <code>Gordon Gekko</code> and <code>MERGE</code>, therefore, fails to match.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre>Node already exists with label `Person` and property `name` = 'Michael Douglas'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To set the <code>role</code> of <code>Gordon Gekko</code> to <code>Michael Douglas</code>, use the <code>SET</code> clause instead:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (michael:Person {name: 'Michael Douglas'})
+SET michael.role = 'Gordon Gekko'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>Set 1 property</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-merge-with-unique-constraints-and-conflicting-matches"><a class="anchor" href="#merge-merge-with-unique-constraints-and-conflicting-matches"></a>Merge with property uniqueness constraints and conflicting matches</h3>
+<div class="paragraph">
+<p>Merge using property uniqueness constraints fails when finding conflicting matches:</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (oliver:Person {name: 'Oliver Stone', role: 'Gordon Gekko'})
+RETURN oliver</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While there is a matching unique <code>Person</code> node with the name <code>Oliver Stone</code>, there is also another unique <code>Person</code> node with the role of <code>Gordon Gekko</code> and <code>MERGE</code> fails to match.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre>Node already exists with label `Person` and property `name` = 'Oliver Stone'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="query-merge-using-relationship-unique-constraints"><a class="anchor" href="#query-merge-using-relationship-unique-constraints"></a>Using relationship property uniqueness constraints with <code>MERGE</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All that has been said above about node uniqueness constraints also applies to relationship uniqueness constraints.
+However, for relationship uniqueness constraints there are some additional things to consider.</p>
+</div>
+<div class="paragraph">
+<p>For example, if there exists a relationship uniqueness constraint on <code>()-[:ACTED_IN(year)]-()</code>, then the following query,  in which not all nodes of the pattern are bound, would fail:</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (charlie:Person {name: 'Charlie Sheen'})-[r:ACTED_IN {year: 1987}]-&gt;(wallStreet:Movie {title: 'Wall Street'})
+RETURN charlie.name, type(r), wallStreet.title</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is due to the all-or-nothing semantics of <code>MERGE</code>, which causes the query to fail if there exists a relationship with the given <code>year</code> property but there is no match for the full pattern.
+In this example, since no match was found for the pattern, <code>MERGE</code> will try to create the full pattern including a relationship with <code>{year: 1987}</code>, which will lead to constraint violation error.</p>
+</div>
+<div class="paragraph">
+<p>Therefore, it is advised - especially when relationship uniqueness constraints exist - to always use bound nodes in the <code>MERGE</code> pattern.
+The following would, therefore, be a more appropriate composition of the query:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH
+  (charlie:Person {name: 'Charlie Sheen'}),
+  (wallStreet:Movie {title: 'Wall Street'})
+MERGE (charlie)-[r:ACTED_IN {year: 1987}]-&gt;(wallStreet)
+RETURN charlie.name, type(r), wallStreet.title</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-using-map-parameters-with-merge"><a class="anchor" href="#merge-using-map-parameters-with-merge"></a>Using map parameters with <code>MERGE</code></h3>
+<div class="paragraph">
+<p><code>MERGE</code> does not support map parameters the same way that <code>CREATE</code> does.
+To use map parameters with <code>MERGE</code>, it is necessary to explicitly use the expected properties, such as in the following example.
+For more information on parameters, see <a href="../../syntax/parameters/" class="xref page">Parameters</a>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "param": {
+    "name": "Keanu Reeves",
+    "bornIn": "Beirut",
+    "chauffeurName": "Eric Brown"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (person:Person {name: $param.name, bornIn: $param.bornIn, chauffeurName: $param.chauffeurName})
+RETURN person.name, person.bornIn, person.chauffeurName</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 18. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">person.name</th>
+<th class="tableblock halign-left valign-top">person.bornIn</th>
+<th class="tableblock halign-left valign-top">person.chauffeurName</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Keanu Reeves"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Beirut"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Eric Brown"</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dynamic-merge"><a class="anchor" href="#dynamic-merge"></a>MERGE using dynamic node labels and relationship types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Node labels and relationship types can be referenced dynamically in expressions, parameters, and variables when merging nodes and relationships.
+This allows for more flexible queries and mitigates the risk of Cypher injection.
+(For more information about Cypher injection, see <a href="https://neo4j.com/developer/kb/protecting-against-cypher-injection/">Neo4j Knowledge Base &#8594; Protecting against Cypher injection</a>).</p>
+</div>
+<div class="listingblock">
+<div class="title">Syntax for merging nodes and relationships dynamically</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MERGE (n:$(&lt;expr&gt;))
+MERGE ()-[r:$(&lt;expr&gt;)]-&gt;()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The expression must evaluate to a <code>STRING NOT NULL | LIST&lt;STRING NOT NULL&gt; NOT NULL</code> value.
+Using a <code>LIST&lt;STRING&gt;</code> with more than one item when merging a relationship using dynamic relationship types will fail.
+This is because a relationship can only have exactly one type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "nodeLabels": ["Person", "Director"],
+  "relType": "DIRECTED",
+  "movies": ["Ladybird", "Little Women", "Barbie"]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Merge nodes and relationships using dynamic node labels and relationship types</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (greta:$($nodeLabels) {name: 'Greta Gerwig'})
+WITH greta
+UNWIND $movies AS movieTitle
+MERGE (greta)-[rel:$($relType)]-&gt;(m:Movie {title: movieTitle})
+RETURN greta.name AS name, labels(greta) AS labels, type(rel) AS relType, collect(m.title) AS movies</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 19. Result</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">labels</th>
+<th class="tableblock halign-left valign-top">relType</th>
+<th class="tableblock halign-left valign-top">movies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Greta Gerwig"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["Person", "Director"]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"DIRECTED"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["Ladybird", "Little Women", "Barbie"]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="4"><p class="tableblock">Rows: 1<br></p></td>
+</tr>
+</tfoot>
+</table>
+<div class="sect2">
+<h3 id="dynamic-merge-caveats"><a class="anchor" href="#dynamic-merge-caveats"></a>Performance caveats</h3>
+<div class="paragraph">
+<p><code>MERGE</code> queries that use dynamic values may not be as performant as those using static values.
+This is because the <a href="../../planning-and-tuning/execution-plans/" class="xref page">Cypher planner</a> uses statically available information when planning queries to determine whether to use an <a href="../../indexes/search-performance-indexes/overview/" class="xref page">index</a> or not, and this is not possible when using dynamic values.</p>
+</div>
+<div class="paragraph">
+<p>As a result, <code>MERGE</code> queries with dynamic values cannot leverage <a href="../../planning-and-tuning/operators/operators-detail/#leaf-operators" class="xref page">index scans or seeks</a> and must instead use the <a href="../../planning-and-tuning/operators/operators-detail/#query-plan-all-nodes-scan" class="xref page"><code>AllNodesScan</code></a> operator, which reads all nodes from the node store and is therefore more costly.</p>
+</div>
+<div class="paragraph">
+<p>To circumvent possible performance issues, place the dynamic labels or relationship types within <code>ON CREATE</code> or <code>ON MATCH</code> subclauses.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+    "onMatchLabels": ["Filmmaker", "AwardRecipient"],
+    "onCreateLabels":  ["ScreenWriter", "AwardWinner"]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Merge nodes using dynamic values in <code>ON CREATE</code> and <code>ON MATCH</code> subclauses</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MERGE (n:Person {name: "Greta Gerwig"})
+ON MATCH
+    SET n:$($onMatchLabels)
+ON CREATE
+    SET n:$($onCreateLabels)
+RETURN labels(n) AS gretaLabels</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because a <code>Person</code> node with the <code>name</code> "Greta Gerwig" already exists, this query will only <code>SET</code> the dynamic labels added to the <code>ON MATCH</code> subclause.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 20. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">gretaLabels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["Person", "Director", "Filmmaker", "AwardRecipient"]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../match/" aria-label="Previous: MATCH">MATCH</a></span>
+
+  <span class="next"><a href="../optional-match/" aria-label="Next: OPTIONAL MATCH">OPTIONAL MATCH</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

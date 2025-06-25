@@ -1,0 +1,2737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>LOAD CSV - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/clauses/load-csv/">
+
+    <link rel="prev" href="../limit/">
+    <link rel="next" href="../match/">
+
+      <meta name="description" content="&#x60;LOAD CSV&#x60; is used to import data from CSV files into a Neo4j database.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="LOAD CSV - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="`LOAD CSV` is used to import data from CSV files into a Neo4j database." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/clauses/load-csv/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../limit/">LIMIT</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="./">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../indexes/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../">
+        Clauses
+    </a></li>
+    <li><a href="./">
+        LOAD CSV
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">LOAD CSV</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>LOAD CSV</code> is used to import data from CSV files into a Neo4j database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'https://data.neo4j.com/bands/artists.csv' <i class="conum" data-value="1"></i><b>(1)</b>
+AS row  <i class="conum" data-value="2"></i><b>(2)</b>
+MERGE (:Artist {name: row[1], year: toInteger(row[2])})  <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>FROM</code> takes a <code>STRING</code> containing the path where the CSV file is located.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The clause parses one row at a time, temporarily storing the current row in the variable specified with <code>AS</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <a href="../merge/" class="xref page"><code>MERGE</code></a> clause accesses the <code>row</code> variable to insert data into the database.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>LOAD CSV</code> supports both local and remote URLs.
+Local paths are resolved relative to the Neo4j installation folder.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Loading CSV files requires <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/load-privileges/">load privileges</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_import_csv_data_into_neo4j"><a class="anchor" href="#_import_csv_data_into_neo4j"></a>Import CSV data into Neo4j</h2>
+<div class="sectionbody">
+<div class="sect2 label--not-on-aura">
+<h3 id="_import_local_files"><a class="anchor" href="#_import_local_files"></a>Import local files</h3>
+<div class="paragraph">
+<p>You can store CSV files on the database server and then access them by using a <code>file:///</code> URL.
+By default, paths are resolved relative to the Neo4j import directory.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Import artists name and year information from a local file</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For ways of importing data into an Aura instance, see <a href="https://neo4j.com/docs/aura/auradb/importing/importing-data/">Aura &#8594; Importing data</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When using <code>file:///</code> URLs, spaces and other non-alphanumeric characters must be <a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding">URL-encoded</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_configuration_settings_for_file_urls"><a class="anchor" href="#_configuration_settings_for_file_urls"></a>Configuration settings for file URLs</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><a href="https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings#config_dbms.security.allow_csv_import_from_file_urls">dbms.security.allow_csv_import_from_file_urls</a></dt>
+<dd>
+<p>This setting determines whether <code>file:///</code> URLs are allowed.</p>
+</dd>
+<dt class="hdlist1"><a href="https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings#config_server.directories.import">server.directories.import</a></dt>
+<dd>
+<p>This setting sets the root directory relative to which <code>file:///</code> URLs are parsed.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_import_from_a_remote_location"><a class="anchor" href="#_import_from_a_remote_location"></a>Import from a remote location</h3>
+<div class="paragraph">
+<p>You can import data from a CSV file hosted on a remote path.</p>
+</div>
+<div class="paragraph">
+<p><code>LOAD CSV</code> supports accessing CSV files via HTTPS, HTTP, and FTP (with or without credentials).
+It also follows redirects, except those changing the protocol (for security reasons).</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It is strongly recommended to permit resource loading only over secure protocols such as HTTPS instead of insecure protocols like HTTP.
+This can be done by limiting the <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/load-privileges/#access-control-load-cidr">load privileges</a> to only trusted sources that use secure protocols.
+If allowing an insecure protocol is absolutely unavoidable, Neo4j takes measures internally to enhance the security of these requests within their limitations.
+However, this means that insecure URLs on virtual hosts will not function unless you add the JVM argument <code>-Dsun.net.http.allowRestrictedHeaders=true</code> to the configuration setting <a href="https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#config_server.jvm.additional"><code>server.jvm.additional</code></a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Import artists name and year information from a remote file via HTTPS</div>
+<div class="content">
+<div class="listingblock">
+<div class="title"><a href="https://data.neo4j.com/bands/artists.csv" class="bare">https://data.neo4j.com/bands/artists.csv</a></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'https://data.neo4j.com/bands/artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Import artists name and year information from a remote file via FTP using credentials</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">ftp://&lt;username&gt;:&lt;password&gt;@&lt;domain&gt;/bands/artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'ftp://&lt;username&gt;:&lt;password&gt;@&lt;domain&gt;/bands/artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2 label--enterprise-edition label--not-on-aura">
+<h3 id="_import_from_cloud_uris"><a class="anchor" href="#_import_from_cloud_uris"></a>Import from cloud URIs</h3>
+<div class="paragraph">
+<p>You can import data from a number of different cloud storages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#azure-cloud-storage">Azure Cloud Storage</a></p>
+</li>
+<li>
+<p><a href="#google-cloud-storage">Google Cloud Storage</a></p>
+</li>
+<li>
+<p><a href="#aws-s3">AWS S3</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>See <a href="https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump/#load-dump-cloud-storage">Operations Manual &#8594; Load a dump from a cloud storage</a> on how to set up access to cloud storages.</p>
+</div>
+<div class="sect3">
+<h4 id="azure-cloud-storage"><a class="anchor" href="#azure-cloud-storage"></a>Import from an Azure Cloud Storage URI</h4>
+<div class="paragraph">
+<p>You can import data from a CSV file hosted in an Azure Cloud Storage URI.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. Import artists name and year information from an Azure Cloud Storage URI</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">azb://azb-account/azb-container/artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'azb://azb-account/azb-container/artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="google-cloud-storage"><a class="anchor" href="#google-cloud-storage"></a>Import from a Google Cloud Storage URI</h4>
+<div class="paragraph">
+<p>You can import data from a CSV file hosted in a Google Cloud Storage URI.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Import artists name and year information from a Google Cloud Storage URI</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">gs://gs-bucket/artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'gs://gs-bucket/artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aws-s3"><a class="anchor" href="#aws-s3"></a>Import from an AWS S3 URI</h4>
+<div class="paragraph">
+<p>You can import data from a CSV file hosted in an AWS S3 URI.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Import artists name and year information from an AWS S3 URI</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">s3://aws-bucket/artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 's3://aws-bucket/artists.csv' AS row
+MERGE (a:Artist {name: row[1], year: toInteger(row[2])})
+RETURN a.name, a.year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a.name</th>
+<th class="tableblock halign-left valign-top">a.year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'ABBA'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Roxette'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1986'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Europe'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1979'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The Cardigans'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'1992'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dynamic-columns"><a class="anchor" href="#dynamic-columns"></a>Import CSV files using dynamic columns</h3>
+<div class="paragraph">
+<p>CSV columns can be referenced dynamically to map labels to nodes in the graph.
+This enables flexible data handling, allowing labels to be be populated from CSV column values without manually specifying each entry.
+It also mitigates the risk of Cypher<sup>&reg;</sup> injection.
+(For more information about Cypher injection, see <a href="https://neo4j.com/developer/kb/protecting-against-cypher-injection/">Neo4j Knowledge Base &#8594; Protecting against Cypher injection</a>).</p>
+</div>
+<div class="listingblock">
+<div class="title">bands-with-headers.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">Id,Label,Name
+1,Band,The Beatles
+2,Band,The Rolling Stones
+3,Band,Pink Floyd
+4,Band,Led Zeppelin</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'file:///bands-with-headers.csv' AS line
+MERGE (n:$(line.Label) {name: line.Name})
+RETURN n AS bandNodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">bandNodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Band {name: 'The Beatles'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Band {name: 'The Rolling Stones'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Band {name: 'Pink Floyd'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Band {name: 'Led Zeppelin'})</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 4<br>
+Added 4 nodes, Set 4 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>MERGE</code> queries using dynamic values may not be as performant as those using static values.
+This is because the <a href="../../planning-and-tuning/execution-plans/" class="xref page">Cypher planner</a> uses statically available information when planning queries to determine whether to use an <a href="../../indexes/search-performance-indexes/overview/" class="xref page">index</a> or not, and this is not possible when using dynamic values.
+For more information, see <a href="../merge/#dynamic-merge-caveats" class="xref page"><code>MERGE</code> using dynamic node labels and relationship types &#8594; Performance caveats</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_import_compressed_csv_files"><a class="anchor" href="#_import_compressed_csv_files"></a>Import compressed CSV files</h3>
+<div class="paragraph">
+<p><code>LOAD CSV</code> can read local CSV files compressed with ZIP or gzip.
+ZIP archives can have arbitrary directory structures but may only contain a single CSV file.</p>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Import a CSV file from within a ZIP file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists.zip' AS row
+MERGE (:Artist {name: row[1], year: toInteger(row[2])})</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can&#8217;t load zipped CSV files from remote URLs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_import_data_from_relational_databases"><a class="anchor" href="#_import_data_from_relational_databases"></a>Import data from relational databases</h3>
+<div class="paragraph">
+<p>If the source data comes from a relational model, it&#8217;s worth evaluating how to gain the most from moving to a graph data model.
+Before running the import, think about how the data can be modeled as a graph, and adapt its structure accordingly when running the import (see <a href="https://neo4j.com/docs/getting-started/data-modeling/guide-data-modeling/">Graph data modeling</a>).</p>
+</div>
+<div class="paragraph">
+<p>Data from relational databases may consist of one or multiple CSV files, depending on the source database structure.
+A performant approach is to run multiple passes of <code>LOAD CSV</code> to import nodes separately from relationships.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. Import from a single CSV file</div>
+<div class="content">
+<div class="paragraph">
+<p>The source file <a href="https://data.neo4j.com/importing-cypher/books.csv"><em>books.csv</em></a> contains information about both authors and books.
+From a graph perspective, these are nodes with different labels, so it takes different queries to load them.</p>
+</div>
+<div class="paragraph">
+<p>The example executes multiple passes of <code>LOAD CSV</code> on that one file, and each pass focuses on the creation of <em>one</em> entity type.</p>
+</div>
+<div class="listingblock">
+<div class="title">books.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">id,title,author,publication_year,genre,rating,still_in_print,last_purchased
+19515,The Heights,Anne Conrad,2012,Comedy,5,true,2023/4/12 8:17:00
+39913,Starship Ghost,Michael Tyler,1985,Science Fiction|Horror,4.2,false,2022/01/16 17:15:56
+60980,The Death Proxy,Tim Brown,2002,Horror,2.1,true,2023/11/26 8:34:26
+18793,Chocolate Timeline,Mary R. Robb,1924,Romance,3.5,false,2022/9/17 14:23:45
+67162,Stories of Three,Eleanor Link,2022,Romance|Comedy,2,true,2023/03/12 16:01:23
+25987,Route Down Below,Tim Brown,2006,Horror,4.1,true,2023/09/24 15:34:18</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">// Create `Book` nodes
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/books.csv' AS row
+MERGE (b:Book {id: row.id, title: row.title})
+MERGE (a:Author {name: row.author});
+
+// Create `WROTE` relationships
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/books.csv' AS row
+MATCH (a:Author{name: row.author})
+MATCH (b:Book{id: row.id})
+MERGE (a)-[:WROTE]-&gt;(b);</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 11 nodes, Set 17 properties, Added 11 labels
+Created 6 relationships</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. Import from multiple CSV files</div>
+<div class="content">
+<div class="paragraph">
+<p>The file <a href="https://data.neo4j.com/importing-cypher/acted_in.csv"><em>acted_in.csv</em></a> contains data about the relationship between actors and the movies they acted in (from <a href="https://data.neo4j.com/importing-cypher/persons.csv"><em>persons.csv</em></a> and <a href="https://data.neo4j.com/importing-cypher/movies.csv"><em>movies.csv</em></a>).
+Actors and movies are linked through their ID columns <code>person_tmdbId</code> and <code>movieId</code>.</p>
+</div>
+<div class="paragraph">
+<p>The file also contains the role the actor played in the movie, and it is imported in Neo4j as a relationship property.</p>
+</div>
+<div class="listingblock">
+<div class="title">acted_in.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">movieId,person_tmdbId,role
+1,12899,Slinky Dog (voice)
+1,12898,Buzz Lightyear (voice)
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It takes three <code>LOAD CSV</code> clauses to import this dataset: the first two  create <code>Person</code> nodes from <em>persons.csv</em> and <code>Movie</code> nodes from <em>movies.csv</em>, and the third adds the <code>:ACTED_IN</code> relationship from <em>acted_in.csv</em>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">// Create person nodes
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS row
+MERGE (p:Person {name: row.name, tmdbId: row.person_tmdbId});
+
+// Create movie nodes
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/movies.csv' AS row
+MERGE (m:Movie {movieId: row.movieId, title: row.title});
+
+// Create relationships
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/acted_in.csv' AS row
+MATCH (p:Person {tmdbId: row.person_tmdbId})
+MATCH (m:Movie {movieId: row.movieId})
+MERGE (p)-[r:ACTED_IN {role: row.role}]-&gt;(m);</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 444 nodes, Set 888 properties, Added 444 labels
+Added 93 nodes, Set 186 properties, Added 93 labels
+Created 372 relationships, Set 372 properties</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For a guide on importing the Northwind dataset from Postgres into Neo4j, see <a href="https://neo4j.com/docs/getting-started/appendix/tutorials/guide-import-relational-and-etl/">Tutorial: Import data from a relational database into Neo4j</a> in the Getting Started Guide.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_create_additional_node_labels"><a class="anchor" href="#_create_additional_node_labels"></a>Create additional node labels</h4>
+<div class="paragraph">
+<p>In Neo4j a node can have multiple labels, while in a relational setting it&#8217;s not as straightforward to mix entities.
+For example, a node in Neo4j can be labeled both <code>Dog</code> and <code>Actor</code>, while in a relational model dogs and actors are separate entities.</p>
+</div>
+<div class="paragraph">
+<p>After a relational dataset has been imported, there may be further labels that can be added, depending on the use case.
+Additional labels can speed up pinpointing a node if you use them in your queries.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. Add extra <code>Actor</code> label on <code>Person</code> nodes</div>
+<div class="content">
+<div class="paragraph">
+<p>The <code>:ACTED_IN</code> relationship from <em>acted_in.csv</em> implicitly defines actors as a subset of people.
+The following queries adds an additional <code>Actor</code> label to all people who have an outgoing <code>:ACTED_IN</code> relationship.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (p:Person)-[:ACTED_IN]-&gt;()
+WITH DISTINCT p
+SET p:Actor</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 353 labels</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_process_the_data_during_import"><a class="anchor" href="#_pre_process_the_data_during_import"></a>Pre-process the data during import</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_cast_csv_columns_to_neo4j_data_types"><a class="anchor" href="#_cast_csv_columns_to_neo4j_data_types"></a>Cast CSV columns to Neo4j data types</h3>
+<div class="paragraph">
+<p><code>LOAD CSV</code> inserts all imported CSV data as <code>STRING</code> properties.
+However, Neo4j supports a range of <a href="../../values-and-types/" class="xref page">data types</a>, and storing data with appropriate types allows both to query it more effectively and to process it with type-specific Cypher functions.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 10. Import numeric and temporal data</div>
+<div class="content">
+<div class="paragraph">
+<p>The column <code>person_tmdbId</code> and <code>born</code> in the file <a href="https://data.neo4j.com/importing-cypher/persons.csv"><em>persons.csv</em></a> contains <code>INTEGER</code> and <code>DATE</code> values respectively.
+The functions <code>toInteger()</code> and <code>date()</code> allow to cast those values to the appropriate types before importing them.</p>
+</div>
+<div class="listingblock">
+<div class="title">persons.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">person_tmdbId,bio,born,bornIn,died,person_imdbId,name,person_poster,person_url
+3,"Legendary Hollywood Icon Harrison Ford was born on July 13, 1942 in Chicago, Illinois.   His family history includes a strong lineage of actors, radio personalities, and models.   Harrison attended public high school in Park Ridge, Illinois where he was a member of the school Radio Station WMTH.  Harrison worked as the lead voice for sports reporting at WMTH for several years.   Acting wasn’t a major interest to Ford until his junior year at Ripon College when he first took an acting class...",1942-07-13,"Chicago, Illinois, USA",,148,Harrison Ford,https://image.tmdb.org/t/p/w440_and_h660_face/5M7oN3sznp99hWYQ9sX0xheswWX.jpg,https://themoviedb.org/person/3
+...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS row
+MERGE (p:Person {tmdbId: toInteger(row.person_tmdbId)})
+SET p.name = row.name, p.born = date(row.born)
+RETURN
+  p.name AS name,
+  p.tmdbId AS tmdbId,
+  p.born AS born
+LIMIT 5</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">tmdbId</th>
+<th class="tableblock halign-left valign-top">born</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Harrison Ford'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1942-07-13</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Tom Hanks'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>31</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1956-07-09</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Robin Wright'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>32</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1966-04-08</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Sally Field'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>35</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1946-11-06</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Sean Bean'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>48</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1959-04-17</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">5 rows</p>
+<p class="tableblock">Added 444 nodes, Set 1332 properties, Added 444 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="paragraph">
+<p>For a list of type casting functions, see <a href="../../values-and-types/casting-data/" class="xref page">Casting data values</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handle_null_values"><a class="anchor" href="#_handle_null_values"></a>Handle <code>null</code> values</h3>
+<div class="paragraph">
+<p>Neo4j does not store <code>null</code> values.
+<code>null</code> or empty fields in a CSV files can be skipped or replaced with default values in <code>LOAD CSV</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 11. Processing a file with <code>null</code> values</div>
+<div class="content">
+<div class="paragraph">
+<p>In the file <code>companies.csv</code>, some rows do not specify values for some columns.
+The examples show several options of how to handle <code>null</code> values.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The queries in this example use <a href="../filter/#filter-with-where" class="xref page"><code>FILTER</code></a> (introduced in Neo4j 2025.06) as a replacement for <code>WITH * WHERE &lt;predicate&gt;</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">companies.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">Id,Name,Location,Email,BusinessType
+1,Neo4j,San Mateo,contact@neo4j.com,P
+2,AAA,,info@aaa.com,
+3,BBB,Chicago, ,G
+,CCC,Michigan,info@ccc.com,G</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Skip <code>null</code> values</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'file:///companies.csv' AS row
+FILTER row.Id IS NOT NULL
+MERGE (c:Company {id: row.Id})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Provide a default for <code>null</code> values</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'file:///companies.csv' AS row
+FILTER row.Id IS NOT NULL
+MERGE (c:Company {id: row.Id, hqLocation: coalesce(row.Location, "Unknown")})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Change empty <code>STRING</code> values to <code>null</code> values (not stored)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'file:///companies.csv' AS row
+FILTER row.Id IS NOT NULL
+MERGE (c:Company {id: row.Id})
+SET c.email = nullIf(trim(row.Email), "")</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>null</code> values are not stored in the database.
+A strategy for selectively getting rid of some values is to map them into <code>null</code> values.
+The empty <code>STRING</code> values from the last query serve as an example.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_split_list_values"><a class="anchor" href="#_split_list_values"></a>Split list values</h3>
+<div class="paragraph">
+<p>The function <code>split()</code> allows to convert a <code>STRING</code> of elements into a list.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 12. Parse movies languages and genres as lists</div>
+<div class="content">
+<div class="paragraph">
+<p>The file <a href="https://data.neo4j.com/importing-cypher/movies.csv"><em>movies.csv</em></a> contains a header line and a total of 94 lines.</p>
+</div>
+<div class="paragraph">
+<p>The columns <code>languages</code> and <code>genres</code> contain list-like values.
+Both are separated by a pipe <code>|</code>, and <code>split()</code> allows to make them into Cypher lists ahead of inserting them into the database.</p>
+</div>
+<div class="listingblock">
+<div class="title">movies.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">movieId,title,budget,countries,movie_imdbId,imdbRating,imdbVotes,languages,plot,movie_poster,released,revenue,runtime,movie_tmdbId,movie_url,year,genres
+1,Toy Story,30000000.0,USA,114709,8.3,591836,English,A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.,https://image.tmdb.org/t/p/w440_and_h660_face/uXDfjJbdP4ijW5hWSBrPrlKpxab.jpg,1995-11-22,373554033.0,81,862,https://themoviedb.org/movie/862,1995,Adventure|Animation|Children|Comedy|Fantasy
+2,Jumanji,65000000.0,USA,113497,6.9,198355,English|French,"When two kids find and play a magical board game, they release a man trapped for decades in it and a host of dangers that can only be stopped by finishing the game.",https://image.tmdb.org/t/p/w440_and_h660_face/vgpXmVaVyUL7GGiDeiK1mKEKzcX.jpg,1995-12-15,262797249.0,104,8844,https://themoviedb.org/movie/8844,1995,Adventure|Children|Fantasy
+...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/movies.csv' AS row
+MERGE (m:Movie {id: toInteger(row.movieId)})
+SET
+    m.title = row.title,
+    m.imdbId = toInteger(row.movie_imdbId),
+    m.languages = split(row.languages, '|'),
+    m.genres = split(row.genres, '|')
+RETURN
+  m.title AS title,
+  m.imdbId AS imdbId,
+  m.languages AS languages,
+  m.genres AS genres
+LIMIT 5</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">title</th>
+<th class="tableblock halign-left valign-top">imdbId</th>
+<th class="tableblock halign-left valign-top">languages</th>
+<th class="tableblock halign-left valign-top">genres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Toy Story'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>114709</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['English']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['Adventure', 'Animation', 'Children', 'Comedy', 'Fantasy']</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Jumanji'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>113497</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['English', 'French']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['Adventure', 'Children', 'Fantasy']</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Grumpier Old Men'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>113228</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['English']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['Comedy', 'Romance"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Waiting to Exhale'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>114885</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['English']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['Comedy', 'Romance', 'Drama']</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Father of the Bride Part II'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>113041</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['English']</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>['Comedy']</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="4"><p class="tableblock">5 rows</p>
+<p class="tableblock">Added 93 nodes, Set 465 properties, Added 93 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="paragraph">
+<p>For more <code>STRING</code> manipulation functions, see <a href="../../functions/string/" class="xref page">String functions</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recommendations"><a class="anchor" href="#_recommendations"></a>Recommendations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_create_property_uniqueness_constraints"><a class="anchor" href="#_create_property_uniqueness_constraints"></a>Create property uniqueness constraints</h3>
+<div class="paragraph">
+<p>Always create <a href="../../constraints/managing-constraints/#create-property-uniqueness-constraints" class="xref page">property uniqueness constraints</a> prior to importing data, to avoid duplicates or colliding entities.
+If the source file contains duplicated data and the right constraints are in place, Cypher raises an error.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 13. Create a node property uniqueness constraints on person ID</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">persons.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">person_tmdbId,bio,born,bornIn,died,person_imdbId,name,person_poster,person_url
+3,"Legendary Hollywood Icon Harrison Ford was born on July 13, 1942 in Chicago, Illinois.   His family history includes a strong lineage of actors, radio personalities, and models.   Harrison attended public high school in Park Ridge, Illinois where he was a member of the school Radio Station WMTH.  Harrison worked as the lead voice for sports reporting at WMTH for several years.   Acting wasn’t a major interest to Ford until his junior year at Ripon College when he first took an acting class...",1942-07-13,"Chicago, Illinois, USA",,148,Harrison Ford,https://image.tmdb.org/t/p/w440_and_h660_face/5M7oN3sznp99hWYQ9sX0xheswWX.jpg,https://themoviedb.org/person/3
+...</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create a node property uniqueness constraint on person ID</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT Person_tmdbId IF NOT EXISTS
+FOR (p:Person) REQUIRE p.tmdbId IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 1 constraints</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handle_large_amounts_of_data"><a class="anchor" href="#_handle_large_amounts_of_data"></a>Handle large amounts of data</h3>
+<div class="paragraph">
+<p><code>LOAD CSV</code> may run into memory issues with files containing a significant number of rows (approaching hundreds of thousands or millions). For large files, it&#8217;s recommended to split the import process in several lighter transactions through the clause <a href="../../subqueries/subqueries-in-transactions/" class="xref page"><code>CALL {&#8230;&#8203;} IN TRANSACTIONS</code></a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 14. Load a large CSV file in several transactions</div>
+<div class="content">
+<div class="paragraph">
+<p>The file <a href="https://data.neo4j.com/importing-cypher/persons.csv"><em>persons.csv</em></a> contains a header line and a total of 869 lines.
+The example loads the <code>name</code> and <code>born</code> columns in transactions of 200 rows.</p>
+</div>
+<div class="listingblock">
+<div class="title">persons.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">person_tmdbId,bio,born,bornIn,died,person_imdbId,name,person_poster,person_url
+3,"Legendary Hollywood Icon Harrison Ford was born on July 13, 1942 in Chicago, Illinois.   His family history includes a strong lineage of actors, radio personalities, and models.   Harrison attended public high school in Park Ridge, Illinois where he was a member of the school Radio Station WMTH.  Harrison worked as the lead voice for sports reporting at WMTH for several years.   Acting wasn’t a major interest to Ford until his junior year at Ripon College when he first took an acting class...",1942-07-13,"Chicago, Illinois, USA",,148,Harrison Ford,https://image.tmdb.org/t/p/w440_and_h660_face/5M7oN3sznp99hWYQ9sX0xheswWX.jpg,https://themoviedb.org/person/3
+...</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The below query uses a <a href="../../subqueries/call-subquery/#variable-scope-clause" class="xref page">variable scope clause</a> to import variables into the <code>CALL</code> subquery.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS row
+CALL (row) {
+  MERGE (p:Person {tmdbId: row.person_tmdbId})
+  SET p.name = row.name, p.born = row.born
+} IN TRANSACTIONS OF 200 ROWS</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 444 nodes, Set 1332 properties, Added 444 labels</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case of errors, <code>CALL {&#8230;&#8203;} IN TRANSACTIONS</code> may only import a part of the CSV data as the transactions are <em>committed</em>.
+For example, if the first 200 rows are error free, they are committed.
+If the next 200 rows contain data that causes an error, the second transaction fails, but leaves the first transaction unaffected.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_load_csv_and_neo4j_functions"><a class="anchor" href="#_load_csv_and_neo4j_functions"></a>LOAD CSV and Neo4j functions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_access_line_numbers_with_linenumber"><a class="anchor" href="#_access_line_numbers_with_linenumber"></a>Access line numbers with <code>linenumber()</code></h3>
+<div class="paragraph">
+<p>The <a href="../../functions/load-csv/#functions-linenumber" class="xref page"><code>linenumber()</code></a> function provides the line number which <code>LOAD CSV</code> is operating on, or <code>null</code> if called outside of a <code>LOAD CSV</code> context.</p>
+</div>
+<div class="paragraph">
+<p>A common use case for this function is to generate sequential unique IDs for CSV data that doesn&#8217;t have a unique column already.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 15. <code>linenumber()</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists.csv' AS row
+RETURN linenumber() AS number, row</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">number</th>
+<th class="tableblock halign-left valign-top">row</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["1","ABBA","1992"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["2","Roxette","1986"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["3","Europe","1979"]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>4</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["4","The Cardigans","1992"]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_access_the_csv_file_path_with_file"><a class="anchor" href="#_access_the_csv_file_path_with_file"></a>Access the CSV file path with <code>file()</code></h3>
+<div class="paragraph">
+<p>The <a href="../../functions/load-csv/#functions-file" class="xref page"><code>file()</code></a> function provides the absolute path of the file that <code>LOAD CSV</code> is operating on, or <code>null</code> if called out of a <code>LOAD CSV</code> context.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 16. <code>file()</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists.csv' AS row
+RETURN DISTINCT file() AS path</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">path</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'/artists.csv'</code></p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>file()</code> always returns a local path, even when loading remote CSV files.
+For remote resources, <code>file()</code> returns the temporary local path it was downloaded to.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_csv_file_format"><a class="anchor" href="#_csv_file_format"></a>CSV file format</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CSV file format and <code>LOAD CSV</code> interact as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The file character encoding must be UTF-8.</p>
+</li>
+<li>
+<p>The line terminator is system dependent (<code>\n</code> for Unix and <code>\r\n</code> for Windows).</p>
+</li>
+<li>
+<p>The default field delimiter is <code>,</code>. Change it with the option <code>FIELDTERMINATOR</code>.</p>
+</li>
+<li>
+<p>CSV files may contain quoted <code>STRING</code> values, and the quotes are dropped when <code>LOAD CSV</code> reads the data.</p>
+</li>
+<li>
+<p>If <code>dbms.import.csv.legacy_quote_escaping</code> is set to the default value of <code>true</code>, <code>\</code> is used as an escape character.</p>
+</li>
+<li>
+<p>A double quote must be in a quoted <code>STRING</code> and escaped, with either the escape character or a second double quote.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_headers"><a class="anchor" href="#_headers"></a>Headers</h3>
+<div class="paragraph">
+<p>If the CSV file starts with a header row containing column names, each import row in the file acts as a map instead of an array.</p>
+</div>
+<div class="paragraph">
+<p>You must indicate the presence of the header row by adding <code>WITH HEADERS</code> to the query.
+You can then access specific fields by their corresponding column name.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 17. Parsing a CSV as a list of maps</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists-with-headers.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">Id,Name,Year
+1,ABBA,1992
+2,Roxette,1986
+3,Europe,1979
+4,The Cardigans,1992</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV WITH HEADERS FROM 'file:///artists-with-headers.csv' AS row
+MERGE (a:Artist {name: row.Name, year: toInteger(row.Year)})
+RETURN
+  a.name AS name,
+  a.year AS year</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"ABBA"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1992</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Roxette"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1986</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Europe"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1979</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"The Cardigans"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1992</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">4 rows</p>
+<p class="tableblock">Added 4 nodes, Set 8 properties, Added 4 labels</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_field_delimiter"><a class="anchor" href="#_field_delimiter"></a>Field delimiter</h3>
+<div class="paragraph">
+<p>The default field delimiter is <code>,</code>.
+Use the <code>FIELDTERMINATOR</code> option to specify a different field delimiter.</p>
+</div>
+<div class="paragraph">
+<p>If you try to import a file that doesn&#8217;t use <code>,</code> as field delimiter and you also don&#8217;t specify a custom delimiter, <code>LOAD CSV</code> will interpret the CSV as having a single column.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 18. Import a CSV using <code>;</code> as field delimiter</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists-fieldterminator.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">1;ABBA;1992
+2;Roxette;1986
+3;Europe;1979
+4;The Cardigans;1992</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists-fieldterminator.csv' AS row FIELDTERMINATOR ';'
+MERGE (:Artist {name: row[1], year: toInteger(row[2])})</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 4 nodes, Set 8 properties, Added 4 labels</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can use the hexadecimal representation of the unicode character for the field delimiter if you prepend <code>\u</code>.
+Write the encoding with four digits: for example, <code>\u003B</code> is equivalent to <code>;</code> (semicolon).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quotes_escaping"><a class="anchor" href="#_quotes_escaping"></a>Quotes escaping</h3>
+<div class="paragraph">
+<p>Quoted <code>STRING</code> values are allowed in the CSV file and the quotes are dropped when <code>LOAD CSV</code> reads the data.
+If quoted <code>STRING</code> values must contain quote characters <code>"</code>, there are two ways to escape them:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Double quotes</strong>&#8201;&#8212;&#8201;Use another quote <code>"</code> to escape a quote (for example, the CSV encoding of the <code>STRING</code> <code>The "Symbol"</code> is <code>"The ""Symbol"""</code>).</p>
+</li>
+<li>
+<p><strong>Prefix with backslash <code>\</code></strong>&#8201;&#8212;&#8201;If the configuration setting <code>dbms.import.csv.legacy_quote_escaping</code> is set to <code>true</code> (the default value), <code>\</code> works as the escape character for quotes (for example, the CSV encoding of the <code>STRING</code> <code>The "Symbol"</code> is <code>"The \"Symbol\""</code>).</p>
+</li>
+</ol>
+</div>
+<div class="exampleblock">
+<div class="title">Example 19. Import a CSV with double-quotes escaping</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">artists-with-escaped-quotes.csv</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-csv hljs" data-lang="csv">"1","The ""Symbol""","1992"
+"2","The \"Symbol\"","1992"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">LOAD CSV FROM 'file:///artists-with-escaped-quotes.csv' AS row
+MERGE (a:Artist {id: toInteger(row[0]), name: row[1], year: toInteger(row[2])})
+RETURN
+  a.id AS id,
+  a.name AS name,
+  a.year AS year,
+  size(a.name) AS size</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">id</th>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">year</th>
+<th class="tableblock halign-left valign-top">size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The "Symbol"'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1992</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'The "Symbol"'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1992</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>12</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="4"><p class="tableblock">Added 2 nodes, Set 6 properties, Added 2 labels</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Note that <code>name</code> is a <code>STRING</code>, as it is wrapped in quotes in the output.
+The third column outputs the <code>STRING</code> length as <code>size</code>.
+The length only counts what is between the outer quotes, but not the quotes themselves.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_check_source_data_quality"><a class="anchor" href="#_check_source_data_quality"></a>Check source data quality</h3>
+<div class="paragraph">
+<p>In case of a failed import, there are some elements to check to ensure the source file is not corrupted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Inconsistent headers</strong>&#8201;&#8212;&#8201;The CSV header may be inconsistent with the data.
+It can be missing, have too many columns or have a different delimiter.
+Verify that the header matches the data in the file.
+Adjust the formatting, delimiters or columns.</p>
+</li>
+<li>
+<p><strong>Extra or missing quotes</strong>&#8201;&#8212;&#8201;Standalone double or single quotes in the middle of non-quoted text or non-escaped quotes in quoted text can cause issues reading the file.
+Either escape or remove stray quotes.
+See <a href="#_quotes_escaping">Quotes escaping</a>.</p>
+</li>
+<li>
+<p><strong>Special or newline characters</strong>&#8201;&#8212;&#8201;When dealing with special characters in a file, ensure they are quoted or remove them.</p>
+</li>
+<li>
+<p><strong>Inconsistent line breaks</strong>&#8201;&#8212;&#8201;Ensure line breaks are consistent throughout your file.</p>
+</li>
+<li>
+<p><strong>Binary zeros, BOM byte order mark and other non-text characters</strong>&#8201;&#8212;&#8201;Unusual characters or tool-specific formatting are sometimes hidden in application tools, but become apparent in plain-text editors.
+If you come across these types of characters in your file, either remove them or use Cypher&#8217;s <a href="../../functions/string/#functions-normalize" class="xref page">normalize function</a>.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_inspect_source_files_ahead_of_import"><a class="anchor" href="#_inspect_source_files_ahead_of_import"></a>Inspect source files ahead of import</h4>
+<div class="paragraph">
+<p>Before importing data into the database, you can use <code>LOAD CSV</code> to inspect a source file and get an idea of what form the imported data is going to have.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 20. Assert correct line count</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">// Assert correct line count
+LOAD CSV FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS line
+RETURN count(*);</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">count(*)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>445</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 row</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 21. Check the first five lines with header sampling</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">// Check first 5 line-sample with header-mapping
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS line
+RETURN line.person_tmdbId, line.name
+LIMIT 5;</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">line.person_tmdbId</th>
+<th class="tableblock halign-left valign-top">line.name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'3'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Harrison Ford'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'31'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Tom Hanks'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'32'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Robin Wright'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'35'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Sally Field'</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'48'</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>'Sean Bean'</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">5 rows</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example"><a class="anchor" href="#_example"></a>Example</h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Erase current database and import the full movie dataset</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">// Clear data
+MATCH (n) DETACH DELETE n;
+
+// Create constraints
+CREATE CONSTRAINT Person_tmdbId IF NOT EXISTS
+FOR (p:Person) REQUIRE p.tmdbId IS UNIQUE;
+
+CREATE CONSTRAINT Movie_movieId IF NOT EXISTS
+FOR (m:Movie) REQUIRE m.movieId IS UNIQUE;
+
+// Create person nodes
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/persons.csv' AS row
+MERGE (p:Person {tmdbId: toInteger(row.person_tmdbId)})
+SET p.name = row.name, p.born = date(row.born);
+
+// Create movie nodes
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/movies.csv' AS row
+MERGE (m:Movie {id: toInteger(row.movieId)})
+SET
+    m.title = row.title,
+    m.imdbId = toInteger(row.movie_imdbId),
+    m.languages = split(row.languages, '|'),
+    m.genres = split(row.genres, '|');
+
+// Create relationships
+LOAD CSV WITH HEADERS FROM 'https://data.neo4j.com/importing-cypher/acted_in.csv' AS row
+MATCH (p:Person {tmdbId: toInteger(row.person_tmdbId)})
+MATCH (m:Movie {id: toInteger(row.movieId)})
+MERGE (p)-[r:ACTED_IN]-&gt;(m)
+SET r.role = row.role;
+
+// Set additional node label
+MATCH (p:Person)-[:ACTED_IN]-&gt;()
+WITH DISTINCT p
+SET p:Actor;</code></pre>
+</div>
+</div>
+<div class="listingblock queryresult">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">Added 1 constraints
+Added 1 constraints
+Added 444 nodes, Set 1332 properties, Added 444 labels
+Added 93 nodes, Set 465 properties, Added 93 labels
+Created 372 relationships, Set 372 properties
+Added 353 labels</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+With increasing amounts of data, it is more efficient to create <em>all</em> nodes first, and then add relationships with a second pass.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_ways_of_importing_data"><a class="anchor" href="#_other_ways_of_importing_data"></a>Other ways of importing data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a few other tools to get CSV data into Neo4j.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>The <a href="https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/neo4j-admin-import/"><code>neo4j-admin database import</code></a> command</strong> is the most efficient way of importing large CSV files.</p>
+</li>
+<li>
+<p>Use a <a href="https://neo4j.com/docs/create-applications/"><strong>language library</strong></a> to parse CSV data and run creation Cypher queries against a Neo4j database.
+Created as an extension library to provide common procedures and functions to developers.
+This library is especially helpful for complex transformations and data manipulations.
+Useful procedures include apoc.load.jdbc, apoc.load.json, and others.</p>
+</li>
+<li>
+<p>The <a href="https://neo4j.com/labs/etl-tool/" target="_blank" rel="noopener">ETL Tool</a>: allows to extract the schema from a relational database and turn it into a graph model. It then takes care of importing the data into Neo4j.</p>
+</li>
+<li>
+<p>The <a href="https://medium.com/neo4j/getting-started-with-kettle-and-neo4j-32ff15b991f9" target="_blank" rel="noopener">Kettle import tool</a> maps and executes steps for the data process flow and works well for very large datasets, especially if you are already familiar with using this tool.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../limit/" aria-label="Previous: LIMIT">LIMIT</a></span>
+
+  <span class="next"><a href="../match/" aria-label="Next: MATCH">MATCH</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+    <div class="toc-ad">
+
+    <a href="https://graphacademy.neo4j.com/courses/importing-cypher/?ref=docs-ad-cypher" target="_blank">
+
+        <i class="toc-ad-icon toc-ad-icon--mortarboard"></i>
+
+
+        <h2 class="toc-ad-title">
+            Importing CSV Data on GraphAcademy
+        </h2>
+
+        <p class="toc-ad-description">Learn how to use Cypher to create nodes and relationships from CSV files</p>
+
+        <div class="toc-ad-underline button">
+            Enroll now
+        </div>
+    </a>
+</div>
+  </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

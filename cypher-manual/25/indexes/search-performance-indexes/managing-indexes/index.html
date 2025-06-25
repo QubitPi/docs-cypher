@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>Create, show, and delete indexes - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/managing-indexes/">
+
+    <link rel="prev" href="../overview/">
+    <link rel="next" href="../using-indexes/">
+
+      <meta name="description" content="This page explains how to manage indexes used for search performance.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Create, show, and delete indexes - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="This page explains how to manage indexes used for search performance." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/managing-indexes/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../clauses/">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../patterns/">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="./">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../../">
+        Indexes
+    </a></li>
+    <li><a href="../overview/">
+        Search-performance indexes
+    </a></li>
+    <li><a href="./">
+        Create, show, and delete indexes
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">Create, show, and delete indexes</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes how to create, list, and delete search-performance indexes.
+The following index types are included in this category:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-range-index">Range indexes</a></p>
+</li>
+<li>
+<p><a href="#create-text-index">Text indexes</a></p>
+</li>
+<li>
+<p><a href="#create-point-index">Point indexes</a></p>
+</li>
+<li>
+<p><a href="#create-lookup-index">Token lookup indexes</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For information about how search-performance indexes are used in Cypher<sup>&reg;</sup> queries, see <a href="../using-indexes/" class="xref page">Using search-performance indexes</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-indexes"><a class="anchor" href="#create-indexes"></a>CREATE INDEX</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Creating an index is done with the <code>CREATE [index_type] INDEX [index_name]</code> command.
+If no index type is specified in the create command a <a href="#create-range-index">range index</a> will be created.</p>
+</div>
+<div class="paragraph">
+<p>It is recommended to give the index a name when it is created.
+If the index is not explicitly named, it gets an auto-generated name.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The index name must be unique among both indexes and constraints.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>CREATE INDEX</code> command is optionally idempotent.
+This mean that its default behavior is to throw an error if an attempt is made to create the same index twice.
+If <code>IF NOT EXISTS</code> is appended to the command, no error is thrown and nothing happens should an index with the same name or same schema and index type already exist.
+It may still throw an error if conflicting constraints exist, such as constraints with the same name or schema and backing index type.
+Instead, an informational notification is returned showing the existing index which blocks the creation.</p>
+</div>
+<div class="paragraph">
+<p>Index configuration settings can be specified using the <code>OPTIONS</code> clause.
+However, not all indexes have available configuration settings.
+In those cases, nothing needs to be specified and the <code>OPTIONS</code> map should be omitted from the query.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Creating an index requires <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>CREATE INDEX</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+An index cannot be used while its <code>state</code> is <code>POPULATING</code>, which occurs immediately after it is created.
+To check the <code>state</code> of an index&#8201;&#8212;&#8201;whether it is <code>ONLINE</code> (usable) or <code>POPULATING</code> (still being built; the <code>populationPercent</code> column shows the progress of the index creation)&#8201;&#8212;&#8201;run the following command: <code>SHOW INDEXES</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="create-range-index"><a class="anchor" href="#create-range-index"></a>Create a range index</h3>
+<div class="paragraph">
+<p>Creating a range index can be done with the <code>CREATE INDEX</code> command.
+Note that the index name must be unique.</p>
+</div>
+<div class="paragraph">
+<p>Range indexes have no supported index configuration.</p>
+</div>
+<h4 id="range-indexes-supported-predicates" class="discrete">Supported predicates</h4>
+<div class="paragraph">
+<p>Range indexes support most types of predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equality check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = value</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List membership check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IN list</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Existence check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IS NOT NULL</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Range search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop &gt; value</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">STARTS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<h4 id="range-indexes-examples" class="discrete">Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-a-single-property-range-index-for-nodes">Create a single-property range index for nodes</a></p>
+</li>
+<li>
+<p><a href="#create-a-single-property-range-index-for-relationships">Create a single-property range index for relationships</a></p>
+</li>
+<li>
+<p><a href="#create-a-composite-range-index-for-nodes">Create a composite range index for nodes</a></p>
+</li>
+<li>
+<p><a href="#create-a-composite-range-index-for-relationships">Create a composite range index for relationships</a></p>
+</li>
+<li>
+<p><a href="#create-a-range-index-by-param">Create a range index using a parameter</a></p>
+</li>
+<li>
+<p><a href="#create-a-range-index-only-if-it-does-not-already-exist">Create a range index only if it does not already exist</a></p>
+</li>
+</ul>
+</div>
+<h5 id="create-a-single-property-range-index-for-nodes" class="discrete">Create a single-property range index for nodes</h5>
+<div class="paragraph">
+<p>The following statement will create a named range index on all nodes labeled with <code>Person</code> and which have the <code>surname</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node range index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX node_range_index_name FOR (n:Person) ON (n.surname)</code></pre>
+</div>
+</div>
+<h5 id="create-a-single-property-range-index-for-relationships" class="discrete">Create a single-property range index for relationships</h5>
+<div class="paragraph">
+<p>The following statement will create a named range index on all relationships with relationship type <code>KNOWS</code> and property <code>since</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a relationship range index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX rel_range_index_name FOR ()-[r:KNOWS]-() ON (r.since)</code></pre>
+</div>
+</div>
+<h5 id="create-a-composite-range-index-for-nodes" class="discrete">Create a composite range index for nodes</h5>
+<div class="paragraph">
+<p>A range index on multiple properties is also called a composite index.
+For node range indexes, only nodes with the specified label and that contain all the specified properties will be added to the index.</p>
+</div>
+<div class="paragraph">
+<p>The following statement will create a named composite range index on all nodes labeled with <code>Person</code> and which have both an <code>age</code> and <code>country</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a composite node range index on multiple properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX composite_range_node_index_name FOR (n:Person) ON (n.age, n.country)</code></pre>
+</div>
+</div>
+<h5 id="create-a-composite-range-index-for-relationships" class="discrete">Create a composite range index for relationships</h5>
+<div class="paragraph">
+<p>A range index on multiple properties is also called a composite index.
+For relationship range indexes, only relationships with the specified type and that contain all the specified properties will be added to the index.</p>
+</div>
+<div class="paragraph">
+<p>The following statement will create a named composite range index on all relationships labeled with <code>PURCHASED</code> and which have both a <code>date</code> and <code>amount</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a composite relationship range index on multiple properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX composite_range_rel_index_name FOR ()-[r:PURCHASED]-() ON (r.date, r.amount)</code></pre>
+</div>
+</div>
+<h5 id="create-a-range-index-by-param" class="discrete">Create a range index using a parameter</h5>
+<div class="paragraph">
+<p>The following statement will create a named range index on all nodes with a <code>Person</code> label and a <code>firstname</code> property using a parameter for the index name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "range_index_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node range index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX $name FOR (n:Person) ON (n.firstname)</code></pre>
+</div>
+</div>
+<h5 id="create-a-range-index-only-if-it-does-not-already-exist" class="discrete">Create a range index only if it does not already exist</h5>
+<div class="paragraph">
+<p>If it is not known whether an index exists or not, add <code>IF NOT EXISTS</code> to ensure it does.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a range index with <code>IF NOT EXISTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX node_range_index_name IF NOT EXISTS
+FOR (n:Person) ON (n.surname)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The index will not be created if there already exists an index with the same schema and type, same name or both.
+Instad an informational notification is returned.</p>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE RANGE INDEX node_range_index_name IF NOT EXISTS FOR (e:Person) ON (e.surname)` has no effect.
+`RANGE INDEX node_range_index_name FOR (e:Person) ON (e.surname)` already exists.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-text-index"><a class="anchor" href="#create-text-index"></a>Create a text index</h3>
+<div class="paragraph">
+<p>Creating a text index can be done with the <code>CREATE TEXT INDEX</code> command.
+Note that the index name must be unique.</p>
+</div>
+<div class="paragraph">
+<p>Text indexes have no supported index configuration.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#text-indexes-trigram-indexes">Trigram indexing</a> for information about how text indexes process <code>STRING</code> values.</p>
+</div>
+<h4 id="text-indexes-supported-predicates" class="discrete">Supported predicates</h4>
+<div class="paragraph">
+<p>Text indexes only solve predicates operating on <code>STRING</code> values.</p>
+</div>
+<div class="paragraph">
+<p>The following predicates that only operate on <code>STRING</code> values are always solvable by a text index:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>STARTS WITH</code></p>
+</li>
+<li>
+<p><code>ENDS WITH</code></p>
+</li>
+<li>
+<p><code>CONTAINS</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, other predicates are only used when it is known that the property is compared to a <code>STRING</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>n.prop = "string"</code></p>
+</li>
+<li>
+<p><code>n.prop IN ["a", "b", "c"]</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means that a text index is not able to solve, for example, e.g. <code>a.prop = b.prop</code>, unless a <a href="../../../constraints/managing-constraints/#create-property-type-constraints" class="xref page">property type constraint</a> also exists on the property.</p>
+</div>
+<div class="paragraph">
+<p>Text indexes support the following predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equality check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = 'example_string'</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List membership check.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop IN ['abc', 'example_string', 'neo4j']</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">STARTS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suffix search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">ENDS WITH</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Substring search.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">CONTAINS</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The above set of predicates can be extended with the use of type constraints.
+See the section about <a href="../using-indexes/#type-constraints" class="xref page">index compatibility and type constraints</a> for more information.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Text indexes are only used for exact query matches. To perform approximate matches (including, for example, variations and typos), and to compute a similarity score between <code>STRING</code> values, use semantic <a href="../../semantic-indexes/full-text-indexes/" class="xref page">full-text indexes</a> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="text-indexes-trigram-indexes"><a class="anchor" href="#text-indexes-trigram-indexes"></a>Trigram indexing</h4>
+<div class="paragraph">
+<p>Text indexes uses trigram indexing.
+This means that <code>STRING</code> values are indexed into overlapping trigrams, each containing three Unicode code points.
+For example, the word <code>"developer"</code> would be indexed by the following trigrams: <code>["dev", "eve", "vel", "elo", "lop", "ope", "per"]</code>.</p>
+</div>
+<div class="paragraph">
+<p>This makes text indexes particularly suitable for substring (<code>CONTAINS</code>) and suffix (<code>ENDS WITH</code>) searches, as well as prefix searches (<code>STARTS WITH</code>).
+For example, searches like <code>CONTAINS "vel"</code> or <code>ENDS WITH "per"</code> can be efficiently performed by directly looking up the relevant trigrams in the index.
+By comparison, range indexes, which indexes <code>STRING</code> values lexicographically (see <a href="../using-indexes/#range-index-backed-order-by" class="xref page">Range index-backed <code>ORDER BY</code></a> for more information) and are therefore more suited for prefix searches, would need to scan through all indexed values to check if <code>"vel"</code> existed anywhere within the text.
+For more information, see <a href="../using-indexes/#text-indexes" class="xref page">The impact of indexes on query performance &#8594; Text indexes</a>.</p>
+</div>
+<h4 id="text-indexes-examples" class="discrete">Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-a-node-text-index">Create a node text index</a></p>
+</li>
+<li>
+<p><a href="#create-a-relationship-text-index">Create a relationship text index</a></p>
+</li>
+<li>
+<p><a href="#create-a-text-index-by-param">Create a text index using a parameter</a></p>
+</li>
+<li>
+<p><a href="#create-a-text-index-only-if-it-does-not-already-exist">Create a text index only if it does not already exist</a></p>
+</li>
+</ul>
+</div>
+<h5 id="create-a-node-text-index" class="discrete">Create a node text index</h5>
+<div class="paragraph">
+<p>The following statement will create a named text index on all nodes labeled with <code>Person</code> and which have the <code>nickname</code> <code>STRING</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node text index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE TEXT INDEX node_text_index_nickname FOR (n:Person) ON (n.nickname)</code></pre>
+</div>
+</div>
+<h5 id="create-a-relationship-text-index" class="discrete">Create a relationship text index</h5>
+<div class="paragraph">
+<p>The following statement will create a named text index on all relationships with relationship type <code>KNOWS</code> and <code>STRING</code> property <code>interest</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a relationship text index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE TEXT INDEX rel_text_index_name FOR ()-[r:KNOWS]-() ON (r.interest)</code></pre>
+</div>
+</div>
+<h5 id="create-a-text-index-by-param" class="discrete">Create a text index using a parameter</h5>
+<div class="paragraph">
+<p>The following statement will create a named text index on all nodes with the <code>Person</code> label the <code>favoriteColor</code> <code>STRING</code> property using a parameter for the index name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "text_index_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node text index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE TEXT INDEX $name FOR (n:Person) ON (n.favoriteColor)</code></pre>
+</div>
+</div>
+<h5 id="create-a-text-index-only-if-it-does-not-already-exist" class="discrete">Create a text index only if it does not already exist</h5>
+<div class="paragraph">
+<p>If it is not known whether an index exists or not, add <code>IF NOT EXISTS</code> to ensure it does.</p>
+</div>
+<div class="paragraph">
+<p>The following statement will attempt to create a named text index on all nodes labeled with <code>Person</code> and which have the <code>nickname</code> <code>STRING</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a text index with <code>IF NOT EXISTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE TEXT INDEX node_index_name IF NOT EXISTS FOR (n:Person) ON (n.nickname)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the index will not be created if there already exists an index with the same schema and type, same name or both.
+Instead, an informational notification is returned.</p>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE TEXT INDEX node_index_name IF NOT EXISTS FOR (e:Person) ON (e.nickname)` has no effect.
+`TEXT INDEX node_text_index_nickname FOR (e:Person) ON (e.nickname)` already exists.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-point-index"><a class="anchor" href="#create-point-index"></a>Create a point index</h3>
+<div class="paragraph">
+<p>Creating a point index can be done with the <code>CREATE POINT INDEX</code> command.
+Note that the index name must be unique.</p>
+</div>
+<div class="paragraph">
+<p>Point indexes have supported index configuration.</p>
+</div>
+<h4 id="point-indexes-supported-predicates" class="discrete">Supported predicates</h4>
+<div class="paragraph">
+<p>Point indexes only solve predicates operating on <code>POINT</code> values.</p>
+</div>
+<div class="paragraph">
+<p>Point indexes support the following predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property point value.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">n.prop = point({x: value, y: value})</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Within bounding box.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">point.withinBBox(n.prop, lowerLeftCorner, upperRightCorner)</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Distance.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">point.distance(n.prop, center) &lt; = distance</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The above set of predicates can be extended with the use of type constraints.
+See <a href="../using-indexes/#type-constraints" class="xref page">The impact of indexes on query performances &#8594; Property type constraints</a> for more information.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To learn more about the spatial data types supported by Cypher, see the page about <a href="../../../values-and-types/spatial/" class="xref page">Spatial values</a>.
+</td>
+</tr>
+</table>
+</div>
+<h4 id="point-indexes-examples" class="discrete">Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-a-node-point-index">Create a node point index</a></p>
+</li>
+<li>
+<p><a href="#create-a-relationship-point-index">Create a relationship point index</a></p>
+</li>
+<li>
+<p><a href="#create-a-point-index-by-param">Create a point index using a parameter</a></p>
+</li>
+<li>
+<p><a href="#create-a-point-index-only-if-it-does-not-already-exist">Create a point index only if it does not already exist</a></p>
+</li>
+<li>
+<p><a href="#create-a-point-index-specifying-the-index-configuration">Create a point index specifying the index configuration</a></p>
+</li>
+</ul>
+</div>
+<h5 id="create-a-node-point-index" class="discrete">Create a node point index</h5>
+<div class="paragraph">
+<p>The following statement will create a named point index on all nodes labeled with <code>Person</code> and which have the <code>sublocation</code> <code>POINT</code> property.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node point index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX node_point_index_name FOR (n:Person) ON (n.sublocation)</code></pre>
+</div>
+</div>
+<h5 id="create-a-relationship-point-index" class="discrete">Create a relationship point index</h5>
+<div class="paragraph">
+<p>The following statement will create a named point index on all relationships with relationship type <code>STREET</code> and <code>POINT</code> property <code>intersection</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a relationship point index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX rel_point_index_name FOR ()-[r:STREET]-() ON (r.intersection)</code></pre>
+</div>
+</div>
+<h5 id="create-a-point-index-by-param" class="discrete">Create a point index using a parameter</h5>
+<div class="paragraph">
+<p>The following statement will create a named point index on all relationships with relationship type <code>STREET</code> and <code>POINT</code> property <code>coordinate</code> using a parameter for the index name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "point_index_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Creating a relationship point index on a single property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX $name FOR ()-[r:STREET]-() ON (r.coordinate)</code></pre>
+</div>
+</div>
+<h5 id="create-a-point-index-only-if-it-does-not-already-exist" class="discrete">Create a point index only if it does not already exist</h5>
+<div class="paragraph">
+<p>If it is not known whether an index exists or not, add <code>IF NOT EXISTS</code> to ensure it does.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a point index with <code>IF NOT EXISTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX node_point_index IF NOT EXISTS
+FOR (n:Person) ON (n.sublocation)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the index will not be created if there already exists an index with the same schema and type, same name or both.
+Instead, an informational notification is returned.</p>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE POINT INDEX node_point_index IF NOT EXISTS FOR (e:Person) ON (e.sublocation)` has no effect.
+`POINT INDEX node_point_index_name FOR (e:Person) ON (e.sublocation)` already exists.</code></pre>
+</div>
+</div>
+<h5 id="create-a-point-index-specifying-the-index-configuration" class="discrete">Create a point index specifying the index configuration</h5>
+<div class="paragraph">
+<p>To create a point index with a specific index configuration, the <code>indexConfig</code> settings in the <code>OPTIONS</code> clause.
+The valid configuration settings are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spatial.cartesian.min</code> (default value: [<code>-1000000.0</code>, <code>-1000000.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.cartesian.max</code> (default value: [<code>1000000.0</code>, <code>1000000.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.cartesian-3d.min</code> (default value: [<code>-1000000.0</code>, <code>-1000000.0</code>, <code>-1000000.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.cartesian-3d.max</code> (default value: [<code>1000000.0</code>, <code>1000000.0</code>, <code>1000000.0`</code>])</p>
+</li>
+<li>
+<p><code>spatial.wgs-84.min</code> (default value: [<code>-180.0</code>, <code>-90.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.wgs-84.max</code> (default value: [<code>-180.0</code>, <code>-90.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.wgs-84-3d.min</code> (default value: [<code>-180.0</code>, <code>-90.0</code>, <code>-1000000.0</code>])</p>
+</li>
+<li>
+<p><code>spatial.wgs-84-3d.max</code> (default value: [<code>180.0</code>, <code>90.0</code>, <code>1000000.0</code>])</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following statement will create a point index specifying the <code>spatial.cartesian.min</code> and <code>spatial.cartesian.max</code> settings.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a point index with index configuration</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX point_index_with_config
+FOR (n:Label) ON (n.prop2)
+OPTIONS {
+  indexConfig: {
+    `spatial.cartesian.min`: [-100.0, -100.0],
+    `spatial.cartesian.max`: [100.0, 100.0]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the wgs-84 and 3D cartesian settings, which are not specified in this example, will be set with their respective default values.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-lookup-index"><a class="anchor" href="#create-lookup-index"></a>Create a token lookup index</h3>
+<div class="paragraph">
+<p>Two token lookup indexes are created by default when creating a Neo4j database (one node label lookup index and one relationship type lookup index).
+Only one node label and one relationship type lookup index can exist at the same time.</p>
+</div>
+<div class="paragraph">
+<p>If a token lookup index has been deleted, it can be recreated with the <code>CREATE LOOKUP INDEX</code> command.
+Note that the index name must be unique.</p>
+</div>
+<div class="paragraph">
+<p>Token lookup indexes have no supported index configuration.</p>
+</div>
+<h4 id="lookup-index-supported-predicates" class="discrete">Supported predicates</h4>
+<div class="paragraph">
+<p>Token lookup indexes are present by default and solve only node label and relationship type predicates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Predicate</th>
+<th class="tableblock halign-left valign-top">Syntax (example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node label predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH (n:Label)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH (n)
+WHERE n:Label</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship type predicate.</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH ()-[r:REL]-&gt;()</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">MATCH ()-[r]-&gt;()
+WHERE r:REL</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Token lookup indexes improve the performance of Cypher queries and the population of other indexes. Dropping these indexes may lead to severe performance degradation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<h4 id="lookup-index-examples" class="discrete">Examples</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-a-node-label-lookup-index">Create a node label lookup index</a></p>
+</li>
+<li>
+<p><a href="#create-a-relationship-type-lookup-index">Create a relationship type lookup index</a></p>
+</li>
+<li>
+<p><a href="#create-a-lookup-index-only-if-it-does-not-already-exist">Create a token lookup index only if it does not already exist</a></p>
+</li>
+</ul>
+</div>
+<h5 id="create-a-node-label-lookup-index" class="discrete">Create a node label lookup index</h5>
+<div class="paragraph">
+<p>The following statement will create a named node label lookup index on all nodes with one or more labels:</p>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Creating a node label lookup index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE LOOKUP INDEX node_label_lookup_index FOR (n) ON EACH labels(n)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Only one node label lookup index can exist at a time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<h5 id="create-a-relationship-type-lookup-index" class="discrete">Create a relationship type lookup index</h5>
+<div class="paragraph">
+<p>The following statement will create a named relationship type lookup index on all relationships with any relationship type.</p>
+</div>
+<div class="listingblock test-skip">
+<div class="title">Creating a relationship type lookup index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE LOOKUP INDEX rel_type_lookup_index FOR ()-[r]-() ON EACH type(r)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Only one relationship type lookup index can exist at a time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<h5 id="create-a-lookup-index-only-if-it-does-not-already-exist" class="discrete">Create a token lookup index only if it does not already exist</h5>
+<div class="paragraph">
+<p>If it is not known whether an index exists or not, add <code>IF NOT EXISTS</code> to ensure it does.</p>
+</div>
+<div class="listingblock">
+<div class="title">Creating a node label lookup index with <code>IF NOT EXISTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE LOOKUP INDEX node_label_lookup IF NOT EXISTS FOR (n) ON EACH labels(n)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The index will not be created if there already exists an index with the same schema and type, same name or both.
+Instead, an informational notification is returned.</p>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE LOOKUP INDEX node_label_lookup IF NOT EXISTS FOR (e) ON EACH labels(e)` has no effect.
+`LOOKUP INDEX node_label_lookup_index FOR (e) ON EACH labels(e)` already exists.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-conflicting-index"><a class="anchor" href="#create-conflicting-index"></a>Creating an index when a conflicting index or constraint exists</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#failure-to-create-an-already-existing-index">Failure to create an already existing index</a></p>
+</li>
+<li>
+<p><a href="#failure-to-create-an-index-with-the-same-name-as-an-already-existing-index">Failure to create an index with the same name as an already existing index</a></p>
+</li>
+<li>
+<p><a href="#failure-to-create-an-index-when-a-constraint-already-exists">Failure to create an index when a constraint already exists</a></p>
+</li>
+<li>
+<p><a href="#failure-to-create-an-index-with-the-same-name-as-an-already-existing-constraint">Failure to create an index with the same name as an already existing constraint</a></p>
+</li>
+</ul>
+</div>
+<h4 id="failure-to-create-an-already-existing-index" class="discrete">Failure to create an already existing index</h4>
+<div class="paragraph">
+<p>Create an index on the property <code>title</code> on nodes with the <code>Book</code> label, when that index already exists.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Creating a duplicate index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX bookTitleIndex FOR (book:Book) ON (book.title)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the index can not be created because it already exists.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists an index (:Book {title}).</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using <code>IF NOT EXISTS</code> when creating the index would result in no error and would not create a new index.</p>
+</div>
+<h4 id="failure-to-create-an-index-with-the-same-name-as-an-already-existing-index" class="discrete">Failure to create an index with the same name as an already existing index</h4>
+<div class="paragraph">
+<p>Create a named index on the property <code>numberOfPages</code> on nodes with the <code>Book</code> label, when an index with the given name already exists.
+The index type of the existing index does not matter.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Creating an index with a duplicated name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX indexOnBooks FOR (book:Book) ON (book.numberOfPages)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the index cannot be created because there already exists an index with the given name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists an index called 'indexOnBooks'.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using <code>IF NOT EXISTS</code> when creating the index would result in no error and would not create a new index.</p>
+</div>
+<h4 id="failure-to-create-an-index-when-a-constraint-already-exists" class="discrete">Failure to create an index when a constraint already exists</h4>
+<div class="paragraph">
+<p>Create an index on the property <code>isbn</code> on nodes with the <code>Book</code> label, when an index-backed constraint already exists on that schema.
+This is only relevant for range indexes.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Creating a range index on same schema as existing index-backed constraint</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX bookIsbnIndex FOR (book:Book) ON (book.isbn)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the index can not be created because an index-backed constraint already exists on that label and property combination.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There is a uniqueness constraint on (:Book {isbn}), so an index is already created that matches this.</code></pre>
+</div>
+</div>
+<h4 id="failure-to-create-an-index-with-the-same-name-as-an-already-existing-constraint" class="discrete">Failure to create an index with the same name as an already existing constraint</h4>
+<div class="paragraph">
+<p>Create a named index on the property <code>numberOfPages</code> on nodes with the <code>Book</code> label, when a constraint with the given name already exists.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Creating an index with same name as an existing constraint</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX bookRecommendations FOR (book:Book) ON (book.recommendations)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the index can not be created because there already exists a constraint with the given name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists a constraint called 'bookRecommendations'.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="list-indexes"><a class="anchor" href="#list-indexes"></a>SHOW INDEXES</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Listing indexes can be done with <code>SHOW INDEXES</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Listing indexes requires <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>SHOW INDEX</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<h3 id="listing-indexes-examples" class="discrete">Examples</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#listing-all-indexes">Listing all indexes</a></p>
+</li>
+<li>
+<p><a href="#listing-specific-columns">Listing specific columns</a></p>
+</li>
+<li>
+<p><a href="#listing-indexes-with-filtering">Listing indexes with filtering</a></p>
+</li>
+</ul>
+</div>
+<h4 id="listing-all-indexes" class="discrete">Listing all indexes</h4>
+<div class="paragraph">
+<p>To list all indexes with the default output columns, the <code>SHOW INDEXES</code> command can be used.
+If all columns are required, use <code>SHOW INDEXES YIELD *</code>.</p>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Showing all indexes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW INDEXES</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                              | state    | populationPercent | type     | entityType     | labelsOrTypes | properties         | indexProvider      | owningConstraint | lastRead                 | readCount |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3  | "composite_range_node_index_name" | "ONLINE" | 100.0             | "RANGE"  | "NODE"         | ["Person"]    | ["age", "country"] | "range-1.0"        | NULL             | NULL                     | 0         |
+| 4  | "composite_range_rel_index_name"  | "ONLINE" | 100.0             | "RANGE"  | "RELATIONSHIP" | ["PURCHASED"] | ["date", "amount"] | "range-1.0"        | NULL             | 2023-03-13T11:41:44.537Z | 1         |
+| 16 | "example_index"                   | "ONLINE" | 100.0             | "RANGE"  | "NODE"         | ["Book"]      | ["title"]          | "range-1.0"        | NULL             | 2023-04-10T15:41:44.537Z | 2         |
+| 17 | "indexOnBooks"                    | "ONLINE" | 100.0             | "TEXT"   | "NODE"         | ["Label1"]    | ["prop1"]          | "text-2.0"         | NULL             | NULL                     | 0         |
+| 14 | "node_label_lookup_index"         | "ONLINE" | 100.0             | "LOOKUP" | "NODE"         | NULL          | NULL               | "token-lookup-1.0" | NULL             | 2023-04-13T08:11:15.537Z | 10        |
+| 10 | "node_point_index_name"           | "ONLINE" | 100.0             | "POINT"  | "NODE"         | ["Person"]    | ["sublocation"]    | "point-1.0"        | NULL             | 2023-04-05T16:21:44.692Z | 1         |
+| 1  | "node_range_index_name"           | "ONLINE" | 100.0             | "RANGE"  | "NODE"         | ["Person"]    | ["surname"]        | "range-1.0"        | NULL             | 2022-12-30T02:01:44.537Z | 6         |
+| 6  | "node_text_index_nickname"        | "ONLINE" | 100.0             | "TEXT"   | "NODE"         | ["Person"]    | ["nickname"]       | "text-2.0"         | NULL             | 2023-04-13T11:41:44.537Z | 2         |
+| 12 | "point_index_param"               | "ONLINE" | 100.0             | "POINT"  | "RELATIONSHIP" | ["STREET"]    | ["coordinate"]     | "point-1.0"        | NULL             | NULL                     | 0         |
+| 13 | "point_index_with_config"         | "ONLINE" | 100.0             | "POINT"  | "NODE"         | ["Label"]     | ["prop2"]          | "point-1.0"        | NULL             | NULL                     | 0         |
+| 5  | "range_index_param"               | "ONLINE" | 100.0             | "RANGE"  | "NODE"         | ["Person"]    | ["firstname"]      | "range-1.0"        | NULL             | 2023-12-13T08:23:53.338Z | 2         |
+| 11 | "rel_point_index_name"            | "ONLINE" | 100.0             | "POINT"  | "RELATIONSHIP" | ["STREET"]    | ["intersection"]   | "point-1.0"        | NULL             | 2023-03-03T13:37:42.537Z | 2         |
+| 2  | "rel_range_index_name"            | "ONLINE" | 100.0             | "RANGE"  | "RELATIONSHIP" | ["KNOWS"]     | ["since"]          | "range-1.0"        | NULL             | 2023-04-12T10:41:44.692Z | 5         |
+| 7  | "rel_text_index_name"             | "ONLINE" | 100.0             | "TEXT"   | "RELATIONSHIP" | ["KNOWS"]     | ["interest"]       | "text-2.0"         | NULL             | 2023-04-01T10:40:44.537Z | 3         |
+| 15 | "rel_type_lookup_index"           | "ONLINE" | 100.0             | "LOOKUP" | "RELATIONSHIP" | NULL          | NULL               | "token-lookup-1.0" | NULL             | 2023-04-12T21:41:44.537Z | 7         |
+| 8  | "text_index_param"                | "ONLINE" | 100.0             | "TEXT"   | "NODE"         | ["Person"]    | ["favoriteColor"]  | "text-2.0"         | NULL             | NULL                     | 0         |
+| 18 | "uniqueBookIsbn"                  | "ONLINE" | 100.0             | "RANGE"  | "NODE"         | ["Book"]      | ["isbn"]           | "range-1.0"        | "uniqueBookIsbn" | 2023-04-13T11:41:44.692Z | 6         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+18 rows</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the output columns from <code>SHOW INDEXES</code> is the name of the index.
+This can be used to drop the index with the <a href="#drop-an-index"><code>DROP INDEX</code> command</a>.</p>
+</div>
+<h4 id="listing-specific-columns" class="discrete">Listing specific columns</h4>
+<div class="paragraph">
+<p>It is possible to return only specific columns of the available indexes using the <code>YIELD</code> clause:</p>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Returning specific columns for all indexes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW INDEXES
+YIELD name, type, indexProvider AS provider, options, createStatement
+RETURN name, type, provider, options.indexConfig AS config, createStatement</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| name                              | type     | provider           | config                                                                                                                                                                                                                                                                                                                                                                                                                     | createStatement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| "composite_range_node_index_name" | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE RANGE INDEX `composite_range_node_index_name` FOR (n:`Person`) ON (n.`age`, n.`country`)"                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| "composite_range_rel_index_name"  | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE RANGE INDEX `composite_range_rel_index_name` FOR ()-[r:`PURCHASED`]-() ON (r.`date`, r.`amount`)"                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| "example_index"                   | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE RANGE INDEX `example_index` FOR (n:`Book`) ON (n.`title`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| "indexOnBooks"                    | "TEXT"   | "text-2.0"         | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE TEXT INDEX `indexOnBooks` FOR (n:`Label1`) ON (n.`prop1`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| "index_343aff4e"                  | "LOOKUP" | "token-lookup-1.0" | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE LOOKUP INDEX `index_343aff4e` FOR (n) ON EACH labels(n)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| "index_f7700477"                  | "LOOKUP" | "token-lookup-1.0" | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE LOOKUP INDEX `index_f7700477` FOR ()-[r]-() ON EACH type(r)"                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| "node_point_index_name"           | "POINT"  | "point-1.0"        | {`spatial.cartesian.min`: [-1000000.0, -1000000.0], `spatial.wgs-84.min`: [-180.0, -90.0], `spatial.wgs-84.max`: [180.0, 90.0], `spatial.cartesian.max`: [1000000.0, 1000000.0], `spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0], `spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0], `spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0], `spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0]} | "CREATE POINT INDEX `node_point_index_name` FOR (n:`Person`) ON (n.`sublocation`) OPTIONS {indexConfig: {`spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0],`spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0],`spatial.cartesian.max`: [1000000.0, 1000000.0],`spatial.cartesian.min`: [-1000000.0, -1000000.0],`spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0],`spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0],`spatial.wgs-84.max`: [180.0, 90.0],`spatial.wgs-84.min`: [-180.0, -90.0]}}"       |
+| "node_range_index"                | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE RANGE INDEX `node_range_index` FOR (n:`Person`) ON (n.`surname`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| "node_text_index_nickname"        | "TEXT"   | "text-2.0"         | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE TEXT INDEX `node_text_index_nickname` FOR (n:`Person`) ON (n.`nickname`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| "point_index_with_config"         | "POINT"  | "point-1.0"        | {`spatial.cartesian.min`: [-100.0, -100.0], `spatial.wgs-84.min`: [-180.0, -90.0], `spatial.wgs-84.max`: [180.0, 90.0], `spatial.cartesian.max`: [100.0, 100.0], `spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0], `spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0], `spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0], `spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0]}                 | "CREATE POINT INDEX `point_index_with_config` FOR (n:`Label`) ON (n.`prop2`) OPTIONS {indexConfig: {`spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0],`spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0],`spatial.cartesian.max`: [100.0, 100.0],`spatial.cartesian.min`: [-100.0, -100.0],`spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0],`spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0],`spatial.wgs-84.max`: [180.0, 90.0],`spatial.wgs-84.min`: [-180.0, -90.0]}}"                            |
+| "rel_point_index_name"            | "POINT"  | "point-1.0"        | {`spatial.cartesian.min`: [-1000000.0, -1000000.0], `spatial.wgs-84.min`: [-180.0, -90.0], `spatial.wgs-84.max`: [180.0, 90.0], `spatial.cartesian.max`: [1000000.0, 1000000.0], `spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0], `spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0], `spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0], `spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0]} | "CREATE POINT INDEX `rel_point_index_name` FOR ()-[r:`STREET`]-() ON (r.`intersection`) OPTIONS {indexConfig: {`spatial.cartesian-3d.max`: [1000000.0, 1000000.0, 1000000.0],`spatial.cartesian-3d.min`: [-1000000.0, -1000000.0, -1000000.0],`spatial.cartesian.max`: [1000000.0, 1000000.0],`spatial.cartesian.min`: [-1000000.0, -1000000.0],`spatial.wgs-84-3d.max`: [180.0, 90.0, 1000000.0],`spatial.wgs-84-3d.min`: [-180.0, -90.0, -1000000.0],`spatial.wgs-84.max`: [180.0, 90.0],`spatial.wgs-84.min`: [-180.0, -90.0]}}" |
+| "rel_range_index_name"            | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE RANGE INDEX `rel_range_index_name` FOR ()-[r:`KNOWS`]-() ON (r.`since`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| "rel_text_index_name"             | "TEXT"   | "text-2.0"         | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE TEXT INDEX `rel_text_index_name` FOR ()-[r:`KNOWS`]-() ON (r.`interest`)"                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| "uniqueBookIsbn"                  | "RANGE"  | "range-1.0"        | {}                                                                                                                                                                                                                                                                                                                                                                                                                         | "CREATE CONSTRAINT `uniqueBookIsbn` FOR (n:`Book`) REQUIRE (n.`isbn`) IS UNIQUE"                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that <code>YIELD</code> is mandatory if the <code>RETURN</code> clause is used.
+<code>RETURN</code> is not, however, mandatory when the YIELD clause is used.</p>
+</div>
+<h4 id="listing-indexes-with-filtering" class="discrete">Listing indexes with filtering</h4>
+<div class="paragraph">
+<p>The <code>SHOW INDEX</code> command can be filtered in various ways.</p>
+</div>
+<div class="paragraph">
+<p>For example, to show only range indexes, use <code>SHOW RANGE INDEXES</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another more flexible way of filtering the output is to use the <code>WHERE</code> clause.
+An example is to only show indexes not belonging to constraints.</p>
+</div>
+<div class="paragraph">
+<p>To show only range indexes that does not belong to a constraint we can combine the filtering versions.</p>
+</div>
+<div class="listingblock test-result-skip">
+<div class="title">Showing range indexes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW RANGE INDEXES WHERE owningConstraint IS NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                              | state    | populationPercent | type    | entityType     | labelsOrTypes | properties         | indexProvider | owningConstraint | lastRead                 | readCount |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3  | "composite_range_node_index_name" | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Person"]    | ["age", "country"] | "range-1.0"   | NULL             | NULL                     | 0         |
+| 4  | "composite_range_rel_index_name"  | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["PURCHASED"] | ["date", "amount"] | "range-1.0"   | NULL             | 2023-03-13T11:41:44.537Z | 1         |
+| 16 | "example_index"                   | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Book"]      | ["title"]          | "range-1.0"   | NULL             | 2023-04-10T15:41:44.537Z | 2         |
+| 1  | "node_range_index_name"           | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Person"]    | ["surname"]        | "range-1.0"   | NULL             | 2022-12-30T02:01:44.537Z | 6         |
+| 5  | "range_index_param"               | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Person"]    | ["firstname"]      | "range-1.0"   | NULL             | 2023-12-13T08:23:53.338Z | 2         |
+| 2  | "rel_range_index_name"            | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["KNOWS"]     | ["since"]          | "range-1.0"   | NULL             | 2023-04-12T10:41:44.692Z | 5         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+6 rows</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will only return the default output columns.</p>
+</div>
+<div class="paragraph">
+<p>To get all columns, use:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">SHOW RANGE INDEXES YIELD * WHERE owningConstraint IS NULL</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-indexes-result-columns"><a class="anchor" href="#listing-indexes-result-columns"></a>Result columns for listing indexes</h3>
+<div class="paragraph">
+<p>The below table contains the full information about all columns returned by the <code>SHOW INDEXES YIELD *</code> command:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. List indexes output</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The id of the index. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTEGER</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the index (explicitly set by the user or automatically assigned). <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current state of the index. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>populationPercent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">% of index population. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FLOAT</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The IndexType of this index (<code>FULLTEXT</code>, <code>LOOKUP</code>, <code>POINT</code>, <code>RANGE</code>, or <code>TEXT</code>). <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>entityType</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of entities this index represents (nodes or relationship). <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>labelsOrTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The labels or relationship types of this index. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LIST&lt;STRING&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>properties</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The properties of this index. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LIST&lt;STRING&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>indexProvider</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The index provider for this index. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>owningConstraint</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the constraint the index is associated with or <code>null</code> if the index is not associated with any constraint. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastRead</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The last time the index was used for reading.
+Returns <code>null</code> if the index has not been read since <code>trackedSince</code>, or if the statistics are not tracked.
+<span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ZONED DATETIME</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>readCount</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The number of read queries that have been issued to this index since <code>trackedSince</code>, or <code>null</code> if the statistics are not tracked. <span class="label label--default-output">Default Output</span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTEGER</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>trackedSince</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time when usage statistics tracking started for this index, or <code>null</code> if the statistics are not tracked.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ZONED DATETIME</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>options</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information retrieved from the <code>OPTIONS</code> map about the provider and configuration settings for an index.
+If neither is specified when creating the index, this column will return the default values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MAP</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>failureMessage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The failure description of a failed index.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createStatement</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Statement used to create the index.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="drop-indexes"><a class="anchor" href="#drop-indexes"></a>DROP INDEX</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An index can be dropped (removed) using the name with the <code>DROP INDEX index_name</code> command.
+This command can drop indexes of any type, except those backing constraints.
+The name of the index can be found using the <a href="#list-indexes"><code>SHOW INDEXES</code> command</a>, given in the output column <code>name</code>.</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">DROP INDEX index_name [IF EXISTS]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>DROP INDEX</code> command is optionally idempotent.
+This means that its default behavior is to throw an error if an attempt is made to drop the same index twice.
+With <code>IF EXISTS</code>, no error is thrown and nothing happens should the index not exist.
+Instead, an informational notification is returned detailing that the index does not exist.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Dropping an index requires <a href="https://neo4j.com/docs/operations-manual/current/database-administration/authentication-authorization/database-administration/#access-control-database-administration-index">the <code>DROP INDEX</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<h3 id="drop-indexes-examples" class="discrete">Examples</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#drop-an-index">Drop an index</a></p>
+</li>
+<li>
+<p><a href="#drop-an-index-by-param">Drop an index using a parameter</a></p>
+</li>
+<li>
+<p><a href="#drop-index-backing-constraint">Failure to drop an index backing a constraint</a></p>
+</li>
+<li>
+<p><a href="#drop-a-non-existing-index">Drop a non-existing index</a></p>
+</li>
+</ul>
+</div>
+<h4 id="drop-an-index" class="discrete">Drop an index</h4>
+<div class="paragraph">
+<p>The following statement will attempt to drop the index named <code>example_index</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Dropping an index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX example_index</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an index with that name exists it is removed, if not the command fails.</p>
+</div>
+<h4 id="drop-an-index-by-param" class="discrete">Drop an index using a parameter</h4>
+<div class="paragraph">
+<p>The following statement will attempt to drop the index named <code>range_index_param</code> using a parameter for the index name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "range_index_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Dropping an index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX $name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an index with that name exists it is removed, if not the command fails.</p>
+</div>
+<h4 id="drop-index-backing-constraint" class="discrete">Failure to drop an index backing a constraint</h4>
+<div class="paragraph">
+<p>It is not possible to drop indexes that back constraints.</p>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Dropping an index backing a constraint</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX uniqueBookIsbn</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Unable to drop index: Index belongs to constraint: `uniqueBookIsbn`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dropping the index-backed constraint will also remove the backing index.
+For more information, see <a href="../../../constraints/managing-constraints/#drop-constraint" class="xref page">Drop a constraint by name</a>.</p>
+</div>
+<h4 id="drop-a-non-existing-index" class="discrete">Drop a non-existing index</h4>
+<div class="paragraph">
+<p>If it is uncertain if an index exists and you want to drop it if it does but not get an error should it not, use <code>IF EXISTS</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following statement will attempt to drop the index named <code>missing_index_name</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Dropping an index with <code>IF EXISTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX missing_index_name IF EXISTS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If an index with that name exists it is removed, if not the command does nothing and an informational notification is instead returned.</p>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`DROP INDEX missing_index_name IF EXISTS` has no effect. `missing_index_name` does not exist.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../overview/" aria-label="Previous: Search-performance indexes">Search-performance indexes</a></span>
+
+  <span class="next"><a href="../using-indexes/" aria-label="Next: The impact of indexes on query performance">The impact of indexes on query performance</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+    <div class="toc-ad">
+
+    <a href="https://graphacademy.neo4j.com/courses/cypher-indexes-constraints/?ref=docs-ad-cypher-indexes-constraints" target="_blank">
+
+        <i class="toc-ad-icon toc-ad-icon--mortarboard"></i>
+
+
+        <h2 class="toc-ad-title">
+            Cypher Indexes and Constraints
+        </h2>
+
+        <p class="toc-ad-description">Learn how to make your graph more performant with Cypher constraints and indexes</p>
+
+        <div class="toc-ad-underline button">
+            Take course
+        </div>
+    </a>
+</div>
+  </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../../assets/js/site.js"></script>
+  <script async src="../../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

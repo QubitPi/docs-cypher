@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>The impact of indexes on query performance - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/using-indexes/">
+
+    <link rel="prev" href="../managing-indexes/">
+    <link rel="next" href="../index-hints/">
+
+      <meta name="description" content="Information about how search-performance indexes impact query performance in Neo4j.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The impact of indexes on query performance - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="Information about how search-performance indexes impact query performance in Neo4j." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/using-indexes/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../clauses/">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../clauses/with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../patterns/">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../patterns/reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="./">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../../">
+        Indexes
+    </a></li>
+    <li><a href="../overview/">
+        Search-performance indexes
+    </a></li>
+    <li><a href="./">
+        The impact of indexes on query performance
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">The impact of indexes on query performance</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Search-performance indexes enable quicker and more efficient pattern matching by solving a particular combination of node label/relationship type and property predicate.
+They are used automatically by the Cypher<sup>&reg;</sup> planner in <code>MATCH</code> clauses, usually at the start of a query, to scan the graph for the most appropriate place to start the pattern-matching process.</p>
+</div>
+<div class="paragraph">
+<p>By examining <a href="../../../planning-and-tuning/execution-plans/" class="xref page">query execution plans</a>, this page will explain the scenarios in which the various search-performance indexes are used to improve the performance of Cypher queries.
+It will also provide some general heuristics for when to use indexes, and advice about how to avoid over-indexing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="graph-example"><a class="anchor" href="#graph-example"></a>Example graph</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The examples on this page center around finding routes and points of interest in Central Park, New York, based on data provided by <a href="https://www.openstreetmap.org/">OpenStreetMap</a>.
+The data model contains two node labels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>OSMNode</code> (Open Street Map Node)&#8201;&#8212;&#8201;a junction node with geo-spatial properties linking together routes from specific points.</p>
+</li>
+<li>
+<p><code>PointOfInterest</code> &#8201;&#8212;&#8201;a subcategory of <code>OSMNode</code>.
+In addition to geospatial properties, these nodes also contain information about specific points of interest, such as statues, baseball courts, etc. in Central Park.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The data model also contains one relationship type: <code>ROUTE</code>, which specifies the distance in meters between the nodes in the graph.</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../../_images/using-indexes-example-graph.svg" alt="Graph showing two nodes being connected via a route relationship" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>In total, the graph contains 69165 nodes (of which 188 have the label <code>PointOfInterest</code>) and 152077 <code>ROUTE</code> relationships.</p>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, download and import the <a href="https://github.com/neo4j-graph-examples/openstreetmap/raw/main/data/openstreetmap-50.dump">5.0 dump file</a> to an empty Neo4j database.
+Dump files can be imported for both <a href="https://neo4j.com/docs/aura/auradb/importing/import-database/">Aura</a> and <a href="https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump/">on-prem</a> instances.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="token-lookup-indexes"><a class="anchor" href="#token-lookup-indexes"></a>Token lookup indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Two token lookup indexes are present by default when creating a Neo4j database.
+They store copies of all node labels and relationship types in the database and only solve node label and relationship type predicates.</p>
+</div>
+<div class="paragraph">
+<p>The following query <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>, which counts the number of <code>PointOfInterest</code> nodes that have value <code>baseball</code> for the <code>type</code> property, will access the node label lookup index:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.type = 'baseball'
+RETURN count(n)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">count(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>26</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details                | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | `count(n)`             |              1 |    1 |       0 |              0 |                    0/0 |     0.075 | In Pipeline 1       |
+| |                 +----+------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS `count(n)` |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter           |  2 | n.type = $autostring_0 |              9 |   26 |     376 |                |                        |           |                     |
+| |                 +----+------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeByLabelScan  |  3 | n:PointOfInterest      |            188 |  188 |     189 |            376 |                  116/0 |     8.228 | Fused in Pipeline 0 |
++-------------------+----+------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 565, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following details are worth highlighting in the execution plan:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-node-by-label-scan" class="xref page"><code>NodeByLabelScan</code></a> operator accesses the node label lookup index and produces 188 rows, representing the 188 nodes with the <code>PointOfInterest</code> label in the database.</p>
+</li>
+<li>
+<p>The query required 565 DB hits (each <a href="../../../planning-and-tuning/operators/#operators-dbhits" class="xref page">DB hit</a> represents an instance when the query required access to the database).</p>
+</li>
+<li>
+<p>The query completed in just over 8 milliseconds.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Token lookup indexes are very important because they improve the performance of Cypher queries and the population of other indexes, and <strong>deleting them will lead to severe performance degradation</strong>.
+In the above example, had a node label lookup index not existed, the <code>NodeByLabelScan</code> operator would have been replaced with <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-all-nodes-scan" class="xref page"><code>AllNodesScan</code></a>, which would have had to read all 69165 nodes from the database before returning a result.</p>
+</div>
+<div class="paragraph">
+<p>While useful, token lookup indexes will rarely be sufficient for applications querying databases of a non-trivial size because they cannot solve any property-related predicates.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the predicates supported by token lookup indexes, see <a href="../managing-indexes/#lookup-index-supported-predicates" class="xref page">Create, show, and delete indexes &#8594; Token lookup indexes: supported predicates</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="range-indexes"><a class="anchor" href="#range-indexes"></a>Range indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Range indexes solve most types of predicates, and they are used for efficiently retrieving data based on a range of values.
+They are particularly useful for dealing with properties that have ordered, comparable values.</p>
+</div>
+<div class="paragraph">
+<p>The following example first creates a relevant index on the type property for <code>PointOfInterest</code> nodes, and then runs the above query again, counting the number of <code>PointOfInterest</code> nodes that have a <code>baseball</code> <code>type</code> value:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a range index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX range_index_type FOR (n:PointOfInterest) ON (n.type)</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If no index type is specified when creating an index, Neo4j will default to create a range index.
+For more information about creating indexes, see <a href="../managing-indexes/#create-indexes" class="xref page">Create, show, and delete indexes &#8594; CREATE INDEX</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Rerun query after the creation of a relevant index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.type = 'baseball'
+RETURN count(n)</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details                                                        | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | `count(n)`                                                     |              1 |    1 |       0 |              0 |                    0/0 |     0.057 | In Pipeline 1       |
+| |                 +----+----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS `count(n)`                                         |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+----------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek    |  2 | RANGE INDEX n:PointOfInterest(type) WHERE type = $autostring_0 |              5 |   26 |      27 |            376 |                    0/1 |     0.945 | Fused in Pipeline 0 |
++-------------------+----+----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 27, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Comparing this query plan with the plan generated before the creation of a relevant range index, the following has changed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NodeByLabelScan has been replaced by <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-node-index-seek" class="xref page">NodeIndexSeek</a>.
+This only produces 26 rows (representing the 26 <code>PointOfInterest</code> nodes in the database with a <code>type</code> value set to <code>baseball</code>).</p>
+</li>
+<li>
+<p>The query now only requires 27 DB hits.</p>
+</li>
+<li>
+<p>The query completed in less than 1 millisecond - almost 8 times faster than it took the query to complete without a range index.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These points all illustrate the fundamental point that search-performance indexes can significantly improve the performance of Cypher queries.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the predicates supported by range indexes, see <a href="../managing-indexes/#range-indexes-supported-predicates" class="xref page">Create, show, and delete indexes &#8594; Range indexes: supported predicates</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="text-indexes"><a class="anchor" href="#text-indexes"></a>Text indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Text indexes are used for queries filtering on <code>STRING</code> properties.</p>
+</div>
+<div class="paragraph">
+<p>If there exists both a range and a text index on a given <code>STRING</code> property, the text index will only be used by the Cypher planner for queries filtering with the <code>CONTAINS</code> or <code>ENDS WITH</code> operators.
+In all other cases, the range index will be used.</p>
+</div>
+<div class="paragraph">
+<p>To show this behavior, it is necessary to create a text index and a range index on the same property:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a text index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE TEXT INDEX text_index_name FOR (n:PointOfInterest) ON (n.name)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create a range index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX range_index_name FOR (n:PointOfInterest) ON (n.name)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following query filters all <code>PointOfInterest</code> nodes with a <code>name</code> property that <code>CONTAINS</code> <code>'William'</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query filtering on what a <code>STRING</code> property <code>CONTAINS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name CONTAINS 'William'
+RETURN n.name AS name, n.type AS type</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"William Shakespeare"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"William Tecumseh Sherman"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"equestrian statue"</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator               | Id | Details                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults        |  0 | name, type                                                           |              1 |    2 |       0 |              0 |                        |           |                     |
+| |                      +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection            |  1 | cache[n.name] AS name, cache[n.type] AS type                         |              1 |    2 |       0 |                |                        |           |                     |
+| |                      +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +CacheProperties       |  2 | cache[n.type], cache[n.name]                                         |              1 |    2 |       6 |                |                        |           |                     |
+| |                      +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexContainsScan |  3 | TEXT INDEX n:PointOfInterest(name) WHERE name CONTAINS $autostring_0 |              1 |    2 |       3 |            248 |                    4/0 |    53.297 | Fused in Pipeline 0 |
++------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 9, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plan shows that the query uses the text index to find all relevant nodes.
+If, however, the query is changed to use the <code>STARTS WITH</code> operator instead of <code>CONTAINS</code>, the query will use the range index instead:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query filtering on what a <code>STRING</code> property <code>STARTS WITH</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name STARTS WITH 'William'
+RETURN n.name, n.type</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-----------------------+----+-----------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator              | Id | Details                                                                                 | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------------+----+-----------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults       |  0 | `n.name`, `n.type`                                                                      |              1 |    2 |       0 |              0 |                        |           |                     |
+| |                     +----+-----------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection           |  1 | cache[n.name] AS `n.name`, n.type AS `n.type`                                           |              1 |    2 |       4 |                |                        |           |                     |
+| |                     +----+-----------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeekByRange |  2 | RANGE INDEX n:PointOfInterest(name) WHERE name STARTS WITH $autostring_0, cache[n.name] |              1 |    2 |       3 |            248 |                    4/1 |     1.276 | Fused in Pipeline 0 |
++-----------------------+----+-----------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 7, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is because range indexes store <code>STRING</code> values alphabetically.
+This means that, while they are very efficient for retrieving exact matches of a <code>STRING</code>, or for prefix matching, they are less efficient for suffix and contains searches, where they have to scan all relevant properties to filter any matches.
+Text indexes do not store <code>STRING</code> properties alphabetically, and are instead optimized for suffix and contains searches (for more information, see <a href="../managing-indexes/#text-indexes-trigram-indexes" class="xref page">Create a text index &#8594; Trigram indexing</a>).
+That said, if no range index had been present on the name property, the previous query would still have been able to utilize the text index.
+It would have done so less efficiently than a range index, but it still would have been useful.</p>
+</div>
+<div class="paragraph">
+<p>For more information about range index ordering, see the section on <a href="#range-index-backed-order-by">Range index-backed ORDER BY</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Text indexes are only used for exact query matches. To perform approximate matches (including, for example, variations and typos), and to compute a similarity score between <code>STRING</code> values, use semantic <a href="../../semantic-indexes/full-text-indexes/" class="xref page">full-text indexes</a> instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information about the predicates supported by text indexes, see <a href="../managing-indexes/#text-indexes-supported-predicates" class="xref page">Create, show, and delete indexes &#8594; Text indexes: supported predicates</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="text-index-dictionary-variables"><a class="anchor" href="#text-index-dictionary-variables"></a>Ensuring text index use</h3>
+<div class="paragraph">
+<p>In order for the planner to use text indexes, it must be able to confirm that the properties included in the predicate are <code>STRING</code> values.
+This is not possible when accessing property values within nodes or relationships, or values within a <code>MAP</code>, since Cypher does not store the type information of these values.
+To ensure text indexes are used in these cases, the <a href="../../../functions/string/#functions-tostring" class="xref page"><code>toString</code></a> function should be used.</p>
+</div>
+<div class="listingblock">
+<div class="title">Text index not used</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">WITH {name: 'William Shakespeare'} AS varName
+MERGE (:PointOfInterest {name:varName.name})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Text index used</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">WITH {name: 'William Shakespeare'} AS varName
+MERGE (:PointOfInterest {name: toString(varName.name)})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For information about how to ensure the use of text indexes when predicates may contain <code>null</code> values, see <a href="#indexes/search-performance-indexes/using-indexes/indexes-and-null">Indexes and <code>null</code> values</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="text-index-string-size"><a class="anchor" href="#text-index-string-size"></a>Text indexes and <code>STRING</code> sizes</h3>
+<div class="paragraph">
+<p>The size of the indexed <code>STRING</code> properties is also relevant to the planner’s selection between range and text indexes.</p>
+</div>
+<div class="paragraph">
+<p>Range indexes have a maximum key size limit of around 8 kb.
+This means that range indexes cannot be used to index <code>STRING</code> values larger than 8 kb.
+Text indexes, on the other hand, have a maximum key size limit of around 32 kb.
+As a result, they can be used to index <code>STRING</code> values up to that size.</p>
+</div>
+<div class="paragraph">
+<p>For information about calculating the size of indexes, see <a href="https://neo4j.com/developer/kb/a-method-to-calculate-index-size/">Neo4j Knowledge Base &#8594; A method to calculate the size of an index in Neo4j</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="point-indexes"><a class="anchor" href="#point-indexes"></a>Point indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Point indexes solve predicates operating on spatial <a href="../../../values-and-types/spatial/#spatial-values-point-type" class="xref page"><code>POINT</code></a> values.
+Point indexes are optimized for queries filtering for the <a href="../../../functions/spatial/#functions-distance" class="xref page">distance</a> between property values, or for property values within a <a href="../../../functions/spatial/#functions-withinBBox" class="xref page">bounding box</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following example creates a point index which is then used in a query returning the <code>name</code> and <code>type</code> of all <code>PointOfInterest</code> nodes within a set bounding box:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a point index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX point_index_location FOR (n:PointOfInterest) ON (n.location)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query using the <code>point.withinBBox()</code> function</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE point.withinBBox(
+  n.location,
+  point({srid: 4326, x: -73.9723702, y: 40.7697989}),
+  point({srid: 4326, x: -73.9725659, y: 40.770193}))
+RETURN n.name AS name, n.type AS type</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+<th class="tableblock halign-left valign-top">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Heckscher Ballfield 3"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"baseball"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Heckscher Ballfield 4"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"baseball"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Heckscher Ballfield 1"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"baseball"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Robert Burns"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Christopher Columbus"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Walter Scott"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"William Shakespeare"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Balto"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"statue"</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 8</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-----------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator              | Id | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults       |  0 | `n.name`, `n.type`                                                                                   |              4 |    8 |       0 |              0 |                        |           |                     |
+| |                     +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection           |  1 | cache[n.name] AS `n.name`, cache[n.type] AS `n.type`                                                 |              4 |    8 |       0 |                |                        |           |                     |
+| |                     +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +CacheProperties      |  2 | cache[n.type], cache[n.name]                                                                         |              4 |    8 |      24 |                |                        |           |                     |
+| |                     +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeekByRange |  3 | POINT INDEX n:PointOfInterest(location) WHERE point.withinBBox(location, point($autoint_0, $autodoub |              4 |    8 |      10 |            248 |                  302/0 |     2.619 | Fused in Pipeline 0 |
+|                       |    | le_1, $autodouble_2), point($autoint_3, $autodouble_4, $autodouble_5))                               |                |      |         |                |                        |           |                     |
++-----------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 34, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information about the predicates supported by point indexes, see <a href="../managing-indexes/#point-indexes-supported-predicates" class="xref page">Create, show, and delete indexes &#8594; Point indexes: supported predicates</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="point-index-config-settings"><a class="anchor" href="#point-index-config-settings"></a>Point index configuration settings</h3>
+<div class="paragraph">
+<p>It is possible to <a href="../managing-indexes/#create-a-point-index-specifying-the-index-configuration" class="xref page">configure point indexes</a> to only index properties within a specific geographical area.
+This is done by specifying either of the following settings in the <code>indexConfig</code> part of the <code>OPTIONS</code> clause when creating a point index:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spatial.cartesian.min</code> and <code>spatial.cartesian.max</code>: used for <a href="../../../values-and-types/spatial/#spatial-values-crs-cartesian" class="xref page">Cartesian 2D</a> coordinate systems.</p>
+</li>
+<li>
+<p><code>spatial.cartesian-3d.min</code> and <code>spatial.cartesian-3d.max</code>: used for <a href="../../../values-and-types/spatial/#spatial-values-crs-cartesian" class="xref page">Cartesian 3D</a> coordinate systems.</p>
+</li>
+<li>
+<p><code>spatial.wgs-84.min</code> and <code>spatial.wgs-84.max</code>: used for <a href="../../../values-and-types/spatial/#spatial-values-crs-geographic" class="xref page">WGS-84 2D</a> coordinate systems.</p>
+</li>
+<li>
+<p><code>spatial.wgs-84-3d.min</code> and <code>spatial.wgs-84-3d.max</code>: used for <a href="../../../values-and-types/spatial/#spatial-values-crs-geographic" class="xref page">WGS-84 3D</a> coordinate systems.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>min</code> and <code>max</code> of each setting define the minimum and maximum bounds for the spatial data in each coordinate system.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following index would only store <code>OSMNodes</code> in the northern half of Central Park:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create point index with configuration settings</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE POINT INDEX central_park_north
+FOR (o:OSMNode) ON (o.location)
+OPTIONS {
+  indexConfig: {
+    `spatial.wgs-84.min`:[40.7714, -73.9743],
+    `spatial.wgs-84.max`:[40.7855, -73.9583]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Restricting the geographic area of a point index improves the performance of spatial queries.
+This is especially beneficial when dealing with complex, large geo-spatial data, and when spatial queries are a significant part of an application’s functionality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="composite-indexes"><a class="anchor" href="#composite-indexes"></a>Composite indexes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is possible to create a range index on a single property or multiple properties (text and point indexes are single-property only).
+The latter are called composite indexes and can be useful if queries against a database frequently filter on <em>all</em> the properties indexed by the composite index.</p>
+</div>
+<div class="paragraph">
+<p>The following example first creates a composite index on <code>PointOfInterest</code> nodes for the properties <code>name</code> and <code>type</code>, and then queries the graph using the <a href="../../../patterns/reference/#shortest-functions" class="xref page">shortestPath function</a> to determine both the path length (in terms of traversed relationships in the graph) and geographical distance between the <code>Zoo School</code> and its nearest <code>tennis pitch</code> (note that there are 32 unique <code>PointOfInterest</code> <code>tennis pitch</code> nodes in the graph):</p>
+</div>
+<div class="listingblock">
+<div class="title">Create composite index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX composite_index FOR (n:PointOfInterest) ON (n.name, n.type)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query with a filter on both properties indexed by the composite index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (tennisPitch: PointOfInterest {name: 'pitch', type: 'tennis'})
+WITH tennisPitch
+MATCH path = shortestPath((tennisPitch)-[:ROUTE*]-(:PointOfInterest {name: 'Zoo School'}))
+WITH path, relationships(path) AS relationships
+ORDER BY length(path) ASC
+LIMIT 1
+UNWIND relationships AS rel
+RETURN length(path) AS pathLength, sum(rel.distance) AS geographicalDistance</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">pathLength</th>
+<th class="tableblock halign-left valign-top">geographicalDistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>25</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2410.4495689536334</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+---------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------------+---------------------+
+| Operator            | Id | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Ordered by       | Pipeline            |
++---------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------------+---------------------+
+| +ProduceResults     |  0 | pathLength, geographicalDistance                                                                     |              1 |    1 |       0 |              0 |                    0/0 |     0.065 |                  |                     |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+                  |                     |
+| +OrderedAggregation |  1 | length(path) AS pathLength, sum(rel.distance) AS geographicalDistance                                |              1 |    1 |      50 |           5140 |                   31/0 |     4.097 | pathLength ASC   | In Pipeline 3       |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------------+---------------------+
+| +Unwind             |  2 | relationships AS rel                                                                                 |              1 |   25 |       0 |           3112 |                    0/0 |     0.180 |                  | In Pipeline 2       |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+                  +---------------------+
+| +Projection         |  3 | relationships(path) AS relationships                                                                 |              0 |    1 |       0 |                |                    0/0 |     0.050 |                  |                     |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+                  |                     |
+| +Top                |  4 | `length(path)` ASC LIMIT 1                                                                           |              0 |    1 |       0 |          57472 |                    0/0 |     1.763 | length(path) ASC | In Pipeline 1       |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------------+---------------------+
+| +Projection         |  5 | length(path) AS `length(path)`                                                                       |              0 |   32 |       0 |                |                        |           |                  |                     |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------------+                     |
+| +ShortestPath       |  6 | path = (tennisPitch)-[anon_0:ROUTE*]-(anon_1)                                                        |              0 |   32 |  181451 |          70080 |                        |           |                  |                     |
+| |                   +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           +------------------+                     |
+| +MultiNodeIndexSeek |  7 | RANGE INDEX tennisPitch:PointOfInterest(name, type) WHERE name = $autostring_0 AND type = $autostrin |              0 |   31 |       0 |            376 |               131215/1 |   188.723 |                  | Fused in Pipeline 0 |
+|                     |    | g_1, RANGE INDEX anon_1:PointOfInterest(name) WHERE name = $autostring_2                             |                |      |         |                |                        |           |                  |                     |
++---------------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+------------------+---------------------+
+
+Total database accesses: 181501, total allocated memory: 116040</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The query plan shows the composite index being used, and not the previously created <a href="#range-indexes">range index</a> on the <code>type</code> property.
+This is because the composite index solves the queried predicate simultaneously, while the single propertied index would only be able to solve part of the predicate.</p>
+</div>
+<div class="sect2">
+<h3 id="composite-indexes-property-order"><a class="anchor" href="#composite-indexes-property-order"></a>Property order and query planning</h3>
+<div class="paragraph">
+<p>Like single-property range indexes, composite indexes support all predicates:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Equality check: <code>n.prop = value</code></p>
+</li>
+<li>
+<p>List membership check: <code>n.prop IN [value, &#8230;&#8203;]</code></p>
+</li>
+<li>
+<p>Existence check: <code>n.prop IS NOT NULL</code></p>
+</li>
+<li>
+<p>Range search: <code>n.prop &gt; value</code></p>
+</li>
+<li>
+<p>Prefix search: <code>n.prop STARTS WITH value</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, the order in which properties are defined when creating a composite index impacts how the planner will use the index to solve predicates.
+For example, a composite index on <code>(n.prop1, n.prop2, n.prop3)</code> will generate a different query plan than a composite index created on <code>(n.prop3, n.prop2, n.prop1)</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows how composite indexes on the same properties defined in a different order will generate different execution plans:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a composite index on three properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX composite_2 FOR (n:PointOfInterest) ON (n.lat, n.name, n.type)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the order in which the properties are defined when creating the index, with <code>lat</code> first, <code>name</code> second, and <code>type</code> last.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query with a filter on the three indexed properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.lat = 40.7697989 AND n.name STARTS WITH 'William' AND n.type IS NOT NULL
+RETURN n.name AS name</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"William Shakespeare"</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-----------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Id | Details                                                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults |  0 | name                                                                                                 |              0 |    0 |       0 |              0 |                        |           |                     |
+| |               +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection     |  1 | cache[n.name] AS name                                                                                |              0 |    0 |       0 |                |                        |           |                     |
+| |               +----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  |  2 | RANGE INDEX n:PointOfInterest(lat, name, type) WHERE lat = $autodouble_0 AND name STARTS WITH $autos |              0 |    0 |       1 |            248 |                    0/2 |     1.276 | Fused in Pipeline 0 |
+|                 |    | tring_1 AND type IS NOT NULL, cache[n.name]                                                          |                |      |         |                |                        |           |                     |
++-----------------+----+------------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 1, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plan shows the recently created composite index is used.
+It also shows that the predicates are filtered as specified in the query (i.e. an equality check on the <code>lat</code> property, a prefix search on the <code>name</code> property, and an existence check on the <code>type</code> property).</p>
+</div>
+<div class="paragraph">
+<p>However, if the order of the properties is altered when creating the index, a different query plan will be generated.
+To demonstrate this behavior, it is first necessary to drop the recently created <code>composite_2</code> index and create a new composite index on the same properties defined in a different order:</p>
+</div>
+<div class="listingblock">
+<div class="title">Drop index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX composite_2</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create a composite index on same three properties defined in a different order</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX composite_3 FOR (n:PointOfInterest) ON (n.name, n.type, n.lat)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the order of the properties has changed: the <code>name</code> property is now the first property defined in the composite index, and the <code>lat</code> property is indexed last.</p>
+</div>
+<div class="listingblock">
+<div class="title">Rerun query after the creation of a different composite index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.lat = 40.769798 AND n.name STARTS WITH 'William' AND n.type IS NOT NULL
+RETURN n.name AS name</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-----------------+----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator        | Id | Details                                                                                             | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-----------------+----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults |  0 | name                                                                                                |              0 |    0 |       0 |              0 |                        |           |                     |
+| |               +----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection     |  1 | cache[n.name] AS name                                                                               |              0 |    0 |       0 |                |                        |           |                     |
+| |               +----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter         |  2 | cache[n.lat] = $autodouble_0                                                                        |              0 |    0 |       0 |                |                        |           |                     |
+| |               +----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexSeek  |  3 | RANGE INDEX n:PointOfInterest(name, type, lat) WHERE name STARTS WITH $autostring_1 AND type IS NOT |              0 |    2 |       3 |            248 |                    2/0 |     0.807 | Fused in Pipeline 0 |
+|                 |    | NULL AND lat IS NOT NULL, cache[n.name], cache[n.lat]                                               |                |      |         |                |                        |           |                     |
++-----------------+----+-----------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 3, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan now shows that, while a prefix search has been used to solve the <code>name</code> property predicate, the <code>lat</code> property predicate is no longer solved with an equality check, but rather with an existence check and an explicit <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-filter" class="xref page">filter</a> operation afterward.
+Note that if the <code>composite_2</code> index had not been dropped before the query was rerun, the planner would have used it instead of the <code>composite_3</code> index.</p>
+</div>
+<div class="paragraph">
+<p>This is because, when using composite indexes, any predicate after a prefix search will automatically be planned as an existence check predicate.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="composite-index-rules"><a class="anchor" href="#composite-index-rules"></a>Composite index rules</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If a query contains an equality check or a list membership check predicates, they need to be for the first properties defined when creating the composite index.</p>
+</li>
+<li>
+<p>Queries utilizing a composite index can contain up to one range search or prefix search predicate.</p>
+</li>
+<li>
+<p>There can be any number of existence check predicates.</p>
+</li>
+<li>
+<p>Any predicates following a prefix search or an existence check will be planned as existence checks.</p>
+</li>
+<li>
+<p>Suffix and substring search predicates can utilize composite indexes.
+However, they are always planned as an existence check and any subsequent query predicates will accordingly also be planned as such.
+Note that if these predicates are used, and a text index also exists on any of the indexed (<code>STRING</code>) properties, the planner will use the text index instead of a composite index.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These rules can be important when creating composite indexes, as some checks are more efficient than others.
+For instance, it is generally more efficient for the planner to perform an equality check on a property than an existence check.
+Depending on the queries and the application, it may, therefore, be cost-effective to consider the order in which properties are defined when creating a composite index.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, it bears repeating that composite indexes can only be used if a predicate filters on all the properties indexed by the composite index, and that composite indexes can only be created for range indexes.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="range-index-backed-order-by"><a class="anchor" href="#range-index-backed-order-by"></a>Range index-backed ORDER BY</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Range indexes store properties in ascending order (alphabetically for <code>STRING</code> values, and numerically for <code>FLOAT</code> and <code>INTEGER</code> values).
+This can have important implications for query performance, because the planner may be able to take advantage of a pre-existing index order and therefore not have to perform an expensive <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-sort" class="xref page"><code>Sort</code></a> operation later in the query.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate this behavior, the following query will filter out any <code>ROUTE</code> relationships with a <code>distance</code> property less than <code>30</code>, and return the <code>distance</code> property of the matched relationships in ascending numerical order using the <a href="../../../clauses/order-by/" class="xref page">ORDER BY</a> clause.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query to return order of results without a relevant index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH ()-[r:ROUTE]-()
+WHERE r.distance &lt; 30
+RETURN r.distance AS distance
+ORDER BY distance</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+---------------------------------+----+--------------------------------+----------------+-------+---------+----------------+------------------------+-----------+--------------+---------------------+
+| Operator                        | Id | Details                        | Estimated Rows | Rows  | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Ordered by   | Pipeline            |
++---------------------------------+----+--------------------------------+----------------+-------+---------+----------------+------------------------+-----------+--------------+---------------------+
+| +ProduceResults                 |  0 | distance                       |           3013 |  6744 |       0 |              0 |                    0/0 |    14.397 |              |                     |
+| |                               +----+--------------------------------+----------------+-------+---------+----------------+------------------------+-----------+              |                     |
+| +Sort                           |  1 | distance ASC                   |           3013 |  6744 |       0 |         540472 |                    0/0 |    16.844 | distance ASC | In Pipeline 1       |
+| |                               +----+--------------------------------+----------------+-------+---------+----------------+------------------------+-----------+--------------+---------------------+
+| +Projection                     |  2 | cache[r.distance] AS distance  |           3013 |  6744 |       0 |                |                        |           |              |                     |
+| |                               +----+--------------------------------+----------------+-------+---------+----------------+                        |           +--------------+                     |
+| +Filter                         |  3 | cache[r.distance] &lt; $autoint_0 |           3013 |  6744 |   10041 |                |                        |           |              |                     |
+| |                               +----+--------------------------------+----------------+-------+---------+----------------+                        |           +--------------+                     |
+| +UndirectedRelationshipTypeScan |  4 | (anon_0)-[r:ROUTE]-(anon_1)    |          10044 | 10041 |    5023 |            376 |                   84/0 |    22.397 |              | Fused in Pipeline 0 |
++---------------------------------+----+--------------------------------+----------------+-------+---------+----------------+------------------------+-----------+--------------+---------------------+
+
+Total database accesses: 15064, total allocated memory: 540808</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan shows two important points about indexes and the ordering of results:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Only the relationship type lookup index was used in this query (accessed by the <a href="../../../planning-and-tuning/operators/operators-detail/#query-plan-undirected-relationship-type-scan" class="xref page"><code>UndirectedRelationshipTypeScan</code></a> operator, which fetches all relationships and their start and end nodes from the relationship type index).</p>
+</li>
+<li>
+<p>As a result, the planner has to perform a <code>Sort</code> operation to order the results by the distance property (in this case, it required 540472 bytes of memory).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To see how an index could impact the query plan, it is first necessary to create a range index on the <code>distance</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a range index on a relationship type property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX range_index_relationships FOR ()-[r:ROUTE]-() ON (r.distance)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Re-running the query, it now generates a different plan:</p>
+</div>
+<div class="listingblock">
+<div class="title">Rerun query after the creation of a relevant index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH ()-[r:ROUTE]-()
+WHERE r.distance &lt; 30
+RETURN r.distance AS distance
+ORDER BY distance</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-----------------------------------------+----+--------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+----------------+---------------------+
+| Operator                                | Id | Details                                                                                          | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Ordered by     | Pipeline            |
++-----------------------------------------+----+--------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+----------------+---------------------+
+| +ProduceResults                         |  0 | distance                                                                                         |            301 | 6744 |       0 |              0 |                        |           |                |                     |
+| |                                       +----+--------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                |                     |
+| +Projection                             |  1 | cache[r.distance] AS distance                                                                    |            301 | 6744 |       0 |                |                        |           | distance ASC   |                     |
+| |                                       +----+--------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+                        |           +----------------+                     |
+| +UndirectedRelationshipIndexSeekByRange |  2 | RANGE INDEX (anon_0)-[r:ROUTE(distance)]-(anon_1) WHERE distance &lt; $autoint_0, cache[r.distance] |            301 | 6744 |    3373 |            248 |                2361/10 |    76.542 | r.distance ASC | Fused in Pipeline 0 |
++-----------------------------------------+----+--------------------------------------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+----------------+---------------------+
+
+Total database accesses: 3373, total allocated memory: 312</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Focusing on the same two points in the plan, the following has changed:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The recently created range index on the relationship type property <code>distance</code> is now used.</p>
+</li>
+<li>
+<p>As a result, the plan no longer needs to perform a <code>Sort</code> operation to order the results (because the <code>distance</code> property is already ordered by the index), and this substantially reduces the cost of the query (the total memory cost of the query is now 312 bytes).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the same way, the order of a range index can significantly improve queries using the <a href="../../../functions/aggregating/#functions-max" class="xref page"><code>max()</code></a> and <a href="../../../functions/aggregating/#functions-min" class="xref page"><code>min()</code></a> functions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="multiple-index-use"><a class="anchor" href="#multiple-index-use"></a>Multiple index use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Indexes are principally used to find the starting points of patterns.
+If a query contains one <code>MATCH</code> clause, then, as a general rule, only the index that best suits the predicates in that clause will be selected by the planner.
+If, however, a query contains two or more <code>MATCH</code> clauses, it is possible to use several indexes.</p>
+</div>
+<div class="paragraph">
+<p>To show multiple indexes used in one query, the following example will first create a new index on the <code>lon</code> (longitude) property for <code>PointOfInterest</code> nodes.
+It then uses a query that finds all <code>PointOfInterest</code> nodes north of the <code>William Shakespeare</code> statue in Central Park.</p>
+</div>
+<div class="listingblock">
+<div class="title">Create a range index on the longitude property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX range_index_lon FOR (n:PointOfInterest) ON (n.lon)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query to find all <code>PointOfInterest</code> nodes north of the <code>William Shakespeare</code> statue</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (ws:PointOfInterest {name:'William Shakespeare'})
+WITH ws
+MATCH (poi:PointOfInterest)
+WHERE poi.lon &gt; ws.lon
+RETURN poi.name AS name</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------------+----+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                | Id | Details                                                         | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------------+----+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults         |  0 | name                                                            |              9 |  143 |       0 |              0 |                        |           |                     |
+| |                       +----+-----------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Projection             |  1 | poi.name AS name                                                |              9 |  143 |     283 |                |                        |           |                     |
+| |                       +----+-----------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Apply                  |  2 |                                                                 |              9 |  143 |       0 |                |                        |           |                     |
+| |\                      +----+-----------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| | +NodeIndexSeekByRange |  3 | RANGE INDEX poi:PointOfInterest(lon) WHERE lon &gt; ws.lon         |              9 |  143 |     146 |           2280 |                  233/1 |     1.460 | Fused in Pipeline 1 |
+| |                       +----+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +NodeIndexSeek          |  4 | RANGE INDEX ws:PointOfInterest(name) WHERE name = $autostring_0 |              2 |    1 |       2 |            376 |                    1/0 |     0.635 | In Pipeline 0       |
++-------------------------+----+-----------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 431, total allocated memory: 2616</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan shows that a separate index is used to improve the performance of each <code>MATCH</code> clause (first by utilizing the index on the <code>name</code> property to find the <code>William Shakespeare</code> node, and then by using the index on the <code>lon</code> property to find all nodes with a greater longitudinal value).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="indexes-and-null"><a class="anchor" href="#indexes-and-null"></a>Indexes and <code>null</code> values</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Neo4j indexes do not store <a href="../../../values-and-types/working-with-null/" class="xref page"><code>null</code></a> values.
+This means that the planner must be able to rule out the possibility of <code>null</code> values in order for queries to use an index.</p>
+</div>
+<div class="paragraph">
+<p>The following query demonstrates the incompatibility between <code>null</code> values and indexes by counting all <code>PointOfInterest</code> nodes with an unset <code>name</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query to count nodes with a <code>null</code> <code>name</code> value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS NULL
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows:1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+-------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details           | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+-------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | nodes             |              1 |    1 |       0 |              0 |                    0/0 |     0.012 | In Pipeline 1       |
+| |                 +----+-------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS nodes |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+-------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter           |  2 | n.name IS NULL    |            141 |    3 |     373 |                |                        |           |                     |
+| |                 +----+-------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeByLabelScan  |  3 | n:PointOfInterest |            188 |  188 |     189 |            376 |                  115/0 |     0.769 | Fused in Pipeline 0 |
++-------------------+----+-------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 562, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plan shows that neither of the two available indexes (range and text) on the <code>name</code> property is used to solve the predicate.</p>
+</div>
+<div class="paragraph">
+<p>However, if a query predicate is added which is able to exclude the presence of any <code>null</code> values, then an index can be used.
+The following query shows this by adding a substring predicate to the above query:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query to count nodes with a <code>null</code> <code>name</code> value or nodes with a <code>name</code> property containing <code>'William'</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS NULL OR n.name CONTAINS 'William'
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The query result now includes both the three nodes with an unset <code>name</code> value found in the previous query and the two nodes with a <code>name</code> value containing <code>William</code> (<code>William Shakespeare</code> and <code>William Tecumseh Sherman</code>).</p>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+--------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator                 | Id | Details                                                              | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++--------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults          |  0 | nodes                                                                |              1 |    1 |       0 |              0 |                    0/0 |     0.010 | In Pipeline 3       |
+| |                        +----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation        |  1 | count(n) AS nodes                                                    |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                        +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Distinct                |  2 | n                                                                    |            141 |    5 |       0 |            352 |                        |           |                     |
+| |                        +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Union                   |  3 |                                                                      |            142 |    5 |       0 |            352 |                    0/0 |     0.220 | Fused in Pipeline 2 |
+| |\                       +----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| | +NodeIndexContainsScan |  4 | TEXT INDEX n:PointOfInterest(name) WHERE name CONTAINS $autostring_0 |              1 |    2 |       3 |            376 |                    4/0 |     0.456 | In Pipeline 1       |
+| |                        +----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +Filter                  |  5 | n.name IS NULL                                                       |            141 |    3 |     373 |                |                        |           |                     |
+| |                        +----+----------------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeByLabelScan         |  6 | n:PointOfInterest                                                    |            188 |  188 |     189 |            376 |                  115/0 |     0.673 | Fused in Pipeline 0 |
++--------------------------+----+----------------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 565, total allocated memory: 1352</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan shows that an index is only used to solve the second part of the <code>WHERE</code> clause, which excludes the presence of <code>null</code> values.</p>
+</div>
+<div class="paragraph">
+<p>The presence of <code>null</code> values within an indexed property therefore does not negate the use of an index.
+Index use is only negated if the planner is unable to rule out the inclusion of any unset properties in the matching process.</p>
+</div>
+<div class="paragraph">
+<p>The presence of <code>null</code> values may not be known in advance, and this can cause unexpected instances of indexes not being used. There are, however, a few strategies to ensure that an index will be used.</p>
+</div>
+<div class="sect2">
+<h3 id="property-existence-check"><a class="anchor" href="#property-existence-check"></a>Property existence checks</h3>
+<div class="paragraph">
+<p>One method to ensure an index is used is to explicitly filter out any <code>null</code> values by appending <code>IS NOT NULL</code> to the queried property.
+The following example uses the same query as above but exchanges <code>IS NULL</code> with <code>IS NOT NULL</code> in the <code>WHERE</code> clause:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query to count <code>PointOfInterest</code> nodes without a <code>null</code> <code>name</code> value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS NOT NULL
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>185</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details                                                    | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | nodes                                                      |              1 |    1 |       0 |              0 |                    0/0 |     0.013 | In Pipeline 1       |
+| |                 +----+------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS nodes                                          |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+------------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexScan    |  2 | RANGE INDEX n:PointOfInterest(name) WHERE name IS NOT NULL |            185 |  185 |     186 |            376 |                    0/1 |     0.691 | Fused in Pipeline 0 |
++-------------------+----+------------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 186, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan shows that the previously created range index on the <code>name</code> property is now used to solve the predicate.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="text-indexes-type-predicates"><a class="anchor" href="#text-indexes-type-predicates"></a>Text indexes and type predicate expressions</h3>
+<div class="paragraph">
+<p>Text indexes require that predicates only include <code>STRING</code> properties.</p>
+</div>
+<div class="paragraph">
+<p>To use text indexes in situations where any of the queried properties may be either of an incompatible type or <code>null</code> rather than a <code>STRING</code> value, add the type predicate expression <code>IS :: STRING NOT NULL</code> (or its alias, <code>IS :: STRING!</code>) to the query.
+This will enforce both the existence of a property and its <code>STRING</code> type, discarding any rows where the property is missing or not of type <code>STRING</code>, and thereby enable the use of text indexes.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the <code>WHERE</code> predicate in the previous query is altered to instead append <code>IS :: STRING NOT NULL</code>, then the text index rather than the range index is used (range indexes do not support type predicate expressions):</p>
+</div>
+<div class="listingblock">
+<div class="title">Query using a type predicate expression</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS :: STRING NOT NULL
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details                                                   | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | nodes                                                     |              1 |    1 |       0 |              0 |                    0/0 |     0.009 | In Pipeline 1       |
+| |                 +----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS nodes                                         |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+-----------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexScan    |  2 | TEXT INDEX n:PointOfInterest(name) WHERE name IS NOT NULL |            185 |  185 |     186 |            376 |                    0/0 |     0.343 | Fused in Pipeline 0 |
++-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 186, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="../../../functions/string/#functions-tostring" class="xref page"><code>toString</code></a> function can also be used to convert an expression to <code>STRING</code> values, and thereby help the planner to select a text index.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="type-constraints"><a class="anchor" href="#type-constraints"></a>Property type constraints</h3>
+<div class="paragraph">
+<p>For indexes that are compatible only with specific types (i.e. text and point indexes), the Cypher planner needs to deduce that a predicate will evaluate to <code>null</code> for non-compatible values in order to use the index.
+If a predicate is not explicitly defined as the required type (<code>STRING</code> or <code>POINT</code>), this can lead to situations where a text or point index is not used.</p>
+</div>
+<div class="paragraph">
+<p>Since <a href="../../../constraints/managing-constraints/#create-property-type-constraints" class="xref page">property type constraints</a> guarantee that a property is always of the same type, they can be used to extend the scenarios in which text and point indexes are compatible with a predicate.</p>
+</div>
+<div class="paragraph">
+<p>To show this, the following example will first drop the existing range index on the <code>name</code> property (this is necessary because property type constraints only extend the compatibility of type-specific indexes - range indexes are not limited by a value type).
+It will then run the same query with a <code>WHERE</code> predicate on the <code>name</code> property (for which there exists a previously created text index) before and after creating a property type constraint, and compare the resulting execution plans.</p>
+</div>
+<div class="listingblock">
+<div class="title">Drop range index</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP INDEX range_index_name</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Query to count <code>PointOfInterest</code> nodes without a <code>null</code> <code>name</code> value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS NOT NULL
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+--------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details            | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+--------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | nodes              |              1 |    1 |       0 |              0 |                    0/0 |     0.012 | In Pipeline 1       |
+| |                 +----+--------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS nodes  |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+--------------------+----------------+------+---------+----------------+                        |           |                     |
+| +Filter           |  2 | n.name IS NOT NULL |            187 |  185 |     373 |                |                        |           |                     |
+| |                 +----+--------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeByLabelScan  |  3 | n:PointOfInterest  |            188 |  188 |     189 |            376 |                  259/0 |     0.363 | Fused in Pipeline 0 |
++-------------------+----+--------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 562, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This plan shows that the available text index on the <code>name</code> property was not used to solve the predicate.
+This is because the planner was not able to deduce that all <code>name</code> values are of type <code>STRING</code>.</p>
+</div>
+<div class="paragraph">
+<p>However, if a property type constraint is created to ensure that all <code>name</code> properties have a <code>STRING</code> value, a different query plan is generated.</p>
+</div>
+<div class="listingblock">
+<div class="title">Create <code>STRING</code> type constraint on the <code>name</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT type_constraint
+FOR (n:PointOfInterest) REQUIRE n.name IS :: STRING</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Rerun the query after the creation of a property type constraint</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">PROFILE
+MATCH (n:PointOfInterest)
+WHERE n.name IS NOT NULL
+RETURN count(n) AS nodes</code></pre>
+</div>
+</div>
+<div class="listingblock queryplan">
+<div class="title">Execution plan</div>
+<div class="content">
+<pre>+-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| Operator          | Id | Details                                                   | Estimated Rows | Rows | DB Hits | Memory (Bytes) | Page Cache Hits/Misses | Time (ms) | Pipeline            |
++-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +ProduceResults   |  0 | nodes                                                     |              1 |    1 |       0 |              0 |                    0/0 |     0.013 | In Pipeline 1       |
+| |                 +----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+| +EagerAggregation |  1 | count(n) AS nodes                                         |              1 |    1 |       0 |             32 |                        |           |                     |
+| |                 +----+-----------------------------------------------------------+----------------+------+---------+----------------+                        |           |                     |
+| +NodeIndexScan    |  2 | TEXT INDEX n:PointOfInterest(name) WHERE name IS NOT NULL |            187 |  185 |     186 |            376 |                    0/0 |     0.328 | Fused in Pipeline 0 |
++-------------------+----+-----------------------------------------------------------+----------------+------+---------+----------------+------------------------+-----------+---------------------+
+
+Total database accesses: 186, total allocated memory: 472</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because of the property type constraint on the <code>name</code> property, the planner is now able to deduce that all <code>name</code> properties are of type <code>STRING</code>, and therefore use the available text index.</p>
+</div>
+<div class="paragraph">
+<p>Point indexes can be extended in the same way if a property type constraint is created to ensure that all properties are <code>POINT</code> values.</p>
+</div>
+<div class="paragraph">
+<p>Note that <a href="../../../constraints/managing-constraints/#create-property-existence-constraints" class="xref page">property existence constraints</a> do not currently leverage index use in the same way.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Heuristics"><a class="anchor" href="#Heuristics"></a>Heuristics: deciding what to index</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While it is impossible to give exact directions on when a search-performance index might be beneficial for a particular use-case, the following points provide some useful heuristics for when creating an index might improve query performance:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Frequent property-based queries</strong>: if some properties are used frequently for filtering or matching, consider creating an index on them.</p>
+</li>
+<li>
+<p><strong>Performance optimization</strong>: If certain queries are too slow, re-examine the properties that are filtered on, and consider creating indexes for those properties that may cause bottlenecking.</p>
+</li>
+<li>
+<p><strong>High cardinality properties</strong>: high cardinality properties have many distinct values (e.g., unique identifiers, timestamps, or user names). Queries that seek to retrieve such properties will likely benefit from indexing.</p>
+</li>
+<li>
+<p><strong>Complex queries</strong>: if queries traverse complex paths in a graph (for example, by involving multiple hops and several layers of filtering), adding indexes to the properties used in those queries can improve query performance.</p>
+</li>
+<li>
+<p><strong>Experiment and test</strong>: It is good practice to experiment with different indexes and query patterns, and to measure the performance of critical queries with and without different indexes to evaluate their effectiveness.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="over-indexing"><a class="anchor" href="#over-indexing"></a>Over-indexing: considerations and solutions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Search-performance indexes can significantly improve query performance.
+They should, however, be used judiciously for the following reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Storage space</strong>: because each index is a secondary copy of the data in the primary database, each index essentially doubles the amount of storage space occupied by the indexed data.</p>
+</li>
+<li>
+<p><strong>Slower write queries</strong>: adding indexes impacts the performance of write queries.
+This is because indexes are updated with each write query. If a system needs to perform a lot of writes quickly, it may be counterproductive to have an index on the affected data entities.
+In other words, if write performance is crucial for a particular use case, it may be beneficial to only add indexes where they are necessary for read purposes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As a result of these two points, deciding what to index (and what not to index) is an important and non-trivial task.</p>
+</div>
+<div class="sect2">
+<h3 id="tracking-index-use"><a class="anchor" href="#tracking-index-use"></a>Keeping track of index-use: <code>lastRead</code>, <code>readCount</code>, and <code>trackedSince</code></h3>
+<div class="paragraph">
+<p>Unused indexes take up unnecessary storage space and it may be beneficial to remove them.
+Knowing which indexes are most frequently used by the queries against a database can, however, be difficult.
+There are three relevant columns returned by the <a href="../managing-indexes/#list-indexes" class="xref page"><code>SHOW INDEX</code></a> command which can help identify redundant indexes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>lastRead</code></strong>: returns the last time the index was used for reading.</p>
+</li>
+<li>
+<p><strong><code>readCount</code></strong>: returns the number of read queries issued to the index.</p>
+</li>
+<li>
+<p><strong><code>trackedSince</code></strong> returns the time when usage statistics tracking started for an index.<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To return these values (along with other relevant information) for the indexes in a database, run the following query:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query to identify redundant indexes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW INDEX YIELD name, type, entityType, labelsOrTypes, properties, lastRead, readCount, trackedSince</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If any unused indexes are identified, it may be beneficial to delete them using the <a href="../managing-indexes/#drop-indexes" class="xref page"><code>DROP INDEX</code></a> command.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Range indexes can be used to solve most predicates.</p>
+</li>
+<li>
+<p>Text indexes are used over range indexes for <code>CONTAINS</code> and <code>ENDS WITH</code> predicates on <code>STRING</code> properties, and if the queried <code>STRING</code> properties exceed 8 kb.</p>
+</li>
+<li>
+<p>Point indexes are used when queries filter on distances and bounding boxes.</p>
+</li>
+<li>
+<p>Token lookup indexes only solve node label and relationship type predicates.
+They do not solve any property predicates.
+Deleting token lookup indexes will negatively impact query performance.</p>
+</li>
+<li>
+<p>Composite indexes are only used if the query filters on all properties indexed by the composite index.
+The order in which the properties are defined when creating a composite index impacts how the planner solves query predicates.</p>
+</li>
+<li>
+<p>Queries ordering results using <code>ORDER BY</code> can leverage the pre-existing order in range indexes and thereby improve query performance.</p>
+</li>
+<li>
+<p>A Cypher query can use several indexes if the planner deems it beneficial to the performance of a query.</p>
+</li>
+<li>
+<p>Neo4j indexes do not store <code>null</code> values, and the planner must be able to rule out any entities with properties containing <code>null</code> values in order to use an index.
+There are several strategies to ensure the use of indexes.</p>
+</li>
+<li>
+<p>The columns <code>lastRead</code>, <code>readCount</code>, and <code>trackedSince</code> returned by the <code>SHOW INDEX</code> command can be used to identify redundant indexes that take up unnecessary space.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. The example queries on this page are prepended with <code>PROFILE</code>. This both runs the query and generates its execution plan. For more information, see <a href="../../../planning-and-tuning/#profile-and-explain" class="xref page">Execution plans and query tuning &#8594; Note on PROFILE and EXPLAIN</a>.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. The <code>trackedSince</code> column is not part of the default return columns for the <code>SHOW INDEXES</code> command. To return this and all other non-default columns, use <code>SHOW INDEXES YIELD *</code>. For more information, see <a href="../managing-indexes/#listing-indexes-result-columns" class="xref page">Create, show, and delete indexes &#8594; Result columns for listing indexes</a>.
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../managing-indexes/" aria-label="Previous: Create, show, and delete indexes">Create, show, and delete indexes</a></span>
+
+  <span class="next"><a href="../index-hints/" aria-label="Next: Index hints for the Cypher planner">Index hints for the Cypher planner</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+    <div class="toc-ad">
+
+    <a href="https://graphacademy.neo4j.com/courses/cypher-indexes-constraints/?ref=docs-ad-cypher-indexes-constraints" target="_blank">
+
+        <i class="toc-ad-icon toc-ad-icon--mortarboard"></i>
+
+
+        <h2 class="toc-ad-title">
+            Cypher Indexes and Constraints
+        </h2>
+
+        <p class="toc-ad-description">Learn how to make your graph more performant with Cypher constraints and indexes</p>
+
+        <div class="toc-ad-underline button">
+            Take course
+        </div>
+    </a>
+</div>
+  </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../../assets/js/site.js"></script>
+  <script async src="../../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

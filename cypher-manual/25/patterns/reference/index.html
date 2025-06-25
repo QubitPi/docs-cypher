@@ -1,0 +1,3916 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>Syntax and semantics - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/patterns/reference/">
+
+    <link rel="prev" href="../match-modes/">
+    <link rel="next" href="../../values-and-types/">
+
+      <meta name="description" content="this section contains the reference material for graph pattern matching.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Syntax and semantics - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="this section contains the reference material for graph pattern matching." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/patterns/reference/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="./">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../indexes/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../">
+        Patterns
+    </a></li>
+    <li><a href="./">
+        Syntax and semantics
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">Syntax and semantics</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section contains reference material for looking up the syntax and semantics of specific elements of graph pattern matching.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="node-patterns"><a class="anchor" href="#node-patterns"></a>Node patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A node pattern is a pattern that matches a single node.
+It can be used on its own in a clause such as <code>MATCH</code> or <code>EXIST</code>, or form part of a <a href="#path-patterns">path pattern</a>.</p>
+</div>
+<div class="paragraph">
+<p>See also <a href="../fixed-length-patterns/#node-patterns" class="xref page">node pattern concepts</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="node-patterns-syntax"><a class="anchor" href="#node-patterns-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">nodePattern ::= "(" [ nodeVariable ] [ labelExpression ]
+    [ propertyKeyValueExpression ] [ elementPatternWhereClause] ")"
+
+elementPatternWhereClause ::= "WHERE" booleanExpression</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For rules on valid node variable names, see the <a href="../../syntax/naming/" class="xref page">Cypher<sup>&reg;</sup> naming rules</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-patterns-rules"><a class="anchor" href="#node-patterns-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="node-patterns-rules-predicates"><a class="anchor" href="#node-patterns-rules-predicates"></a>Predicates</h4>
+<div class="paragraph">
+<p>Three types of predicate can be specified inside a node pattern:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#label-expressions">label expressions</a></p>
+</li>
+<li>
+<p><a href="#property-key-value-expressions">property key-value expressions</a></p>
+</li>
+<li>
+<p><a href="../../clauses/where/" class="xref page">WHERE clauses</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The boolean expression of the <code>WHERE</code> clause can reference any variables within scope of the node pattern.
+A node variable needs to be declared in the node pattern in order to reference it in the boolean expression.</p>
+</div>
+<div class="paragraph">
+<p>If no predicates are specified, then the node pattern matches any node.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="node-patterns-rules-variable-binding"><a class="anchor" href="#node-patterns-rules-variable-binding"></a>Variable binding</h4>
+<div class="paragraph">
+<p>If a variable has not been declared elsewhere in the query, it will become bound to nodes when the matching of its containing path pattern is executed.
+If it has been bound in a previous clause, then no new nodes will be bound to the variable; any previously bound nodes that do not match in the current path pattern will lead to the match being eliminated from the results.
+See the section on <a href="../../clauses/clause-composition/" class="xref page">clause composition</a> for more details on the passing of results between clauses.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-patterns-examples"><a class="anchor" href="#node-patterns-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Matches all nodes with the label <code>A</code> and binds them to the variable <code>n</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n:A)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all nodes with the label <code>B</code> and a property <code>departs</code> with the <code>time</code> value <code>11:11</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:B { departs: time('11:11') })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all nodes with the property <code>departs</code> with a value equal to the current time plus 30 minutes:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n WHERE n.departs &gt; time() + duration('PT30M'))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="relationship-patterns"><a class="anchor" href="#relationship-patterns"></a>Relationship patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A relationship pattern is a pattern that matches a single relationship.
+It can only be used with node patterns on either side of it.</p>
+</div>
+<div class="paragraph">
+<p>A relationship pattern followed immediately by a quantifier is an abbreviated <a href="#quantified-path-patterns">quantified path pattern</a> called a <a href="#quantified-relationships">quantified relationship</a>.</p>
+</div>
+<div class="paragraph">
+<p>See also <a href="../fixed-length-patterns/#relationship-patterns" class="xref page">relationship pattern concepts</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="relationship-patterns-syntax"><a class="anchor" href="#relationship-patterns-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">relationshipPattern ::= fullPattern | abbreviatedRelationship
+
+fullPattern ::=
+    "&lt;-[" patternFiller "]-"
+  | "-[" patternFiller "]-&gt;"
+  | "-[" patternFiller "]-"
+
+abbreviatedRelationship ::= "&lt;--" | "--" | "--&gt;"
+
+patternFiller ::= [ relationshipVariable ] [ typeExpression ]
+    [ propertyKeyValueExpression ] [ elementPatternWhereClause ]
+
+elementPatternWhereClause ::= "WHERE" booleanExpression</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the syntax for type expressions in relationship patterns is the same as for label expressions in node patterns (although unlike node labels, relationships must have exactly one type).</p>
+</div>
+<div class="paragraph">
+<p>For rules on valid relationship variable names, see the <a href="../../syntax/naming/" class="xref page">Cypher naming rules</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="relationship-patterns-rules"><a class="anchor" href="#relationship-patterns-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="relationship-patterns-rules-predicates"><a class="anchor" href="#relationship-patterns-rules-predicates"></a>Predicates</h4>
+<div class="paragraph">
+<p>The following three types of predicate can be specified in the pattern filler of a full relationship pattern (i.e. a pattern with the square brackets):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#label-expressions">label expressions</a></p>
+</li>
+<li>
+<p><a href="#property-key-value-expressions">property key-value expressions</a></p>
+</li>
+<li>
+<p><a href="../../clauses/where/" class="xref page">WHERE clauses</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A fourth type of predicate specifies the directionality of the relationship with respect to the overall path pattern, using the less-than or greater-than symbols to form arrows (<code>&lt;</code> and <code>&gt;</code>).
+If a relationship pattern has no arrows, it will match relationships of any direction.</p>
+</div>
+<div class="paragraph">
+<p>The boolean expression of the <code>WHERE</code> clause can reference any variables within scope of the relationship pattern.
+A relationship variable needs to be declared in the pattern in order to reference it in the boolean expression.</p>
+</div>
+<div class="paragraph">
+<p>If no predicates are specified then the pattern matches all relationships.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="relationship-patterns-rules-variable-binding"><a class="anchor" href="#relationship-patterns-rules-variable-binding"></a>Variable binding</h4>
+<div class="paragraph">
+<p>If the variable has not been declared elsewhere in the query, it will become bound to relationships when the matching of its containing path pattern is executed.
+If it has been bound in a previous clause, then no new relationships will be bound to the variable; if any previously bound relationships do not match in the current path pattern, then those matches will be eliminated from the results.</p>
+</div>
+<div class="paragraph">
+<p>See the chapter on <a href="../../clauses/clause-composition/" class="xref page">clause composition</a> for more details on the passing of results between clauses.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="relationship-patterns-examples"><a class="anchor" href="#relationship-patterns-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Matches all relationships with the type <code>R</code> and binds them to the variable <code>r</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[r:R]-&gt;()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships with type <code>R</code> and property <code>distance</code> equal to <code>100</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[:R {distance: 100}]-&gt;()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships where property <code>distance</code> is between <code>10</code> and <code>100</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[r WHERE 10 &lt; r.distance &lt; 100]-&gt;()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships that connect nodes with label <code>A</code> as their source and nodes with label <code>B</code> as their target:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)--&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships that connect nodes with label <code>A</code> and nodes with label <code>B</code>, irrespective of their direction:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)--(:B)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="label-expressions"><a class="anchor" href="#label-expressions"></a>Label expressions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following applies to both the label expressions of node patterns and the type expressions of relationship patterns.</p>
+</div>
+<div class="paragraph">
+<p>A label expression is a boolean predicate composed from label names and a wildcard symbol using disjunction, conjunction, negation and grouping.
+A label expression returns true when it matches the set of labels for a node.</p>
+</div>
+<div class="paragraph">
+<p>Although relationships have a type rather than labels, the syntax for expressions matching a relationship type is identical to that of label expressions.</p>
+</div>
+<div class="sect2">
+<h3 id="label-expressions-syntax"><a class="anchor" href="#label-expressions-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">labelExpression ::= ":" labelTerm
+
+labelTerm ::=
+    labelIdentifier
+  | labelTerm "&amp;" labelTerm
+  | labelTerm "|" labelTerm
+  | "!" labelTerm
+  | "%"
+  | "(" labelTerm ")"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For valid label identifiers, see the <a href="../../syntax/naming/" class="xref page">Cypher naming rules</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="label-expressions-rules"><a class="anchor" href="#label-expressions-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The following table lists the symbols used in label expressions:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Symbol</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Precedence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>%</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Wildcard.
+Evaluates to <code>true</code> if the label set is non-empty</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>()</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Contained expression is evaluated before evaluating the outer expression the group is contained in.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1 (highest)</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>!</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Negation</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>2</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>&amp;</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Conjunction</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>3</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>&#124;</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Disjunction</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>4 (lowest)</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Associativity is left-to-right.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="label-expressions-examples"><a class="anchor" href="#label-expressions-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>In the following table, a tick is shown where the label expression matches the node with the labels shown:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top" colspan="8"><p class="tableblock"><strong>Node</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Node pattern</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:B)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:C)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A:B)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A:C)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:B:C)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A:B:C)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&amp;B)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&#124;B)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:!A)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:!!A)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&amp;!A)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&#124;!A)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:%)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:!%)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:%&#124;!%)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:%&amp;!%)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&amp;%)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:A&#124;%)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:(A&amp;B)&amp;!(B&amp;C))</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:!A&amp;%)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>As relationships have exactly one type each, this expression will never match a relationship:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">-[:A&amp;B]-&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, the following will always match a relationship:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">-[:%]-&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The use of negation can make the conjunction useful in relationship patterns.
+The following matches relationships that have a type that is neither <code>A</code> nor <code>B</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">-[:!A&amp;!B]-&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="property-key-value-expressions"><a class="anchor" href="#property-key-value-expressions"></a>Property key-value expressions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="property-key-value-expressions-syntax"><a class="anchor" href="#property-key-value-expressions-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">propertyKeyValueExpression ::=
+  "{" propertyKeyValuePairList "}"
+
+propertyKeyValuePairList ::=
+  propertyKeyValuePair [ "," propertyKeyValuePair ]
+
+propertyKeyValuePair ::= propertyName ":" valueExpression</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="property-key-value-expressions-rules"><a class="anchor" href="#property-key-value-expressions-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The property key-value expression is treated as a conjunction of equalities on the properties of the element that the containing pattern matches.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following node pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">({ p: valueExp1, q: valueExp2 })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is equivalent to the following node pattern with a <code>WHERE</code> clause:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n WHERE n.p = valueExp1 AND n.q = valueExp2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value expression can be any expression as listed in the section on <a href="../../expressions/" class="xref page">expressions</a>, except for path patterns (which will throw a syntax error) and regular expressions (which will be treated as string literals).
+An empty property key-value expression matches all elements.
+Property key-value expressions can be combined with a <code>WHERE</code> clause.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="property-key-value-expressions-examples"><a class="anchor" href="#property-key-value-expressions-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Matches all nodes with property <code>p</code> = <code>10</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">({ p: 10 })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships with property <code>p</code> = <code>10</code> and <code>q</code> equal to date <code>2023-02-10</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[{ p: 10, q: date('2023-02-10') }]-()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all relationships with its property <code>p</code> equal to the property <code>p</code> of its source node:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(s)-[{ p: s.p }]-()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches all nodes with property <code>p</code> = <code>10</code> and property <code>q</code> greater than <code>100</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n { p: 10 } WHERE n.q &gt; 100)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="path-patterns"><a class="anchor" href="#path-patterns"></a>Path patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A path pattern is the top level pattern that is matched against paths in a graph.</p>
+</div>
+<div class="sect2">
+<h3 id="path-patterns-syntax"><a class="anchor" href="#path-patterns-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">pathVariableDeclaration ::= pathVariable "="
+
+pathPatternExpression ::=
+  { parenthesizedPathPatternExpression | pathPatternPhrase }
+
+parenthesizedPathPatternExpression ::=
+  "("
+     [ subpathVariableDeclaration ]
+     pathPatternExpression
+     [ parenthesizedPathPatternWhereClause ]
+  ")"
+
+subpathVariableDeclaration ::= pathVariable "="
+
+pathPatternPhrase ::= [{ simplePathPattern | quantifiedPathPattern }]+
+
+simplePathPattern ::= nodePattern
+  [ { relationshipPattern | quantifiedRelationship } nodePattern ]*
+
+parenthesizedPathPatternWhereClause ::= "WHERE" booleanExpression</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the related section for each of the syntax rules:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>shortestPathSelector</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#shortest-paths">Shortest paths</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>quantifiedPathPattern</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#quantified-path-patterns">Quantified path patterns</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>nodePattern</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#node-patterns">Node patterns</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>relationshipPattern</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#relationship-patterns">Relationship patterns</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>quantifiedRelationship</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="#quantified-relationships">Quantified relationships</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="path-patterns-rules"><a class="anchor" href="#path-patterns-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The minimum number of elements in the path pattern must be greater than zero.
+For example, a path pattern that is a quantified path pattern with a quantifier that has a lower bound of zero is not allowed:</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((n)-[r]-&gt;(m)){0,10}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A path pattern must always begin and end with a node pattern.</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n)-[r]-&gt;(m)-[s]-</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A path pattern may be composed of a concatenation of simple and quantified path patterns.
+Two simple path patterns, however, may not be placed next to each other.</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)&lt;-[s]-(b) (c)-[t]-&gt;(d)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a path pattern is matched to paths in a graph, nodes can be revisited but relationships cannot.</p>
+</div>
+<div class="paragraph">
+<p>A subpath variable (a path variable declared inside a parenthesized path pattern expression) can only be used if a <a href="#shortest-paths">shortest paths</a> mode is also specified.</p>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH SHORTEST 1 (p = (a)-[r]-&gt;+(b) WHERE length(p) &gt; 3)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (:A)-[:S]-&gt;(:B) (p = ((a)-[r]-&gt;(b))+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="#graph-patterns">graph patterns</a> for rules on declaring variables multiple times.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="path-patterns-examples"><a class="anchor" href="#path-patterns-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>A single node pattern is allowed as it has at least one element:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A simple path pattern with more than one element:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a:A)&lt;-[{p: 30}]-(b)-[t WHERE t.q &gt; 0]-&gt;(c:C)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A quantified path pattern can have a lower bound of zero in its quantifier as long as it abuts other patterns that have at least one element:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A) ((:X)-[:R]-()){0,10} (:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A quantified relationship can also have a lower bound of zero as long as the overall path pattern has at least one element:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;{0,10}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A concatenation of simple and quantified path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)&lt;-[s]-(b)-[t]-&gt;(c) ((n)-[r]-&gt;(m)){0,10} (:X)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Referencing non-local node variable in a simple path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)&lt;-[s:X WHERE a.p = s.p]-(b)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Referencing a non-local relationship variable within a quantified path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A) ((a)&lt;-[s:X WHERE a.p = s.p]-(b)){,5}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A variable that was introduced in a previous clause can be referenced as long as that variable was defined outside of a quantified path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n)
+MATCH ()-[r WHERE r.q = n.q]-() (()&lt;-[s:X WHERE n.p = s.p]-()){2,3}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Paths matched by the path pattern can be assigned to a variable:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = ()-[r WHERE r.q = n.q]-()</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantified-path-patterns"><a class="anchor" href="#quantified-path-patterns"></a>Quantified path patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A quantified path pattern represents a <a href="#path-patterns">path pattern</a> repeated a number of times in a given range.
+It is composed of a path pattern, representing the path section to be repeated, followed by a <a href="#quantifiers">quantifier</a>, constraining the number of repetitions between a lower bound and an upper bound.</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-reference.svg" alt="Diagram showing how a quantified path pattern looks in Cypher" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>For information about an alternative version of patterns for matching paths of variable length, see <a href="#variable-length-relationships">variable-length relationships</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="quantified-path-patterns-syntax"><a class="anchor" href="#quantified-path-patterns-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">quantifiedPathPattern ::=
+  parenthesizedPathPatternExpression quantifier
+
+fixedPath ::= nodePattern [ relationshipPattern nodePattern ]+</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quantified-path-patterns-rules"><a class="anchor" href="#quantified-path-patterns-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="quantified-path-pattern-rules-minimum-pattern-length"><a class="anchor" href="#quantified-path-pattern-rules-minimum-pattern-length"></a>Minimum pattern length</h4>
+<div class="paragraph">
+<p>The path pattern being quantified must have a length greater than zero.
+In other words, it must contain at least one relationship.
+A single node pattern cannot be quantified.</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((x:A)){2,4}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="quantified-path-patterns-rules-nesting"><a class="anchor" href="#quantified-path-patterns-rules-nesting"></a>Nesting of quantified path patterns</h4>
+<div class="paragraph">
+<p>The nesting of quantified path patterns is not allowed.
+For example, the following nesting of a quantified relationship in a quantified path pattern is not allowed:</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A) (()-[:R]-&gt;+()){2,3} (:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A quantified path pattern that is part of the boolean expression within a quantified path pattern would not count as nested and is permitted.</p>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((n:A)-[:R]-&gt;({p: 30}) WHERE EXISTS { (n)--&gt;+(:X) }){2,3}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="quantified-path-patterns-rules-group-variables"><a class="anchor" href="#quantified-path-patterns-rules-group-variables"></a>Group variables</h4>
+<div class="paragraph">
+<p>Variables introduced inside of a quantified path pattern are said to be exposed as <em>group variables</em> outside of the definition of the pattern.
+As a group variable, they will be bound to either a list of nodes or a list of relationships.
+By contrast, variables can be treated as singletons inside the quantified path pattern where they are declared.
+The difference can be seen in the following query:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((x)-[r]-&gt;(z WHERE z.p &gt; x.p)){2,3}
+RETURN [n in x | n.p] AS x_p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the boolean expression <code>z.p &gt; x.p</code> both <code>z</code> and <code>x</code> are singletons; in the <code>RETURN</code> clause, <code>x</code> is a group variable that can be iterated over like a list.
+Note that this means that the <code>WHERE</code> clause <code>z.p &gt; x.p</code> above needs to be inside the quantified path pattern.
+The following would throw a syntax error because it is treating <code>z</code> and <code>p</code> as singletons:</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((x)-[r]-&gt;(z)){2,3} WHERE z.p &gt; x.p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is possible, however, to position the <code>WHERE</code> clause outside of the node pattern:</p>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((x)-[r]-&gt;(z) WHERE z.p &gt; x.p){2,3}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="quantified-path-pattern-rules-matching"><a class="anchor" href="#quantified-path-pattern-rules-matching"></a>Matching</h4>
+<div class="paragraph">
+<p>The mechanics of matching a quantified path pattern against paths is best explained with an example.
+For the example, the following simple graph will be used:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-reference-example.svg" alt="Example graph for a matching of a quantified path pattern against paths" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>First, consider the following simple path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This matches three different paths in the graph above.
+The resulting bindings for <code>x</code> and <code>z</code> for each match are the following (the captions <code>n1</code> etc indicate the identity of the nodes in the diagram above):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">x</th>
+<th class="tableblock halign-left valign-top">z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n5</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If the quantifier <code>{2}</code> is affixed to the simple path pattern, the result is the following quantified path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2)){2}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is equivalent to chaining together two iterations of the pattern, where the rightmost node of the first iteration is merged with the leftmost node of the second one.
+(See <a href="#node-pattern-pairs">node pattern pairs</a> for more details.)</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2) (x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To avoid introducing <a href="#variable-length-relationships-equijoins">equijoins</a> between the two instances of <code>x</code>, and between the two instances of <code>z</code>, the variables are replaced with a set of fresh variables inside each iteration:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(x1:A)-[:R]-&gt;(z1:B WHERE z1.h &gt; 2) (x2:A)-[:R]-&gt;(z2:B WHERE z2.h &gt; 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then the node variables in adjoining node patterns are merged:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(x1:A)-[:R]-&gt;({z1,x2}:A&amp;B WHERE z1.h &gt; 2)-[:R]-&gt;(z2:B WHERE z2.h &gt; 2)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The fact that variables <code>x2</code> and <code>z1</code> are bound to matches of the same node pattern is represented with the notation <code>{z1,x2}</code>.
+Outside of the pattern, the variables <code>x</code> and <code>z</code> will be group variables that contain lists of nodes.</p>
+</div>
+<div class="paragraph">
+<p>Consider the quantified path pattern in the following query:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2)){2}
+RETURN [n in x | n.h] AS x_h, [n in z | n.h] AS z_h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This yields the following results:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">x_h</th>
+<th class="tableblock halign-left valign-top">z_h</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[1, 3]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 4]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[4, 5]</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Now the quantifier is changed to match lengths from one to five:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ((x:A)-[:R]-&gt;(z:B WHERE z.h &gt; 2)){1,5}
+RETURN [n in x | n.h] AS x_h, [n in z | n.h] AS z_h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compared to the fixed-length quantifier <code>{2}</code>, this also matches paths of length one and three, but no matches exist for length greater than three:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">x_h</th>
+<th class="tableblock halign-left valign-top">z_h</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[1]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[4]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[5]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[1, 3]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 4]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[4, 5]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[1, 3, 4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 4, 5]</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantified-relationships"><a class="anchor" href="#quantified-relationships"></a>Quantified relationships</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="quantified-relationships-syntax"><a class="anchor" href="#quantified-relationships-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">quantifiedRelationship ::= relationshipPattern quantifier</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quantified-relationships-rules"><a class="anchor" href="#quantified-relationships-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>A quantified relationship is an abbreviated form of a <a href="#quantified-path-patterns">quantified path pattern</a>, with only a single relationship pattern specified.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following quantified relationship:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[r:R]-&gt;{m,n}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It matches paths with between <code>m</code> and <code>n</code> relationships of type <code>R</code> pointing left-to-right, starting at a node of type <code>A</code>, ending at a node of type <code>B</code>, and matching any nodes in-between.
+It is equivalent to the following quantified path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A) (()-[r:R]-&gt;()){m,n} (:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the expanded form of a quantified path pattern, it is possible to add predicates inside.
+Conversely, if the only predicate is a relationship type expression, query syntax can be more concise using a quantified relationship.</p>
+</div>
+<div class="paragraph">
+<p>Note that, unlike a quantified path pattern, a quantified relationship must always have a node pattern on each side.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quantified-relationship-examples"><a class="anchor" href="#quantified-relationship-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Matches one or more relationships with type <code>R</code> and of any direction, and any nodes connecting those relationships:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[:R]-+()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches paths consisting of two inbound subpaths, one with relationships of type <code>R</code> and one with relationships of type <code>S</code>, meeting at a node with label <code>A</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[:R]-&gt;+(:A)&lt;-[:S]-+()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches paths with any nodes and with one or more relationships of any direction and any type:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()--+()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Matches paths starting with nodes labeled <code>A</code> and ending with nodes labeled <code>B</code>, that traverse between two and three relationships of type <code>R</code>, matching any intermediate nodes:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[r:R]-&gt;{2,3}(:B)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantifiers"><a class="anchor" href="#quantifiers"></a>Quantifiers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The quantifiers here only refer to those used in <a href="#quantified-path-patterns">quantified path patterns</a> and <a href="#quantified-relationships">quantified relationships</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="quantifiers-syntax"><a class="anchor" href="#quantifiers-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">quantifier ::=
+  "*" | "+" | fixedQuantifier | generalQuantifier
+
+fixedQuantifier ::= "{" unsignedDecimalInteger "}"
+
+generalQuantifier ::= "{" lowerBound "," upperBound "}"
+
+lowerBound ::= unsignedDecimalInteger
+
+upperBound ::= unsignedDecimalInteger
+
+unsignedDecimalInteger ::= [0-9]+</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>unsignedDecimalInteger</code> must not be larger than the Java constant <code>Long.MAX_VALUE</code> (2<sup>63</sup>-1).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quantifiers-rules"><a class="anchor" href="#quantifiers-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The absence of an upper bound in the general quantifier syntax means there is no upper bound.
+The following table shows variants of the quantifier syntax and their canonical form:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Variant</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Canonical form</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{m,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{m,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Between m and n iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{1,}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1 or more iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{0,}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>0 or more iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{n,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Exactly n iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{m,}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{m,}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>m or more iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{0,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Between 0 and n iterations.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{,}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{0,}</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>0 or more iterations.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note that a <a href="#quantified-path-patterns">quantified path pattern</a> with the quantifier <code>{1}</code> is not equivalent to a fixed-length path pattern.
+Although the resulting quantified path pattern will match on the same paths the fixed-length path contained in it would without the quantifier, the presence of the quantifier means that all variables within the path pattern will be exposed as group variables.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="variable-length-relationships"><a class="anchor" href="#variable-length-relationships"></a>Variable-length relationships</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prior to the introduction of the syntax for quantified path patterns and quantified relationships, the only way in Cypher to match paths of variable length was with a variable-length relationship.
+This syntax is still available, but it is not <a href="../../appendix/gql-conformance/" class="xref page">GQL conformant</a>.
+It is equivalent to the syntax for quantified relationships, with the following differences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Position and syntax of quantifier.</p>
+</li>
+<li>
+<p>Semantics of the asterisk symbol.</p>
+</li>
+<li>
+<p>Type expressions are limited to the <a href="../../expressions/predicates/boolean-operators/" class="xref page">disjunction operator</a>.</p>
+</li>
+<li>
+<p>The <a href="../../clauses/where/" class="xref page">WHERE</a> clause is not allowed.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="variable-length-relationships-syntax"><a class="anchor" href="#variable-length-relationships-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">varLengthRelationship ::=
+    "&lt;-[" varLengthFiller "]-"
+  | "-[" varLengthFiller "]-&gt;"
+  | "-[" varLengthFiller "]-"
+
+varLengthFiller ::= [ relationshipVariable ] [ varLengthTypeExpression ]
+    [ varLengthQuantifier ] [ propertyKeyValueExpression ]
+
+varLengthTypeExpression ::= ":" varLengthTypeTerm
+
+varLengthTypeTerm ::=
+    typeIdentifier
+  | varLengthTypeTerm "|" varLengthTypeTerm
+
+varLengthQuantifier ::= varLengthVariable | varLengthFixed
+
+varLengthVariable ::= "*" [ [ lowerBound ] ".." [ upperBound ] ]
+
+varLengthFixed ::= "*" fixedBound
+
+fixedBound ::= unsignedDecimalInteger
+
+lowerBound ::= unsignedDecimalInteger
+
+upperBound ::= unsignedDecimalInteger
+
+unsignedDecimalInteger ::= [0-9]+</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>unsignedDecimalInteger</code> must not be larger than the Java constant <code>Long.MAX_VALUE</code> (2<sup>63</sup>-1).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For rules on valid relationship variable names, see <a href="../../syntax/naming/" class="xref page">Cypher naming rules</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="variable-length-relationships-rules"><a class="anchor" href="#variable-length-relationships-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The following table shows variants of the variable-length quantifier syntax and their equivalent <a href="#quantifiers">quantifier</a> form (the form used by <a href="#quantified-path-patterns">quantified path patterns</a>):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Variant</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Quantified relationship equivalent</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Quantified path pattern equivalent</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1 or more iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;())+</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*n]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Exactly n iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;{n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;()){n}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*m..n]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Between m and n iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;{m,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;()){m,n}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*m..]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>m or more iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;{m,}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;()){m,}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*0..]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>0 or more iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;())*</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*..n]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Between 1 and n iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;{1,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;()){1,n}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[*0..n]-&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Between 0 and n iterations.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-[]-&gt;{,n}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(()-[]-&gt;()){,n}</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note that <code>*</code> used here on its own is not the same as the Kleene star (an operator that represents zero or more repetitions), as the Kleene star has a lower bound of zero.
+The above table can be used to translate the quantifier used in variable-length relationships.
+The rules given for <a href="#quantified-path-patterns">quantified path patterns</a> would apply to the translation.</p>
+</div>
+<div class="paragraph">
+<p>This table shows some examples:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Variable-length relationship</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Equivalent quantified path pattern</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a)-[*2]-&gt;(b)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a) (()-[]-&gt;()){2,2} (b)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a)-[:KNOWS*3..5]-&gt;(b)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a) (()-[:KNOWS]-&gt;()){3,5} (b)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a)-[r*..5 {name: 'Filipa'}]-&gt;(b)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(a) (()-[r {name: 'Filipa'}]-&gt;()){1,5} (b)</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="variable-length-relationships-equijoins"><a class="anchor" href="#variable-length-relationships-equijoins"></a>Equijoins</h3>
+<div class="paragraph">
+<p>The variable of a variable-length relationship can be used in subsequent patterns to refer to the list of relationships the variable is bound to.
+This is the same as the <a href="#graph-patterns-rules-equijoin">equijoin</a> for variables bound to single nodes or relationships.</p>
+</div>
+<div class="paragraph">
+<p>This section uses the following graph:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-equijoin-reference.svg" alt="Example of nodes with equijoins" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, run the following query against an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE ({name: 'Filipa'})-[:KNOWS]-&gt;({name:'Anders'})-[:KNOWS]-&gt;
+         ({name:'Dilshad'})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the following query, the node variables will be bound to the same nodes:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (a {name: 'Dilshad'})&lt;-[r*1..2]-(b)
+MATCH (c)&lt;-[r*1..2]-(d)
+RETURN a = c, b = d, size(r)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 1. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a = c</th>
+<th class="tableblock halign-left valign-top">b = d</th>
+<th class="tableblock halign-left valign-top">size(r)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The list of relationships keeps its order.
+This means that in the following query, where the direction of the variable-length relationship in the second <code>MATCH</code> is switched, the equijoin will only match once, when there is a single relationship:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (a {name: 'Dilshad'})&lt;-[r*1..2]-(b)
+MATCH (c)-[r*1..2]-&gt;(d)
+RETURN a = c, b = d, size(r)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 2. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a = c</th>
+<th class="tableblock halign-left valign-top">b = d</th>
+<th class="tableblock halign-left valign-top">size(r)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The variable <code>r</code> can be reversed in order like any list, and made to match the switch in relationship pattern direction:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (a {name: 'Dilshad'})&lt;-[r*1..2]-(b)
+WITH a, b, reverse(r) AS s
+MATCH (c)-[s*1..2]-&gt;(d)
+RETURN a = d, b = c, size(s)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 3. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a = d</th>
+<th class="tableblock halign-left valign-top">b = c</th>
+<th class="tableblock halign-left valign-top">size()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Changing the bounds on subsequent <code>MATCH</code> statements will mean that only the overlapping lengths of the quantifier bounds will produce results:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (a {name: 'Dilshad'})&lt;-[r*1..2]-(b)
+MATCH (c)&lt;-[r*2..3]-(d)
+RETURN a = c, b = d, size(r)</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 4. Result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">a = c</th>
+<th class="tableblock halign-left valign-top">b = d</th>
+<th class="tableblock halign-left valign-top">size(r)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>Because Cypher&#8217;s default match mode, <code>DIFFERENT RELATIONSHIPS</code>, only allows paths to traverse a relationship once, repeating a variable-length relationship in the same graph pattern will yield no results.
+(The same is not true for the <code>REPEATABLE ELEMENTS</code> match mode.
+For more information, see <a href="../match-modes/" class="xref page">Match modes</a>).
+For example, this <code>MATCH</code> clause will never pass on any intermediate results to subsequent clauses:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (x)-[r*1..2]-&gt;(y)-[r*1..2]-&gt;(z)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Attempting to repeat a variable-length relationship in a single relationship pattern will raise an error.
+For example, the following pattern raises an error because the variable <code>r</code> appears in both a variable-length relationship and a fixed-length relationship:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (x)-[r*1..2]-&gt;(y)-[r]-&gt;(z)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="variable-length-relationships-examples"><a class="anchor" href="#variable-length-relationships-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>The following pattern matches paths starting with nodes labeled <code>A</code> and ending with nodes labeled <code>B</code>, that traverse between two and three relationships of type <code>R</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[r:R*2..3]-&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following traverses relationships of type <code>R</code> or <code>S</code> or <code>T</code> exactly five times:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">()-[r:R|S|T*5]-&gt;()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following traverses any relationship between zero and five times, with the path beginning at nodes labeled <code>A</code> and ending at nodes labeled <code>B</code>.
+Note that this will also return all nodes that have both labels <code>A</code> and <code>B</code> for the case where zero relationships are traversed:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[*0..5]-&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the lower bound is removed, it will default to one, and will no longer return paths of length zero, i.e. single nodes:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[*..5]-&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following pattern traverses one or more relationships of any direction that have property <code>p</code> = <code>$param</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">()-[* {p: $param}]-()</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shortest-paths"><a class="anchor" href="#shortest-paths"></a>Shortest paths</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Path selectors are modes that are specified at the path pattern level.
+There are five types of path selectors:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SHORTEST k</code></p>
+</li>
+<li>
+<p><code>ALL SHORTEST</code></p>
+</li>
+<li>
+<p><code>SHORTEST k GROUPS</code></p>
+</li>
+<li>
+<p><code>ANY k</code></p>
+</li>
+<li>
+<p><code>ALL</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The first three are shortest path selectors, and they specify which shortest paths should be returned, with the exact method of selection depending on the path selector type and the value of <code>k</code>.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#path-patterns">path patterns</a> for details on where in the path pattern to include the path selector.</p>
+</div>
+<div class="sect2">
+<h3 id="shortest-paths-syntax"><a class="anchor" href="#shortest-paths-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">shortestPathSelector ::=
+  { allPathSearch | anyPathSearch | shortestPathSearch }
+
+
+shortestPathSearch ::=
+  { allShortest | anyShortest | countedShortestPaths |
+     countedShortestGroups }
+
+
+allShortest ::= "ALL SHORTEST" [ pathOrPaths ]
+
+
+anyShortest ::= "ANY SHORTEST" [ pathOrPaths ]
+
+
+countedShortestPaths ::=
+  "SHORTEST" numberOfPaths [ pathOrPaths ]
+
+
+countedShortestGroups ::=
+  "SHORTEST" [ numberOfGroups ] [ pathOrPaths ] { "GROUP" | "GROUPS" }
+
+
+allPathSearch ::= "ALL" [ pathOrPaths ]
+
+
+anyPathSearch ::= "ANY" [ numberOfPaths ] [ pathOrPaths ]
+
+
+pathOrPaths ::= { "PATH" | "PATHS" }
+
+
+numberOfPaths ::= unsignedDecimalInteger | parameter
+
+
+numberOfGroups ::= unsignedDecimalInteger | parameter</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>unsignedDecimalInteger</code> must not be larger than the Java constant <code>Long.MAX_VALUE</code> (2<sup>63</sup>-1).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shortest-paths-rules"><a class="anchor" href="#shortest-paths-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="shortest-paths-rules-selective"><a class="anchor" href="#shortest-paths-rules-selective"></a>Selective path selectors</h4>
+<div class="paragraph">
+<p>The following path selector types are <em>selective</em> path selectors:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SHORTEST k</code></p>
+</li>
+<li>
+<p><code>SHORTEST k GROUPS</code></p>
+</li>
+<li>
+<p><code>ALL SHORTEST</code></p>
+</li>
+<li>
+<p><code>ANY k</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This means that they reduce the number of matches produced by the path pattern.
+<code>ALL</code> returns all matches produced, and so is not selective.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-paths-rules-path-order-selection"><a class="anchor" href="#shortest-paths-rules-path-order-selection"></a>Order of path selection</h4>
+<div class="paragraph">
+<p>When a path selector is specified, the following steps are followed to find solutions to the path pattern:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All paths matching the path pattern are found.</p>
+</li>
+<li>
+<p>Any paths not satisfying the predicates contained in the path pattern are removed.
+This is a <em>pre</em>-filter.</p>
+</li>
+<li>
+<p>Paths are selected according to the path selector specified.</p>
+</li>
+<li>
+<p>Any paths not satisfying the predicates in the graph pattern <code>WHERE</code> clause are removed.
+This is a <em>post</em>-filter.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="title">Examples of pre-filters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">// node pattern WHERE clause
+MATCH p = SHORTEST 2 (a WHERE a.p &lt; 42)--+()
+
+// relationship pattern property key-value expression
+MATCH p = SHORTEST 2 (a)-[{p: 42}]-+()
+
+// label and type expressions
+MATCH p = SHORTEST 2 (:A)-[:R]-+(:B)
+
+// quantified path pattern
+MATCH SHORTEST 2 ((a)--(b) WHERE a.p &lt; b.p)+
+
+// parenthesized path pattern expression
+// note the position of the parentheses!
+MATCH SHORTEST 2 ( p = ()--+() WHERE any(n IN nodes(p) WHERE n.p &lt; 42) )</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Examples of post-filters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">// graph pattern WHERE clause
+MATCH p = SHORTEST 2 (a)--+()
+WHERE all(n IN nodes(p) WHERE n.p &lt; 42)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-paths-rules-partitions"><a class="anchor" href="#shortest-paths-rules-partitions"></a>Partitions</h4>
+<div class="paragraph">
+<p>If there are multiple start and end nodes matching a path pattern, then, when a selective path selector is specified, the paths matched by the path pattern are partitioned by distinct pairs of start and end nodes.
+Within each partition, they are put in ascending order of path length.
+The partitioned paths are then selected according to the specified path selector as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Selective path selector</th>
+<th class="tableblock halign-left valign-top">Partitioning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>SHORTEST k</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>First <code>k</code> paths, starting with the shortest.
+Where more than one path could be picked for a given length, there is no particular order in which that selection is done.
+If <code>k</code> is greater than the number of paths in the partition, then all of the paths in that partition are returned.</p>
+</div>
+<div class="paragraph">
+<p><code>ANY SHORTEST</code> is equivalent to <code>SHORTEST 1</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>SHORTEST k GROUPS</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The paths are further grouped by path length, and those groups are put in ascending order by path length.
+Then the paths from the first <code>k</code> groups are selected.
+If <code>k</code> is greater than the number of path length groups within a partition, then all paths in that partition are returned.
+<code>GROUP</code> and <code>GROUPS</code> can be used interchangeably.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>ALL SHORTEST</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>All paths tied for the shortest.
+Equivalent to <code>SHORTEST 1 GROUP</code>.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>ANY k</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Any <code>k</code> paths are returned.
+<code>ANY</code> is the same as <code>ANY 1</code>.
+This is useful to determine the reachability of nodes.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>ALL</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>All paths are returned.
+This is the same as not specifying any path selector.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For a selective path selector, if <code>k</code> is greater than <code>N</code>, the number of paths matching the path pattern, then all <code>N</code> paths are returned.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-paths-rules-one-path-pattern"><a class="anchor" href="#shortest-paths-rules-one-path-pattern"></a>Only one path pattern allowed</h4>
+<div class="paragraph">
+<p>When a <em>selective</em> shortest path selector is specified for a path pattern, it must be the only path pattern in the graph pattern.</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = SHORTEST 2 (:A)--+(a)--+(:B), q = ANY 2 (a)--&gt;{,2}(:C)
+RETURN p, q
+
+MATCH ALL SHORTEST (n:A) (()--&gt;(:B))+, (:X)--(n)--(:Y)
+RETURN n</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = SHORTEST 2 (:A)--+(a)--+(:B)
+MATCH q = ANY 2 (a)--&gt;{,2}(:C)
+RETURN p, q
+
+MATCH ALL SHORTEST (n:A) (()--&gt;(:B))+
+MATCH (:X)--(n)--(:Y)
+RETURN n
+
+MATCH ALL (n:A) (()--&gt;(:B))+, (:X)--(n)--(:Y)
+RETURN n</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-paths-rules-path-paths"><a class="anchor" href="#shortest-paths-rules-path-paths"></a><code>PATH</code>/<code>PATHS</code></h4>
+<div class="paragraph">
+<p>The keywords <code>PATH</code> and <code>PATHS</code> are optional and can be added to the end of the path selector (but before <code>GROUP</code> or <code>GROUPS</code>).
+Including either of them does not change path selection.
+For example, the following two <code>MATCH</code> clauses are equivalent:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ALL SHORTEST PATHS (n:A) (()--&gt;(:B))+
+MATCH ALL SHORTEST (n:A) (()--&gt;(:B))+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shortest-paths-examples"><a class="anchor" href="#shortest-paths-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Return a single shortest path for each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH SHORTEST 1 (:A)-[:R]-&gt;{0,10}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Return any two paths connecting each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = ANY 2 (:A)-[:R]-&gt;{0,10}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Return all paths equal to the shortest path length for each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ALL SHORTEST (:A)-[:R]-&gt;{0,10}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Return all paths equal to the two shortest path lengths for each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH SHORTEST 2 GROUPS (:A)-[:R]-&gt;{0,10}(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Return a single shortest path for each distinct pair of nodes, where the path length is an even number:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH SHORTEST 1 (p = ()--+() WHERE length(p) % 2 = 0)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For every single shortest path connecting each distinct pair of nodes, only return those that have path length that is an even number (so fewer results than the previous example):</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = SHORTEST 2 ()--+()
+WHERE length(p) % 2 = 0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shortest-functions"><a class="anchor" href="#shortest-functions"></a>The <code>shortestPath()</code> and <code>allShortestPaths()</code> functions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prior to the introduction of keyword-based specification of shortest path selection, the only available syntax for shortest paths were the functions <code>shortestPath()</code> and <code>allShortestPaths()</code>.
+They are similar to <code>SHORTEST 1</code> and <code>ALL SHORTEST</code>, but with several differences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The path pattern is passed as an argument to the functions.</p>
+</li>
+<li>
+<p>The path pattern is limited to a single relationship pattern.</p>
+</li>
+<li>
+<p>To return results where the first and last node in the path are the same requires a change to the configuration setting <a href="https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#config_dbms.cypher.forbid_shortestpath_common_nodes"><code>dbms.cypher.forbid_shortestpath_common_nodes</code></a>.</p>
+</li>
+<li>
+<p>The minimum path length, also called the lower bound of the variable-length relationship pattern, should be 0 or 1.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both functions will continue to be available, but they are not <a href="../../appendix/gql-conformance/" class="xref page">GQL conformant</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="shortest-functions-syntax"><a class="anchor" href="#shortest-functions-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">pathSelectorFunction ::=
+  { shortestPathFunction | allShortestPathsFunction }
+
+shortestPathFunction ::=
+  "shortestPath(" + oneHopPathPatternExpression + ")"
+
+allShortestPathsFunction ::=
+  "allShortestPaths(" + oneRelPathPatternExpression + ")"
+
+oneRelPathPatternExpression ::=
+  nodePattern varLengthRelationship nodePattern</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that it is possible to pass a fixed-length path pattern (with a single relationship) to the path selector function, but doing so would not serve any purpose in discovering a shortest path.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shortest-functions-rules"><a class="anchor" href="#shortest-functions-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="shortest-functions-rules-var-length-restriction"><a class="anchor" href="#shortest-functions-rules-var-length-restriction"></a>Restricted to variable-length relationships</h4>
+<div class="paragraph">
+<p>The pattern in the path selector function must be a variable-length relationship and not a quantified path pattern.</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">shortestPath(((a)-[:R]-(b)){1,5})
+
+shortestPath((:A)--&gt;+(:B))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-functions-rules-path-pattern-length"><a class="anchor" href="#shortest-functions-rules-path-pattern-length"></a>Path pattern length</h4>
+<div class="paragraph">
+<p>There must be exactly one relationship pattern in the path pattern, and the lower bound should be 0 or 1.</p>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">shortestPath((a)-[:R*1..5]-(b))</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">shortestPath((a)-[:R*1..5]-(b)--&gt;(:X))
+
+shortestPath((a)-[:R*2..5]-(b))
+
+shortestPath((:A))
+
+allShortestPaths((a:A)-[:S*]-&gt;(:B), (a)-[:R*1..3]-&gt;(:C))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-functions-rules-filtering"><a class="anchor" href="#shortest-functions-rules-filtering"></a>Pre and post filtering</h4>
+<div class="paragraph">
+<p>If the <code>MATCH</code> clause of the <code>shortestPath()</code> function includes a <code>WHERE</code> clause, this condition will act as a pre-filter: paths satisfying the <code>WHERE</code> clause are first found, and from those paths the shortest path is selected.</p>
+</div>
+<div class="listingblock">
+<div class="title">Examples of pre-filters:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = shortestPath(()-[*]-())
+WHERE all(n in nodes(p) WHERE n.p &lt; 42)
+
+MATCH p = shortestPath(()-[*]-())
+WHERE all(r in relationships(p) WHERE r.p &lt; 42)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These contrast with <code>WHERE</code> clauses that are not part of the same <code>MATCH</code> clause.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of post-filters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH p = shortestPath(()-[*]-())
+WITH nodes(p) AS N
+WHERE all(n in N WHERE n.p &lt; 42)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="shortest-functions-rules-non-determinism"><a class="anchor" href="#shortest-functions-rules-non-determinism"></a>Non-determinism</h4>
+<div class="paragraph">
+<p>If there is more than one path with minimum length, then <code>shortestPath()</code> function will return one of those paths non-deterministically.
+As <code>allShortestPaths()</code> would return all of those paths, its results are deterministic.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shortest-functions-examples"><a class="anchor" href="#shortest-functions-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>Return a single shortest path for each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH shortestPath((:A)-[:R*0..10]-&gt;(:B))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Return all paths equal to the shortest path length for each distinct pair of nodes matching <code>(:A)</code> and <code>(:B)</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH allShortestPaths((:A)-[:R*0..10]-&gt;(:B))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="graph-patterns"><a class="anchor" href="#graph-patterns"></a>Graph patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A graph pattern is a comma separated list of one or more path patterns.
+It is the top level construct provided to <code>MATCH</code>.
+Whether or not a graph pattern can match a relationship more than once is governed by the selected <a href="#match-modes">match mode</a>.</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-graph-pattern-reference.svg" alt="Cypher example of a graph pattern including path patterns" width="600">
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-patterns-syntax"><a class="anchor" href="#graph-patterns-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">graphPattern ::=
+  pathPattern [ "," pathPattern ]* [ graphPatternWhereClause ]
+
+graphPatternWhereClause ::= "WHERE" booleanExpression</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-patterns-rules"><a class="anchor" href="#graph-patterns-rules"></a>Rules</h3>
+<div class="paragraph">
+<p>The rules for <a href="#path-patterns">path patterns</a> apply to each constituent path pattern of a graph pattern.</p>
+</div>
+<div class="sect3">
+<h4 id="graph-patterns-rules-variable-references"><a class="anchor" href="#graph-patterns-rules-variable-references"></a>Variable references</h4>
+<div class="paragraph">
+<p>If a variable is declared inside a quantified path pattern, then it can be treated as a singleton only from within the quantified path pattern it was declared in.
+Outside of that quantified path pattern, it must be treated as a group variable.</p>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((n)-[r]-&gt;(m WHERE r.p = m.q))+</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n)-[r]-&gt;+(m WHERE all(rel in r WHERE rel.q &gt; m.q))</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(n)-[r]-&gt;+(m WHERE r.p = m.q)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="graph-patterns-rules-equijoin"><a class="anchor" href="#graph-patterns-rules-equijoin"></a>Equijoin</h4>
+<div class="paragraph">
+<p>If a node variable is declared more than once in a path pattern, it is expressing an equijoin.
+This is an operation that requires that each node pattern with the same node variable be bound to the same node.
+For example, the following pattern refers to the same node twice with the variable <code>a</code>, forming a cycle:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)--&gt;(b)--&gt;(c)--&gt;(a)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following pattern refers to the same node with variable <code>b</code> in different path patterns of the same graph pattern, forming a "T" shaped pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)--&gt;(b)--&gt;(c), (b)--&gt;(e)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Equijoins can only be made using variables outside of quantified path patterns.
+The following would not be a valid equijoin:</p>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)--&gt;(b)--&gt;(c), ((b)--&gt;(e))+ (:X)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If no equijoin exists between path patterns in a graph pattern, then a Cartesian join is formed from the sets of matches for each path pattern.
+An equijoin can be expressed between relationship patterns by declaring a relationship variable multiple times.
+However, as relationships can only be traversed once in a given match, no solutions would be returned.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="graph-patterns-examples"><a class="anchor" href="#graph-patterns-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>The <code>WHERE</code> clause can refer to variables inside and outside of quantified path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)--&gt;(b)--&gt;(c), (b) ((d)--&gt;(e))+ WHERE any(n in d WHERE n.p = a.p)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An equijoin can be formed to match "H" shaped graphs:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)--&gt;(x)--(:B), (x)-[:R]-&gt;+(y), (:C)--&gt;(y)--&gt;(:D)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With no variables in common, this graph pattern will result in a Cartesian join between the sets of matches for the two path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a)--&gt;(b)--&gt;(c), ((d)--&gt;(e))+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Multiple equijoins can be formed between path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X)--&gt;(a:A)-[!:R]-&gt;+(b:B)--&gt;(:Y), (a)-[:R]-&gt;+(b)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Variables declared in a previous <code>MATCH</code> can be referenced inside of a quantified path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n {p = 'ABC'})
+MATCH (n)--&gt;(m:A)--&gt;(:B), (m) (()-[r WHERE r.p &lt;&gt; n.p]-&gt;())+ (:C)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The repetition of a relationship variable in the following yields no solutions due to Cypher enforcing relationship uniqueness within a match for a graph pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ()-[r]-&gt;()--&gt;(), ()-[r]-()</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="match-modes"><a class="anchor" href="#match-modes"></a>Match modes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A match mode specifies whether or not a relationship can be matched more than once when matching graph patterns. Cypher contains two match modes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#match-modes-rules-different-relationships"><code>DIFFERENT RELATIONSHIPS</code></a> (default)</p>
+</li>
+<li>
+<p><a href="#match-modes-rules-repeatable-elements"><code>REPEATABLE ELEMENTS</code></a> <span class="label label--new">Introduced in Neo4j 2025.06</span></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="match-modes-syntax"><a class="anchor" href="#match-modes-syntax"></a>Syntax</h3>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">graphPattern ::=
+  [ matchMode ] pathPattern [ "," pathPattern ]* [ graphPatternWhereClause ]
+
+matchMode ::=
+  { REPEATABLE ELEMENT[S] | DIFFERENT RELATIONSHIPS }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="match-modes-rules"><a class="anchor" href="#match-modes-rules"></a>Rules</h3>
+<div class="sect3">
+<h4 id="match-modes-rules-different-relationships"><a class="anchor" href="#match-modes-rules-different-relationships"></a>DIFFERENT RELATIONSHIPS</h4>
+<div class="paragraph">
+<p><code>DIFFERENT RELATIONSHIPS</code> is a restrictive match mode.
+It requires that all relationships matched across all constituent path patterns in a graph pattern be unique.
+More specifically:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A relationship may only occur once for a given <code>MATCH</code> result.</p>
+</li>
+<li>
+<p>A given relationship can only be bound to at most one relationship variable (e.g. <code>-[r]-</code>) or an anonymous relationship pattern (<code>-[]-</code>).</p>
+</li>
+<li>
+<p>A relationship can only be bound once within a relationship <a href="#quantified-path-patterns-rules-group-variables">group variable</a>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>No solutions can be returned if a relationship variable occurs more than once across a graph pattern.
+For example, the following patterns, where the <code>r</code> variable acts as an <a href="#graph-patterns-rules-equijoin">equijoin</a> requiring all occurrences to match the same relationship, cannot return paths:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (a)-[r]-(b)-[f]-(c)-[r]-(d)  // r repeated twice
+MATCH (a)-[r]-(b), (c)-[r]-(d)     // r repeated twice</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>DIFFERENT RELATIONSHIPS</code> keyword was released in Neo4j 2025.06 and can be used to explicitly specify Cypher&#8217;s default match mode after <code>MATCH</code>.
+Specifying the <code>DIFFERENT RELATIONSHIPS</code> keyword is functionally equivalent to not specifying a match mode.
+For example, the following two <code>MATCH</code> clauses are equivalent:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (a)--{2}(b)
+MATCH DIFFERENT RELATIONSHIPS (a)--{2}(b)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="match-modes-rules-repeatable-elements"><a class="anchor" href="#match-modes-rules-repeatable-elements"></a>REPEATABLE ELEMENTS</h4>
+<div class="paragraph">
+<p><code>REPEATABLE ELEMENTS</code> is a non-restrictive match mode.
+It allows for relationships matched across all constituent path patterns in a graph pattern to be repeatedly traversed.
+More specifically:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A relationship may occur more than once for a given <code>MATCH</code> result.</p>
+</li>
+<li>
+<p>A given relationship can be bound to more than one relationship variable or anonymous relationship pattern.</p>
+</li>
+<li>
+<p>A relationship can be bound more than once within a relationship group variable.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Queries utilizing this match mode must add the keyword <code>REPEATABLE ELEMENTS</code> between the <code>MATCH</code> clause and the graph pattern.</p>
+</div>
+<div class="paragraph">
+<p>Solutions can be returned if a relationship variable occurs more than once across a graph pattern.
+For example, the following two graph patterns, where the <code>r</code> variable acts as an <a href="#graph-patterns-rules-equijoin">equijoin</a> requiring all occurrences to match the same relationship, can return paths:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH REPEATABLE ELEMENTS (a)-[r]-(b)-[f]-(c)-[r]-(d)  // r repeated twice
+MATCH REPEATABLE ELEMENTS (a)-[r]-(b), (c)-[r]-(d)     // r repeated twice</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="match-modes-rules-quantifier-bounds"><a class="anchor" href="#match-modes-rules-quantifier-bounds"></a>Quantifier bounds</h4>
+<div class="paragraph">
+<p>The following applies to the use of variable-length patterns <a href="#quantifiers-rules">quantifiers</a> in different match modes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DIFFERENT RELATIONSHIPS</code> does not require an upper bound on a quantifier.
+The following are valid:  <code>+</code>, <code>{n, }</code>, <code>{ , }</code>,  <code>*</code>.</p>
+</li>
+<li>
+<p><code>REPEATABLE ELEMENTS</code> requires all quantifiers to have an upper bound.
+The following are not valid: <code>+</code>, <code>{n, }</code>, <code>{ , }</code>, <code>*</code>, but these are valid: <code>{n}</code>, <code>{n, m}</code>, <code>{,m}</code>.
+This restriction is required to prevent a a potentially infinite number of returned paths.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="match-modes-rules-clauses-subqueries"><a class="anchor" href="#match-modes-rules-clauses-subqueries"></a>Clauses and subqueries</h4>
+<div class="paragraph">
+<p>Match modes can only be specified after <code>MATCH</code>.
+They cannot be applied to a <a href="../../clauses/merge/" class="xref page"><code>MERGE</code></a> clause.</p>
+</div>
+<div class="paragraph">
+<p>Match modes are allowed in the <a href="../../subqueries/collect/" class="xref page"><code>COLLECT</code></a>, <a href="../../subqueries/count/" class="xref page"><code>COUNT</code></a>, and <a href="../../subqueries/existential/" class="xref page"><code>EXISTS</code></a> subqueries after a <code>MATCH</code> clause.
+If so, the match mode applies to patterns matched within the subquery and is separate from that applied to the top level graph pattern.
+In the following example, <code>REPEATABLE ELEMENTS</code> only applies to the pattern matched within the <code>COUNT</code> subquery:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (a)-[:R]-&gt;(b)
+WHERE COUNT {
+    MATCH REPEATABLE ELEMENTS (a)-[:S]-{,10}(b)
+    RETURN *
+} &gt; 5
+RETURN *</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="match-modes-rules-selective-path-selectors"><a class="anchor" href="#match-modes-rules-selective-path-selectors"></a>Selective path selectors</h4>
+<div class="paragraph">
+<p>The following applies to match modes and the number of path patterns with <a href="#shortest-paths-rules-selective">selective path selectors</a> (<code>SHORTEST k</code>, <code>SHORTEST k GROUPS</code>, <code>ALL SHORTEST</code>, and <code>ANY k</code>).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If the match mode is <code>DIFFERENT RELATIONSHIPS</code>, there can only be one path pattern if it has a selective path selector.</p>
+</li>
+<li>
+<p>If the match mode is <code>REPEATABLE ELEMENTS</code>, there can be multiple path patterns even if one or more have a selective path selector.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Allowed: <code>DIFFERENT RELATIONSHIPS</code> with selective path selector and one path pattern</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH SHORTEST 2 ((a)--(b) WHERE a.p &lt; b.p)+</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Allowed: <code>REPEATABLE ELEMENTS</code> with multiple path patterns and selective path selectors</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH REPEATABLE ELEMENTS SHORTEST 2 (x) ((a)--(b) WHERE a.p &lt; b.p){,10},
+      ANY (x)--&gt;{,10}(:X)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Not allowed: <code>DIFFERENT RELATIONSHIPS</code> with more than one path pattern and a selective path selector</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ALL SHORTEST (x) ((a)--(b) WHERE a.p &lt; b.p){,10},
+      ANY (x)--&gt;{,10}(:X)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="match-modes-examples"><a class="anchor" href="#match-modes-examples"></a>Examples</h3>
+<div class="paragraph">
+<p>This section uses the following graph:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/match-modes-reference.svg" alt="match modes reference" width="400">
+</div>
+</div>
+<div class="paragraph">
+<p>To recreate it, run the following query against an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (n1:A {q: 1}),
+       (n2:B {q: 2}),
+       (n3:A {q: 3}),
+       (n4:A {q: 4}),
+
+       (n1)-[:R]-&gt;(n2),
+       (n2)-[:R]-&gt;(n3),
+       (n3)-[:R]-&gt;(n2),
+       (n2)-[:R]-&gt;(n4),
+       (n4)-[:R]-&gt;(n1)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To demonstrate the basic concept behind <code>REPEATABLE ELEMENTS</code>, and how it differs from the <code>DIFFERENT RELATIONSHIPS</code> match mode, consider the following pattern, which attempts to form a relationship equijoin: <code>(a)-[r]-(b)-[r]-(c)</code>.
+For this pattern to return any results, the same relationship must be re-traversed.
+That is, the same relationship connecting <code>a</code> to <code>b</code> must be the same as that connecting <code>b</code> to <code>c</code>.</p>
+</div>
+<div class="paragraph">
+<p>If tested using <code>DIFFERENT RELATIONSHIPS</code>, no results are returned due to the restrictions of the match mode.</p>
+</div>
+<div class="listingblock">
+<div class="title">Find paths re-traversing the same relationship using <code>DIFFERENT RELATIONSHIPS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH  p = (:A)-[r]-(:B)-[r]-(:A)
+RETURN [n IN nodes(p) | n.q] AS nodes</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(no results)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, if the same query uses the <code>REPEATABLE ELEMENTS</code> match mode, four paths are returned in which the same relationship is traversed more than once.</p>
+</div>
+<div class="listingblock">
+<div class="title">Find paths re-traversing the same relationship using <code>REPEATABLE ELEMENTS</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH  REPEATABLE ELEMENTS p = (:A)-[r]-(:B)-[r]-(:A)
+RETURN [n IN nodes(p) | n.q] AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 5. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 2, 3]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[4, 2, 4]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[3, 2, 3]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[1, 2, 1]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 4</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The <code>DIFFERENT RELATIONSHIPS</code> match mode allows only nodes to recur in a path.</p>
+</div>
+<div class="listingblock">
+<div class="title">Match a pattern with a length of <code>5</code> relationships using the <code>DIFFERENT RELATIONSHIPS</code> match mode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH p = (:B)--&gt;{5}()
+RETURN [n IN nodes(p) | n.q] AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 6. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 3, 2, 4, 1, 2]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 4, 1, 2, 3, 2]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The <code>REPEATABLE ELEMENTS</code> match mode allows both nodes and relationships to be repeatedly traversed in paths.</p>
+</div>
+<div class="listingblock">
+<div class="title">Match a pattern with a length of <code>5</code> relationships using the <code>REPEATABLE ELEMENTS</code> match mode</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH REPEATABLE ELEMENTS p = (:B)--&gt;{5}()
+RETURN [n IN nodes(p) | n.q] AS nodes</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 7. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 3, 2, 3, 2, 3]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 3, 2, 3, 2, 4]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 3, 2, 4, 1, 2]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 4, 1, 2, 3, 2]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[2, 4, 1, 2, 4, 1]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="node-pattern-pairs"><a class="anchor" href="#node-pattern-pairs"></a>Node pattern pairs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is not valid syntax to write a pair of node patterns next to each other.
+For example, all of the following would raise a syntax error:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a:A)(b:B)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a:A)(b:B)&lt;-[r:R]-(c:C)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(a:A)&lt;--(b:B)(c:C)--&gt;(d:C)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, the placing of pairs of node patterns next to each other is valid where it results indirectly from the expansion of quantified path patterns.</p>
+</div>
+<div class="sect2">
+<h3 id="node-pattern-pairs-iterations-of-qpps"><a class="anchor" href="#node-pattern-pairs-iterations-of-qpps"></a>Iterations of quantified path patterns</h3>
+<div class="paragraph">
+<p>When a quantified path pattern is expanded, the fixed path pattern contained in its parentheses is repeated and chained.
+This results in pairs of node patterns sitting next to each other.
+Take the following quantified path pattern as an example:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((x:X)&lt;--(y:Y)){3}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is expanded by repeating the fixed path pattern <code>(x:X)&#8592;-(y:Y)</code> three times, with indices on the variables to show that no equijoin is implied (see <a href="#graph-patterns-rules-equijoin">equijoins</a> for more information):</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(x1:X)&lt;--(y1:Y)(x2:X)&lt;--(y2:Y)(x3:X)&lt;--(y3:Y)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The result is that two pairs of node patterns end up adjoining each other, <code>(y1:Y)(x2:X)</code> and <code>(y2:Y)(x3:X)</code>.
+During the matching process, each pair of node patterns will match the same nodes, and those nodes will satisfy the conjunction of the predicates in the node patterns.
+For example, in the first pair both <code>y1</code> and <code>x2</code> will bind to the same node, and that node must have labels <code>X</code> and <code>Y</code>.
+This expansion and binding is depicted in the following diagram:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-node-pattern-pairs.svg" alt="Diagram showing expansions and bindings of patterns" width="600">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-pattern-pairs-simple-path-patterns-and-quantified-path-patterns"><a class="anchor" href="#node-pattern-pairs-simple-path-patterns-and-quantified-path-patterns"></a>Simple path patterns and quantified path patterns</h3>
+<div class="paragraph">
+<p>Pairs of node patterns are also generated when a simple path pattern is placed next to a quantified path.
+For example, consider the following path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;(:B) ((:X)&lt;--(:Y)){1,2}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After expanding the iterations of the quantified path pattern, the right-hand node pattern <code>(:B)</code> adjoins the left-hand node pattern <code>(:X)</code>.
+The result will match the same paths as the union of matches of the following two path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;(:B&amp;X)&lt;--(:Y)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;(:B&amp;X)&lt;--(:Y&amp;X)&lt;--(:Y)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the simple path pattern is on the right of the quantified path pattern, its leftmost node <code>(:A)</code> adjoins the rightmost node <code>(:Y)</code> of the last iteration of the quantified path pattern.
+For example, the following:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((:X)&lt;--(:Y)){1,2} (:A)-[:R]-&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will match the same paths as the union of the following two path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X)&lt;--(:Y&amp;A)-[:R]-&gt;(:B)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X)&lt;--(:Y&amp;X)&lt;--(:Y&amp;A)-[:R]-&gt;(:B)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-pattern-pairs-pairs-of-quantified-path-patterns"><a class="anchor" href="#node-pattern-pairs-pairs-of-quantified-path-patterns"></a>Pairs of quantified path patterns</h3>
+<div class="paragraph">
+<p>When two quantified path patterns adjoin, the rightmost node of the last iteration of the first pattern is merged with the leftmost node of the first iteration of the second pattern.
+For example, the following adjoining patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((:A)-[:R]-&gt;(:B)){2} ((:X)&lt;--(:Y)){1,2}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will match the same set of paths as the union of the paths matched by these two path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;(:B&amp;A)-[:R]-&gt;(:B&amp;X)&lt;--(:Y)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:A)-[:R]-&gt;(:B&amp;A)-[:R]-&gt;(:B&amp;X)&lt;--(:Y&amp;X)&lt;--(:Y)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="node-pattern-pairs-zero-iterations"><a class="anchor" href="#node-pattern-pairs-zero-iterations"></a>Zero iterations</h3>
+<div class="paragraph">
+<p>If the quantifier allows for zero iterations of a pattern, for example <code>{0,3}</code>, then the 0th iteration of that pattern results in the node patterns on either side pairing up.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following path pattern:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X) ((a:A)-[:R]-&gt;(b:B)){0,1} (:Y)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will match the same set of paths as the union of the paths matched by the following two path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X&amp;Y)</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:X&amp;A)-[:R]-&gt;(:B&amp;Y)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../match-modes/" aria-label="Previous: Match modes">Match modes</a></span>
+
+  <span class="next"><a href="../../values-and-types/" aria-label="Next: Values and types">Values and types</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

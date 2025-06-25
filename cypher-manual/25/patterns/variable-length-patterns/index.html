@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>Variable-length patterns - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/patterns/variable-length-patterns/">
+
+    <link rel="prev" href="../fixed-length-patterns/">
+    <link rel="next" href="../shortest-paths/">
+
+      <meta name="description" content="Information about quantified path patterns, quantified relationships, and group variables.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Variable-length patterns - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="Information about quantified path patterns, quantified relationships, and group variables." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/patterns/variable-length-patterns/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="./">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../indexes/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../">
+        Patterns
+    </a></li>
+    <li><a href="./">
+        Variable-length patterns
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">Variable-length patterns</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cypher<sup>&reg;</sup> can be used to match patterns of a variable or an unknown length.
+Such patterns can be found using quantified path patterns and quantified relationships.
+This page also discusses how variables work when declared in quantified path patterns (group variables), and how to use predicates in quantified path patterns.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantified-path-patterns"><a class="anchor" href="#quantified-path-patterns"></a>Quantified path patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section considers how to match paths of <em>varying</em> length by using <em>quantified path patterns</em>, allowing you to search for paths whose lengths are unknown or within a specific range.</p>
+</div>
+<div class="paragraph">
+<p>Quantified path patterns can be useful when, for example, searching for all nodes that can be reached from an anchor node, finding all paths connecting two nodes, or when traversing a hierarchy that may have differing depths.</p>
+</div>
+<div class="paragraph">
+<p>This example uses a new graph:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-calling-points.svg" alt="Example graph for quantified path patterns" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, run the following query against an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (pmr:Station {name: 'Peckham Rye'}),
+  (dmk:Station {name: 'Denmark Hill'}),
+  (clp:Station {name: 'Clapham High Street'}),
+  (wwr:Station {name: 'Wandsworth Road'}),
+  (clj:Station {name: 'Clapham Junction'}),
+  (s1:Stop {arrives: time('17:19'), departs: time('17:20')}),
+  (s2:Stop {arrives: time('17:12'), departs: time('17:13')}),
+  (s3:Stop {arrives: time('17:10'), departs: time('17:11')}),
+  (s4:Stop {arrives: time('17:06'), departs: time('17:07')}),
+  (s5:Stop {arrives: time('16:58'), departs: time('17:01')}),
+  (s6:Stop {arrives: time('17:17'), departs: time('17:20')}),
+  (s7:Stop {arrives: time('17:08'), departs: time('17:10')}),
+  (clj)&lt;-[:CALLS_AT]-(s1), (wwr)&lt;-[:CALLS_AT]-(s2),
+  (clp)&lt;-[:CALLS_AT]-(s3), (dmk)&lt;-[:CALLS_AT]-(s4),
+  (pmr)&lt;-[:CALLS_AT]-(s5), (clj)&lt;-[:CALLS_AT]-(s6),
+  (dmk)&lt;-[:CALLS_AT]-(s7),
+  (s5)-[:NEXT {distance: 1.2}]-&gt;(s4),(s4)-[:NEXT {distance: 0.34}]-&gt;(s3),
+  (s3)-[:NEXT {distance: 0.76}]-&gt;(s2), (s2)-[:NEXT {distance: 0.3}]-&gt;(s1),
+  (s7)-[:NEXT {distance: 1.4}]-&gt;(s6)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each <code>Stop</code> on a service <code>CALLS_AT</code> one <code>Station</code>.
+Each <code>Stop</code> has the properties <code>arrives</code> and <code>departs</code> that give the times the train is at the <code>Station</code>.
+Following the <code>NEXT</code> relationship of a <code>Stop</code> will give the next <code>Stop</code> of the service.</p>
+</div>
+<div class="paragraph">
+<p>For this example, a path pattern is constructed to match each of the services that allow passengers to travel from <code>Denmark Hill</code> to <code>Clapham Junction</code>.
+The following shows the two paths that the path pattern should match:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-solutions.svg" alt="Graph showing two patterns" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>The following motif represents a fixed-length path pattern that matches the service that departs from <code>Denmark Hill</code> station at <code>17:07</code>:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-motif1.svg" alt="Example of a fixed-length path pattern that matches the service that departs from Denmark Hill station" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>To match the second train service, leaving <code>Denmark Hill</code> at <code>17:10</code>, a shorter path pattern is needed:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-motif2.svg" alt="Example of a shorter path pattern using the London railway dataset" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Translating the motifs into Cypher, and adding predicates to match the origin and destination <code>Stations</code>, yields the following two path patterns respectively:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(:Stop)
+  -[:NEXT]-&gt;(:Stop)
+  -[:NEXT]-&gt;(:Stop)
+  -[:NEXT]-&gt;(:Stop)-[:CALLS_AT]-&gt;
+(:Station { name: 'Clapham Junction' })</code></pre>
+</div>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(:Stop)
+  -[:NEXT]-&gt;(:Stop)-[:CALLS_AT]-&gt;
+(:Station { name: 'Clapham Junction' })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To return both solutions in the same query using these fixed-length path patterns, a <a href="../../queries/composed-queries/combined-queries/" class="xref page">UNION</a> of two <code>MATCH</code> statements would be needed.
+For example, the following query returns the <code>departure</code> of the two services:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+        -[:NEXT]-&gt;(:Stop)
+        -[:NEXT]-&gt;(:Stop)
+        -[:NEXT]-&gt;(a:Stop)-[:CALLS_AT]-&gt;
+      (:Station { name: 'Clapham Junction' })
+RETURN d.departs AS departureTime, a.arrives AS arrivalTime
+UNION
+MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+        -[:NEXT]-&gt;(a:Stop)-[:CALLS_AT]-&gt;
+      (:Station { name: 'Clapham Junction' })
+RETURN d.departs AS departureTime, a.arrives AS arrivalTime</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 1. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">departureTime</th>
+<th class="tableblock halign-left valign-top">arrivalTime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:07:00Z"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:19:00Z"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:10:00Z"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:17:00Z"</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>The problem with this solution is that not only is it verbose, it can only be used where the lengths of the target paths are known in advance.
+Quantified path patterns solve this problem by extracting repeating parts of a path pattern into parentheses and applying a <strong>quantifier</strong>.
+That quantifier specifies a range of possible repetitions of the extracted pattern to match on.
+For the current example, the first step is identifying the repeating pattern, which in this case is the sequence of alternating <code>Stop</code> nodes and <code>NEXT</code> relationships, representing one segment of a <code>Service</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Stop)-[:NEXT]-&gt;(:Stop)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The shortest path has one instance of this pattern, the longest three.
+So the quantifier applied to the wrapper parentheses is the range one to three, expressed as <code>{1,3}</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">((:Stop)-[:NEXT]-&gt;(:Stop)){1,3}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This also includes repetitions of two, but in this case this repetition will not return matches.
+To understand the semantics of this pattern, it helps to work through the expansion of the repetitions.
+Here are the three repetitions specified by the quantifier, combined into a union of path patterns:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Stop)-[:NEXT]-&gt;(:Stop) |
+(:Stop)-[:NEXT]-&gt;(:Stop)(:Stop)-[:NEXT]-&gt;(:Stop) |
+(:Stop)-[:NEXT]-&gt;(:Stop)(:Stop)-[:NEXT]-&gt;(:Stop)(:Stop)-[:NEXT]-&gt;(:Stop)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The union operator (<code>|</code>) and placing node patterns next to each other are used here for illustration only; using it this way is not part of Cypher syntax.
+Where two node patterns are next to each other in the expansion above, they must necessarily match the same node: the next segment of a <code>Service</code> starts where the previous segment ends.
+As such they can be rewritten as a single node pattern with any filtering condition combined conjunctively.
+In this example this is trivial, because the filtering applied to those nodes is just the label <code>Stop</code>:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-illustration.svg" alt="Cypher statement showing how the query can be rewritten as a single node pattern with any filtering condition combined conjunctively" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>With this, the union of path patterns simplifies to:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Stop)-[:NEXT]-&gt;(:Stop) |
+(:Stop)-[:NEXT]-&gt;(:Stop)-[:NEXT]-&gt;(:Stop) |
+(:Stop)-[:NEXT]-&gt;(:Stop)-[:NEXT]-&gt;(:Stop)-[:NEXT]-&gt;(:Stop)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The segments of the original path pattern that connect the <code>Stations</code> to the <code>Stops</code> can also be rewritten.
+Here is what those segments look like when concatenated with the first repetition:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">(:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(:Stop)
+(:Stop)-[:NEXT]-&gt;(:Stop)
+(:Stop)-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The original <code>MATCH</code> clause now has the following three parts:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-query-breakdown.svg" alt="Diagram showing the Cypher code for the example" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Translating the union of fixed-length path patterns into a quantified path pattern results in a pattern that will return the correct paths.
+The following query adds a <code>RETURN</code> clause that yields the departure and arrival times of the two services:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(d:Stop)
+      ((:Stop)-[:NEXT]-&gt;(:Stop)){1,3}
+      (a:Stop)-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })
+RETURN d.departs AS departureTime, a.arrives AS arrivalTime</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 2. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">departureTime</th>
+<th class="tableblock halign-left valign-top">arrivalTime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:10Z"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:17Z"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:07Z"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"17:19Z"</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantified-relationships"><a class="anchor" href="#quantified-relationships"></a>Quantified relationships</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quantified relationships allow some simple quantified path patterns to be re-written in a more succinct way.
+Continuing with the example of <code>Stations</code> and <code>Stops</code> from the previous section, consider the following query:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (d:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(n:Stop)
+      ((:Stop)-[:NEXT]-&gt;(:Stop)){1,10}
+      (m:Stop)-[:CALLS_AT]-&gt;(a:Station { name: 'Clapham Junction' })
+WHERE m.arrives &lt; time('17:18')
+RETURN n.departs AS departureTime</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the relationship <code>NEXT</code> only connects <code>Stop</code> nodes, the <code>:Stop</code> label expressions can be removed:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (d:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(n:Stop)
+      (()-[:NEXT]-&gt;()){1,10}
+      (m:Stop)-[:CALLS_AT]-&gt;(a:Station { name: 'Clapham Junction' })
+WHERE m.arrives &lt; time('17:18')
+RETURN n.departs AS departureTime</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the quantified path pattern has one relationship pattern, it can be abbreviated to a <em>quantified relationship</em>.
+A quantified relationship is a relationship pattern with a postfix quantifier.
+Below is the previous query rewritten with a quantified relationship:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (d:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-
+        (n:Stop)-[:NEXT]-&gt;{1,10}(m:Stop)-[:CALLS_AT]-&gt;
+        (a:Station { name: 'Clapham Junction' })
+WHERE m.arrives &lt; time('17:18')
+RETURN n.departs AS departureTime</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The scope of the quantifier <code>{1,10}</code> is the relationship pattern <code>-[:NEXT]-&gt;</code> and not the node patterns abutting it.
+More generally, where a path pattern contained in a quantified path pattern has the following form:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">(() &lt;relationship pattern&gt; ()) &lt;quantifier&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then it can be re-written as follows:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">&lt;relationship pattern&gt; &lt;quantifier&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Prior to the introduction of quantified path patterns and quantified relationships, the only method in Cypher to match paths of a variable length was through variable-length relationships.
+This syntax is still available but it is not <a href="../../appendix/gql-conformance/" class="xref page">GQL conformant</a>.
+It is very similar to the syntax for quantified relationships, with the following differences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Position and syntax of quantifier.</p>
+</li>
+<li>
+<p>Semantics of the asterisk symbol.</p>
+</li>
+<li>
+<p>Type expressions are limited to the <a href="../reference/#label-expressions" class="xref page">disjunction operator</a>.</p>
+</li>
+<li>
+<p>The <a href="../../clauses/where/" class="xref page">WHERE</a> clause is not allowed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information, see the reference section on <a href="../reference/#variable-length-relationships" class="xref page">variable-length relationships</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="group-variables"><a class="anchor" href="#group-variables"></a>Group variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section uses the example of <code>Stations</code> and <code>Stops</code> used in the previous section, but with an additional property <code>distance</code> added to the <code>NEXT</code> relationships:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-group-variables-graph.svg" alt="Example graph using the London railway dataset to show variable-length patterns" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>As the name suggests, this property represents the distance between two <code>Stops</code>.
+To return the total distance for each service connecting a pair of <code>Stations</code>, a variable referencing each of the relationships traversed is needed.
+Similarly, to extract the <code>departs</code> and <code>arrives</code> properties of each <code>Stop</code>, variables referencing each of the nodes traversed is required.
+In this example of matching services between <code>Denmark Hill</code> and <code>Clapham Junction</code>, the variables <code>l</code> and <code>m</code> are declared to match the <code>Stops</code> and <code>r</code> is declared to match the relationships.
+The variable origin only matches the first <code>Stop</code> in the path:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (:Station { name: 'Denmark Hill' })&lt;-[:CALLS_AT]-(origin)
+      ((l)-[r:NEXT]-&gt;(m)){1,3}
+      ()-[:CALLS_AT]-&gt;(:Station { name: 'Clapham Junction' })</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Variables that are declared inside quantified path patterns are known as <em>group variables</em>.
+They are so called because, when referred outside of the quantified path pattern, they are lists of the nodes or relationships they are bound to in the match.
+To understand how to think about the way group variables are bound to nodes or relationships, it helps to expand the quantified path pattern, and observe how the different variables match to the elements of the overall matched path.
+Here the three different expansions for each value in the range given by the quantifier <code>{1,3}</code>:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-syntax hljs" data-lang="syntax">(l1)-[r1:NEXT]-&gt;(m1) |
+(l1)-[r1:NEXT]-&gt;(m1)(l2)-[r2:NEXT]-&gt;(m2) |
+(l1)-[r1:NEXT]-&gt;(m1)(l2)-[r2:NEXT]-&gt;(m2)(l3)-[r3:NEXT]-&gt;(m3)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The subscript of each variable indicates which instance of the path pattern repetition they belong to.
+The following diagram shows the variable bindings of the path pattern with three repetitions, which matches the service that departs <code>Denmark Hill</code> at <code>17:07</code>.
+It traces the node or relationship that each indexed variable is bound to.
+Note that the index increases from right to left as the path starts at <code>Denmark Hill</code>:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-group-variables-graph2.svg" alt="Diagram showing variable bindings of the path pattern" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>For this matched path, the group variables have the following bindings:</p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">l =&gt; [n2, n3, n4]
+r =&gt; [r2, r3, r4]
+m =&gt; [n3, n4, n5]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The second solution is the following path:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-group-variables-graph3.svg" alt="Diagram with a variation of the binding of the path pattern" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The following table shows the bindings for both matches, including the variable origin.
+In contrast to the group variables, <code>origin</code> is a singleton variable due to being declared outside the quantification.
+Singleton variables bind at most to one node or relationship.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">origin</th>
+<th class="tableblock halign-left valign-top">l</th>
+<th class="tableblock halign-left valign-top">r</th>
+<th class="tableblock halign-left valign-top">m</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[n2, n3, n4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[r2, r3, r4]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[n3, n4, n5]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>n7</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[n7]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[r8]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[n8]</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Returning to the original goal, which was to return the sequence of depart times for the <code>Stops</code> and the total distance of each service, the final query exploits the compatibility of group variables with list comprehensions and list functions such as <a href="../../functions/list/#functions-reduce" class="xref page">reduce()</a>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (:Station {name: 'Denmark Hill'})&lt;-[:CALLS_AT]-(origin)
+      ((l)-[r:NEXT]-&gt;(m)){1,3}
+      ()-[:CALLS_AT]-&gt;(:Station {name: 'Clapham Junction'})
+RETURN origin.departs + [stop in m | stop.departs] AS departureTimes,
+       reduce(acc = 0.0, next in r | round(acc + next.distance, 2)) AS totalDistance</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 3. Result</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">departureTimes</th>
+<th class="tableblock halign-left valign-top">totalDistance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["17:10:00Z", "17:20:00Z"]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.4</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["17:07:00Z", "17:11:00Z", "17:13:00Z", "17:20:00Z"]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1.4</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quantified-path-patterns-predicates"><a class="anchor" href="#quantified-path-patterns-predicates"></a>Predicates in quantified path patterns</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the pitfalls of quantified path patterns is that, depending on the graph, they can end up matching very large numbers of paths, resulting in a slow query performance.
+This is especially true when searching for paths with a large maximum length or when the pattern is too general.
+However, by using inline predicates that specify precisely which nodes and relationships should be included in the results, unwanted results will be pruned as the graph is traversed.</p>
+</div>
+<div class="paragraph">
+<p>Here are some examples of the types of constraints you can impose on quantified path pattern traversals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Nodes must have certain combinations of labels.
+For example, all nodes must be an <code>Employee</code>, but not a <code>Contractor</code>.</p>
+</li>
+<li>
+<p>Relationships must have certain types.
+For example, all relationships in the path must be of type <code>EMPLOYED_BY</code>.</p>
+</li>
+<li>
+<p>Nodes or relationships must have properties satisfying some condition.
+For example, all relationships must have the property <code>distance &gt; 10</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To demonstrate the utility of predicates in quantified path patterns, this section considers an example of finding the shortest path by physical distance and compares that to the results yielded by using the <a href="../shortest-paths/" class="xref page"><code>SHORTEST</code></a> keyword.
+The graph in this example continues with <code>Station</code> nodes, but adds both a geospatial <code>location</code> property to the <code>Stations</code>, as well as <code>LINK</code> relationships with a <code>distance</code> property representing the distance between pairs of <code>Stations</code>:</p>
+</div>
+<div class="imageblock popup">
+<div class="content">
+<img src="../../_images/patterns-qpp-predicates.svg" alt="Example graph with station nodes and an additional geospatial location property" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>To recreate the graph, run the following query against an empty Neo4j database:</p>
+</div>
+<div class="listingblock test-setup">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (lbg:Station {name: "London Bridge"}),
+    (bfr:Station {name: "London Blackfriars"}),
+    (eph:Station {name: "Elephant &amp; Castle"}),
+    (dmk:Station {name: "Denmark Hill"}),
+    (pmr:Station {name: "Peckham Rye"}),
+    (qrp:Station {name: "Queens Rd Peckham"}),
+    (sbm:Station {name: "South Bermondsey"}),
+    (lgj:Station {name: "Loughborough Jn"}),
+    (hnh:Station {name: "Herne Hill"}),
+    (tuh:Station {name: "Tulse Hill"}),
+    (ndl:Station {name: "North Dulwich"}),
+    (edw:Station {name: "East Dulwich"}),
+    (brx:Station {name: "Brixton"})
+ SET lbg.location = point({longitude: -0.08609, latitude: 51.50502}),
+    bfr.location = point({longitude: -0.10333, latitude: 51.51181}),
+    eph.location = point({longitude: -0.09873, latitude: 51.49403}),
+    dmk.location = point({longitude: -0.08936, latitude: 51.46820}),
+    pmr.location = point({longitude: -0.06941, latitude: 51.47003}),
+    qrp.location = point({longitude: -0.05731, latitude: 51.47357}),
+    sbm.location = point({longitude: -0.05468, latitude: 51.48814}),
+    lgj.location = point({longitude: -0.10218, latitude: 51.46630}),
+    hnh.location = point({longitude: -0.10229, latitude: 51.45331}),
+    tuh.location = point({longitude: -0.10508, latitude: 51.43986}),
+    ndl.location = point({longitude: -0.08792, latitude: 51.45451}),
+    edw.location = point({longitude: -0.08057, latitude: 51.46149}),
+    brx.location = point({longitude: -0.11418, latitude: 51.46330})
+CREATE (lbg)&lt;-[:LINK {distance: 1.13}]-(bfr),
+    (bfr)&lt;-[:LINK {distance: 1.21}]-(eph),
+    (eph)-[:LINK {distance: 2.6}]-&gt;(dmk),
+    (dmk)-[:LINK {distance: 0.86}]-&gt;(pmr),
+    (pmr)-[:LINK {distance: 0.71}]-&gt;(qrp),
+    (qrp)&lt;-[:LINK {distance: 0.95}]-(sbm),
+    (sbm)&lt;-[:LINK {distance: 1.8}]-(lbg),
+    (lgj)-[:LINK {distance: 0.88}]-&gt;(hnh),
+    (hnh)-[:LINK {distance: 1.08}]-&gt;(tuh),
+    (tuh)&lt;-[:LINK {distance: 1.29}]-(ndl),
+    (ndl)-[:LINK {distance: 0.53}]-&gt;(edw),
+    (edw)-[:LINK {distance: 0.84}]-&gt;(pmr),
+    (eph)-[:LINK {distance: 2.01}]-&gt;(lgj),
+    (dmk)-[:LINK {distance: 1.11}]-&gt;(brx),
+    (brx)-[:LINK {distance: 0.51}]-&gt;(hnh)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following query finds the path length and total distance for <a href="../shortest-paths/#all-shortest" class="xref page"><code>ALL SHORTEST</code></a> paths between <code>London Blackfriars</code> to <code>North Dulwich</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (bfr:Station {name: 'London Blackfriars'}),
+      (ndl:Station {name: 'North Dulwich'})
+MATCH p = ALL SHORTEST (bfr)-[:LINK]-+(ndl)
+RETURN [n in nodes(p) | n.name] AS stops,
+       length(p) as stopCount,
+       reduce(acc = 0, r in relationships(p) | round(acc + r.distance, 2)) AS distance</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 4. Result</caption>
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 16.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">stops</th>
+<th class="tableblock halign-left valign-top">stopCount</th>
+<th class="tableblock halign-left valign-top">distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["London Blackfriars", "Elephant &amp; Castle", "Denmark Hill", "Peckham Rye", "East Dulwich", "North Dulwich"]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>6.04</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["London Blackfriars", "Elephant &amp; Castle", "Loughborough Jn", "Herne Hill", "Tulse Hill", "North Dulwich"]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>6.47</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><p class="tableblock">Rows: 2</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p><code>ALL SHORTEST</code> finds all shortest paths by number of hops, and as the result shows, there are two paths in the graph tied for the shortest path.
+Whether any of these paths corresponds to the shortest path by distance can be checked by looking at each path between the two end <code>Stations</code> and returning the first result after ordering by <code>distance</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (bfr:Station {name: 'London Blackfriars'}),
+      (ndl:Station {name: 'North Dulwich'})
+MATCH p = (bfr)-[:LINK]-+(ndl)
+RETURN reduce(acc = 0, r in relationships(p) | round(acc + r.distance, 2))
+    AS distance
+ORDER BY distance LIMIT 1</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 5. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5.96</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>This shows that there is a route with a shorter distance than either of the paths with fewer <code>Stations</code> returned using <code>ALL SHORTEST</code>.
+But to get this result, the query had to first find all paths from <code>London Blackfriars</code> to <code>North Dulwich</code> before it could select the shortest one.
+The following query shows the number of possible paths:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (bfr:Station {name: 'London Blackfriars'}),
+      (ndl:Station {name: 'North Dulwich'})
+MATCH p = (bfr)-[:LINK]-+(ndl)
+RETURN count(*) AS numPaths</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 6. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">numPaths</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>7</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>For a small dataset like this, finding all the paths will be fast.
+But as the size of the graph grows, the execution time will increase exponentially.
+For a real dataset, such as the entire rail network of the UK, it might be unacceptably long.</p>
+</div>
+<div class="paragraph">
+<p>One approach to avoid the exponential explosion in paths is to put a finite upper bound to the quantified path pattern (e.g. <code>{,10}</code>) to limit the amount of path iterations returned.
+This works fine where the solution is known to lie within some range of hops.
+But in cases where this is not known, one alternative would be to make the pattern more specific by, for example, adding node labels, or by specifying a relationship direction.
+Another alternative would be to add an inline predicate to the quantified path pattern.</p>
+</div>
+<div class="paragraph">
+<p>In this example, an inline predicate can be added that takes advantage of the geospatial <code>location</code> property of the <code>Stations</code>: for each pair of <code>Stations</code> on the path, the second <code>Station</code> will be closer to the endpoint (not always true, but is assumed here to keep the example simple).
+To compose the predicate, the <a href="../../functions/spatial/#functions-distance" class="xref page">point.distance()</a> function is used to compare the distance between the left-hand <code>Station</code> (<code>a</code>) and the right-hand <code>Station</code> (<code>b</code>) for each node-pair along the path to the destination <code>North Dulwich</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (bfr:Station {name: "London Blackfriars"}),
+      (ndl:Station {name: "North Dulwich"})
+MATCH p = (bfr)
+          ((a)-[:LINK]-(b:Station)
+            WHERE point.distance(a.location, ndl.location) &gt;
+              point.distance(b.location, ndl.location))+ (ndl)
+RETURN reduce(acc = 0, r in relationships(p) | round(acc + r.distance, 2))
+  AS distance</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Table 7. Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5.96</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>This query avoids having to find all possible paths and then imposing a <code>LIMIT 1</code> to find the shortest one by distance.
+It also shows that there is only one path to solving the query (a number that remains constant even if the data from the rest of the UK railway network was included).
+Using inline predicates or making quantified path patterns more specific where possible can thus greatly improve query performance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="further-reading"><a class="anchor" href="#further-reading"></a>Further reading</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://medium.com/neo4j/getting-from-denmark-hill-to-gatwick-airport-with-quantified-path-patterns-bed38da27ca1">Neo4j Developer Blog: Getting From Denmark Hill to Gatwick Airport With Quantified Path Patterns</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/neo4j/did-you-take-the-neo4j-5-cypher-bullet-train-6a857c92d669">Neo4j Developer Blog: Did You Take the Neo4j 5 Cypher Bullet Train?</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../fixed-length-patterns/" aria-label="Previous: Fixed-length patterns">Fixed-length patterns</a></span>
+
+  <span class="next"><a href="../shortest-paths/" aria-label="Next: Shortest paths">Shortest paths</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+      </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>

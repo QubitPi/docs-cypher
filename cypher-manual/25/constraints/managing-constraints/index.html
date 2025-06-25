@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1">
+    <meta name="msvalidate.01" content="B5163518CBE4A854B63801277FE5E35C" />
+    <meta name="google-site-verification" content="ucqagxjVuq0lJZeLKs0F5AppzK111lNt3IoxU6mzlJE" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
+    <title>Create, show, and drop constraints - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/constraints/managing-constraints/">
+
+    <link rel="prev" href="../">
+    <link rel="next" href="../syntax/">
+
+      <meta name="description" content="Information about creating, listing, and dropping Neo4j&#x27;s constraints.">
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
+<link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
+
+
+
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+
+
+    <meta property="neo:type" content="Docs">
+    <meta property="neo:site" content="Reference Docs">
+
+
+    <meta property="og:site_name" content="Neo4j Graph Data Platform" />
+    <meta property="article:publisher" content="https://www.facebook.com/neo4j.graph.database" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@neo4j" />
+    <meta name="twitter:site" content="@neo4j" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Create, show, and drop constraints - Cypher Manual" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
+    <meta property="og:description" content="Information about creating, listing, and dropping Neo4j's constraints." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/constraints/managing-constraints/" />
+    <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
+  </head>
+  <body class="article docs">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WK23PSS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("4bfb2414ab973c741b6f067bf06d5575", {batch_requests: true})
+mixpanel.track("Page View", {
+    pathname: window.location.origin + window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    referrer: document.referrer,
+})
+</script>
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+
+        <img class="navbar-logo" src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Docs" />
+      </a>
+      <a href="/docs/" class="navbar-item no-left-padding" aria-label="Docs">
+        Docs
+      </a>
+
+      </div>
+
+      <button class="navbar-search search-button" data-target="topbar-nav" id="search_open_mobile" aria-label="Open Search">
+        <svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" class="fill-current float-right" id="searchx" role="button" title="Search Website">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+            stroke-linejoin="round">
+            <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+              <circle
+                transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+              <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+            </g>
+          </g>
+        </svg>
+      </button>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Mobile Navigation Button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+
+
+        <div class="navbar-item has-dropdown is-hoverable docs">
+          <a class="navbar-link" href="/docs/">Docs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j DBMS</span>
+              <ul class="project-links">
+                <li><a href="/docs/getting-started/current/" class="project-link">Getting Started</a></li>
+                <li><a href="/docs/operations-manual/current/" class="project-link">Operations</a></li>
+                <li><a href="/docs/migration-guide/current/" class="project-link">Migration and Upgrade</a></li>
+                <li><a href="/docs/status-codes/current/" class="project-link">Status Codes</a></li>
+                <li><a href="/docs/java-reference/current/" class="project-link">Java Reference</a></li>
+                <li><a href="/docs/kerberos-add-on/current/" class="project-link">Kerberos Add-on</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <a class="project-name" href="/docs/aura/">Neo4j Aura</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="/docs/aura">Neo4j Aura</a></li>
+                <li><a class="project-link" href="/docs/aura/auradb/">Neo4j AuraDB</a></li>
+                <li><a class="project-link" href="/docs/aura/aurads/">Neo4j AuraDS</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Tools</span>
+              <ul class="project-links">
+                <li><a href="/docs/bloom-user-guide/current/" class="project-link">Neo4j Bloom</a></li>
+                <li><a href="/docs/browser-manual/current/" class="project-link">Neo4j Browser</a></li>
+                <li><a href="/docs/data-importer/current/" class="project-link">Neo4j Data Importer</a></li>
+                <li><a href="/docs/desktop-manual/current/" class="project-link">Neo4j Desktop</a></li>
+                <li><a href="/docs/ops-manager/current/" class="project-link">Neo4j Ops Manager</a></li>
+                <li><a href="/docs/neodash-commercial/current/" class="project-link">Neodash commercial</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Neo4j Graph Data Science</span>
+              <ul class="project-links">
+                <li><a href="/docs/graph-data-science/current/" class="project-link">Neo4j Graph Data Science Library</a></li>
+                <li><a href="/docs/graph-data-science-client/current/" class="project-link">Neo4j Graph Data Science Client</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name">Cypher Query Language</span>
+              <ul class="project-links">
+                <li><a href="/docs/cypher-manual/current/" class="project-link">Cypher</a></li>
+                <li><a href="/docs/cypher-cheat-sheet/current/" class="project-link">Cypher Cheat Sheet</a></li>
+                <li><a href="/docs/apoc/current/" class="project-link">APOC Library</a></li>
+              </ul>
+            </div>
+
+           <div class="navbar-item project">
+              <span class="project-name" href="/docs/genai">Generative AI</span>
+              <ul class="project-links">
+                <li><a href="/docs/neo4j-graphrag-python/current/" class="project-link">Neo4j GraphRAG for Python</a></li>
+                <li><a href="/docs/genai/tutorials/embeddings-vector-indexes/" class="project-link">Embeddings and vector indexes tutorial</a></li>
+                <li><a href="/docs/cypher-manual/current/genai-integrations/" class="project-link">GenAI integrations</a></li>
+                <li><a href="/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/" class="project-link">Vector search indexes</a></li>
+                <li><a href="/docs/cypher-manual/current/functions/vector/" class="project-link">Vector search functions</a></li>
+                <li><a href="/docs/graphql/5/directives/indexes-and-constraints/#_vector_index_search" class="project-link">GraphQL vector index search documentation</a></li>
+              </ul>
+            </div>
+            
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/create-applications">Create applications</span>
+              <ul class="project-links">
+                <li><a href="/docs/python-manual/current/" class="project-link">Python Driver</a></li>
+                <li><a href="/docs/go-manual/current/" class="project-link">Go Driver</a></li>
+                <li><a href="/docs/java-manual/current/" class="project-link">Java Driver</a></li>
+                <li><a href="/docs/jdbc-manual/current/" class="project-link">JDBC Driver</a></li>
+                <li><a href="/docs/javascript-manual/current/" class="project-link">JavaScript Driver</a></li>
+                <li><a href="/docs/dotnet-manual/current/" class="project-link">.Net Driver</a></li>
+                <li><a href="/docs/graphql-manual/current/" class="project-link">Neo4j GraphQL Library</a></li>
+                <li><a href="/docs/nvl/current/" class="project-link">Neo4j Visualization Library</a></li>
+                <li><a href="/docs/ogm-manual/current/" class="project-link">OGM Library</a></li>
+                <li><a href="https://docs.spring.io/spring-data/neo4j/docs/current/reference/html/#reference" class="project-link">Spring Data Neo4j</a></li>
+                <li><a href="/docs/http-api/current/" class="project-link">HTTP API</a></li>
+                <li><a href="/docs/query-api/current/" class="project-link">Neo4j Query API</a></li>
+                <li><a href="/docs/bolt/current/" class="project-link">Bolt</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <span class="project-name" href="/docs/connectors">Connect data sources</span>
+              <ul class="project-links">
+                <li><a href="/docs/spark/current/" class="project-link">Neo4j Connector for Apache Spark</a></li>
+                <li><a href="/docs/kafka/" class="project-link">Neo4j Connector for Apache Kafka</a></li>
+                <li><a href="/docs/cdc/" class="project-link">Change Data Capture (CDC)</a></li>
+                <li><a href="/docs/dataflow-bigquery/" class="project-link">BigQuery to Neo4j</a></li>
+                <li><a href="/docs/dataflow-google-cloud/" class="project-link">Google Cloud to Neo4j</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable labs">
+          <a class="navbar-link" href="/labs/">Labs</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/genai-ecosystem/">GenAI Ecosystem</a>
+              <ul class="project-links">
+                <li><a href="/labs/genai-ecosystem/llm-graph-builder/" class="project-link">LLM Knowledge Graph Builder</a></li>
+                <li><a href="/labs/genai-ecosystem/vector-search/" class="project-link">Vector Index &amp; Search</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain/" class="project-link">LangChain</a></li>
+                <li><a href="/labs/genai-ecosystem/langchain-js/" class="project-link">LangChain.js</a></li>
+                <li><a href="/labs/genai-ecosystem/llamaindex/" class="project-link">LlamaIndex</a></li>
+                <li><a href="/labs/genai-ecosystem/haystack/" class="project-link">Haystack</a></li>
+                <li><a href="/labs/genai-ecosystem/dspy/" class="project-link">DSPy</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name" href="/labs/apoc/">Developer Tools</strong>
+              <ul class="project-links">
+                <li><a href="/labs/apoc/" class="project-link">APOC Extended</a></li>
+                <li><a class="project-link" href="/labs/aura-cli/">Aura CLI</a></li>
+                <li><a class="project-link" href="/labs/arrows/">arrows.app</a></li>
+                <li><a class="project-link" href="/labs/cypher-workbench/">Cypher Workbench</a></li>
+                <li><a class="project-link" href="/labs/etl-tool/">ETL Tool</a></li>
+                <li><a class="project-link" href="/labs/neodash/">NeoDash</a></li>
+              </ul>
+            </div>
+
+            <div class="navbar-item project">
+              <strong class="project-name">Frameworks &amp; Integrations</strong>
+              <ul class="project-links">
+                <li><a class="project-link" href="/labs/neo4j-needle-starterkit/">Needle Starter Kit</a></li>
+                <li><a class="project-link" href="/labs/liquibase/">Neo4j Plugin for Liquibase</a></li>
+                <li><a class="project-link" href="/labs/neo4j-migrations/">Neo4j Migrations</a></li>
+                <li><a class="project-link" href="/labs/neomodel/">neomodel</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/labs/neosemantics/">RDF &amp; Linked Data</a>
+              <ul class="project-links">
+                <li><a href="/labs/neosemantics/" class="project-link">Neosemantics (Java)</a></li>
+                <li><a href="/labs/rdflib-neo4j/" class="project-link">RDFLib-Neo4j (Python)</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="/developer/resources/">Get Help</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/forum" target="_blank">Community Forum</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://dev.neo4j.com/chat" target="_blank">Discord Chat</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="http://support.neo4j.com" target="_blank">Product Support</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://neo4j.com/blog/developer/" target="_blank">Neo4j Developer Blog</a>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="/videos/" target="_blank">Neo4j Videos</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable developer">
+          <a class="navbar-link" href="https://graphacademy.neo4j.com/?ref=docs-nav">GraphAcademy</a>
+          <div class="navbar-dropdown">
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/beginners/?ref=docs-nav" target="_blank">Beginners Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/neo4j-fundamentals/?ref=docs-nav">Neo4j Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/cypher-fundamentals/?ref=docs-nav">Cypher Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-fundamentals/?ref=docs-nav">Importing Data Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/importing-csv-data/?ref=docs-nav">Importing CSV Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/modeling-fundamentals/?ref=docs-nav">Graph Data Modeling</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/data-scientist/?ref=docs-nav" target="_blank">Data Scientist Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-product-introduction/?ref=docs-nav">Into to Graph Data Science</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/graph-data-science-fundamentals/?ref=docs-nav">Graph Data Science Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/gds-shortest-paths/?ref=docs-nav">Path Finding</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/categories/llms/?ref=docs-nav" target="_blank">Generative AI Courses</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-fundamentals/?ref=docs-nav">Neo4j &amp; LLM Fundamentals</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/?ref=docs-nav">Vector Indexes &amp; Unstructured Data</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-python/?ref=docs-nav">Build a Chatbot with Python</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/courses/llm-chatbot-typescript/?ref=docs-nav">Build a Chatbot with TypeScript</a></li>
+              </ul>
+            </div>
+            <div class="navbar-item project">
+              <a class="project-name" href="https://graphacademy.neo4j.com/certification/?ref=docs-nav" target="_blank">Neo4j Certification</a>
+              <ul class="project-links">
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/neo4j-certification/?ref=docs-nav">Neo4j Certified Professional</a></li>
+                <li><a class="project-link" href="https://graphacademy.neo4j.com/certifications/gds-certification/?ref=docs-nav">Neo4j Graph Data Science Certification</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable getting-started-cta">
+          <a class="navbar-link primary" href="https://console.neo4j.io/?ref=docs-nav-get-started">Get Started Free</a>
+        </div>
+        <div class="navbar-item">
+          <a class="navbar-link search-button" href="#search" id="search_open"><svg width="23px" height="23px" viewBox="0 0 23 23"
+              version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              class="fill-current float-right" id="search" role="button" title="Search Website">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                stroke-linejoin="round">
+                <g transform="translate(-2.000000, -2.000000)" stroke="#a0aec0" stroke-width="1.5">
+                  <circle
+                    transform="translate(11.389364, 11.388564) rotate(-23.025000) translate(-11.389364, -11.388564) "
+                    cx="11.3893642" cy="11.3885639" r="8.056"></circle>
+                  <path d="M17.0853333,17.0844444 L23.3333333,23.3333333" ></path>
+                </g>
+              </g>
+            </svg><span class="navbar-mobile">Search</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+<div class="body">
+    <a class="show-on-focus skip-link" href="#skip-to-content" title="Skip to content">Skip to content</a>
+<div class="nav-container" data-component="cypher-manual" data-version="25">
+  <aside class="nav">
+    <div class="panels">
+      <div class="component">
+  <div class="nav-product">
+    <span class="nav-product-name">Cypher Manual</span>
+  </div>
+</div>
+      
+
+
+
+
+
+      <div class="nav-panel-menu is-active has-feedback" data-panel="menu">
+    <nav class="nav-menu">
+    <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="0">
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/clause-composition/">Clause composition</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/create/">CREATE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/delete/">DELETE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/filter/">FILTER</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/finish/">FINISH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/let/">LET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/match/">MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/merge/">MERGE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/return/">RETURN</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/set/">SET</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/skip/">SKIP</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/use/">USE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/where/">WHERE</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../clauses/with/">WITH</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/primer/">Primer</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/variable-length-patterns/">Variable-length patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/shortest-paths/">Shortest paths</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/non-linear-patterns/">Non-linear patterns</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/match-modes/">Match modes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../indexes/semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../indexes/syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Constraints</a>
+        <ul class="nav-list">
+    <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="./">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../syntax/">Syntax</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <span class="nav-text nav-item-toggle">Appendix</span>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+            </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+    </li>
+</ul>
+
+  </nav>
+</div>
+        <div class="feedback" style="height: var(--feedback-height);">
+    <div class="header question">
+        <p><strong>Is this page helpful?</strong></p>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="no" aria-label="No, this page isn't helpful">
+            <path
+                d="M6.25,15.8333333 C6.25,13.7622655 7.92893219,12.0833333 10,12.0833333 C12.0710678,12.0833333 13.75,13.7622655 13.75,15.8333333"
+                ></path>
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M12.5,4.58333333 C12.8934466,4.05873783 13.5109223,3.75 14.1666667,3.75 C14.822411,3.75 15.4398867,4.05873783 15.8333333,4.58333333"
+                ></path>
+            <line x1="4.58333333" y1="7.91666667" x2="7.08333333" y2="7.91666667" ></line>
+            <path
+                d="M7.08333333,8.54166667 C6.96827401,8.54166667 6.875,8.44839266 6.875,8.33333333 C6.875,8.21827401 6.96827401,8.125 7.08333333,8.125 C7.19839266,8.125 7.29166667,8.21827401 7.29166667,8.33333333 C7.29166667,8.44839266 7.19839266,8.54166667 7.08333333,8.54166667"
+                ></path>
+            <line x1="12.9166667" y1="7.91666667" x2="15.4166667" y2="7.91666667" ></line>
+            <path
+                d="M15.4166667,8.54166667 C15.3016073,8.54166667 15.2083333,8.44839266 15.2083333,8.33333333 C15.2083333,8.21827401 15.3016073,8.125 15.4166667,8.125 C15.531726,8.125 15.625,8.21827401 15.625,8.33333333 C15.625,8.44839266 15.531726,8.54166667 15.4166667,8.54166667"
+                ></path>
+            <path
+                d="M4.16666667,4.58333333 C4.5601133,4.05873783 5.17758895,3.75 5.83333333,3.75 C6.48907772,3.75 7.10655337,4.05873783 7.5,4.58333333"
+                ></path>
+        </svg>
+
+        <svg width="22px" height="22px" viewBox="0 0 22 22" role="button" class="yes" aria-label="Yes, this page is helpful">
+            <circle  cx="10" cy="10" r="9.58333333"></circle>
+            <path
+                d="M5.41666667,8.125 C5.53172599,8.125 5.625,8.21827401 5.625,8.33333333 C5.625,8.44839266 5.53172599,8.54166667 5.41666667,8.54166667 C5.30160734,8.54166667 5.20833333,8.44839266 5.20833333,8.33333333 C5.20833333,8.21827401 5.30160734,8.125 5.41666667,8.125"
+                ></path>
+            <path
+                d="M14.5833333,8.125 C14.468274,8.125 14.375,8.21827401 14.375,8.33333333 C14.375,8.44839266 14.468274,8.54166667 14.5833333,8.54166667 C14.6983927,8.54166667 14.7916667,8.44839266 14.7916667,8.33333333 C14.7916667,8.21827401 14.6983927,8.125 14.5833333,8.125"
+                ></path>
+            <path
+                d="M13.2275,12.9166657 C13.4853075,12.9162808 13.7287776,13.035241 13.8869095,13.2388563 C14.0450415,13.4424715 14.1000278,13.7078123 14.0358333,13.9575 C13.562901,15.7999679 11.9021969,17.0882321 10,17.0882321 C8.09780311,17.0882321 6.43709903,15.7999679 5.96416667,13.9575 C5.89997223,13.7078123 5.95495852,13.4424715 6.11309045,13.2388563 C6.27122239,13.035241 6.51469246,12.9162808 6.7725,12.9166657 L13.2275,12.9166657 Z"
+                ></path>
+        </svg>
+    </div>
+
+
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+  <div class="toolbar-wrapper">
+    <button class="nav-toggle" aria-label="Toggle Table of Contents"></button>
+    
+    
+
+    
+    <a href="https://neo4j.com/docs" class="home-link" aria-label="Go to docs home page"></a>
+    
+
+
+    <nav class="breadcrumbs" aria-label="breadcrumbs menu">
+  <ul>
+
+    <li><a href="../../introduction/">Cypher Manual</a></li>
+
+    <li><a href="../">
+        Constraints
+    </a></li>
+    <li><a href="./">
+        Create, show, and drop constraints
+    </a></li>
+  </ul>
+</nav>
+      </div>
+</div>
+
+  
+  <div class="content">
+    <div id="skip-to-content"></div>
+<article class="doc">
+<div class="sect-header">
+  <h1 class="page">Create, show, and drop constraints</h1>
+</div>
+
+
+
+
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes how to create, list, and drop constraints.
+The following constraint types are available in Neo4j:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-property-uniqueness-constraints">Property uniqueness constraints</a></p>
+</li>
+<li>
+<p><a href="#create-property-existence-constraints">Property existence constraints</a> <span class="label label--enterprise-edition">Enterprise Edition</span></p>
+</li>
+<li>
+<p><a href="#create-property-type-constraints">Property type constraints</a> <span class="label label--enterprise-edition">Enterprise Edition</span></p>
+</li>
+<li>
+<p><a href="#create-key-constraints">Key constraints</a> <span class="label label--enterprise-edition">Enterprise Edition</span></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-constraint"><a class="anchor" href="#create-constraint"></a>CREATE CONSTRAINT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Constraints are created with the <code>CREATE CONSTRAINT</code> command.
+When creating a constraint, it is recommended to provide a constraint name.
+This name must be unique among both indexes and constraints.
+If a name is not explicitly given, a unique name will be auto-generated.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Creating a constraint requires the <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/database-administration/#access-control-database-administration-constraints"><code>CREATE CONSTRAINT</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Adding constraints is an atomic operation that can take a while&#8201;&#8212;&#8201;all existing data has to be scanned before a Neo4j DBMS can use a constraint.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="create-property-uniqueness-constraints"><a class="anchor" href="#create-property-uniqueness-constraints"></a>Create property uniqueness constraints</h3>
+<div class="paragraph">
+<p>Property uniqueness constraints ensure that the property values are unique for all nodes with a specific label or all relationships with a specific type.
+For composite property uniqueness constraints on multiple properties, it is the combination of property values that must be unique.
+Queries that try to add duplicated property values will fail.</p>
+</div>
+<div class="paragraph">
+<p>Property uniqueness constraints do not require all nodes or relationships to have values for the properties listed in the constraint.
+Only nodes or relationships that contain all properties specified in the constraint are subject to the uniqueness rule.
+Nodes or relationships missing one or more of the specified properties are not subject to this rule.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-single-property-uniqueness-constraint">Create a single property uniqueness constraint</a></p>
+</li>
+<li>
+<p><a href="#create-composite-property-uniqueness-constraint">Create a composite property uniqueness constraint</a></p>
+</li>
+<li>
+<p><a href="#create-property-uniqueness-constraint-compliant-data">Create data that complies with existing property uniqueness constraints</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-single-property-uniqueness-constraint"><a class="anchor" href="#create-single-property-uniqueness-constraint"></a>Create a single property uniqueness constraint</h4>
+<div class="paragraph">
+<p>Single property uniqueness constraints are created with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node property uniqueness constraints: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE n.property IS UNIQUE</code>.</p>
+</li>
+<li>
+<p>Relationship property uniqueness constraints: <code>CREATE CONSTRAINT constraint_name
+FOR ()-[r:REL_TYPE]-() REQUIRE r.property IS UNIQUE</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the full command syntax to create a property uniqueness constraint, see <a href="../syntax/#create-property-uniqueness-constraints" class="xref page">Syntax &#8594; Create property uniqueness constraints</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Create a node property uniqueness constraint on a single property</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>Book</code> nodes to have unique <code>isbn</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT book_isbn
+FOR (book:Book) REQUIRE book.isbn IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Create a relationship property uniqueness constraint on a single property</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>SEQUEL_OF</code> relationships to have unique <code>order</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT sequels
+FOR ()-[sequel:SEQUEL_OF]-() REQUIRE sequel.order IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-composite-property-uniqueness-constraint"><a class="anchor" href="#create-composite-property-uniqueness-constraint"></a>Create a composite property uniqueness constraint</h4>
+<div class="paragraph">
+<p>Constraints created for multiple properties are called composite constraints.
+Note that the constrained properties must be parenthesized when creating composite property uniqueness constraints.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node property uniqueness constraints: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE (n.propertyName_1, &#8230;&#8203;, n.propertyName_n) IS UNIQUE</code>.</p>
+</li>
+<li>
+<p>Relationship property uniqueness constraints: <code>CREATE CONSTRAINT constraint_name FOR ()-[r:REL_TYPE]-() REQUIRE (r.propertyName_1, &#8230;&#8203;, r.propertyName_n) IS UNIQUE</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the full command syntax to create a property uniqueness constraint, see <a href="../syntax/#create-property-uniqueness-constraints" class="xref page">Syntax &#8594; Create property uniqueness constraints</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Create a composite node property uniqueness constraint on several properties</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>Book</code> nodes to have unique combinations of <code>title</code> and <code>publicationYear</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT book_title_year
+FOR (book:Book) REQUIRE (book.title, book.publicationYear) IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. Create a composite relationship property uniqueness constraint on several properties</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>PREQUEL_OF</code> relationships to have unique combinations of <code>order</code> and <code>author</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT prequels
+FOR ()-[prequel:PREQUEL_OF]-() REQUIRE (prequel.order, prequel.author) IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-property-uniqueness-constraint-compliant-data"><a class="anchor" href="#create-property-uniqueness-constraint-compliant-data"></a>Create data that complies with existing property uniqueness constraints</h4>
+<div class="exampleblock">
+<div class="title">Example 5. Create a node that complies with existing property uniqueness constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a <code>Book</code> node with a unique <code>isbn</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (book:Book {isbn: '1449356265', title: 'Graph Databases'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 label, created 1 node, set 2 properties</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Create a relationship that complies with existing property uniqueness constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a <code>SEQUEL_OF</code> relationship with a unique <code>order</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (:Book {title: 'Spirit Walker'})-[:SEQUEL_OF {order: 1, seriesTitle: 'Chronicles of Ancient Darkness'}]-&gt;(:Book {title: 'Wolf Brother'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 2 labels, created 2 nodes, set 4 properties, created 1 relationship.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2 label--enterprise-edition">
+<h3 id="create-property-existence-constraints"><a class="anchor" href="#create-property-existence-constraints"></a>Create property existence constraints</h3>
+<div class="paragraph">
+<p>Property existence constraints ensure that a property exists either for all nodes with a specific label or for all relationships with a specific type.
+Queries that try to create new nodes of the specified label, or relationships of the specified type, without the constrained property will fail.
+The same is true for queries that try to remove the mandatory property.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-single-property-existence-constraint">Create a single property existence constraint</a></p>
+</li>
+<li>
+<p><a href="#create-property-existence-constraint-compliant-data">Create data that complies with existing property existence constraints</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-single-property-existence-constraint"><a class="anchor" href="#create-single-property-existence-constraint"></a>Create a single property existence constraint</h4>
+<div class="paragraph">
+<p>Property existence constraints on single properties are created with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node property existence constraint: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE n.property IS NOT NULL</code>.</p>
+</li>
+<li>
+<p>Relationship property existence constraint: <code>CREATE CONSTRAINT constraint_name FOR ()-[r:REL_TYPE]-() REQUIRE r.property IS NOT NULL</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the full command syntax to create an existence constraint, see <a href="../syntax/#create-property-existence-constraints" class="xref page">Syntax &#8594; Create property existence constraints</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is not possible to create composite existence constraints on several properties.
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. Create a node property existence constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>Author</code> nodes to have a <code>name</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT author_name
+FOR (author:Author) REQUIRE author.name IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. Create a relationship property existence constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>WROTE</code> relationships to have a <code>year</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT wrote_year
+FOR ()-[wrote:WROTE]-() REQUIRE wrote.year IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-property-existence-constraint-compliant-data"><a class="anchor" href="#create-property-existence-constraint-compliant-data"></a>Create data that complies with existing property existence constraints</h4>
+<div class="exampleblock">
+<div class="title">Example 9. Create a node that complies with existing node property existence constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create an <code>Author</code> node with a <code>name</code> property:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (author:Author {name:'Virginia Woolf', surname: 'Woolf'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 label, created 1 node, set 2 properties</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 10. Create a relationship that complies with existing relationship property existence constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a <code>WROTE</code> relationship with a <code>year</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (author:Author {name: 'Emily Brontë', surname: 'Brontë'})-[wrote:WROTE {year: 1847, location: 'Haworth, United Kingdom', published: true}]-&gt;(book:Book {title:'Wuthering Heights', isbn: 9789186579296})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 2 labels, created 2 nodes, set 7 properties, created 1 relationship</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2 label--enterprise-edition">
+<h3 id="create-property-type-constraints"><a class="anchor" href="#create-property-type-constraints"></a>Create property type constraints</h3>
+<div class="paragraph">
+<p>Property type constraints ensure that a property has the required data type for all nodes with a specific label or for all relationships with a specific type.
+Queries that attempt to add this property with the wrong data type or modify this property in a way that changes its data type for nodes of the specified label or relationships of the specified type will fail.</p>
+</div>
+<div class="paragraph">
+<p>Property type constraints do not require all nodes or relationships to have the property.
+Nodes or relationships without the constrained property are not subject to this rule.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-single-property-type-constraint">Create a single property type constraint</a></p>
+</li>
+<li>
+<p><a href="#create-property-type-constraint-union-type">Create property type constraints with a union type</a></p>
+</li>
+<li>
+<p><a href="#type-constraints-allowed-properties">Allowed types</a></p>
+</li>
+<li>
+<p><a href="#fail-to-create-property-type-constraint-invalid-type">Creating property type constraints on invalid types will fail</a></p>
+</li>
+<li>
+<p><a href="#create-property-type-constraint-compliant-data">Create data that complies with existing property type constraints</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-single-property-type-constraint"><a class="anchor" href="#create-single-property-type-constraint"></a>Create a single property type constraint</h4>
+<div class="paragraph">
+<p>Property type constraints are created with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node property type constraints: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE n.property IS :: &lt;TYPE&gt;</code>.</p>
+</li>
+<li>
+<p>Relationship property type constraints: <code>CREATE CONSTRAINT constraint_name FOR ()-[r:REL_TYPE]-() REQUIRE r.property IS :: &lt;TYPE&gt;</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>&lt;TYPE&gt;</code> refers to a specific Cypher<sup>&reg;</sup> data type, such as <code>STRING</code> or <code>INTEGER</code>.
+For the types that properties can be constrained by, see <a href="#type-constraints-allowed-properties">Allowed types</a>, and for information about different data types in Cypher, see <a href="../../values-and-types/" class="xref page">Values and types</a>.
+For the full command syntax to create a property type constraint, see <a href="../syntax/#create-property-type-constraints" class="xref page">Syntax &#8594; Create property type constraints</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is not possible to create composite property type constraints on several properties.
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 11. Create a node property type constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>title</code> properties on <code>Movie</code> nodes to be of type <code>STRING</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT movie_title
+FOR (movie:Movie) REQUIRE movie.title IS :: STRING</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 12. Create a relationship property type constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>order</code> properties on <code>PART_OF</code> relationships to be of type <code>INTEGER</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT part_of
+FOR ()-[part:PART_OF]-() REQUIRE part.order IS :: INTEGER</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-property-type-constraint-union-type"><a class="anchor" href="#create-property-type-constraint-union-type"></a>Create property type constraints with a union type</h4>
+<div class="paragraph">
+<p>A closed dynamic union allows a node or relationship property to maintain some type flexibility whilst preventing unexpected values from being stored.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 13. Create a node property type constraint with a union type</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>tagline</code> properties on <code>Movie</code> nodes to be either of type <code>STRING</code> or <code>LIST&lt;STRING NOT NULL&gt;</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT movie_tagline
+FOR (movie:Movie) REQUIRE movie.tagline IS :: STRING | LIST&lt;STRING NOT NULL&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 14. Create a relationship property type constraint with a union type</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>tags</code> properties on <code>PART_OF</code> relationships to either of type <code>STRING</code> or <code>LIST&lt;STRING NOT NULL&gt;</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT part_of_tags
+FOR ()-[part:PART_OF]-() REQUIRE part.tags IS :: STRING | LIST&lt;STRING NOT NULL&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="type-constraints-allowed-properties"><a class="anchor" href="#type-constraints-allowed-properties"></a>Allowed types</h4>
+<div class="paragraph">
+<p>The allowed property types for property type constraints are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BOOLEAN</code></p>
+</li>
+<li>
+<p><code>STRING</code></p>
+</li>
+<li>
+<p><code>INTEGER</code></p>
+</li>
+<li>
+<p><code>FLOAT</code></p>
+</li>
+<li>
+<p><code>DATE</code></p>
+</li>
+<li>
+<p><code>LOCAL TIME</code></p>
+</li>
+<li>
+<p><code>ZONED TIME</code></p>
+</li>
+<li>
+<p><code>LOCAL DATETIME</code></p>
+</li>
+<li>
+<p><code>ZONED DATETIME</code></p>
+</li>
+<li>
+<p><code>DURATION</code></p>
+</li>
+<li>
+<p><code>POINT</code></p>
+</li>
+<li>
+<p><code>LIST&lt;BOOLEAN NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;STRING NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;INTEGER NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;FLOAT NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;DATE NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;LOCAL TIME NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;ZONED TIME NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;LOCAL DATETIME NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;ZONED DATETIME NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;DURATION NOT NULL&gt;</code></p>
+</li>
+<li>
+<p><code>LIST&lt;POINT NOT NULL&gt;</code></p>
+</li>
+<li>
+<p>Any closed dynamic union of the above types, e.g. <code>INTEGER | FLOAT | STRING</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a complete reference describing all types available in Cypher, see the section on <a href="../../values-and-types/property-structural-constructed/#types-synonyms" class="xref page">types and their synonyms</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fail-to-create-property-type-constraint-invalid-type"><a class="anchor" href="#fail-to-create-property-type-constraint-invalid-type"></a>Creating property type constraints on invalid types will fail</h4>
+<div class="exampleblock">
+<div class="title">Example 15. Create a node property type constraint with an invalid type</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring <code>imdbScore</code> properties on <code>Movie</code> nodes to be of type <code>MAP</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT score FOR (movie:Movie) REQUIRE movie.imdbScore IS :: MAP</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Failed to create node property type constraint: Invalid property type `MAP`.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-property-type-constraint-compliant-data"><a class="anchor" href="#create-property-type-constraint-compliant-data"></a>Create data that complies with existing property type constraints</h4>
+<div class="exampleblock">
+<div class="title">Example 16. Create a node that complies with existing node property type constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create an <code>Movie</code> node with a <code>STRING</code> <code>title</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (movie:Movie {title:'Iron Man'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 label, created 1 node, set 1 properties</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 17. Create a relationship that complies with existing relationship property type constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a <code>PART_OF</code> relationship with an <code>INTEGER</code> <code>order</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (movie:Movie {title:'Iron Man'})
+CREATE (movie)-[part:PART_OF {order: 3}]-&gt;(franchise:Franchise {name:'MCU'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre>Added 1 label, added 1 node, created 1 relationship, set 2 properties</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2 label--enterprise-edition">
+<h3 id="create-key-constraints"><a class="anchor" href="#create-key-constraints"></a>Create key constraints</h3>
+<div class="paragraph">
+<p>Key constraints ensure that the property exist and the property value is unique for all nodes with a specific label or all relationships with a specific type.
+For composite key constraints on multiple properties, all properties must exists and the combination of property values must be unique.</p>
+</div>
+<div class="paragraph">
+<p>Queries that try to create new nodes of the specified label, or relationships of the specified type, without the constrained property will fail.
+The same is true for queries that try to remove the mandatory property or add duplicated property values.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-single-property-key-constraint">Create a single property key constraint</a></p>
+</li>
+<li>
+<p><a href="#create-composite-key-constraint">Create a composite key constraint</a></p>
+</li>
+<li>
+<p><a href="#create-key-constraint-compliant-data">Create data that complies with existing key constraints</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-single-property-key-constraint"><a class="anchor" href="#create-single-property-key-constraint"></a>Create a single property key constraint</h4>
+<div class="paragraph">
+<p>Single property key constraints are created with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node key constraints: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE n.property IS NODE KEY</code>.</p>
+</li>
+<li>
+<p>Relationship key constraints: <code>CREATE CONSTRAINT constraint_name FOR ()-[r:REL_TYPE]-() REQUIRE r.property IS RELATIONSHIP KEY</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the full command syntax to create a key constraint, see <a href="../syntax/#create-key-constraints" class="xref page">Syntax &#8594; Create key constraints</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 18. Create a node key constraint on a single property</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>Director</code> nodes to have a unique <code>imdbId</code> property as a node key.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT director_imdbId
+FOR (director:Director) REQUIRE (director.imdbId) IS NODE KEY</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 19. Create a relationship key constraint on a single property</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>OWNS</code> relationships to have a unique <code>ownershipId</code> property as a relationship key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT ownershipId
+FOR ()-[owns:OWNS]-() REQUIRE owns.ownershipId IS RELATIONSHIP KEY</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-composite-key-constraint"><a class="anchor" href="#create-composite-key-constraint"></a>Create a composite key constraint</h4>
+<div class="paragraph">
+<p>Constraints created for multiple properties are called composite constraints.
+Note that the constrained properties must be parenthesized when creating composite key constraints.</p>
+</div>
+<div class="paragraph">
+<p>Composite key constraints are created with the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Node key constraints: <code>CREATE CONSTRAINT constraint_name FOR (n:Label) REQUIRE (n.propertyName_1, &#8230;&#8203;, n.propertyName_n) IS NODE KEY</code>.</p>
+</li>
+<li>
+<p>Relationship key constraints: <code>CREATE CONSTRAINT constraint_name FOR ()-[r:REL_TYPE]-() REQUIRE (r.propertyName_1, &#8230;&#8203;, r.propertyName_n) IS RELATIONSHIP KEY</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the full command syntax to create a key constraint, see <a href="../syntax/#create-key-constraints" class="xref page">Syntax &#8594; Create key constraints</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 20. Create a composite node key constraint on multiple properties</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>Actor</code> nodes to have a unique combination of <code>firstname</code> and <code>surname</code> properties as a node key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT actor_fullname
+FOR (actor:Actor) REQUIRE (actor.firstname, actor.surname) IS NODE KEY</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 21. Create a composite relationship key constraint label on multiple properties</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring <code>KNOWS</code> relationships to have a unique combination of <code>since</code> and <code>how</code> properties as a relationship key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT knows_since_how
+FOR ()-[knows:KNOWS]-() REQUIRE (knows.since, knows.how) IS RELATIONSHIP KEY</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-key-constraint-compliant-data"><a class="anchor" href="#create-key-constraint-compliant-data"></a>Create data that complies with existing key constraints</h4>
+<div class="exampleblock">
+<div class="title">Example 22. Create a node that complies with existing node key constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create an <code>Actor</code> node with unique <code>firstname</code> and <code>surname</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (actor:Actor {firstname: 'Keanu', surname: 'Reeves'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 label, created 1 node, set 2 properties.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 23. Create a relationship that complies with existing relationship key constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a <code>KNOWS</code> relationship with unique <code>since</code> and <code>how</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (:Actor {firstname: 'Jensen', surname: 'Ackles'})-[:KNOWS {since: 2008, how: 'coworkers', friend: true}]-&gt;(:Actor {firstname: 'Misha', surname: 'Collins'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 2 labels, created 2 nodes, set 7 properties, created 1 relationship.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-constraint-with-parameter"><a class="anchor" href="#create-constraint-with-parameter"></a>Create a constraint with a parameter</h3>
+<div class="paragraph">
+<p>All constraint types can be created with a parameterized name.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 24. Create a node property uniqueness constraint using a parameter</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "node_uniqueness_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create a node property uniqueness constraint with a parameterized name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT $name
+FOR (book:Book) REQUIRE book.prop1 IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 25. Create a relationship property existence constraint using a parameter</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "rel_exist_param"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create a relationship property existence constraint with a parameterized name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT $name
+FOR ()-[wrote:WROTE]-() REQUIRE wrote.published IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Added 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="handling-multiple-constraints"><a class="anchor" href="#handling-multiple-constraints"></a>Handling multiple constraints</h3>
+<div class="paragraph">
+<p>Creating an already existing constraint will fail.
+This includes the following scenarios:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creating a constraint identical to an already existing constraint.</p>
+</li>
+<li>
+<p>Creating a constraint with a different name but on the same constraint type and same label/relationship type and property combination as an already existing constraint.
+For property type constraints the property type also needs to be the same.</p>
+</li>
+<li>
+<p>Creating a constraint with the same name as an already existing constraint, regardless of what that constraint is.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, some constraints cannot coexist and attempting to create them together will therefore fail as well.
+This includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Property type constraints on the same label/relationship type and property but with different property types.</p>
+</li>
+<li>
+<p>Property uniqueness and key constraints on the same label/relationship type and property combination.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, some constraint types are allowed on the same label/relationship type and property combination.
+For example, it is possible to have a property uniqueness and a property existence constraint on the same label/relationship type and property combination, though this would be the equivalent of having a node or relationship key constraint.
+A more useful example would be to combine a property type and a property existence constraint to ensure that the property exists and has the given type.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-a-constraint-if-not-exist">Handling existing constraints when creating a constraint</a></p>
+</li>
+<li>
+<p><a href="#create-an-already-existing-constraint">Creating an already existing constraint will fail</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-a-constraint-if-not-exist"><a class="anchor" href="#create-a-constraint-if-not-exist"></a>Handling existing constraints when creating a constraint</h4>
+<div class="paragraph">
+<p>To avoid failing on existing constraints, <code>IF NOT EXISTS</code> can be added to the <code>CREATE</code> command.
+This will ensure that no error is thrown and that no constraint is created if any other constraint with the given name, or another constraint on the same constraint type and schema, or both, already exists.
+For property type constraints the property type also needs to be the same.
+Instead, an informational notification is returned showing the existing constraint which blocks the creation.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 26. Create a constraint identical to an existing constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring all <code>SEQUEL_OF</code> relationships to have unique <code>order</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT sequels IF NOT EXISTS
+FOR ()-[sequel:SEQUEL_OF]-() REQUIRE sequel.order IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because the same constraint already exists, nothing will happen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">(no changes, no records)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE CONSTRAINT sequels IF NOT EXISTS FOR ()-[e:SEQUEL_OF]-() REQUIRE (e.order) IS UNIQUE` has no effect.
+`CONSTRAINT sequels FOR ()-[e:SEQUEL_OF]-() REQUIRE (e.order) IS UNIQUE` already exists.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 27. Create a relationship property uniqueness constraint when the same constraint with a different name already exists</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring all <code>SEQUEL_OF</code> relationships to have unique <code>order</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT new_sequels IF NOT EXISTS
+FOR ()-[sequel:SEQUEL_OF]-() REQUIRE sequel.order IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because a constraint with a different name (<code>sequels</code>) on the same schema exists, nothing will happen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">(no changes, no records)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE CONSTRAINT new_sequels IF NOT EXISTS FOR ()-[e:SEQUEL_OF]-() REQUIRE (e.order) IS UNIQUE` has no effect.
+`CONSTRAINT sequels FOR ()-[e:SEQUEL_OF]-() REQUIRE (e.order) IS UNIQUE` already exists.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 28. Create a relationship property uniqueness constraint with the same name as an existing constraint of a different type</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create a constraint requiring all <code>AUTHORED</code> relationships to have unique <code>name</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT author_name IF NOT EXISTS
+FOR ()-[a:AUTHORED]-() REQUIRE a.name IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because a node property existence constraint named <code>author_name</code> already exists, nothing will happen:</p>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">(no changes, no records)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`CREATE CONSTRAINT author_name IF NOT EXISTS FOR ()-[e:AUTHORED]-() REQUIRE (e.name) IS UNIQUE` has no effect.
+`CONSTRAINT author_name FOR (e:Author) REQUIRE (e.name) IS NOT NULL` already exists.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-an-already-existing-constraint"><a class="anchor" href="#create-an-already-existing-constraint"></a>Creating an already existing constraint will fail</h4>
+<div class="paragraph">
+<p>Creating a constraint with the same name or on the same node label or relationship type and properties that are already constrained by a constraint of the same type will fail.
+Property uniqueness and key constraints are also not allowed on the same schema.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 29. Create a constraint identical to an existing constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring all <code>SEQUEL_OF</code> relationships to have unique <code>order</code> properties, given an identical constraint already exists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT sequels
+FOR ()-[sequel:SEQUEL_OF]-() REQUIRE sequel.order IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">An equivalent constraint already exists, 'Constraint( id=5, name='sequels', type='RELATIONSHIP PROPERTY UNIQUENESS', schema=()-[:SEQUEL_OF {order}]-(), ownedIndex=4 )'.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 30. Create a constraint with a different name but on the same schema as an existing constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring all <code>Book</code> nodes to have unique <code>isbn</code> properties, given that a constraint on that schema already exists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT new_book_isbn
+FOR (book:Book) REQUIRE book.isbn IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Constraint already exists: Constraint( id=3, name='book_isbn', type='NODE PROPERTY UNIQUENESS', schema=(:Book {isbn}), ownedIndex=2 )</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 31. Creating a constraint with the same name but on a different schema as an existing constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring all <code>AUTHORED</code> relationships to have unique <code>name</code> properties, given that a constraint on a different schema with the same name already exists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT author_name
+FOR ()-[a:AUTHORED]-() REQUIRE a.name IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists a constraint called 'author_name'.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 32. Creating a property type constraint on a property when a property type constraint constraining the property to a different type already exist</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring <code>order</code> properties on <code>PART_OF</code> relationships to be of type <code>FLOAT</code>, given a constraint requiring the same properties to be of type <code>INTEGER</code> already exists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT new_part_of
+FOR ()-[part:PART_OF]-() REQUIRE part.order IS :: FLOAT</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Conflicting constraint already exists: Constraint( id=21, name='part_of', type='RELATIONSHIP PROPERTY TYPE', schema=()-[:PART_OF {order}]-(), propertyType=INTEGER )</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 33. Creating a node key constraint on the same schema as an existing property uniqueness constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a node key constraint on the properties <code>title</code> and <code>publicationYear</code> on nodes with the <code>Book</code> label, when a property uniqueness constraint already exists on the same label and property combination</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT book_titles FOR (book:Book) REQUIRE (book.title, book.publicationYear) IS NODE KEY</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Constraint already exists: Constraint( id=7, name='book_title_year', type='NODE PROPERTY UNIQUENESS', schema=(:Book {title, publicationYear}), ownedIndex=6 )</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="constraints-and-indexes"><a class="anchor" href="#constraints-and-indexes"></a>Constraints and indexes</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#constraints-and-backing-indexes">Constraints and backing indexes</a></p>
+</li>
+<li>
+<p><a href="#constraint-failures-and-indexes">Constraint failures and indexes</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="constraints-and-backing-indexes"><a class="anchor" href="#constraints-and-backing-indexes"></a>Constraints and backing indexes</h4>
+<div class="paragraph">
+<p>Property uniqueness constraints and key constraints are backed by <a href="../../indexes/search-performance-indexes/managing-indexes/#create-range-index" class="xref page">range indexes</a>.
+This means that creating a property uniqueness or key constraint will create a range index with the same name, node label/relationship type and property combination as its owning constraint.
+Single property constraints will create single property indexes and multiple property composite constraints will create <a href="../../indexes/search-performance-indexes/using-indexes/#composite-indexes" class="xref page">composite indexes</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Indexes of the same index type, label/relationship type, and property combination cannot be added separately.
+However, dropping a property uniqueness or key constraint will also drop its backing index.
+If the backing index is still required, the index needs to be explicitly re-created.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Property uniqueness and key constraints require an index because it allows the system to quickly check if a node with the same label and property value or a relationship with the same type and property value already exists.
+Without an index, the system would need to scan all nodes with the same label, which would be slow and inefficient, especially as the graph grows.
+The index makes these checks much faster by enabling direct lookups instead of scanning the entire graph.
+Cypher will use the indexes with an owning constraint in the same way that it utilizes other search-performance indexes.
+For more information about how indexes impact query performance, see <a href="../../indexes/search-performance-indexes/using-indexes/" class="xref page">The impact of indexes on query performance</a>.</p>
+</div>
+<div class="paragraph">
+<p>These indexes are listed in the <code>owningConstraint</code> column returned by the <a href="../../indexes/search-performance-indexes/managing-indexes/#list-indexes" class="xref page"><code>SHOW INDEX</code></a> command, and the <code>ownedIndex</code> column returned by the <a href="#list-constraints"><code>SHOW CONSTRAINT</code></a> command.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 34. List constraints with backing indexes</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW CONSTRAINTS WHERE ownedIndex IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                    | type                               | entityType     | labelsOrTypes  | properties                   | ownedIndex              | propertyType |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21 | "actor_fullname"        | "NODE_KEY"                         | "NODE"         | ["Actor"]      | ["firstname", "surname"]     | "actor_fullname"        | NULL         |
+| 3  | "book_isbn"             | "NODE_PROPERTY_UNIQUENESS"         | "NODE"         | ["Book"]       | ["isbn"]                     | "book_isbn"             | NULL         |
+| 7  | "book_title_year"       | "NODE_PROPERTY_UNIQUENESS"         | "NODE"         | ["Book"]       | ["title", "publicationYear"] | "book_title_year"       | NULL         |
+| 17 | "director_imdbId"       | "NODE_KEY"                         | "NODE"         | ["Director"]   | ["imdbId"]                   | "director_imdbId"       | NULL         |
+| 23 | "knows_since_how"       | "RELATIONSHIP_KEY"                 | "RELATIONSHIP" | ["KNOWS"]      | ["since", "how"]             | "knows_since_how"       | NULL         |
+| 25 | "node_uniqueness_param" | "NODE_PROPERTY_UNIQUENESS"         | "NODE"         | ["Book"]       | ["prop1"]                    | "node_uniqueness_param" | NULL         |
+| 19 | "ownershipId"           | "RELATIONSHIP_KEY"                 | "RELATIONSHIP" | ["OWNS"]       | ["ownershipId"]              | "ownershipId"           | NULL         |
+| 9  | "prequels"              | "RELATIONSHIP_PROPERTY_UNIQUENESS" | "RELATIONSHIP" | ["PREQUEL_OF"] | ["order", "author"]          | "prequels"              | NULL         |
+| 5  | "sequels"               | "RELATIONSHIP_PROPERTY_UNIQUENESS" | "RELATIONSHIP" | ["SEQUEL_OF"]  | ["order"]                    | "sequels"               | NULL         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 35. List indexes with owning constraints</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW INDEXES WHERE owningConstraint IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                    | state    | populationPercent | type    | entityType     | labelsOrTypes  | properties                   | indexProvider | owningConstraint        | lastRead                 | readCount |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 20 | "actor_fullname"        | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Actor"]      | ["firstname", "surname"]     | "range-1.0"   | "actor_fullname"        | 2024-10-07T12:12:51.893Z | 3         |
+| 2  | "book_isbn"             | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Book"]       | ["isbn"]                     | "range-1.0"   | "book_isbn"             | 2024-10-07T11:58:09.252Z | 2         |
+| 6  | "book_title_year"       | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Book"]       | ["title", "publicationYear"] | "range-1.0"   | "book_title_year"       | NULL                     | 0         |
+| 16 | "director_imdbId"       | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Director"]   | ["imdbId"]                   | "range-1.0"   | "director_imdbId"       | NULL                     | 0         |
+| 22 | "knows_since_how"       | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["KNOWS"]      | ["since", "how"]             | "range-1.0"   | "knows_since_how"       | 2024-10-07T12:12:51.894Z | 1         |
+| 24 | "node_uniqueness_param" | "ONLINE" | 100.0             | "RANGE" | "NODE"         | ["Book"]       | ["prop1"]                    | "range-1.0"   | "node_uniqueness_param" | NULL                     | 0         |
+| 18 | "ownershipId"           | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["OWNS"]       | ["ownershipId"]              | "range-1.0"   | "ownershipId"           | NULL                     | 0         |
+| 8  | "prequels"              | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["PREQUEL_OF"] | ["order", "author"]          | "range-1.0"   | "prequels"              | NULL                     | 0         |
+| 4  | "sequels"               | "ONLINE" | 100.0             | "RANGE" | "RELATIONSHIP" | ["SEQUEL_OF"]  | ["order"]                    | "range-1.0"   | "sequels"               | 2024-10-07T11:57:12.999Z | 1         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Property existence and property type constraints are not backed by indexes.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="constraint-failures-and-indexes"><a class="anchor" href="#constraint-failures-and-indexes"></a>Constraint failures and indexes</h4>
+<div class="paragraph">
+<p>Attempting to create any type of constraint with the same name as an existing index will fail.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 36. Creating a node property type constraint with the same name as an existing index</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create an index with the name <code>directors</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX directors FOR (director:Director) ON (director.name)</code></pre>
+</div>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Create a node property type constraint with the name <code>directors</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT directors FOR (movie:Movie) REQUIRE movie.director IS :: STRING</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists an index called 'directors'.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Creating key or property uniqueness constraints on the same schema as an existing index will fail.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 37. Creating a node property uniqueness constraint on the same schema as an existing index</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create an index for <code>wordCount</code> properties on <code>Book</code> nodes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE INDEX book_word_count FOR (book:Book) ON (book.wordCount)</code></pre>
+</div>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring all <code>Book</code> nodes to have unique <code>wordCount</code> properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT word_count FOR (book:Book) REQUIRE book.wordCount IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">There already exists an index (:Book {wordCount}).
+A constraint cannot be created until the index has been dropped.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="constraints-and-data-violation-scenarios"><a class="anchor" href="#constraints-and-data-violation-scenarios"></a>Constraints and data violation scenarios</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#create-data-that-violates-a-constraint">Creating data that violates existing constraints will fail</a></p>
+</li>
+<li>
+<p><a href="#removing-an-existing-constrained-property-will-fail">Removing existence and key constrained properties will fail</a></p>
+</li>
+<li>
+<p><a href="#modifying-property-constrained-property-will-fail">Modifying type constrained properties will fail</a></p>
+</li>
+<li>
+<p><a href="#fail-to-create-constraint-due-to-existing-data">Creating constraints when there exists conflicting data will fail</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="create-data-that-violates-a-constraint"><a class="anchor" href="#create-data-that-violates-a-constraint"></a>Creating data that violates existing constraints will fail</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Existing constraints preventing data creation</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint type</th>
+<th class="tableblock halign-left valign-top">Create nodes and relationships without an existence constrained property</th>
+<th class="tableblock halign-left valign-top">Create nodes and relationships with non-unique properties/property combinations</th>
+<th class="tableblock halign-left valign-top">Create nodes and relationships with the wrong property type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property uniqueness constraint</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property existence constraint</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property type constraint</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Key constraint</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="title">Example 38. Create a node that violates a node property uniqueness constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a <code>Book</code> node with an <code>isbn</code> property that already exists</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (book:Book {isbn: '1449356265', title: 'Graph Databases'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(0) already exists with label `Book` and property `isbn` = '1449356265'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 39. Create a node that violates an existing node property existence constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create an <code>Author</code> node without a <code>name</code> property, given a property existence constraint on <code>:Author(name)</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (author:Author {surname: 'Austen'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(0) with label `Author` must have the property `name`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 40. Create a relationship that violates an existing relationship property type constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a <code>PART_OF</code> relationship with a <code>STRING</code> <code>order</code> property, given a property type constraint on the relationship type <code>PART_OF</code> restricting the <code>order</code> property to <code>INTEGER</code> values</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (movie:Movie {title:'Iron Man'}), (franchise:Franchise {name:'MCU'})
+CREATE (movie)-[part:PART_OF {order: '1'}]-&gt;(franchise)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Relationship(0) with type `PART_OF` has property `order` of wrong type `String`. Allowed types: INTEGER</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 41. Create a node that violates an existing node key constraint</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create an <code>Actor</code> node without a <code>firstname</code> property, given a node key constraint on <code>:Actor(firstname, surname)</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (actor:Actor {surname: 'Wood'})</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(0) with label `Actor` must have the properties (`firstname`, `surname`)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-an-existing-constrained-property-will-fail"><a class="anchor" href="#removing-an-existing-constrained-property-will-fail"></a>Removing existence and key constrained properties will fail</h4>
+<div class="exampleblock">
+<div class="title">Example 42. Remove a node property existence constrained property</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Remove the <code>name</code> property from an existing <code>Author</code> node, given a property existence constraint on <code>:Author(name)</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (author:Author {name: 'Virginia Woolf'})
+REMOVE author.name</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(0) with label `Author` must have the property `name`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 43. Remove a node key constrained property</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Remove the <code>firstname</code> property from an existing node <code>Actor</code>, given a node key constraint on <code>:Actor(firstname, surname)</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (actor:Actor {firstname: 'Keanu', surname: 'Reeves'})
+REMOVE actor.firstname</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(0) with label `Actor` must have the properties (`firstname`, `surname`)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="modifying-property-constrained-property-will-fail"><a class="anchor" href="#modifying-property-constrained-property-will-fail"></a>Modifying type constrained properties will fail</h4>
+<div class="exampleblock">
+<div class="title">Example 44. Modify a type constrained property</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Modify the <code>title</code> for the <code>Movie</code> 'Iron Man' to an <code>INTEGER</code> value, given a constraint requiring <code>title</code> properties to be of type <code>STRING</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (m:Movie {title: 'Iron Man'})
+SET m.title = 13</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Node(9) with label `Movie` required the property `title` to be of type `STRING`, but was of type `INTEGER`.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fail-to-create-constraint-due-to-existing-data"><a class="anchor" href="#fail-to-create-constraint-due-to-existing-data"></a>Creating constraints when there exists conflicting data will fail</h4>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Existing data preventing constraint creation</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint type</th>
+<th class="tableblock halign-left valign-top">Non-existing property</th>
+<th class="tableblock halign-left valign-top">Non-unique property/property combination</th>
+<th class="tableblock halign-left valign-top">Property of wrong type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property uniqueness constraint</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property existence constraint</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Property type constraint</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Key constraint</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&#x274C;</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="exampleblock">
+<div class="title">Example 45. Create a node property uniqueness constraint when conflicting nodes exist</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Create two <code>Book</code> nodes with the same <code>name</code> property value</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE (:Book {isbn: '9780393972832', title: 'Moby Dick'}),
+       (:Book {isbn: '9780763630188', title: 'Moby Dick'})</code></pre>
+</div>
+</div>
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring <code>Book</code> nodes to have unique <code>title</code> properties, when there already exists two <code>Book</code> nodes with the same <code>title</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT book_title FOR (book:Book) REQUIRE book.title IS UNIQUE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the constraint cannot be created because it is in conflict with the existing graph.
+Either use <a href="../../indexes/search-performance-indexes/managing-indexes/" class="xref page">indexes</a> instead, or remove/correct the offending nodes and then re-apply the constraint.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Unable to create Constraint( name='book_title', type='NODE PROPERTY UNIQUENESS', schema=(:Book {title}) ):
+Both Node(0) and Node(1) have the label `Book` and property `title` = 'Moby Dick'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The constraint creation fails on the first offending nodes that are found.
+This does not guarantee that there are no other offending nodes in the graph.
+Therefore, all the data should be checked and cleaned up before re-attempting the constraint creation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Find all offending nodes with the non-unique property values for the constraint above</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (book1:Book), (book2:Book)
+WHERE book1.title = book2.title AND NOT book1 = book2
+RETURN book1, book2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 46. Create a relationship property existence constraint when conflicting relationships exist</div>
+<div class="content">
+<div class="listingblock test-fail">
+<div class="title">Create a constraint requiring all <code>WROTE</code> relationships to have a <code>language</code> property, when there already exists a <code>WROTE</code> relationship without a <code>language</code> property</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">CREATE CONSTRAINT wrote_language FOR ()-[wrote:WROTE]-() REQUIRE wrote.language IS NOT NULL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the constraint cannot be created because it is in conflict with the existing graph.
+Remove or correct the offending relationships and then re-apply the constraint.</p>
+</div>
+<div class="listingblock">
+<div class="title">Error message</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-error hljs" data-lang="error">Unable to create Constraint( type='RELATIONSHIP PROPERTY EXISTENCE', schema=()-[:WROTE {language}]-() ):
+Relationship(0) with type `WROTE` must have the property `language`. Note that only the first found violation is shown.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The constraint creation fails on the first offending relationship that is found.
+This does not guarantee that there are no other offending relationships in the graph.
+Therefore, all the data should be checked and cleaned up before re-attempting the constraint creation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Find all offending relationships missing the property for the constraint above</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH ()-[wrote:WROTE]-()
+WHERE wrote.language IS NULL
+RETURN wrote</code></pre>
+</div>
+</div>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Generic <code>MATCH</code> queries to find the properties preventing the creation of particular constraints:</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Constraint</th>
+<th class="tableblock halign-left valign-top">Query</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node property uniqueness constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n1:Label), (n2:Label)
+WHERE n1.prop = n2.prop AND NOT n1 = n2
+RETURN n1, n2</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship property uniqueness constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ()-[r1:REL_TYPE]-&gt;(), ()-[r2:REL_TYPE]-&gt;()
+WHERE r1.prop = r2.prop AND NOT r1 = r2
+RETURN r1, r2</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node property existence constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n:Label)
+WHERE n.prop IS NULL
+RETURN n</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship property existence constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ()-[r:REL_TYPE]-&gt;()
+WHERE r.prop IS NULL
+RETURN r</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node property type constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n:Label)
+WHERE n.prop IS NOT :: &lt;TYPE&gt;
+RETURN n</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship property type constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ()-[r:REL_TYPE]-&gt;()
+WHERE r.prop IS NOT :: &lt;TYPE&gt;
+RETURN r</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node key constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH (n1:Label), (n2:Label)
+WHERE n1.prop = n2.prop AND NOT n1 = n2
+UNWIND [n1, n2] AS node
+RETURN node, 'non-unique' AS reason
+UNION
+MATCH (n:Label)
+WHERE n.prop IS NULL
+RETURN n AS node, 'non-existing' AS reason</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Relationship key constraint</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">MATCH ()-[r1:REL_TYPE]-&gt;(), ()-[r2:REL_TYPE]-&gt;()
+WHERE r1.prop = r2.prop AND NOT r1 = r2
+UNWIND [r1, r2] AS relationship
+RETURN relationship, 'non-unique' AS reason
+UNION
+MATCH ()-[r:REL_TYPE]-&gt;()
+WHERE r.prop IS NULL
+RETURN r AS relationship, 'non-existing' AS reason</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="list-constraints"><a class="anchor" href="#list-constraints"></a>SHOW CONSTRAINTS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To list all constraints with the default output columns, use <code>SHOW CONSTRAINTS</code>.
+If all columns are required, use <code>SHOW CONSTRAINTS YIELD *</code>.
+For the full command syntax to list constraints, see <a href="../syntax/#list-constraints" class="xref page">Syntax &#8594; SHOW CONSTRAINTS</a>.</p>
+</div>
+<div class="paragraph">
+<p>One of the output columns from <code>SHOW CONSTRAINTS</code> is the name of the constraint.
+This can be used to drop the constraint with the <a href="#drop-constraint"><code>DROP CONSTRAINT</code> command</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Listing constraints requires the <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/database-administration/#access-control-database-administration-constraints"><code>SHOW CONSTRAINTS</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="title">Example 47. List all constraints with default output columns</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Query</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW CONSTRAINTS</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                          | type                                 | entityType     | labelsOrTypes  | properties                         | ownedIndex                    | propertyType                     |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21 | "actor_fullname"              | "NODE_KEY"                           | "NODE"         | ["Actor"]      | ["firstname", "surname"]           | "actor_fullname"              | NULL                             |
+| 10 | "author_name"                 | "NODE_PROPERTY_EXISTENCE"            | "NODE"         | ["Author"]     | ["name"]                           | NULL                          | NULL                             |
+| 3  | "book_isbn"                   | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["isbn"]                           | "book_isbn"                   | NULL                             |
+| 7  | "book_title_year"             | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["title", "publicationYear"]       | "book_title_year"             | NULL                             |
+| 17 | "director_imdbId"             | "NODE_KEY"                           | "NODE"         | ["Director"]   | ["imdbId"]                         | "director_imdbId"             | NULL                             |
+| 23 | "knows_since_how"             | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["KNOWS"]      | ["since", "how"]                   | "knows_since_how"             | NULL                             |
+| 14 | "movie_tagline"               | "NODE_PROPERTY_TYPE"                 | "NODE"         | ["Movie"]      | ["tagline"]                        | NULL                          | "STRING | LIST&lt;STRING NOT NULL&gt;" |
+| 12 | "movie_title"                 | "NODE_PROPERTY_TYPE"                 | "NODE"         | ["Movie"]      | ["title"]                          | NULL                          | "STRING"                         |
+| 25 | "node_uniqueness_param"       | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["prop1"]                          | "node_uniqueness_param"       | NULL                             |
+| 19 | "ownershipId"                 | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["OWNS"]       | ["ownershipId"]                    | "ownershipId"                 | NULL                             |
+| 13 | "part_of"                     | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["order"]                          | NULL                          | "INTEGER"                        |
+| 15 | "part_of_tags"                | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["tags"]                           | NULL                          | "STRING | LIST&lt;STRING NOT NULL&gt;" |
+| 9  | "prequels"                    | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["PREQUEL_OF"] | ["order", "author"]                | "prequels"                    | NULL                             |
+| 26 | "rel_exist_param"             | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["published"]                      | NULL                          | NULL                             |
+| 5  | "sequels"                     | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["SEQUEL_OF"]  | ["order"]                          | "sequels"                     | NULL                             |
+| 11 | "wrote_year"                  | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["year"]                           | NULL                          | NULL                             |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 48. List all constraints with full details</div>
+<div class="content">
+<div class="paragraph">
+<p>To return the full details of the constraints on a database, use <code>SHOW CONSTRAINTS YIELD *</code></p>
+</div>
+<div class="listingblock">
+<div class="title">List all constraints with <code>YIELD *</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW CONSTRAINTS YIELD *</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                          | type                                 | entityType     | labelsOrTypes  | properties                         | ownedIndex                    | propertyType                     | options                                       | createStatement                                                                                                                        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21 | "actor_fullname"              | "NODE_KEY"                           | "NODE"         | ["Actor"]      | ["firstname", "surname"]           | "actor_fullname"              | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `actor_fullname` FOR (n:`Actor`) REQUIRE (n.`firstname`, n.`surname`) IS KEY"                                       |
+| 10 | "author_name"                 | "NODE_PROPERTY_EXISTENCE"            | "NODE"         | ["Author"]     | ["name"]                           | NULL                          | NULL                             | NULL                                          | "CREATE CONSTRAINT `author_name` FOR (n:`Author`) REQUIRE (n.`name`) IS NOT NULL"                                                      |
+| 3  | "book_isbn"                   | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["isbn"]                           | "book_isbn"                   | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `book_isbn` FOR (n:`Book`) REQUIRE (n.`isbn`) IS UNIQUE"                                                            |
+| 7  | "book_title_year"             | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["title", "publicationYear"]       | "book_title_year"             | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `book_title_year` FOR (n:`Book`) REQUIRE (n.`title`, n.`publicationYear`) IS UNIQUE"                                |
+| 17 | "director_imdbId"             | "NODE_KEY"                           | "NODE"         | ["Director"]   | ["imdbId"]                         | "director_imdbId"             | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `director_imdbId` FOR (n:`Director`) REQUIRE (n.`imdbId`) IS KEY"                                                   |
+| 23 | "knows_since_how"             | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["KNOWS"]      | ["since", "how"]                   | "knows_since_how"             | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `knows_since_how` FOR ()-[r:`KNOWS`]-() REQUIRE (r.`since`, r.`how`) IS KEY"                                        |
+| 14 | "movie_tagline"               | "NODE_PROPERTY_TYPE"                 | "NODE"         | ["Movie"]      | ["tagline"]                        | NULL                          | "STRING | LIST&lt;STRING NOT NULL&gt;" | NULL                                          | "CREATE CONSTRAINT `movie_tagline` FOR (n:`Movie`) REQUIRE (n.`tagline`) IS :: STRING | LIST&lt;STRING NOT NULL&gt;"                         |
+| 12 | "movie_title"                 | "NODE_PROPERTY_TYPE"                 | "NODE"         | ["Movie"]      | ["title"]                          | NULL                          | "STRING"                         | NULL                                          | "CREATE CONSTRAINT `movie_title` FOR (n:`Movie`) REQUIRE (n.`title`) IS :: STRING"                                                     |
+| 25 | "node_uniqueness_param"       | "NODE_PROPERTY_UNIQUENESS"           | "NODE"         | ["Book"]       | ["prop1"]                          | "node_uniqueness_param"       | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `node_uniqueness_param` FOR (n:`Book`) REQUIRE (n.`prop1`) IS UNIQUE"                                               |
+| 19 | "ownershipId"                 | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["OWNS"]       | ["ownershipId"]                    | "ownershipId"                 | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `ownershipId` FOR ()-[r:`OWNS`]-() REQUIRE (r.`ownershipId`) IS KEY"                                                |
+| 13 | "part_of"                     | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["order"]                          | NULL                          | "INTEGER"                        | NULL                                          | "CREATE CONSTRAINT `part_of` FOR ()-[r:`PART_OF`]-() REQUIRE (r.`order`) IS :: INTEGER"                                                |
+| 15 | "part_of_tags"                | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["tags"]                           | NULL                          | "STRING | LIST&lt;STRING NOT NULL&gt;" | NULL                                          | "CREATE CONSTRAINT `part_of_tags` FOR ()-[r:`PART_OF`]-() REQUIRE (r.`tags`) IS :: STRING | LIST&lt;STRING NOT NULL&gt;"                     |
+| 9  | "prequels"                    | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["PREQUEL_OF"] | ["order", "author"]                | "prequels"                    | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `prequels` FOR ()-[r:`PREQUEL_OF`]-() REQUIRE (r.`order`, r.`author`) IS UNIQUE"                                    |
+| 26 | "rel_exist_param"             | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["published"]                      | NULL                          | NULL                             | NULL                                          | "CREATE CONSTRAINT `rel_exist_param` FOR ()-[r:`WROTE`]-() REQUIRE (r.`published`) IS NOT NULL"                                        |
+| 5  | "sequels"                     | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["SEQUEL_OF"]  | ["order"]                          | "sequels"                     | NULL                             | {indexConfig: {}, indexProvider: "range-1.0"} | "CREATE CONSTRAINT `sequels` FOR ()-[r:`SEQUEL_OF`]-() REQUIRE (r.`order`) IS UNIQUE"                                                  |
+| 11 | "wrote_year"                  | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["year"]                           | NULL                          | NULL                             | NULL                                          | "CREATE CONSTRAINT `wrote_year` FOR ()-[r:`WROTE`]-() REQUIRE (r.`year`) IS NOT NULL"                                                  |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-constraints-with-filtering"><a class="anchor" href="#list-constraints-with-filtering"></a>Listing constraints with filtering</h3>
+<div class="paragraph">
+<p>The <code>SHOW CONSTRAINTS</code> command can be filtered in various ways.
+The filtering of rows can be done using constraint type keywords or a <code>WHERE</code> clause, while filtering of columns is achieved by specifying the desired columns in a <code>YIELD</code> clause.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 49. List only specific constraint types</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">List only key constraints</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW KEY CONSTRAINTS</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                       | type               | entityType     | labelsOrTypes | properties               | ownedIndex                 | propertyType |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21 | "actor_fullname"           | "NODE_KEY"         | "NODE"         | ["Actor"]     | ["firstname", "surname"] | "actor_fullname"           | NULL         |
+| 17 | "director_imdbId"          | "NODE_KEY"         | "NODE"         | ["Director"]  | ["imdbId"]               | "director_imdbId"          | NULL         |
+| 23 | "knows_since_how"          | "RELATIONSHIP_KEY" | "RELATIONSHIP" | ["KNOWS"]     | ["since", "how"]         | "knows_since_how"          | NULL         |
+| 19 | "ownershipId"              | "RELATIONSHIP_KEY" | "RELATIONSHIP" | ["OWNS"]      | ["ownershipId"]          | "ownershipId"              | NULL         |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For a full list of all the constraint types (and synonyms) available in this command see <a href="../syntax/#list-constraints" class="xref page">Syntax &#8594; SHOW CONSTRAINTS</a>.</p>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 50. Filtering constraints using the <code>WHERE</code> clause</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">List only constraints with a <code>RELATIONSHIP</code> <code>entityType</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW CONSTRAINTS
+WHERE entityType = 'RELATIONSHIP'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | name                          | type                                 | entityType     | labelsOrTypes  | properties                         | ownedIndex                    | propertyType                     |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 23 | "knows_since_how"             | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["KNOWS"]      | ["since", "how"]                   | "knows_since_how"             | NULL                             |
+| 19 | "ownershipId"                 | "RELATIONSHIP_KEY"                   | "RELATIONSHIP" | ["OWNS"]       | ["ownershipId"]                    | "ownershipId"                 | NULL                             |
+| 13 | "part_of"                     | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["order"]                          | NULL                          | "INTEGER"                        |
+| 15 | "part_of_tags"                | "RELATIONSHIP_PROPERTY_TYPE"         | "RELATIONSHIP" | ["PART_OF"]    | ["tags"]                           | NULL                          | "STRING | LIST&lt;STRING NOT NULL&gt;" |
+| 9  | "prequels"                    | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["PREQUEL_OF"] | ["order", "author"]                | "prequels"                    | NULL                             |
+| 26 | "rel_exist_param"             | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["published"]                      | NULL                          | NULL                             |
+| 5  | "sequels"                     | "RELATIONSHIP_PROPERTY_UNIQUENESS"   | "RELATIONSHIP" | ["SEQUEL_OF"]  | ["order"]                          | "sequels"                     | NULL                             |
+| 11 | "wrote_year"                  | "RELATIONSHIP_PROPERTY_EXISTENCE"    | "RELATIONSHIP" | ["WROTE"]      | ["year"]                           | NULL                          | NULL                             |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 51. Returning specific columns for all constraints</div>
+<div class="content">
+<div class="paragraph">
+<p>It is possible to return only specific columns of the available constraints using the <code>YIELD</code> clause:</p>
+</div>
+<div class="listingblock">
+<div class="title">List only the <code>name</code>, <code>type</code>, and <code>createStatement</code> columns</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">SHOW CONSTRAINTS
+YIELD name, type, createStatement</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| name                          | type                                  | createStatement                                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| "actor_fullname"              | "NODE_KEY"                            | "CREATE CONSTRAINT `actor_fullname` FOR (n:`Actor`) REQUIRE (n.`firstname`, n.`surname`) IS KEY"                                       |
+| "author_name"                 | "NODE_PROPERTY_EXISTENCE"             | "CREATE CONSTRAINT `author_name` FOR (n:`Author`) REQUIRE (n.`name`) IS NOT NULL"                                                      |
+| "book_isbn"                   | "NODE_PROPERTY_UNIQUENESS"            | "CREATE CONSTRAINT `book_isbn` FOR (n:`Book`) REQUIRE (n.`isbn`) IS UNIQUE"                                                            |
+| "book_title_year"             | "NODE_PROPERTY_UNIQUENESS"            | "CREATE CONSTRAINT `book_title_year` FOR (n:`Book`) REQUIRE (n.`title`, n.`publicationYear`) IS UNIQUE"                                |
+| "director_imdbId"             | "NODE_KEY"                            | "CREATE CONSTRAINT `director_imdbId` FOR (n:`Director`) REQUIRE (n.`imdbId`) IS KEY"                                                   |
+| "knows_since_how"             | "RELATIONSHIP_KEY"                    | "CREATE CONSTRAINT `knows_since_how` FOR ()-[r:`KNOWS`]-() REQUIRE (r.`since`, r.`how`) IS KEY"                                        |
+| "movie_tagline"               | "NODE_PROPERTY_TYPE"                  | "CREATE CONSTRAINT `movie_tagline` FOR (n:`Movie`) REQUIRE (n.`tagline`) IS :: STRING | LIST&lt;STRING NOT NULL&gt;"                         |
+| "movie_title"                 | "NODE_PROPERTY_TYPE"                  | "CREATE CONSTRAINT `movie_title` FOR (n:`Movie`) REQUIRE (n.`title`) IS :: STRING"                                                     |
+| "node_uniqueness_param"       | "NODE_PROPERTY_UNIQUENESS"            | "CREATE CONSTRAINT `node_uniqueness_param` FOR (n:`Book`) REQUIRE (n.`prop1`) IS UNIQUE"                                               |
+| "ownershipId"                 | "RELATIONSHIP_KEY"                    | "CREATE CONSTRAINT `ownershipId` FOR ()-[r:`OWNS`]-() REQUIRE (r.`ownershipId`) IS KEY"                                                |
+| "part_of"                     | "RELATIONSHIP_PROPERTY_TYPE"          | "CREATE CONSTRAINT `part_of` FOR ()-[r:`PART_OF`]-() REQUIRE (r.`order`) IS :: INTEGER"                                                |
+| "part_of_tags"                | "RELATIONSHIP_PROPERTY_TYPE"          | "CREATE CONSTRAINT `part_of_tags` FOR ()-[r:`PART_OF`]-() REQUIRE (r.`tags`) IS :: STRING | LIST&lt;STRING NOT NULL&gt;"                     |
+| "prequels"                    | "RELATIONSHIP_PROPERTY_UNIQUENESS"    | "CREATE CONSTRAINT `prequels` FOR ()-[r:`PREQUEL_OF`]-() REQUIRE (r.`order`, r.`author`) IS UNIQUE"                                    |
+| "rel_exist_param"             | "RELATIONSHIP_PROPERTY_EXISTENCE"     | "CREATE CONSTRAINT `rel_exist_param` FOR ()-[r:`WROTE`]-() REQUIRE (r.`published`) IS NOT NULL"                                        |
+| "sequels"                     | "RELATIONSHIP_PROPERTY_UNIQUENESS"    | "CREATE CONSTRAINT `sequels` FOR ()-[r:`SEQUEL_OF`]-() REQUIRE (r.`order`) IS UNIQUE"                                                  |
+| "wrote_year"                  | "RELATIONSHIP_PROPERTY_EXISTENCE"     | "CREATE CONSTRAINT `wrote_year` FOR ()-[r:`WROTE`]-() REQUIRE (r.`year`) IS NOT NULL"                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-constraints-result-columns"><a class="anchor" href="#list-constraints-result-columns"></a>Result columns for listing constraints</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Listing constraints output</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The id of the constraint. <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>INTEGER</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Name of the constraint (explicitly set by the user or automatically assigned). <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>type</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The ConstraintType of this constraint (<code>NODE_PROPERTY_UNIQUENESS</code>, <code>RELATIONSHIP_PROPERTY_UNIQUENESS</code>, <code>NODE_PROPERTY_EXISTENCE</code>, <code>RELATIONSHIP_PROPERTY_EXISTENCE</code>, <code>NODE_PROPERTY_TYPE</code>, <code>RELATIONSHIP_PROPERTY_TYPE</code>, <code>NODE_KEY</code>, or <code>RELATIONSHIP_KEY</code>). <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>entityType</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Type of entities this constraint represents (<code>NODE</code> or <code>RELATIONSHIP</code>). <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>labelsOrTypes</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The labels or relationship types of this constraint.
+The list returned will only include a single value (the name of the constrained node label or relationship type). <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LIST&lt;STRING&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>properties</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The properties of this constraint. <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LIST&lt;STRING&gt;</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ownedIndex</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The name of the index associated with the constraint or <code>null</code>, in case no index is associated with it. <span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>propertyType</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The property type the property is restricted to for property type constraints, or <code>null</code> for the other constraints.
+<span class="label label--default-output">Default Output</span></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>options</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>The options passed to <code>CREATE</code> command, for the index associated to the constraint, or <code>null</code> if no index is associated with the constraint.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MAP</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createStatement</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Statement used to create the constraint.</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STRING</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="drop-constraint"><a class="anchor" href="#drop-constraint"></a>DROP CONSTRAINT</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Constraints are dropped using the <code>DROP CONSTRAINT</code> command.
+For the full command syntax to drop constraints, see <a href="../syntax/#drop-constraint" class="xref page">Syntax &#8594; DROP CONSTRAINT</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dropping a constraint requires the <a href="https://neo4j.com/docs/operations-manual/current/authentication-authorization/database-administration/#access-control-database-administration-constraints"><code>DROP CONSTRAINT</code> privilege</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="drop-constraint-by-name"><a class="anchor" href="#drop-constraint-by-name"></a>Drop a constraint by name</h3>
+<div class="paragraph">
+<p>A constraint can be dropped using the name with the <code>DROP CONSTRAINT constraint_name</code> command.
+It is the same command for all constraint types.
+The name of the constraint can be found using the <a href="#list-constraints"><code>SHOW CONSTRAINTS</code> command</a>, given in the output column <code>name</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 52. Drop a constraint by name</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Drop the constraint <code>book_isbn</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP CONSTRAINT book_isbn</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Removed 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="drop-constraint-with-parameter"><a class="anchor" href="#drop-constraint-with-parameter"></a>Drop a constraint with a parameter</h3>
+<div class="paragraph">
+<p>Constraints can be dropped with a parameterized name.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 53. Drop a constraint using a parameter</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "name": "actor_fullname"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Drop a constraint with a parameterized name</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP CONSTRAINT $name</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">Removed 1 constraint.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="drop-constraint-nonexisting-constraint"><a class="anchor" href="#drop-constraint-nonexisting-constraint"></a>Drop a non-existing constraint</h3>
+<div class="paragraph">
+<p>If it is uncertain if any constraint with a given name exists and you want to drop it if it does but not get an error should it not, use <code>IF EXISTS</code>.
+This will ensure that no error is thrown.
+Instead, an informational notification is returned stating that the constraint does not exist.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 54. Drop a non-existing constraint</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Drop the non-existing constraint <code>missing_constraint_name</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">DROP CONSTRAINT missing_constraint_name IF EXISTS</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-queryresult hljs" data-lang="queryresult">(no changes, no records)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Notification</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">`DROP CONSTRAINT missing_constraint_name IF EXISTS` has no effect. `missing_constraint_name` does not exist.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination" aria-label="pagination links">
+  <span class="prev"><a href="../" aria-label="Previous: Constraints">Constraints</a></span>
+
+  <span class="next"><a href="../syntax/" aria-label="Next: Syntax">Syntax</a></span>
+</nav>
+</article>
+    <aside class="toc sidebar" data-title="Contents"
+  data-levels="2">
+  <div class="toc-menu">
+    <div class="toc-menu-placeholder"></div>
+
+    <div class="toc-ad">
+
+    <a href="https://graphacademy.neo4j.com/courses/cypher-indexes-constraints/?ref=docs-ad-cypher-indexes-constraints" target="_blank">
+
+        <i class="toc-ad-icon toc-ad-icon--mortarboard"></i>
+
+
+        <h2 class="toc-ad-title">
+            Cypher Indexes and Constraints
+        </h2>
+
+        <p class="toc-ad-description">Learn how to make your graph more performant with Cypher constraints and indexes</p>
+
+        <div class="toc-ad-underline button">
+            Take course
+        </div>
+    </a>
+</div>
+  </div>
+  </aside>  </div>
+  
+</main>
+</div>
+<footer class="footer">
+  <div class="wrapper">
+
+  <div class="column logo">
+    <div class="logo-footer"></div>
+  </div>
+  
+  <div class="column links">
+    <h2>Learn</h2>
+    <ul>
+      <li><i class="fa fa-wrench" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/sandbox/?ref=developer-footer">Sandbox</a></li>
+      <li><i class="fa fa-comments-o" aria-hidden="true"></i> <a rel="noopener" href="https://community.neo4j.com?ref=developer-footer" target="_blank">Neo4j Community Site</a></li>
+      <li><i class="fa fa-book" aria-hidden="true"></i> <a rel="noopener" href="https://medium.com/neo4j" target="_blank">Neo4j Developer Blog</a></li>
+      <li><i class="fa fa-youtube" aria-hidden="true"></i> <a rel="noopener" href="https://www.youtube.com/neo4j" target="_blank">Neo4j Videos</a></li>
+      <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> <a rel="noopener" href="https://neo4j.com/graphacademy/?ref=developer-footer">GraphAcademy</a></li>
+      <li><i class="fa fa-flask" aria-hidden="true"></i> <a href="https://neo4j.com/labs/?ref=developer-footer">Neo4j Labs</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2>Social</h2>
+    <ul>
+      <li><i class="fa fa-twitter" aria-hidden="true"></i> <a rel="noopener" href="https://twitter.com/neo4j" target="_blank">Twitter</a></li>
+      <li><i class="fa fa-meetup" aria-hidden="true"></i> <a rel="noopener" href="https://www.meetup.com/Neo4j-Online-Meetup/" target="_blank">Meetups</a></li>
+      <li><i class="fa fa-github" aria-hidden="true"></i> <a rel="noopener" href="https://github.com/neo4j/neo4j" target="_blank">Github</a></li>
+      <li><i class="fa fa-stack-overflow" aria-hidden="true"></i> <a rel="noopener" href="https://stackoverflow.com/questions/tagged/neo4j" target="_blank">Stack Overflow</a></li>
+
+      <li class="speaker-program"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEcNnMruES5iwvOVYovmS1D_P1ZL_HdUOitFrwrvruv5PZvA/viewform">Want to Speak?</a></li>
+    </ul>
+  </div>
+  <div class="column links">
+    <h2><a href="https://neo4j.com/contact-us/?ref=footer">Contact Us →</a></h2>
+    <ul>
+      <li>US: 1-855-636-4532</li>
+      <li>Sweden +46 171 480 113</li>
+      <li>UK: +44 20 3868 3223</li>
+      <li>France: +33 (0) 1 88 46 13 20</li>
+    </ul>
+  </div>
+
+    <div class="column">
+    <p>© <span id="footer-copyright-year">2025</span> Neo4j, Inc.<br>
+      <a href="https://neo4j.com/terms/">Terms</a> | <a href="https://neo4j.com/privacy-policy/">Privacy </a> | <a href="https://neo4j.com/sitemap/">Sitemap</a></p>
+    <p>Neo4j<sup>®</sup>, Neo Technology<sup>®</sup>, Cypher<sup>®</sup>, Neo4j<sup>®</sup> Bloom<sup>™</sup> and
+      Neo4j<sup>®</sup> Aura<sup>™</sup> are registered trademarks
+      of Neo4j, Inc. All other marks are owned by their respective companies.</p>
+  </div>
+
+  
+</div>
+</footer>
+
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
+
+
+
+<div id="neo4j-algolia-search-v2"></div>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.js"></script>
+<script src="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/polyfill.js"></script>
+<script>window.algoliaSearchOptions = {indexName: "docs",placeholder: "Search Documentation",template: "docs"}</script>
+  </body>
+</html>
