@@ -1074,7 +1074,7 @@ The most important aspect of read-write queries is that the state of the graph a
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-A clause can never observe writes made by a later clause.
+A clause can never observe writes made by a later clause, and will observe all writes done by the previous clauses.
 </td>
 </tr>
 </table>
@@ -1101,7 +1101,7 @@ RETURN f.name AS friendName,
 <div class="title">Example 2. Table of intermediate results and state of the graph between read and write clauses</div>
 <div class="content">
 <div class="paragraph">
-<p>Using the same example graph as above, this example shows the table of intermediate results and the state of the graph after each clause for the following query:</p>
+<p>Using the same example graph as above, this example shows the table of intermediate results and the state of the graph after each clause for a query with a read clause before a write clause:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1114,7 +1114,7 @@ CREATE (j)-[:FRIEND]-&gt;(jj:Person {name: "Jay-jay"})</code></pre>
 and for each such node it creates another node with  the <code>name</code> property set to "Jay-jay".</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. The table of intermediate results and the state of the graph after each clause</caption>
+<caption class="title">Table 2. Read-write: The table of intermediate results and the state of the graph after each clause+</caption>
 <colgroup>
 <col style="width: 27.2727%;">
 <col style="width: 36.3636%;">
@@ -1202,6 +1202,157 @@ the graph made by the <code>CREATE</code>.</p>
 </div>
 </div>
 </div>
+<div class="exampleblock">
+<div class="title">Example 3. Table of intermediate results and state of the graph between write and read clauses</div>
+<div class="content">
+<div class="paragraph">
+<p>On an empty graph, this example shows the table of intermediate results and the state of the graph after each clause for a query with a write clause before a read clause:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">UNWIND ["Max", "Lune"] AS dogName
+CREATE (n:Dog {name: dogName})
+WITH n
+MATCH (d:Dog)
+RETURN COUNT(*)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This query creates two <code>Dog</code> nodes and returns the value <code>4</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Write-read: The table of intermediate results and the state of the graph after each clause</caption>
+<colgroup>
+<col style="width: 27.2727%;">
+<col style="width: 36.3636%;">
+<col style="width: 36.3637%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Clause</th>
+<th class="tableblock halign-left valign-top">Table of intermediate results after the clause</th>
+<th class="tableblock halign-left valign-top">State of the graph after the clause, changes in red</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre>UNWIND ["Max", "Luna"] AS dogName</pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">dogName</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Max"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Luna"</code></p></td>
+</tr>
+</tbody>
+</table></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre>CREATE (n:Dog {name: dogName})</pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">dogName</th>
+<th class="tableblock halign-left valign-top">n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Max"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Max'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Luna"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Luna'})</code></p></td>
+</tr>
+</tbody>
+</table></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/graphviz/svg/eNqdzDEOglAMgOH9naJ5CyfQxbA5IhfgMVRawaS2pECCAe4OLiaujt8__PRsHfsOClhAjRiqocOec-fGnGAY33LAJiWm-hLKE1ShMTGHHKIzxfAwHX-L4J3lo-Vq7ar44gMpu-GcsiRbDHUoz_9_iknxO9p2HlY9tA==" alt="Diagram">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
+<div class="content">
+<pre>MATCH (d:Dog)</pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">dogName</th>
+<th class="tableblock halign-left valign-top">n</th>
+<th class="tableblock halign-left valign-top">d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Max"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Max'})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Max'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Max"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Max'})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Luna'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Luna"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Luna'})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Max'})</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"Luna"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Luna'})</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>(:Dog {name: 'Luna'})</code></p></td>
+</tr>
+</tbody>
+</table></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/graphviz/svg/eNpLyUwvSizIUPBRqFbIy09JVYguzkgsSLUtSk3OL0pRKC6pzAFy8kvzUlJTYq25_EwVorlyEpNScxRsFZSqXfLTa_ISc1OBnBh138SKGPWYnFolrlguPzPc6nxK8xLhCmsBCzcpsg==" alt="Diagram">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>It is important to note that the <code>MATCH</code> clause reads all the <code>Dog</code> nodes that are created by the <code>CREATE</code> clause.
+This is because the <code>CREATE</code> clause comes before the <code>MATCH</code> clause and thus the <code>MATCH</code> observes all changes to
+the graph made by the <code>CREATE</code>.
+The <code>MATCH</code> clause is performed for every intermediate result, this leads to finding two nodes for both intermediate results.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1217,7 +1368,7 @@ Any clause <em>after</em> <code>UNION</code> can observe all writes made by a cl
 This means that the rule that a clause can never observe writes made by a later clause still applies in queries using <code>UNION</code>.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 3. Table of intermediate results and state of the graph in a query with <code>UNION</code></div>
+<div class="title">Example 4. Table of intermediate results and state of the graph in a query with <code>UNION</code></div>
 <div class="content">
 <div class="paragraph">
 <p>Using the same example graph as above, this example shows the table of intermediate results and the state of the graph after each clause for the following query:</p>
@@ -1232,7 +1383,7 @@ RETURN count(*) AS count</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. The table of intermediate results and the state of the graph after each clause</caption>
+<caption class="title">Table 4. The table of intermediate results and the state of the graph after each clause</caption>
 <colgroup>
 <col style="width: 27.2727%;">
 <col style="width: 36.3636%;">
@@ -1383,7 +1534,7 @@ The different invocations of the subquery are executed in turn, in the order of 
 <p>Later invocations of the subquery can observe writes made by earlier invocations of the subquery.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 4. Table of intermediate results and state of the graph in a query with <code>CALL {}</code></div>
+<div class="title">Example 5. Table of intermediate results and state of the graph in a query with <code>CALL {}</code></div>
 <div class="content">
 <div class="paragraph">
 <p>Using the same example graph as above, this example shows the table of intermediate results and the state of the graph after each clause for the following query:</p>
@@ -1414,7 +1565,7 @@ CALL (john, friend) {
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. The table of intermediate results and the state of the graph after each clause</caption>
+<caption class="title">Table 5. The table of intermediate results and the state of the graph after each clause</caption>
 <colgroup>
 <col style="width: 27.2727%;">
 <col style="width: 36.3636%;">
