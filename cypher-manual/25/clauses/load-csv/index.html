@@ -1030,7 +1030,7 @@ RETURN a.name, a.year</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For ways of importing data into an Aura instance, see <a href="https://neo4j.com/docs/aura/auradb/importing/importing-data/">Aura &#8594; Importing data</a>.
+For ways of importing data into an Aura instance, see <a href="https://neo4j.com/docs/aura/classic/auradb/importing/importing-data/">Aura &#8594; Importing data</a>.
 </td>
 </tr>
 </table>
@@ -1042,7 +1042,7 @@ For ways of importing data into an Aura instance, see <a href="https://neo4j.com
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-When using <code>file:///</code> URLs, spaces and other non-alphanumeric characters must be <a href="https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding">URL-encoded</a>.
+When using <code>file:///</code> URLs, spaces and other non-alphanumeric characters must be <a href="https://developer.mozilla.org/en-US/docs/Glossary/Percent-encoding">URL-encoded</a>.
 </td>
 </tr>
 </table>
@@ -1527,7 +1527,7 @@ You can&#8217;t load zipped CSV files from remote URLs.
 <h3 id="_import_data_from_relational_databases"><a class="anchor" href="#_import_data_from_relational_databases"></a>Import data from relational databases</h3>
 <div class="paragraph">
 <p>If the source data comes from a relational model, it&#8217;s worth evaluating how to gain the most from moving to a graph data model.
-Before running the import, think about how the data can be modeled as a graph, and adapt its structure accordingly when running the import (see <a href="https://neo4j.com/docs/getting-started/data-modeling/guide-data-modeling/">Graph data modeling</a>).</p>
+Before running the import, think about how the data can be modeled as a graph, and adapt its structure accordingly when running the import (see <a href="https://neo4j.com/docs/getting-started/data-modeling/tutorial-data-modeling/">Graph data modeling</a>).</p>
 </div>
 <div class="paragraph">
 <p>Data from relational databases may consist of one or multiple CSV files, depending on the source database structure.
@@ -2619,7 +2619,7 @@ With increasing amounts of data, it is more efficient to create <em>all</em> nod
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>The <a href="https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/neo4j-admin-import/"><code>neo4j-admin database import</code></a> command</strong> is the most efficient way of importing large CSV files.</p>
+<p><strong>The <a href="https://neo4j.com/docs/operations-manual/current/import/"><code>neo4j-admin database import</code></a> command</strong> is the most efficient way of importing large CSV files.</p>
 </li>
 <li>
 <p>Use a <a href="https://neo4j.com/docs/create-applications/"><strong>language library</strong></a> to parse CSV data and run creation Cypher queries against a Neo4j database.
