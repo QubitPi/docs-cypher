@@ -1531,7 +1531,20 @@ RETURN customer.firstName AS plantCustomer
 <h2 id="next-unsupported-behavior"><a class="anchor" href="#next-unsupported-behavior"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>NEXT</code> currently does not support <code>DISTINCT</code> nor aggregations when they are used in a <code>UNION</code> query, wrapped in braces or after a <code>USE</code> clause.</p>
+<p><code>NEXT</code> currently does not support the following when they are used in a <code>UNION</code> query, wrapped in braces or after a <code>USE</code> clause:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>updating queries such as <code>CREATE</code> or <code>MERGE</code>,</p>
+</li>
+<li>
+<p><code>DISTINCT</code>,</p>
+</li>
+<li>
+<p>aggregations.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
