@@ -932,6 +932,43 @@ For more information, see <a href="../queries/select-version/" class="xref page"
 </div>
 </div>
 <div class="sect1">
+<h2 id="cypher-deprecations-additions-removals-2025.07"><a class="anchor" href="#cypher-deprecations-additions-removals-2025.07"></a>Neo4j 2025.07</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_updated_in_cypher_25"><a class="anchor" href="#_updated_in_cypher_25"></a>Updated in Cypher 25</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="label label--functionality">Functionality</span>
+<span class="label label--updated">Updated</span></p>
+</div>
+<div class="listingblock noheader">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (n)-[r]-&gt;()
+WHERE n:$(&lt;expr1&gt;)
+WITH n, r:$(&lt;expr2&gt;) AS hasType
+RETURN n:$(&lt;expr3&gt;)</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Added the ability to dynamically reference node labels and relationship types in places where <a href="../patterns/reference/#label-expressions" class="xref page">label expressions</a> are allowed.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="cypher-deprecations-additions-removals-2025.06"><a class="anchor" href="#cypher-deprecations-additions-removals-2025.06"></a>Neo4j 2025.06</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -1160,7 +1197,7 @@ For more information, see <a href="https://neo4j.com/docs/operations-manual/curr
 </table>
 </div>
 <div class="sect2">
-<h3 id="_updated_in_cypher_25"><a class="anchor" href="#_updated_in_cypher_25"></a>Updated in Cypher 25</h3>
+<h3 id="_updated_in_cypher_25_2"><a class="anchor" href="#_updated_in_cypher_25_2"></a>Updated in Cypher 25</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">

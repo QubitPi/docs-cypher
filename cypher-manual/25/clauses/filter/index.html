@@ -1055,6 +1055,51 @@ RETURN p.name AS person,
 </div>
 </div>
 <div class="sect1">
+<h2 id="filter-on-dynamic-labels-and-types"><a class="anchor" href="#filter-on-dynamic-labels-and-types"></a>Filter on dynamic labels and types</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To filter on a label or relationship type using a dynamically computed value, use <code>$(&lt;expr&gt;)</code> where &lt;expr&gt; is any Cypher expression:</p>
+</div>
+<div class="listingblock">
+<div class="title">Parameters</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-parameters hljs" data-lang="parameters">{
+  "label": "Swedish"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Filter on a dynamically computed node label</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-cypher hljs" data-lang="cypher">MATCH (n)
+FILTER n:$($label)
+RETURN labels(n) AS labels</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch queryresult">
+<caption class="title">Result</caption>
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">labels</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>["Person", "Swedish"]</code></p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rows: 1</p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="sect1">
 <h2 id="filter-on-dynamic-properties"><a class="anchor" href="#filter-on-dynamic-properties"></a>Filter on dynamic properties</h2>
 <div class="sectionbody">
 <div class="paragraph">
