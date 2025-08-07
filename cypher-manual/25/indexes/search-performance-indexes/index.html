@@ -13,20 +13,20 @@
     <meta property="og:type" content="article" />
 
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WK23PSS');</script>
-    <title>Semantic indexes - Cypher Manual</title>
-    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/indexes/semantic-indexes/overview/">
+    <title>Search-performance indexes - Cypher Manual</title>
+    <link rel="canonical" href="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/">
 
-    <link rel="prev" href="../../search-performance-indexes/index-hints/">
-    <link rel="next" href="../full-text-indexes/">
+    <link rel="prev" href="../">
+    <link rel="next" href="managing-indexes/">
 
-      <meta name="description" content="Overview of the semantic indexes available in Neo4j.">
+      <meta name="description" content="Overview of the search-performance indexes available in Neo4j.">
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/bundle.css" />
 <link rel="stylesheet" href="https://neo4j.com/wp-content/themes/neo4jweb/assets/neo4j-react-modules-assets/search-preact/chunkless/utilities.min.css" />
 
 
 
-    <link rel="preload" href="../../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
-    <link rel="stylesheet" href="../../../../../assets/css/site.css">
+    <link rel="preload" href="../../../../assets/fonts/fontawesome-webfont.woff2?v=4.7.0" as="font">
+    <link rel="stylesheet" href="../../../../assets/css/site.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -44,11 +44,11 @@
     <meta name="twitter:creator" content="@neo4j" />
     <meta name="twitter:site" content="@neo4j" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Semantic indexes - Cypher Manual" />
+    <meta property="og:title" content="Search-performance indexes - Cypher Manual" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://dist.neo4j.com/wp-content/uploads/20240513110808/Neo4j-logo-social-preview.png" />
-    <meta property="og:description" content="Overview of the semantic indexes available in Neo4j." />
-    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/indexes/semantic-indexes/overview/" />
+    <meta property="og:description" content="Overview of the search-performance indexes available in Neo4j." />
+    <meta property="og:url" content="https://neo4j.com/docs/cypher-manual/25/indexes/search-performance-indexes/" />
     <link rel="shortcut icon" href="https://neo4j.com/wp-content/themes/neo4jweb/favicon.ico" />
   </head>
   <body class="article docs">
@@ -351,467 +351,467 @@ mixpanel.track("Page View", {
     <li class="nav-item" data-module="ROOT" data-depth="0">
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../introduction/">Introduction</a>
+      <a class="nav-link nav-item-toggle" href="../../introduction/">Introduction</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../introduction/cypher-overview/">Overview</a>
+      <a class="nav-link" href="../../introduction/cypher-overview/">Overview</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
+      <a class="nav-link" href="../../introduction/cypher-neo4j/">Cypher and Neo4j</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../introduction/cypher-aura/">Cypher and Aura</a>
+      <a class="nav-link" href="../../introduction/cypher-aura/">Cypher and Aura</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../queries/">Queries</a>
+      <a class="nav-link nav-item-toggle" href="../../queries/">Queries</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../queries/concepts/">Core concepts</a>
+      <a class="nav-link" href="../../queries/concepts/">Core concepts</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../queries/basic/">Basic queries</a>
+      <a class="nav-link" href="../../queries/basic/">Basic queries</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../queries/select-version/">Select Cypher version</a>
+      <a class="nav-link" href="../../queries/select-version/">Select Cypher version</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../queries/composed-queries/">Composed queries</a>
+      <a class="nav-link nav-item-toggle" href="../../queries/composed-queries/">Composed queries</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
+      <a class="nav-link" href="../../queries/composed-queries/combined-queries/">Combined queries (<code>UNION</code>)</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
+      <a class="nav-link" href="../../queries/composed-queries/conditional-queries/">Conditional queries (<code>WHEN</code>)</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
+      <a class="nav-link" href="../../queries/composed-queries/sequential-queries/">Sequential queries (<code>NEXT</code>)</a>
             </li>
 </ul>
     </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../clauses/">Clauses</a>
+      <a class="nav-link nav-item-toggle" href="../../clauses/">Clauses</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/clause-composition/">Clause composition</a>
+      <a class="nav-link" href="../../clauses/clause-composition/">Clause composition</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/call/">CALL procedure</a>
+      <a class="nav-link" href="../../clauses/call/">CALL procedure</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/create/">CREATE</a>
+      <a class="nav-link" href="../../clauses/create/">CREATE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/delete/">DELETE</a>
+      <a class="nav-link" href="../../clauses/delete/">DELETE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/filter/">FILTER</a>
+      <a class="nav-link" href="../../clauses/filter/">FILTER</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/finish/">FINISH</a>
+      <a class="nav-link" href="../../clauses/finish/">FINISH</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/foreach/">FOREACH</a>
+      <a class="nav-link" href="../../clauses/foreach/">FOREACH</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/let/">LET</a>
+      <a class="nav-link" href="../../clauses/let/">LET</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/limit/">LIMIT</a>
+      <a class="nav-link" href="../../clauses/limit/">LIMIT</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/load-csv/">LOAD CSV</a>
+      <a class="nav-link" href="../../clauses/load-csv/">LOAD CSV</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/match/">MATCH</a>
+      <a class="nav-link" href="../../clauses/match/">MATCH</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/merge/">MERGE</a>
+      <a class="nav-link" href="../../clauses/merge/">MERGE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/optional-match/">OPTIONAL MATCH</a>
+      <a class="nav-link" href="../../clauses/optional-match/">OPTIONAL MATCH</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/order-by/">ORDER BY</a>
+      <a class="nav-link" href="../../clauses/order-by/">ORDER BY</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/remove/">REMOVE</a>
+      <a class="nav-link" href="../../clauses/remove/">REMOVE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/return/">RETURN</a>
+      <a class="nav-link" href="../../clauses/return/">RETURN</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/set/">SET</a>
+      <a class="nav-link" href="../../clauses/set/">SET</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/listing-functions/">SHOW FUNCTIONS</a>
+      <a class="nav-link" href="../../clauses/listing-functions/">SHOW FUNCTIONS</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/listing-procedures/">SHOW PROCEDURES</a>
+      <a class="nav-link" href="../../clauses/listing-procedures/">SHOW PROCEDURES</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/listing-settings/">SHOW SETTINGS</a>
+      <a class="nav-link" href="../../clauses/listing-settings/">SHOW SETTINGS</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-listing-transactions">SHOW TRANSACTIONS</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/skip/">SKIP</a>
+      <a class="nav-link" href="../../clauses/skip/">SKIP</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
+      <a class="nav-link" href="../../clauses/transaction-clauses/#query-terminate-transactions">TERMINATE TRANSACTIONS</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/unwind/">UNWIND</a>
+      <a class="nav-link" href="../../clauses/unwind/">UNWIND</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/use/">USE</a>
+      <a class="nav-link" href="../../clauses/use/">USE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/where/">WHERE</a>
+      <a class="nav-link" href="../../clauses/where/">WHERE</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../clauses/with/">WITH</a>
+      <a class="nav-link" href="../../clauses/with/">WITH</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../subqueries/">Subqueries</a>
+      <a class="nav-link nav-item-toggle" href="../../subqueries/">Subqueries</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../subqueries/call-subquery/">CALL subqueries</a>
+      <a class="nav-link" href="../../subqueries/call-subquery/">CALL subqueries</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
+      <a class="nav-link" href="../../subqueries/subqueries-in-transactions/">CALL subqueries in transactions</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../subqueries/collect/">COLLECT subqueries</a>
+      <a class="nav-link" href="../../subqueries/collect/">COLLECT subqueries</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../subqueries/count/">COUNT subqueries</a>
+      <a class="nav-link" href="../../subqueries/count/">COUNT subqueries</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../subqueries/existential/">EXISTS subqueries</a>
+      <a class="nav-link" href="../../subqueries/existential/">EXISTS subqueries</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../patterns/">Patterns</a>
+      <a class="nav-link nav-item-toggle" href="../../patterns/">Patterns</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/primer/">Primer</a>
+      <a class="nav-link" href="../../patterns/primer/">Primer</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
+      <a class="nav-link" href="../../patterns/fixed-length-patterns/">Fixed-length patterns</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/variable-length-patterns/">Variable-length patterns</a>
+      <a class="nav-link" href="../../patterns/variable-length-patterns/">Variable-length patterns</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/shortest-paths/">Shortest paths</a>
+      <a class="nav-link" href="../../patterns/shortest-paths/">Shortest paths</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/non-linear-patterns/">Non-linear patterns</a>
+      <a class="nav-link" href="../../patterns/non-linear-patterns/">Non-linear patterns</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/match-modes/">Match modes</a>
+      <a class="nav-link" href="../../patterns/match-modes/">Match modes</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../patterns/reference/">Syntax and semantics</a>
+      <a class="nav-link" href="../../patterns/reference/">Syntax and semantics</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../values-and-types/">Values and types</a>
+      <a class="nav-link nav-item-toggle" href="../../values-and-types/">Values and types</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
+      <a class="nav-link" href="../../values-and-types/property-structural-constructed/">Property, structural, and constructed values</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
+      <a class="nav-link" href="../../values-and-types/boolean-numeric-string/">Boolean, numeric, and string literals</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/temporal/">Temporal values</a>
+      <a class="nav-link" href="../../values-and-types/temporal/">Temporal values</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/spatial/">Spatial values</a>
+      <a class="nav-link" href="../../values-and-types/spatial/">Spatial values</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/lists/">Lists</a>
+      <a class="nav-link" href="../../values-and-types/lists/">Lists</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/maps/">Maps</a>
+      <a class="nav-link" href="../../values-and-types/maps/">Maps</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/graph-references/">Graph references</a>
+      <a class="nav-link" href="../../values-and-types/graph-references/">Graph references</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/working-with-null/">Working with <code>null</code></a>
+      <a class="nav-link" href="../../values-and-types/working-with-null/">Working with <code>null</code></a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/casting-data/">Casting data values</a>
+      <a class="nav-link" href="../../values-and-types/casting-data/">Casting data values</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
+      <a class="nav-link" href="../../values-and-types/ordering-equality-comparison/">Equality, ordering, and comparison of value types</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../expressions/">Expressions</a>
+      <a class="nav-link nav-item-toggle" href="../../expressions/">Expressions</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../expressions/predicates/">Predicates</a>
+      <a class="nav-link nav-item-toggle" href="../../expressions/predicates/">Predicates</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/boolean-operators/">Boolean operators</a>
+      <a class="nav-link" href="../../expressions/predicates/boolean-operators/">Boolean operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/comparison-operators/">Comparison operators</a>
+      <a class="nav-link" href="../../expressions/predicates/comparison-operators/">Comparison operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/list-operators/">List operators</a>
+      <a class="nav-link" href="../../expressions/predicates/list-operators/">List operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/string-operators/">String operators</a>
+      <a class="nav-link" href="../../expressions/predicates/string-operators/">String operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
+      <a class="nav-link" href="../../expressions/predicates/path-pattern-expressions/">Path pattern expressions</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
+      <a class="nav-link" href="../../expressions/predicates/type-predicate-expressions/">Type predicate expressions</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/node-relationship-operators/">Node and relationship operators</a>
+      <a class="nav-link" href="../../expressions/node-relationship-operators/">Node and relationship operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/mathematical-operators/">Mathematical operators</a>
+      <a class="nav-link" href="../../expressions/mathematical-operators/">Mathematical operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/string-operators/">String concatenation operators</a>
+      <a class="nav-link" href="../../expressions/string-operators/">String concatenation operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/temporal-operators/">Temporal operators</a>
+      <a class="nav-link" href="../../expressions/temporal-operators/">Temporal operators</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/list-expressions/">List expressions</a>
+      <a class="nav-link" href="../../expressions/list-expressions/">List expressions</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/map-expressions/">Map expressions</a>
+      <a class="nav-link" href="../../expressions/map-expressions/">Map expressions</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
-            </li>
-</ul>
-    </li>
-    <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../functions/">Functions</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/aggregating/">Aggregating functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/database/">Database functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/graph/">Graph functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/list/">List functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/load-csv/">LOAD CSV functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/predicate/">Predicate functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/scalar/">Scalar functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/spatial/">Spatial functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/string/">String functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/temporal/duration/">Temporal functions - duration</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/temporal/">Temporal functions - instant types</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/user-defined/">User-defined functions</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../functions/vector/">Vector functions</a>
+      <a class="nav-link" href="../../expressions/conditional-expressions/">Conditional expressions (CASE)</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link" href="../../../genai-integrations/">GenAI integrations</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../">Indexes</a>
+      <a class="nav-link nav-item-toggle" href="../../functions/">Functions</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../search-performance-indexes/overview/">Search-performance indexes</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
+      <a class="nav-link" href="../../functions/aggregating/">Aggregating functions</a>
             </li>
-    <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../search-performance-indexes/using-indexes/">The impact of indexes on query performance</a>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/database/">Database functions</a>
             </li>
-    <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../search-performance-indexes/index-hints/">Index hints for the Cypher planner</a>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/graph/">Graph functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/list/">List functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/load-csv/">LOAD CSV functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-logarithmic/">Mathematical functions - logarithmic</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-numeric/">Mathematical functions - numeric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/mathematical-trigonometric/">Mathematical functions - trigonometric</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/predicate/">Predicate functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/scalar/">Scalar functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/spatial/">Spatial functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/string/">String functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/duration/">Temporal functions - duration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/temporal/">Temporal functions - instant types</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/user-defined/">User-defined functions</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../functions/vector/">Vector functions</a>
             </li>
 </ul>
     </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../genai-integrations/">GenAI integrations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../">Indexes</a>
+        <ul class="nav-list">
     <li class="nav-item is-current-page" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="./">Semantic indexes</a>
+      <a class="nav-link nav-item-toggle" href="./">Search-performance indexes</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../full-text-indexes/">Full-text indexes</a>
+      <a class="nav-link" href="managing-indexes/">Create, show, and delete indexes</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../vector-indexes/">Vector indexes</a>
-            </li>
-</ul>
-    </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../syntax/">Syntax</a>
-            </li>
-</ul>
-    </li>
-    <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../constraints/">Constraints</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../constraints/managing-constraints/">Create, show, and drop constraints</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../constraints/syntax/">Syntax</a>
-            </li>
-</ul>
-    </li>
-    <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/">Execution plans and query tuning</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/operators/">Operators</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
-            </li>
-</ul>
-    </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../planning-and-tuning/runtimes/">Cypher runtimes</a>
-        <ul class="nav-list">
-    <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../planning-and-tuning/runtimes/concepts/">Concepts</a>
+      <a class="nav-link" href="using-indexes/">The impact of indexes on query performance</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
+      <a class="nav-link" href="index-hints/">Index hints for the Cypher planner</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../planning-and-tuning/query-tuning/">Query tuning</a>
+      <a class="nav-link nav-item-toggle" href="../semantic-indexes/">Semantic indexes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../semantic-indexes/full-text-indexes/">Full-text indexes</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../semantic-indexes/vector-indexes/">Vector indexes</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../syntax/">Syntax</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../query-caches/">Query caches</a>
+      <a class="nav-link nav-item-toggle" href="../../constraints/">Constraints</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../query-caches/unified-query-caches/">Unifying query caches</a>
+      <a class="nav-link" href="../../constraints/managing-constraints/">Create, show, and drop constraints</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../constraints/syntax/">Syntax</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link" href="../../../administration/">Administration</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link nav-item-toggle" href="../../../syntax/">Syntax</a>
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/">Execution plans and query tuning</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/parsing/">Parsing</a>
+      <a class="nav-link" href="../../planning-and-tuning/execution-plans/">Understanding execution plans</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/naming/">Naming rules and recommendations</a>
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/operators/">Operators</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/operators/operators-detail/">Operators in detail</a>
             </li>
+</ul>
+    </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/variables/">Variables</a>
+      <a class="nav-link nav-item-toggle" href="../../planning-and-tuning/runtimes/">Cypher runtimes</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/concepts/">Concepts</a>
             </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/keywords/">Keywords</a>
+    <li class="nav-item" data-module="ROOT" data-depth="3">
+      <a class="nav-link" href="../../planning-and-tuning/runtimes/reference/">Parallel runtime: reference</a>
             </li>
+</ul>
+    </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/parameters/">Parameters</a>
-            </li>
-    <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../syntax/comments/">Comments</a>
+      <a class="nav-link" href="../../planning-and-tuning/query-tuning/">Query tuning</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
-      <a class="nav-link" href="../../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
+      <a class="nav-link nav-item-toggle" href="../../query-caches/">Query caches</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../query-caches/unified-query-caches/">Unifying query caches</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../administration/">Administration</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link nav-item-toggle" href="../../syntax/">Syntax</a>
+        <ul class="nav-list">
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parsing/">Parsing</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/naming/">Naming rules and recommendations</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/variables/">Variables</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/keywords/">Keywords</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/parameters/">Parameters</a>
+            </li>
+    <li class="nav-item" data-module="ROOT" data-depth="2">
+      <a class="nav-link" href="../../syntax/comments/">Comments</a>
+            </li>
+</ul>
+    </li>
+    <li class="nav-item" data-module="ROOT" data-depth="1">
+      <a class="nav-link" href="../../deprecations-additions-removals-compatibility/">Additions, deprecations, removals, and compatibility</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="1">
       <span class="nav-text nav-item-toggle">Appendix</span>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link" href="../../../styleguide/">Cypher styleguide</a>
+      <a class="nav-link" href="../../styleguide/">Cypher styleguide</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../appendix/gql-conformance/">GQL conformance</a>
+      <a class="nav-link nav-item-toggle" href="../../appendix/gql-conformance/">GQL conformance</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-mandatory/">Supported mandatory GQL features</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
+      <a class="nav-link" href="../../appendix/gql-conformance/unsupported-mandatory/">Currently unsupported mandatory GQL features</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
+      <a class="nav-link" href="../../appendix/gql-conformance/supported-optional/">Supported optional GQL features</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
+      <a class="nav-link" href="../../appendix/gql-conformance/analogous-cypher/">Optional GQL features and analogous Cypher</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
+      <a class="nav-link" href="../../appendix/gql-conformance/additional-cypher/">Additional Cypher features</a>
             </li>
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../../appendix/tutorials/">Tutorials and extended examples</a>
+      <a class="nav-link nav-item-toggle" href="../../appendix/tutorials/">Tutorials and extended examples</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
+      <a class="nav-link" href="../../appendix/tutorials/basic-query-tuning/">Basic query tuning example</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
+      <a class="nav-link" href="../../appendix/tutorials/advanced-query-tuning/">Advanced query tuning example</a>
             </li>
     <li class="nav-item" data-module="ROOT" data-depth="3">
-      <a class="nav-link" href="../../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
+      <a class="nav-link" href="../../appendix/tutorials/shortestpath-planning/">Shortest path planning</a>
             </li>
 </ul>
     </li>
@@ -882,13 +882,13 @@ mixpanel.track("Page View", {
     <nav class="breadcrumbs" aria-label="breadcrumbs menu">
   <ul>
 
-    <li><a href="../../../introduction/">Cypher Manual</a></li>
+    <li><a href="../../introduction/">Cypher Manual</a></li>
 
-    <li><a href="../../">
+    <li><a href="../">
         Indexes
     </a></li>
     <li><a href="./">
-        Semantic indexes
+        Search-performance indexes
     </a></li>
   </ul>
 </nav>
@@ -900,7 +900,7 @@ mixpanel.track("Page View", {
     <div id="skip-to-content"></div>
 <article class="doc">
 <div class="sect-header">
-  <h1 class="page">Semantic indexes</h1>
+  <h1 class="page">Search-performance indexes</h1>
 </div>
 
 
@@ -908,39 +908,43 @@ mixpanel.track("Page View", {
 
 
 <div class="paragraph">
-<p>Unlike search-performance indexes, semantic indexes capture the semantic meaning or context of the data in a database.
-This is done by returning an approximation score, which indicates the similarity between a query string and the data in a database.</p>
-</div>
-<div class="paragraph">
-<p>Two semantic indexes are available in Neo4j:</p>
+<p>Search-performance indexes enable quicker retrieval of exact matches between an index and the primary data storage.
+There are four different search-performance indexes available in Neo4j:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../full-text-indexes/" class="xref page">Full-text indexes</a>: enables searching within the content of <code>STRING</code> properties and for similarity comparisons between query strings and <code>STRING</code> values stored in the database.</p>
+<p><strong>Range indexes</strong>: Neo4j’s default index.
+Supports most types of predicates.</p>
 </li>
 <li>
-<p><a href="../vector-indexes/" class="xref page">Vector indexes</a>: enables similarity searches and complex analytical queries by representing nodes or properties as vectors in a multidimensional space.</p>
+<p><strong>Text indexes</strong>: solves predicates operating on <code>STRING</code> values.
+Optimized for queries filtering with the <code>STRING</code> operators <code>CONTAINS</code> and <code>ENDS WITH</code>.</p>
+</li>
+<li>
+<p><strong>Point indexes</strong>: solves predicates on spatial <code>POINT</code> values.
+Optimized for queries filtering on distance or within bounding boxes.</p>
+</li>
+<li>
+<p><strong>Token lookup indexes</strong>: only solves node label and relationship type predicates (i.e. they cannot solve any predicates filtering on properties).
+Two token lookup indexes (one for node labels and one for relationship types) are present when a database is created in Neo4j.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Unlike search-performance indexes, semantic indexes are not automatically used by the <a href="../../../planning-and-tuning/execution-plans/" class="xref page">Cypher<sup>&reg;</sup> planner</a>.
-To use semantic indexes, they must be explicitly called with specific procedures.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>To learn more about creating, listing, and deleting these indexes, as well as more details about the predicates supported by each index type, see <a href="managing-indexes/" class="xref page">Create, show, and delete indexes</a>.</p>
+</div>
+<div class="paragraph">
+<p>For information about how indexes impact the performance of Cypher<sup>&reg;</sup> queries, as well as some heuristics for when to use (and not to use) a search-performance index, see <a href="using-indexes/" class="xref page">The impact of indexes on query performance</a>.</p>
+</div>
+<div class="paragraph">
+<p>Search-performance indexes are used automatically, and if several indexes are available, the <a href="../../planning-and-tuning/execution-plans/" class="xref page">Cypher planner</a> will try to use the index (or indexes) that can most efficiently solve a particular predicate.
+It is, however, possible to explicitly force a query to use a particular index with the <code>USING</code> keyword. For more information, see <a href="index-hints/" class="xref page">Index hints for the Cypher planner</a>.</p>
 </div>
 <nav class="pagination" aria-label="pagination links">
-  <span class="prev"><a href="../../search-performance-indexes/index-hints/" aria-label="Previous: Index hints for the Cypher planner">Index hints for the Cypher planner</a></span>
+  <span class="prev"><a href="../" aria-label="Previous: Indexes">Indexes</a></span>
 
-  <span class="next"><a href="../full-text-indexes/" aria-label="Next: Full-text indexes">Full-text indexes</a></span>
+  <span class="next"><a href="managing-indexes/" aria-label="Next: Create, show, and delete indexes">Create, show, and delete indexes</a></span>
 </nav>
 </article>
     <aside class="toc sidebar" data-title="Contents"
@@ -1004,10 +1008,10 @@ To use semantic indexes, they must be explicitly called with specific procedures
 </div>
 </footer>
 
-  <script src="../../../../../assets/js/vendor/auth0.js"></script>
-  <script src="../../../../../assets/js/site.js"></script>
-  <script async src="../../../../../assets/js/vendor/highlight.js"></script>
-  <script async src="../../../../../assets/js/vendor/image-zoom.js"></script>
+  <script src="../../../../assets/js/vendor/auth0.js"></script>
+  <script src="../../../../assets/js/site.js"></script>
+  <script async src="../../../../assets/js/vendor/highlight.js"></script>
+  <script async src="../../../../assets/js/vendor/image-zoom.js"></script>
 
 
 

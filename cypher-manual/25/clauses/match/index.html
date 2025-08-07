@@ -668,7 +668,7 @@ mixpanel.track("Page View", {
       <a class="nav-link nav-item-toggle" href="../../indexes/">Indexes</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/overview/">Search-performance indexes</a>
+      <a class="nav-link nav-item-toggle" href="../../indexes/search-performance-indexes/">Search-performance indexes</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
       <a class="nav-link" href="../../indexes/search-performance-indexes/managing-indexes/">Create, show, and delete indexes</a>
@@ -682,7 +682,7 @@ mixpanel.track("Page View", {
 </ul>
     </li>
     <li class="nav-item" data-module="ROOT" data-depth="2">
-      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/overview/">Semantic indexes</a>
+      <a class="nav-link nav-item-toggle" href="../../indexes/semantic-indexes/">Semantic indexes</a>
         <ul class="nav-list">
     <li class="nav-item" data-module="ROOT" data-depth="3">
       <a class="nav-link" href="../../indexes/semantic-indexes/full-text-indexes/">Full-text indexes</a>
@@ -2026,7 +2026,7 @@ RETURN relationshipType, count(r) AS relationshipCount</code></pre>
 <h3 id="dynamic-match-caveats"><a class="anchor" href="#dynamic-match-caveats"></a>Performance caveats</h3>
 <div class="paragraph">
 <p><code>MATCH</code> queries using dynamic values may not be as performant as those using static values.
-This is because the <a href="../../planning-and-tuning/execution-plans/" class="xref page">Cypher planner</a> uses statically available information when planning queries to determine whether to use an <a href="../../indexes/search-performance-indexes/overview/" class="xref page">index</a> or not, and this is not possible when using dynamic values.</p>
+This is because the <a href="../../planning-and-tuning/execution-plans/" class="xref page">Cypher planner</a> uses statically available information when planning queries to determine whether to use an <a href="../../indexes/search-performance-indexes/" class="xref page">index</a> or not, and this is not possible when using dynamic values.</p>
 </div>
 <div class="paragraph">
 <p>As a result, <code>MATCH</code> queries using dynamic values cannot leverage <a href="../../planning-and-tuning/operators/operators-detail/#leaf-operators" class="xref page">index scans or seeks</a> and must instead use the <a href="../../planning-and-tuning/operators/operators-detail/#query-plan-all-nodes-scan" class="xref page"><code>AllNodesScan</code></a> operator, which reads all nodes from the node store and is therefore more costly.</p>
